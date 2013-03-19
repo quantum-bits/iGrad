@@ -1,0 +1,6 @@
+In order to do the password reset, etc., had to copy the following into 
+this templates directory:
+
+cp -r /opt/local/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/django/contrib/admin/templates/registration/ ./
+
+(See Hacked Existence Django Tutorial 8....)

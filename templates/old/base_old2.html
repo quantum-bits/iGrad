@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="templates/javascript_addons/django-admin-widgets.css">
+<script type="text/javascript" src="templates/javascript_addons/django-admin.multiselect.js" ></script>
+        {% block extrahead %}{% endblock %}
+</head>
+<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" type="text/css" />
+<body>
+<div id="pageContainer">
+        <div id="nav_top_right">
+	  {% if user.is_authenticated %}
+            <p><a href="/logout/">Logout</a></p>
+	  {% else %}
+	    <p><a href="/login/">Login</a></p>
+	  {% endif %}
+	</div>
+        {% block content %}
+        {% endblock %}
+</div>
+<div id="footer">
+	<p>Made on a Mac :)</p>
+</div>
+<!-- end #footer -->
+</body>
+</html>

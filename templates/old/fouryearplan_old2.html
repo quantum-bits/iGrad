@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <p><a href="/graduationaudit/">Graduation Audit</a></p>
+  <p> Name: {{ student.name }}</p>
+  <p> Email: {{ student.user.email }} </p>
+  <p> Major: {{ student.major }} </p>
+  <p> Entering Year: {{ student.entering_year }} </p>
+  <p></p>
+  <p> Total Number of Credit Hours for Plan: {{ totalhrsfouryears }}</p>
+  <p> Pre-TU Credit ({{ preTUblock.0.3 }} hrs) (<a href="/updatePreTU/{{ preTUblock.0.2 }}/">Edit</a>):
+    {% for row in preTUblock %}
+       {% for courses in row.1 %}
+         {{ courses.0 }}: {{ courses.1 }}, 
+	   {{ courses.2 }} hrs, SP?: {% if courses.3 %} Yes {% else %} No {% endif %},
+	   CC?: {% if courses.4 %} Yes {% else %} No {% endif %}
+       {% endfor %}
+       <p> </p>
+    {% endfor %}
+  </p>
+  <p> Semesters: </p>
+    {% for row in datablock %}
+       {{ row.1 }}, {{ row.0 }} ({{ row.5 }} hrs)
+	   (<a href="/updatesemester/{{ row.4 }}/">Edit</a>): 
+       <table>
+       {% for courses in row.3 %}
+       <tr>
+       <td class = "thick">
+         {{ courses.0 }}</td>
+       <td class = "thick">
+	 {{ courses.1 }}</td>
+       <td class = "thick">
+	   {{ courses.2 }} hrs</td>
+       <td class = "thick">
+	   SP/CC?: {% if courses.3 and courses.4 %} SP/CC {% elif courses.3 %} SP {% elif courses.4 %} CC {% endif %}</td>
+       </tr>
+       {% endfor %}
+       </table>
+       <p> </p>
+    {% endfor %}
+  <p><a href="/graduationaudit/">Graduation Audit</a></p>
+{% endblock %}

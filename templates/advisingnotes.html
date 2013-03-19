@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+  {% if isProfessor %}
+  <p> Advisee Name: {{ student.name }}  (<a class="other" href="/changeadvisee/3/">Change</a>)</p>
+  {% else %}
+  <p> Name: {{ student.name }}</p>
+  {% endif %}
+  <p> Email: {{ student.user.email }} </p>
+  <p> Major: {{ student.major }} </p>
+  <p> Entering Year: {{ student.entering_year }} </p>
+  <p></p>
+  {% for item in datablock %}
+       <p> Note #{{item.3}} ({{item.0}}{% if isProfessor %}): {% else %}, 
+	 <a class="other" href="/updateNote/{{ item.2 }}/">Edit</a>, 
+	 <a class="other" href="/deleteNote/{{ item.2 }}/">Delete</a>):{% endif %} </p>
+       <table>
+       <tr>
+	 <td class = "note">
+         <p class = "note">{{ item.1 }}</p></td>
+       </tr>
+       </table>
+  {% endfor %}
+  <p> </p>
+  {% if isProfessor %} {% else %}
+  <p> To add a new note, click 
+   <a class="other" href="/addadvisingnote/">here</a>.</p>
+  {% endif %}
+
+{% endblock %}

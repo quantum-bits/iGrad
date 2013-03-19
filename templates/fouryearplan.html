@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+
+  {% if isProfessor %}
+  <p> Advisee Name: {{ student.name }}  (<a class="other" href="/changeadvisee/1/">Change</a>)</p>
+  {% else %}
+  <p> Name: {{ student.name }}</p>
+  {% endif %}
+  <p> Major: {{ student.major }} </p>
+  <p></p>
+  <p> Total Number of Credit Hours for Plan:
+    {% if credithrmaxreached %} 
+       <b style="color:red;"> {{ totalhrsfouryears }} 
+ <p>(Note: Please consult with the Financial Aid Office regarding the 160 credit hour limit.)
+       </p></b>
+    {% else %}
+       {{ totalhrsfouryears }}
+    {% endif %}
+  </p>
+
+ <p> <b>Click on headings to expand/collapse </b></p>
+
+  {% for year in datablock %}
+
+  <div class="box">
+  <a class ="other" href="javascript:;" onmousedown="toggleDiv('{% cycle 'idPre-TU' 'idFreshman' 'idSophomore' 'idJunior' 'idSenior' 'idSupersenior' %}');"><b>{% cycle 'Pre-TU:' 'Freshman Year:' 'Sophomore Year:' 'Junior Year:' 'Senior Year:' 'Supersenior Year:' %}</b>{% if forloop.first %} [{{year.0.totalcredithours}}] hrs {% else %} [{{year.0.totalcredithours}}, {{year.1.totalcredithours}}, {{year.2.totalcredithours}}, {{year.3.totalcredithours}}] hrs {% endif %}</a>
+
+  <div id={%cycle 'idPre-TU' 'idFreshman' 'idSophomore' 'idJunior' 'idSenior' 'idSupersenior' %} style="display:none">
+
+    {% for row in year %}
+
+  <p>
+       {{ row.semestername }}, {{ row.year }}{% if isProfessor %}: {% else %}
+	   (<a class="other" href="/updatesemester/{{ row.semesterid }}/">Edit</a>): {% endif %}
+  </p> 
+      <table>
+       <tr>
+       <th class = "name">
+	 Course Name
+       </th>
+       <th class = "number">
+	 Course #
+       </th>
+       <th class = "hrs">
+	 Credit Hrs
+       </th>
+       <th class = "SPCC">
+	 SP/CC
+       </th>
+       </tr>
+       {% for course in row.listofcourses %}
+       <tr>
+       <td class = "thickleft">
+         <p class = "margin">{{ course.cname }}{% if course.iscyoc %}*{% endif %}</p></td>
+       <td class = "thick">
+	 {{ course.cnumber }} </td>
+       <td class = "thick">
+	   {{ course.ccredithours }} hrs</td>
+       <td class = "thick">
+	   {% if course.sp and course.cc %} SP/CC {% elif course.sp %} SP {% elif course.cc %} CC {% endif %}</td>
+       <td>
+<!--
+in the following the 0 means that we are coming FROM the four year plan page, {{row.semesterid}} gives the ssc object
+id and {{course.courseid}} gives the course id within the ssc object
+-->
+  {% if isProfessor %} {% else %}
+  <ul id="nav" class="drop">
+    <li><a href="#">Delete/Move</a>
+        <ul>
+	  <li>
+	    {% if course.cyoc %}<!-- this is a cyoc -->
+	      <a href="/deletecyoc/0/{{row.semesterid}}/{{course.courseid}}/">delete</a></li>
+	    {% else %}
+	      <a href="/deletecourse/0/{{row.semesterid}}/{{course.courseid}}/">delete</a></li>
+            {% endif %}
+            {% for alternatesemester in course.othersemesters %}
+	  <li><a href="/movecoursetonewsemester/0/{{row.semesterid}}/{{alternatesemester.courseid}}/{{course.courseid}}/"> {{alternatesemester.semester}}; {{alternatesemester.numhrsthissem}} hrs </a></li>
+	    {% endfor %}
+	</ul>
+	</li>
+   </ul>
+   {% endif %} 
+<!--</nav>-->
+	 </td>
+       </tr>
+
+       {% endfor %}
+
+	{% ifnotequal row.totalcredithours 0 %}
+	<tr>
+	<td class="blank"> {% if row.semestercontainscyoc %}<p class = "margin">*User-created course(s).</p>{% endif %}</td>
+	<td class="blank"></td>
+	<td class="thick"> {{ row.totalcredithours }} hrs </td>
+	<td class="blank"></td>
+	<td class="blank"></td>
+	</tr>
+	{% endifnotequal %}
+       </table>
+
+       {% for comment in row.precocommentlist %}
+          <p> <b style="color:darkred;">Warning: </b>{{comment}} </p>
+       {% endfor %}
+
+    {% endfor %}
+
+</div>
+</div>
+
+<p></p>
+
+  {% endfor %}
+
+{% endblock %}

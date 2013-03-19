@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+<div class="addMajor_div">
+  <p><label form="advisee">Choose major:</label></p>
+  <p>{{ form.major }}</p>
+</div>
+<p><input type="submit" alt="register" /></p>
+</form>
+{% endblock %}

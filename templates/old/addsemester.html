@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+<div class="addsemester_div">
+  {% if form.semester.errors %}<p class = "error">{{ form.username.errors }}</p>{% endif %}
+  <p><label form="semester" {% if form.semester.errors %} class ="error"{% endif %}>Semester:</label></p>
+  <p>{{ form.semester }}</p>
+</div>
+<div class="addsemester_div">
+  {% if form.year.errors %}<p class = "error">{{ form.year.errors }}</p>{% endif %}
+  <p><label form="year" {% if form.year.errors %} class ="error"{% endif %}>Year:</label></p>
+  <p>{{ form.year }}</p>
+</div>
+<div class="addsemester_div">
+  {% if form.student.errors %}<p class = "error">{{ form.student.errors }}</p>{% endif %}
+  <p><label form="student" {% if form.student.errors %} class ="error"{% endif %}>Student:</label></p>
+  <p>{{ form.student }}</p>
+</div>
+<div class="addsemester_div">
+  {% if form.courses.errors %}<p class = "error">{{ form.courses.errors }}</p>{% endif %}
+  <p><label form="courses" {% if form.courses.errors %} class ="error"{% endif %}>Courses:</label></p>
+  <p>{{ form.courses }}</p>
+</div>
+<p><input type="submit" alt="register" /></p>
+</form>
+{% endblock %}

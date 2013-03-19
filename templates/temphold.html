@@ -1,0 +1,15 @@
+<!--
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if courses %}
+    <p>Found {{ courses|length }} course{{ courses|pluralize }}.</p>
+    <ul>
+        {% for course in courses %}
+        <li>{{ course.name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No courses matched your search criteria.</p>
+{% endif %}
+{% endblock %}
+-->

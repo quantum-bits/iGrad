@@ -1,0 +1,54 @@
+from four_year_plan_v1.majors.models import Course, Student, StudentSemesterCourses, Semester, Professor, CreateYourOwnCourse
+
+from django.db.models import Q
+
+temp1=StudentSemesterCourses.objects.all()
+temp2=Student.objects.all()
+temp3=temp1.filter(student=temp2.filter(name='Joe Student2'))
+studentnamelist=[]
+actualyearlist=[]
+semesterlist=[]
+coursenamelist=[]
+coursenumberlist=[]
+for sem1 in temp3:
+  studentnamelist.append(sem1.student.name)
+  actualyearlist.append(sem1.actual_year)
+  semesterlist.append(sem1.semester)
+  tempcoursename=[]
+  tempcoursenumber=[]
+  for cc in sem1.courses.all():
+    tempcoursename.append(cc.name)
+    tempcoursenumber.append(cc.number)
+  coursenamelist.append(tempcoursename)
+  coursenumberlist.append(tempcoursenumber)
+
+temp1=StudentSemesterCourses.objects.all()
+temp2=Student.objects.all()
+temp3=temp1.filter(student=temp2.filter(name='Joe Student2'))
+datablock=[]
+coursenamelist=[]
+coursenumberlist=[]
+tempcoursename=[]
+for sem1 in temp3:
+  courselist=[]
+  for cc in sem1.courses.all():
+    tempcoursename.append([cc.name,cc.number])
+  datablock.append([sem1.student.name, sem1.actual_year, sem1.semester, tempcoursename])
+
+temp2=Student.objects.all().filter(name="John Lennon")
+studentmajor=temp2.major
+
+studentmajor.major_requirements.all()[1].courselist.all()
+
+majordatablock=[]
+for mr in studentmajor.major_requirements.all():
+    print mr.name
+    courselisttemp=[]
+    for course in mr.courselist.all():
+       print course.name
+       courselisttemp.append([course.name, course.number, course.credit_hours, course.sp, course.cc, course.id])
+    majordatablock.append([mr.list_order, mr.name, mr.AND_or_OR_Requirement, mr.minimum_number_of_credit_hours, mr.text_for_user, courselisttemp])
+
+
+objects.filter(Q(courses__semester__actual_year="2013") 
+#                                   & Q(coursessemester__semester_of_acad_year = 1))

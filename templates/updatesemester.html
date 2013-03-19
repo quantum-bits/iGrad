@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+<div class="updatesemester_div">
+  {% if form.courses.errors %}<p class = "error">{{ form.courses.errors }}</p>{% endif %}
+  <p><label form="courses" {% if form.courses.errors %} class ="error"{% endif %}>Courses:</label></p>
+  <p>{{ form.courses }}</p>
+</div>
+
+<p> There are some situations in which you should create your own course: </p>
+  <ul> 
+    <li> you transferred, or plan to transfer, this course in from another
+      institution; or </li>
+    <li> the course is offered during the present semester, but is 
+      not in the above list for some reason. </li>
+  </ul>
+<p> List of "create your own" type courses for the present semester: </p>
+  <ul>
+    {% for course in sccdatablock %}
+    <li> {{course.cname}} ({{course.cnumber}}, {{course.ccredithrs}} hrs{{course.equivalentcourse}}{{course.sp}}{{course.cc}}) 
+      (<a class="other" href="/updatecyoc/{{instanceid}}/{{ course.courseid }}/">Edit</a>,
+<a class="other" href="/deletecyoc/2/{{instanceid}}/{{ course.courseid }}/">Delete</a>)
+    </li>
+    {% endfor %}
+  </ul>
+
+<p> To add a new "create your own" type course, click 
+  <a class="other" href="/addcreateyourowncourse/{{instanceid}}/">here</a>.
+<p></p>
+<p><input type="submit" alt="register" /></p>
+</form>
+{% endblock %}

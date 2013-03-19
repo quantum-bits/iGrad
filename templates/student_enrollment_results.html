@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block extrahead %}
+{% endblock %}
+{% block content %}
+<p> The following students are enrolled in {{coursename}} for {{semestername}}:</p>
+<ul>
+{% for student in studentlist %}
+    <li> {{student}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
