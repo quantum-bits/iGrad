@@ -1,0 +1,374 @@
+total 864
+drwxr-xr-x@ 13 tom  macports     442 Mar 27 12:54 four_year_plan_v1/
+drwxr-xr-x@ 14 tom  macports     476 Mar 27 12:54 studentform/
+drwxr-xr-x@ 24 tom  macports     816 Mar 27 12:54 templates/
+-rw-r--r--@  1 tom  macports  274432 Feb  1 08:17 sqlite3.db
+-rw-r--r--@  1 tom  macports    1878 Jan 14 21:29 handy_shell_commands
+drwxr-xr-x@ 10 tom  macports     340 Dec 28 17:27 old/
+drwxr-xr-x@  3 tom  macports     102 Dec 26 19:40 static/
+-rwxr-xr-x@  1 tom  macports   36552 Nov 21 21:31 PhotoGray_bg_c-1.jpg*
+-rwxr-xr-x@  1 tom  macports   30910 Nov 21 21:31 PhotoGray_browser_bg-2.jpg*
+-rwxr-xr-x@  1 tom  macports   54483 Nov 21 21:31 PhotoGray_nav_bg.jpg*
+-rwxr-xr-x@  1 tom  macports     308 Nov 21 21:31 PhotoGray_nav_bg.png*
+drwxr-xr-x@  5 tom  macports     170 Nov 21 21:31 admin/
+-rw-r--r--@  1 tom  macports   24879 Nov 20 21:56 Username    password.docx
+drwxr-xr-x@  8 tom  macports     272 Oct 18 15:08 contact/
+-rwxr-xr-x@  1 tom  macports     260 Oct  6 17:21 manage.py*
+
+four_year_plan_v1/four_year_plan_v1:
+total 64
+drwxr-xr-x@ 16 tom  macports   544 Mar 27 12:54 majors/
+-rw-r--r--@  1 tom  macports  3875 Jan 31 17:45 settings.pyc
+-rw-r--r--@  1 tom  macports  6141 Jan 31 17:45 settings.py
+-rw-r--r--@  1 tom  macports  2522 Jan 19 08:03 urls.pyc
+-rw-r--r--@  1 tom  macports  2945 Jan 19 07:46 urls.py
+drwxr-xr-x@  3 tom  macports   102 Oct  6 21:04 newModelFields/
+-rw-r--r--@  1 tom  macports  1078 Oct  6 17:23 wsgi.pyc
+-rw-r--r--@  1 tom  macports   162 Oct  6 17:22 __init__.pyc
+-rw-r--r--@  1 tom  macports     0 Oct  6 17:21 __init__.py
+-rw-r--r--@  1 tom  macports  1156 Oct  6 17:21 wsgi.py
+
+four_year_plan_v1/four_year_plan_v1/majors:
+total 136
+drwxr-xr-x@ 9 tom  macports    306 Jan 24 15:20 static/
+-rw-r--r--@ 1 tom  macports  12553 Jan 17 10:19 models.py
+-rw-r--r--@ 1 tom  macports  14000 Jan 17 10:19 models.pyc
+-rw-r--r--@ 1 tom  macports   4951 Jan 10 18:11 admin.pyc
+-rw-r--r--@ 1 tom  macports   2947 Jan 10 18:11 admin.py
+drwxr-xr-x@ 3 tom  macports    102 Nov 17 18:05 old_model_file_KK/
+drwxr-xr-x@ 3 tom  macports    102 Oct 23 09:24 new_models_file_Steven_Barnett/
+-rw-r--r--@ 1 tom  macports   7683 Oct 18 16:54 models_back.py
+-rw-r--r--@ 1 tom  macports    897 Oct  6 17:36 tests.pyc
+-rw-r--r--@ 1 tom  macports    151 Oct  6 17:35 __init__.pyc
+-rw-r--r--@ 1 tom  macports      0 Oct  6 17:35 __init__.py
+-rw-r--r--@ 1 tom  macports    383 Oct  6 17:35 tests.py
+-rw-r--r--@ 1 tom  macports     26 Oct  6 17:35 views.py
+
+four_year_plan_v1/four_year_plan_v1/majors/static:
+total 256
+drwxr-xr-x@ 21 tom  macports    714 Mar 27 12:54 css/
+drwxr-xr-x@  3 tom  macports    102 Jan 24 15:20 javascript/
+-rw-r--r--@  1 tom  macports  54483 Nov 19 23:10 PhotoGray_nav_bg.jpg
+-rw-r--r--@  1 tom  macports    308 Nov 19 23:10 PhotoGray_nav_bg.png
+-rw-r--r--@  1 tom  macports  30910 Nov 19 23:10 PhotoGray_browser_bg-2.jpg
+-rw-r--r--@  1 tom  macports  36552 Nov 19 23:10 PhotoGray_bg_c-1.jpg
+
+four_year_plan_v1/four_year_plan_v1/majors/static/css:
+total 184
+-rw-r--r--@ 1 tom  macports   4552 Jan 27 17:11 style1.css
+-rw-r--r--@ 1 tom  macports  10542 Jan 24 15:05 django-admin-widgets.css
+-rw-r--r--@ 1 tom  macports   9390 Dec 30 08:50 image_generator.nb
+-rw-r--r--@ 1 tom  macports   1321 Dec 30 08:26 rightedge2.png
+-rw-r--r--@ 1 tom  macports   1236 Dec 30 08:25 leftedge2.png
+-rw-r--r--@ 1 tom  macports   1234 Dec 29 20:17 rightedge3.png
+-rw-r--r--@ 1 tom  macports   1237 Dec 29 20:14 leftedge3.png
+-rw-r--r--@ 1 tom  macports   1696 Dec 29 19:20 leftedge.png
+-rw-r--r--@ 1 tom  macports   1879 Dec 29 18:37 hovermiddle.gif
+-rw-r--r--@ 1 tom  macports   1278 Dec 29 18:37 middle.png
+-rw-r--r--@ 1 tom  macports   2256 Dec 29 18:37 rightedge.png
+-rw-r--r--@ 1 tom  macports   1756 Dec 29 18:28 leftedge.gif
+-rw-r--r--@ 1 tom  macports   1748 Dec 29 18:27 rightedge.gif
+-rw-r--r--@ 1 tom  macports   1877 Dec 29 18:13 middle.gif
+-rw-r--r--@ 1 tom  macports   2014 Dec 28 17:24 style2.css
+-rw-r--r--@ 1 tom  macports   1090 Dec 26 21:09 style_old.css
+-rw-r--r--@ 1 tom  macports   1247 Dec 26 20:07 Format3.css
+-rw-r--r--@ 1 tom  macports    606 Dec 26 20:07 styles1a.css
+
+four_year_plan_v1/four_year_plan_v1/majors/static/javascript:
+total 48
+-rw-r--r--@ 1 tom  macports  21587 Jan 24 15:05 django-admin.multiselect.js
+
+four_year_plan_v1/four_year_plan_v1/majors/old_model_file_KK:
+total 16
+-rw-r--r--@ 1 tom  macports  7792 Oct 18 17:01 models.py
+
+four_year_plan_v1/four_year_plan_v1/majors/new_models_file_Steven_Barnett:
+total 24
+-rw-r--r--@ 1 tom  macports  8501 Oct 23 00:14 models.py
+
+four_year_plan_v1/four_year_plan_v1/newModelFields:
+total 8
+-rw-r--r--@ 1 tom  macports  2245 Oct  6 21:01 MultipleChoiceModelField.py
+
+four_year_plan_v1/studentform:
+total 312
+-rw-r--r--@ 1 tom  macports  53599 Mar 27 12:47 views.py
+-rw-r--r--@ 1 tom  macports  32442 Jan 31 16:44 views.pyc
+-rw-r--r--@ 1 tom  macports   6184 Jan 19 09:04 temp1
+-rw-r--r--@ 1 tom  macports   6505 Jan 19 08:44 olddisplaygradaudit.py
+-rw-r--r--@ 1 tom  macports  10562 Jan 19 08:39 #temp2#
+-rw-r--r--@ 1 tom  macports   5676 Jan 19 08:03 forms.pyc
+-rw-r--r--@ 1 tom  macports   3250 Jan 19 08:03 forms.py
+-rw-r--r--@ 1 tom  macports    979 Jan 13 14:24 #codefragment.py#
+-rw-r--r--@ 1 tom  macports  15513 Dec 28 19:07 views_old_works.py
+-rw-r--r--@ 1 tom  macports    152 Oct 18 15:08 __init__.pyc
+-rw-r--r--@ 1 tom  macports      8 Sep 20  2012 __init__.py
+
+four_year_plan_v1/templates:
+total 168
+drwxr-xr-x@ 10 tom  macports   340 Mar 27 12:54 old/
+drwxr-xr-x@ 10 tom  macports   340 Mar 27 12:54 registration/
+-rw-r--r--@  1 tom  macports  3713 Mar 27 12:47 fouryearplan.html
+-rw-r--r--@  1 tom  macports  6083 Mar 27 12:47 graduationaudit.html
+-rw-r--r--@  1 tom  macports  1454 Mar 27 12:47 updatesemester.html
+-rw-r--r--@  1 tom  macports   266 Feb  1 08:08 student_enrollment_results.html
+-rw-r--r--@  1 tom  macports  4157 Jan 31 17:14 base.html
+-rw-r--r--@  1 tom  macports   313 Jan 19 08:09 updatemajor.html
+-rw-r--r--@  1 tom  macports  1210 Jan 19 07:44 profile.html
+-rw-r--r--@  1 tom  macports   721 Jan 18 15:35 course_enrollment_results.html
+-rw-r--r--@  1 tom  macports   351 Jan 17 14:07 temphold.html
+-rw-r--r--@  1 tom  macports   226 Jan 17 12:53 choosecourse.html
+-rw-r--r--@  1 tom  macports   965 Jan 11 07:36 advisingnotes.html
+-rw-r--r--@  1 tom  macports   535 Jan 11 06:26 addadvisee.html
+-rw-r--r--@  1 tom  macports  2130 Jan 10 09:02 register.html
+-rw-r--r--@  1 tom  macports   122 Jan  9 07:41 home.html
+-rw-r--r--@  1 tom  macports  1951 Jan  1 17:36 addcreateyourowncourse.html
+-rw-r--r--@  1 tom  macports   514 Dec 30 18:34 addAdvisingNote.html
+-rw-r--r--@  1 tom  macports   533 Dec 22 16:33 updatePreTUCourses.html
+-rw-r--r--@  1 tom  macports   829 Nov 19 22:08 login.html
+-rw-r--r--@  1 tom  macports   287 Nov 19 22:01 README
+
+four_year_plan_v1/templates/old:
+total 64
+-rw-r--r--@ 1 tom  macports  1454 Dec 27 09:45 fouryearplan_old2.html
+-rw-r--r--@ 1 tom  macports   719 Dec 26 20:42 base_old2.html
+-rw-r--r--@ 1 tom  macports  1120 Dec 22 22:32 graduationaudit_old2.html
+-rw-r--r--@ 1 tom  macports  1295 Nov 21 17:58 addsemester.html
+-rw-r--r--@ 1 tom  macports  1419 Oct 18 18:19 student_form.html
+-rw-r--r--@ 1 tom  macports   851 Sep 22  2012 contact_form.html
+-rw-r--r--@ 1 tom  macports   327 Sep 20  2012 search_form.html
+-rw-r--r--@ 1 tom  macports   325 Sep 13  2012 base_old.html
+
+four_year_plan_v1/templates/registration:
+total 64
+-rw-r--r--@ 1 tom  macports   281 Nov 19 22:21 password_reset_complete.html
+-rw-r--r--@ 1 tom  macports   354 Nov 19 22:17 password_reset_done.html
+-rw-r--r--@ 1 tom  macports  1163 Nov 19 22:15 #password_reset_confirm.html#
+-rw-r--r--@ 1 tom  macports   540 Nov 19 22:13 password_reset_form.html
+-rw-r--r--@ 1 tom  macports   721 Nov 19 21:59 password_change_done.html
+-rw-r--r--@ 1 tom  macports  2068 Nov 19 21:59 password_change_form.html
+-rw-r--r--@ 1 tom  macports  1174 Nov 19 21:59 password_reset_confirm.html
+-rw-r--r--@ 1 tom  macports   631 Nov 19 21:59 password_reset_email.html
+
+four_year_plan_v1/old:
+total 408
+-rw-r--r--@ 1 tom  macports     770 Dec 26 20:07 Web Test.html
+drwx------@ 7 tom  macports     238 Dec 23 22:50 blackpolish/
+-rw-r--r--@ 1 tom  macports   14429 Dec 22 22:26 views_old.py
+drwxr-xr-x@ 7 tom  macports     238 Nov 22 20:44 templatemo_354_simple_grid/
+drwx------@ 6 tom  macports     204 Nov 21 22:01 Redfire/
+drwx------@ 6 tom  macports     204 Nov 21 21:58 Orangezest/
+-rw-r--r--@ 1 tom  macports  186368 Nov 13 17:07 sqlite3.db
+
+four_year_plan_v1/old/blackpolish:
+total 72
+drwxr-xr-x@ 10 tom  macports    340 Nov 21 21:47 images/
+-rwxr-xr-x@  1 tom  macports   4915 Oct 28 17:23 index.html*
+-rwxr-xr-x@  1 tom  macports  17187 Oct 28 17:23 license.txt*
+-rwxr-xr-x@  1 tom  macports   8151 Oct 28 17:23 style.css*
+
+four_year_plan_v1/old/blackpolish/images:
+total 416
+-rwxr-xr-x@ 1 tom  macports   20225 Oct 28 08:24 img08.jpg*
+-rwxr-xr-x@ 1 tom  macports   13563 Oct 28 08:23 img07.jpg*
+-rwxr-xr-x@ 1 tom  macports   20892 Oct 28 08:23 img06.jpg*
+-rwxr-xr-x@ 1 tom  macports    2625 Oct 28 08:20 img01.jpg*
+-rwxr-xr-x@ 1 tom  macports    2565 Oct 28 08:19 img05.jpg*
+-rwxr-xr-x@ 1 tom  macports  128916 Oct 28 08:16 img02.jpg*
+-rwxr-xr-x@ 1 tom  macports     333 Sep  9  2012 img04.jpg*
+-rwxr-xr-x@ 1 tom  macports    6332 Sep  2  2012 img03.png*
+
+four_year_plan_v1/old/templatemo_354_simple_grid:
+total 32
+-rwxr-xr-x@  1 tom  macports  15576 Jul 29  2012 index.html*
+drwxr-xr-x@  3 tom  macports    102 Jul 29  2012 css/
+drwxr-xr-x@ 30 tom  macports   1020 Jul 29  2012 images/
+drwxr-xr-x@  5 tom  macports    170 Jul 29  2012 js/
+
+four_year_plan_v1/old/templatemo_354_simple_grid/css:
+total 16
+-rwxr-xr-x@ 1 tom  macports  6278 Jul  1  2012 templatemo_style.css*
+
+four_year_plan_v1/old/templatemo_354_simple_grid/images:
+total 352
+drwxr-xr-x@ 11 tom  macports    374 Jul 29  2012 portfolio/
+-rwxr-xr-x@  1 tom  macports    709 Apr 21  2012 templatemo_menu_bg.png*
+-rwxr-xr-x@  1 tom  macports    187 Apr 21  2012 templatemo_main.png*
+-rwxr-xr-x@  1 tom  macports   8812 Apr 21  2012 templatemo_logo.png*
+-rwxr-xr-x@  1 tom  macports  18605 Apr 21  2012 templatemo_image_03.jpg*
+-rwxr-xr-x@  1 tom  macports  22873 Apr 21  2012 templatemo_image_02.jpg*
+-rwxr-xr-x@  1 tom  macports  27160 Apr 21  2012 templatemo_image_01.jpg*
+-rwxr-xr-x@  1 tom  macports    302 Apr 21  2012 templatemo_footer.png*
+-rwxr-xr-x@  1 tom  macports    137 Apr 21  2012 templatemo_body.png*
+-rwxr-xr-x@  1 tom  macports   1758 Apr 21  2012 icon_services_hover.png*
+-rwxr-xr-x@  1 tom  macports   1684 Apr 21  2012 icon_services.png*
+-rwxr-xr-x@  1 tom  macports    627 Apr 21  2012 icon_portfolio_hover.png*
+-rwxr-xr-x@  1 tom  macports    514 Apr 21  2012 icon_portfolio.png*
+-rwxr-xr-x@  1 tom  macports   1000 Apr 21  2012 icon_home_hover.png*
+-rwxr-xr-x@  1 tom  macports    832 Apr 21  2012 icon_home.png*
+-rwxr-xr-x@  1 tom  macports   1528 Apr 21  2012 icon_contact_hover.png*
+-rwxr-xr-x@  1 tom  macports   1374 Apr 21  2012 icon_contact.png*
+-rwxr-xr-x@  1 tom  macports    861 Apr 21  2012 icon_about_hover.png*
+-rwxr-xr-x@  1 tom  macports    823 Apr 21  2012 icon_about.png*
+-rwxr-xr-x@  1 tom  macports    306 Apr 21  2012 header.png*
+-rwxr-xr-x@  1 tom  macports    348 Apr 21  2012 go_to_top.png*
+-rwxr-xr-x@  1 tom  macports    116 Apr 21  2012 divider.png*
+-rwxr-xr-x@  1 tom  macports   3643 Apr 21  2012 btn_services.png*
+-rwxr-xr-x@  1 tom  macports   3385 Apr 21  2012 btn_portfolio.png*
+-rwxr-xr-x@  1 tom  macports   2826 Apr 21  2012 btn_home.png*
+-rwxr-xr-x@  1 tom  macports   3497 Apr 21  2012 btn_contact.png*
+-rwxr-xr-x@  1 tom  macports   1650 Apr 21  2012 btn_blank.png*
+-rwxr-xr-x@  1 tom  macports   3076 Apr 21  2012 btn_about.png*
+
+four_year_plan_v1/old/templatemo_354_simple_grid/images/portfolio:
+total 424
+-rwxr-xr-x@ 1 tom  macports  29109 Apr 21  2012 09.jpg*
+-rwxr-xr-x@ 1 tom  macports  12136 Apr 21  2012 08.jpg*
+-rwxr-xr-x@ 1 tom  macports  22873 Apr 21  2012 07.jpg*
+-rwxr-xr-x@ 1 tom  macports  26568 Apr 21  2012 06.jpg*
+-rwxr-xr-x@ 1 tom  macports  16920 Apr 21  2012 05.jpg*
+-rwxr-xr-x@ 1 tom  macports  18605 Apr 21  2012 04.jpg*
+-rwxr-xr-x@ 1 tom  macports  20050 Apr 21  2012 03.jpg*
+-rwxr-xr-x@ 1 tom  macports  26000 Apr 21  2012 02.jpg*
+-rwxr-xr-x@ 1 tom  macports  27787 Apr 21  2012 01.jpg*
+
+four_year_plan_v1/old/templatemo_354_simple_grid/js:
+total 128
+-rwxr-xr-x@ 1 tom  macports  57272 Jun  6  2011 jquery.min.js*
+-rwxr-xr-x@ 1 tom  macports   2284 Jun  6  2011 jquery.scrollTo-min.js*
+-rwxr-xr-x@ 1 tom  macports   1560 Jun  6  2011 jquery.localscroll-min.js*
+
+four_year_plan_v1/old/Redfire:
+total 24
+drwxr-xr-x@ 10 tom  macports   340 Nov 21 21:56 images/
+-rwxr-xr-x@  1 tom  macports  4159 Feb 18  2010 index.html*
+-rwxr-xr-x@  1 tom  macports  1995 Feb 17  2008 style.css*
+
+four_year_plan_v1/old/Redfire/images:
+total 496
+-rwxr-xr-x@ 1 tom  macports  130681 Feb 14  2008 page.png*
+-rwxr-xr-x@ 1 tom  macports     307 Feb 14  2008 sidebartop.png*
+-rwxr-xr-x@ 1 tom  macports   30405 Feb 14  2008 menulinks.png*
+-rwxr-xr-x@ 1 tom  macports     296 Feb 14  2008 sidebarlinkhover.png*
+-rwxr-xr-x@ 1 tom  macports     363 Feb 14  2008 menuline.png*
+-rwxr-xr-x@ 1 tom  macports     415 Feb 14  2008 menuhover.png*
+-rwxr-xr-x@ 1 tom  macports   66878 Feb 14  2008 header.png*
+-rwxr-xr-x@ 1 tom  macports     585 Feb 14  2008 footer.png*
+
+four_year_plan_v1/old/Orangezest:
+total 24
+drwxr-xr-x@ 5 tom  macports   170 Nov 21 21:55 images/
+-rwxr-xr-x@ 1 tom  macports  4306 Feb 18  2010 index.html*
+-rwxr-xr-x@ 1 tom  macports  1713 Feb 21  2008 style.css*
+
+four_year_plan_v1/old/Orangezest/images:
+total 256
+-rwxr-xr-x@ 1 tom  macports  28945 Feb 18  2008 footer.png*
+-rwxr-xr-x@ 1 tom  macports    267 Feb 18  2008 page.png*
+-rwxr-xr-x@ 1 tom  macports  94026 Feb 18  2008 header.png*
+
+four_year_plan_v1/static:
+
+four_year_plan_v1/admin:
+total 0
+drwxr-xr-x@ 10 tom  macports   340 Nov 21 21:31 css/
+drwxr-xr-x@ 42 tom  macports  1428 Nov 21 21:31 img/
+drwxr-xr-x@ 23 tom  macports   782 Nov 21 21:31 js/
+
+four_year_plan_v1/admin/css:
+total 120
+-rwxr-xr-x@ 1 tom  macports  14065 Nov 21 21:31 base.css*
+-rwxr-xr-x@ 1 tom  macports   5203 Nov 21 21:31 changelists.css*
+-rwxr-xr-x@ 1 tom  macports    444 Nov 21 21:31 dashboard.css*
+-rwxr-xr-x@ 1 tom  macports   5733 Nov 21 21:31 forms.css*
+-rwxr-xr-x@ 1 tom  macports   1064 Nov 21 21:31 ie.css*
+-rwxr-xr-x@ 1 tom  macports    836 Nov 21 21:31 login.css*
+-rwxr-xr-x@ 1 tom  macports   3750 Nov 21 21:31 rtl.css*
+-rwxr-xr-x@ 1 tom  macports  10113 Nov 21 21:31 widgets.css*
+
+four_year_plan_v1/admin/img:
+total 312
+-rwxr-xr-x@ 1 tom  macports    58 Nov 21 21:31 changelist-bg.gif*
+-rwxr-xr-x@ 1 tom  macports    75 Nov 21 21:31 changelist-bg_rtl.gif*
+-rwxr-xr-x@ 1 tom  macports   199 Nov 21 21:31 chooser-bg.gif*
+-rwxr-xr-x@ 1 tom  macports   212 Nov 21 21:31 chooser_stacked-bg.gif*
+-rwxr-xr-x@ 1 tom  macports   843 Nov 21 21:31 default-bg-reverse.gif*
+-rwxr-xr-x@ 1 tom  macports   844 Nov 21 21:31 default-bg.gif*
+-rwxr-xr-x@ 1 tom  macports    45 Nov 21 21:31 deleted-overlay.gif*
+drwxr-xr-x@ 4 tom  macports   136 Nov 21 21:31 gis/
+-rwxr-xr-x@ 1 tom  macports   176 Nov 21 21:31 icon-no.gif*
+-rwxr-xr-x@ 1 tom  macports   130 Nov 21 21:31 icon-unknown.gif*
+-rwxr-xr-x@ 1 tom  macports   299 Nov 21 21:31 icon-yes.gif*
+-rwxr-xr-x@ 1 tom  macports   119 Nov 21 21:31 icon_addlink.gif*
+-rwxr-xr-x@ 1 tom  macports   145 Nov 21 21:31 icon_alert.gif*
+-rwxr-xr-x@ 1 tom  macports   192 Nov 21 21:31 icon_calendar.gif*
+-rwxr-xr-x@ 1 tom  macports   119 Nov 21 21:31 icon_changelink.gif*
+-rwxr-xr-x@ 1 tom  macports   390 Nov 21 21:31 icon_clock.gif*
+-rwxr-xr-x@ 1 tom  macports   181 Nov 21 21:31 icon_deletelink.gif*
+-rwxr-xr-x@ 1 tom  macports   319 Nov 21 21:31 icon_error.gif*
+-rwxr-xr-x@ 1 tom  macports   667 Nov 21 21:31 icon_searchbox.png*
+-rwxr-xr-x@ 1 tom  macports   341 Nov 21 21:31 icon_success.gif*
+-rwxr-xr-x@ 1 tom  macports   477 Nov 21 21:31 inline-delete-8bit.png*
+-rwxr-xr-x@ 1 tom  macports   781 Nov 21 21:31 inline-delete.png*
+-rwxr-xr-x@ 1 tom  macports   447 Nov 21 21:31 inline-restore-8bit.png*
+-rwxr-xr-x@ 1 tom  macports   623 Nov 21 21:31 inline-restore.png*
+-rwxr-xr-x@ 1 tom  macports   102 Nov 21 21:31 inline-splitter-bg.gif*
+-rwxr-xr-x@ 1 tom  macports   116 Nov 21 21:31 nav-bg-grabber.gif*
+-rwxr-xr-x@ 1 tom  macports   186 Nov 21 21:31 nav-bg-reverse.gif*
+-rwxr-xr-x@ 1 tom  macports   265 Nov 21 21:31 nav-bg-selected.gif*
+-rwxr-xr-x@ 1 tom  macports   273 Nov 21 21:31 nav-bg.gif*
+-rwxr-xr-x@ 1 tom  macports  2771 Nov 21 21:31 selector-icons.gif*
+-rwxr-xr-x@ 1 tom  macports   552 Nov 21 21:31 selector-search.gif*
+-rwxr-xr-x@ 1 tom  macports   369 Nov 21 21:31 sorting-icons.gif*
+-rwxr-xr-x@ 1 tom  macports   197 Nov 21 21:31 tool-left.gif*
+-rwxr-xr-x@ 1 tom  macports   203 Nov 21 21:31 tool-left_over.gif*
+-rwxr-xr-x@ 1 tom  macports   198 Nov 21 21:31 tool-right.gif*
+-rwxr-xr-x@ 1 tom  macports   200 Nov 21 21:31 tool-right_over.gif*
+-rwxr-xr-x@ 1 tom  macports   932 Nov 21 21:31 tooltag-add.gif*
+-rwxr-xr-x@ 1 tom  macports   336 Nov 21 21:31 tooltag-add_over.gif*
+-rwxr-xr-x@ 1 tom  macports   351 Nov 21 21:31 tooltag-arrowright.gif*
+-rwxr-xr-x@ 1 tom  macports   354 Nov 21 21:31 tooltag-arrowright_over.gif*
+
+four_year_plan_v1/admin/img/gis:
+total 16
+-rwxr-xr-x@ 1 tom  macports  711 Nov 21 21:31 move_vertex_off.png*
+-rwxr-xr-x@ 1 tom  macports  506 Nov 21 21:31 move_vertex_on.png*
+
+four_year_plan_v1/admin/js:
+total 680
+-rwxr-xr-x@ 1 tom  macports    1076 Nov 21 21:31 LICENSE-JQUERY.txt*
+-rwxr-xr-x@ 1 tom  macports    4051 Nov 21 21:31 SelectBox.js*
+-rwxr-xr-x@ 1 tom  macports    9881 Nov 21 21:31 SelectFilter2.js*
+-rwxr-xr-x@ 1 tom  macports    4740 Nov 21 21:31 actions.js*
+-rwxr-xr-x@ 1 tom  macports    3282 Nov 21 21:31 actions.min.js*
+drwxr-xr-x@ 5 tom  macports     170 Nov 21 21:31 admin/
+-rwxr-xr-x@ 1 tom  macports    5448 Nov 21 21:31 calendar.js*
+-rwxr-xr-x@ 1 tom  macports     880 Nov 21 21:31 collapse.js*
+-rwxr-xr-x@ 1 tom  macports     619 Nov 21 21:31 collapse.min.js*
+-rwxr-xr-x@ 1 tom  macports    1896 Nov 21 21:31 compress.py*
+-rwxr-xr-x@ 1 tom  macports    6662 Nov 21 21:31 core.js*
+-rwxr-xr-x@ 1 tom  macports    6427 Nov 21 21:31 getElementsBySelector.js*
+-rwxr-xr-x@ 1 tom  macports    5922 Nov 21 21:31 inlines.js*
+-rwxr-xr-x@ 1 tom  macports    2345 Nov 21 21:31 inlines.min.js*
+-rwxr-xr-x@ 1 tom  macports     314 Nov 21 21:31 jquery.init.js*
+-rwxr-xr-x@ 1 tom  macports  163855 Nov 21 21:31 jquery.js*
+-rwxr-xr-x@ 1 tom  macports   72174 Nov 21 21:31 jquery.min.js*
+-rwxr-xr-x@ 1 tom  macports    1191 Nov 21 21:31 prepopulate.js*
+-rwxr-xr-x@ 1 tom  macports     365 Nov 21 21:31 prepopulate.min.js*
+-rwxr-xr-x@ 1 tom  macports    2450 Nov 21 21:31 timeparse.js*
+-rwxr-xr-x@ 1 tom  macports    5585 Nov 21 21:31 urlify.js*
+
+four_year_plan_v1/admin/js/admin:
+total 48
+-rwxr-xr-x@ 1 tom  macports  14775 Nov 21 21:31 DateTimeShortcuts.js*
+-rwxr-xr-x@ 1 tom  macports   3265 Nov 21 21:31 RelatedObjectLookups.js*
+-rwxr-xr-x@ 1 tom  macports   3825 Nov 21 21:31 ordering.js*
+
+four_year_plan_v1/contact:
+total 48
+-rw-r--r--@ 1 tom  macports   152 Oct 18 15:08 __init__.pyc
+-rw-r--r--@ 1 tom  macports  1015 Oct 18 15:08 forms.pyc
+-rw-r--r--@ 1 tom  macports   956 Oct 18 15:08 views.pyc
+-rw-r--r--@ 1 tom  macports   458 Sep 22  2012 forms.py
+-rw-r--r--@ 1 tom  macports   708 Sep 22  2012 views.py
+-rw-r--r--@ 1 tom  macports     8 Sep 20  2012 __init__.py

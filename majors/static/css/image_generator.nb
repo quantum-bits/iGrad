@@ -1,0 +1,282 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9192,        273]
+NotebookOptionsPosition[      8341,        238]
+NotebookOutlinePosition[      8697,        254]
+CellTagsIndexPosition[      8654,        251]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"tempimage", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"RGBColor", "[", 
+      RowBox[{
+       RowBox[{"170", "/", "256"}], ",", 
+       RowBox[{"200", "/", "256"}], ",", 
+       RowBox[{"170", "/", "256"}]}], "]"}], ",", 
+     RowBox[{"Rectangle", "[", 
+      RowBox[{
+       RowBox[{"Offset", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+       RowBox[{"Offset", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"147", ",", "47"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}]}], "]"}]}], "]"}], ",", "Gray", ",", 
+     
+     RowBox[{"Rectangle", "[", 
+      RowBox[{
+       RowBox[{"Offset", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+       RowBox[{"Offset", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"147", ",", "47"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+       RowBox[{"RoundingRadius", "\[Rule]", "0.11"}]}], "]"}]}], "}"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.565817613841228*^9, 3.5658176473507633`*^9}, {
+  3.565817697965662*^9, 3.565817698418314*^9}, {3.565817750074588*^9, 
+  3.565817755649893*^9}, {3.565817794193282*^9, 3.565817861766794*^9}, {
+  3.565818064774631*^9, 3.5658181681730824`*^9}, {3.5658183301451*^9, 
+  3.5658183398659487`*^9}, {3.565818400258461*^9, 3.565818446851283*^9}, {
+  3.565818519602874*^9, 3.565818661170486*^9}, {3.5658186951588993`*^9, 
+  3.565818718080431*^9}, {3.565862229220663*^9, 3.565862296571582*^9}, {
+  3.5658623869277163`*^9, 3.5658624411264677`*^9}, {3.565862518355732*^9, 
+  3.565862599786714*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[{
+    {RGBColor[
+      NCache[
+       Rational[85, 128], 0.6640625], 
+      NCache[
+       Rational[25, 32], 0.78125], 
+      NCache[
+       Rational[85, 128], 0.6640625]], 
+     RectangleBox[Offset[{0, 0}, {0, 0}], Offset[{147, 47}, {0, 0}]]}, 
+    {GrayLevel[0.5], RectangleBox[Offset[{0, 0}, {0, 0}], Offset[{147, 47}, {0, 0}],
+      RoundingRadius->0.11]}}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.565862562958994*^9, 3.565862608679927*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Graphics", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"RGBColor", "[", 
+     RowBox[{
+      RowBox[{"170", "/", "256"}], ",", 
+      RowBox[{"200", "/", "256"}], ",", 
+      RowBox[{"170", "/", "256"}]}], "]"}], ",", 
+    RowBox[{"Rectangle", "[", 
+     RowBox[{
+      RowBox[{"Offset", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Offset", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"47", ",", "47"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "]"}]}], "]"}], ",", "Gray", ",", 
+    RowBox[{"Rectangle", "[", 
+     RowBox[{
+      RowBox[{"Offset", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Offset", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"47", ",", "47"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
+      RowBox[{"RoundingRadius", "\[Rule]", "0.11"}]}], "]"}]}], "}"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.565862554410479*^9, 3.5658625556731033`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[{
+    {RGBColor[
+      NCache[
+       Rational[85, 128], 0.6640625], 
+      NCache[
+       Rational[25, 32], 0.78125], 
+      NCache[
+       Rational[85, 128], 0.6640625]], 
+     RectangleBox[Offset[{0, 0}, {0, 0}], Offset[{47, 47}, {0, 0}]]}, 
+    {GrayLevel[0.5], RectangleBox[Offset[{0, 0}, {0, 0}], Offset[{47, 47}, {0, 0}],
+      RoundingRadius->0.11]}}], TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.565817647772122*^9, 3.5658176987942944`*^9, 3.565817756377842*^9, {
+   3.5658178030233088`*^9, 3.565817862135647*^9}, {3.565818079750041*^9, 
+   3.565818132552652*^9}, 3.5658183407180233`*^9, {3.565818401553534*^9, 
+   3.56581844803196*^9}, {3.565818520327043*^9, 3.565818661655699*^9}, {
+   3.565818695838179*^9, 3.5658187184109488`*^9}, {3.56586223150772*^9, 
+   3.5658622972900333`*^9}, {3.5658623909710493`*^9, 3.565862441671007*^9}, {
+   3.56586252117132*^9, 3.565862556265931*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"tempimagemiddle", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{"Gray", ",", 
+     RowBox[{"Rectangle", "[", "]"}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.5658207340217876`*^9, 3.565820749291602*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[
+   {GrayLevel[0.5], RectangleBox[{0, 0}]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.565820741424321*^9, 3.565820749699435*^9}, 
+   3.5658624568795557`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"tempimagehover", "=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{"{", 
+    RowBox[{"LightGray", ",", 
+     RowBox[{"Rectangle", "[", "]"}]}], "}"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.565820596618479*^9, 3.5658206176011257`*^9}, {
+  3.5658206561747026`*^9, 3.565820662102125*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  GraphicsBox[
+   {GrayLevel[0.85], RectangleBox[{0, 0}]}], TraditionalForm]], "Output",
+ CellChangeTimes->{{3.565810168782627*^9, 3.565810205607112*^9}, {
+   3.5658103062505217`*^9, 3.565810331990266*^9}, {3.56581042821268*^9, 
+   3.5658104364194517`*^9}, 3.565810482410655*^9, 3.565810624117416*^9, 
+   3.565810666441779*^9, 3.5658130351489773`*^9, 3.565820618400234*^9, 
+   3.5658206635031548`*^9, 3.565862457787313*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<circle1.png\>\"", ",", "tempimage"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<middle.png\>\"", ",", "tempimagemiddle"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<hovermiddle.gif\>\"", ",", "tempimagehover"}], "]"}]}], "Input",\
+
+ CellChangeTimes->{{3.565810213828315*^9, 3.565810251391345*^9}, {
+   3.565810487715848*^9, 3.565810503209756*^9}, {3.565810703059408*^9, 
+   3.5658107580772257`*^9}, {3.565813043755381*^9, 3.56581304648353*^9}, {
+   3.5658187324658337`*^9, 3.565818740385227*^9}, {3.565820648480298*^9, 
+   3.56582067103188*^9}, {3.565820761548366*^9, 3.565820762092475*^9}, 
+   3.565862448628522*^9}],
+
+Cell[BoxData[
+ FormBox["\<\"circle1.png\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.565810252243383*^9, 3.565810441503827*^9, 3.565810716069281*^9, 
+   3.565810758646014*^9, 3.565813047067902*^9, 3.5658187410572243`*^9, {
+   3.565862449631072*^9, 3.565862461057143*^9}, 3.565862613442956*^9}],
+
+Cell[BoxData[
+ FormBox["\<\"middle.png\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.565810252243383*^9, 3.565810441503827*^9, 3.565810716069281*^9, 
+   3.565810758646014*^9, 3.565813047067902*^9, 3.5658187410572243`*^9, {
+   3.565862449631072*^9, 3.565862461057143*^9}, 3.565862613513382*^9}],
+
+Cell[BoxData[
+ FormBox["\<\"hovermiddle.gif\"\>", TraditionalForm]], "Output",
+ CellChangeTimes->{
+  3.565810252243383*^9, 3.565810441503827*^9, 3.565810716069281*^9, 
+   3.565810758646014*^9, 3.565813047067902*^9, 3.5658187410572243`*^9, {
+   3.565862449631072*^9, 3.565862461057143*^9}, 3.5658626136101437`*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 867},
+WindowMargins->{{Automatic, 386}, {Automatic, 77}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 5, \
+2011)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 1905, 49, 73, "Input"],
+Cell[2487, 73, 495, 13, 375, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3019, 91, 1291, 39, 58, "Input"],
+Cell[4313, 132, 939, 20, 375, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5289, 157, 252, 6, 27, "Input"],
+Cell[5544, 165, 205, 5, 374, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5786, 175, 307, 7, 27, "Input"],
+Cell[6096, 184, 447, 8, 374, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6580, 197, 810, 17, 88, "Input"],
+Cell[7393, 216, 307, 5, 27, "Output"],
+Cell[7703, 223, 306, 5, 27, "Output"],
+Cell[8012, 230, 313, 5, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
