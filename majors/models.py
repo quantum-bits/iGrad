@@ -66,11 +66,10 @@ class Semester(models.Model):
 
     class Meta:
         ordering = ['semester_of_acad_year']
-    
+
 
 class Department(models.Model):
     name = models.CharField(max_length=50, help_text="e.g., Physics and Engineering")
-# e.g., name = 'Physics and Engineering'
 
     def __unicode__(self):
         return self.name
@@ -103,8 +102,10 @@ class Course(models.Model):
     department = models.ForeignKey(Department)
     credit_hours = models.PositiveIntegerField(choices = CREDIT_CHOICES, default=cr3)
     semester = models.ManyToManyField(Semester)
-    prereqs = models.ManyToManyField("self", symmetrical = False, related_name='pre_courses', blank=True)
-    coreqs = models.ManyToManyField("self", symmetrical = False, related_name='co_courses', blank=True)
+    prereqs = models.ManyToManyField("self", symmetrical = False,
+                                     related_name='pre_courses', blank=True)
+    coreqs = models.ManyToManyField("self", symmetrical = False,
+                                    related_name='co_courses', blank=True)
     sp = models.BooleanField(default = False, verbose_name="SP")
     cc = models.BooleanField(default = False, verbose_name="CC")
 
@@ -122,16 +123,14 @@ class RequirementBlock(models.Model):
         (ORREQ, 'OR')
     )
 
-    name = models.CharField(max_length=50,
-       help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature; first part is helpful for searching (when creating a major).")
-    display_name = models.CharField(max_length=50,
-       help_text="e.g., Technical Electives, or Literature; this is the title that will show up when students do a graduation audit.")
+    name = models.CharField(max_length=50, help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature; first part is helpful for searching (when creating a major).")
+    display_name = models.CharField(max_length=50, help_text="e.g., Technical Electives, or Literature; this is the title that will show up when students do a graduation audit.")
 
-    AND_or_OR_Requirement = models.IntegerField(choices=AND_OR_CHOICES, default = ANDREQ, 
-       help_text = "Choose AND if all are required, OR if a subset is required.")
+    AND_or_OR_Requirement = models.IntegerField(choices=AND_OR_CHOICES, default = ANDREQ,
+                                                help_text = "Choose AND if all are required, OR if a subset is required.")
     minimum_number_of_credit_hours = models.IntegerField(default = 10)
     list_order = models.PositiveIntegerField(default = 1, help_text="Preferred place in the list of requirements; it is OK if numbers are repeated or skipped.")
-# This will be used to order the requirements when viewed by the user.
+    # This will be used to order the requirements when viewed by the user.
     text_for_user = models.CharField(max_length=200, blank = True, help_text="Optional helpful text for the user; will appear in the graduation audit.")
     courselist = models.ManyToManyField(Course, help_text = "Select courses for this requirement.")
 
@@ -146,7 +145,7 @@ class RequirementBlock(models.Model):
 class Major(models.Model):
 
     name = models.CharField(max_length=50,
-       help_text="e.g., Physics BS or Mathematics BA.")
+                            help_text="e.g., Physics BS or Mathematics BA.")
     major_requirements = models.ManyToManyField(RequirementBlock)
 
     def __unicode__(self):
@@ -160,17 +159,17 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     major = models.ForeignKey(Major, blank=True, null=True)
     entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2012")
-# might need to add null=True above as well....
-#    birthday = models.DateField(blank=True, null=True)
+    # might need to add null=True above as well....
+    #    birthday = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         return u'%s' % (self.name)
 
-# create user object to attach to student object
+    # create user object to attach to student object
 
     def create_student_user_callback(sender, instance, **kwargs):
         student, new = Student.objects.get_or_create(user=instance)
-    post_save.connect(create_student_user_callback, User)
+        post_save.connect(create_student_user_callback, User)
 
     class Meta:
         ordering = ['name']
@@ -208,7 +207,7 @@ class StudentSemesterCourses(models.Model):
     year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = FRESHMAN_YEAR)
     student = models.ForeignKey(Student, related_name='ssc_student')
     courses = models.ManyToManyField(Course, related_name='semestercourses', blank=True)
-#    actual_year=models.PositiveIntegerField(default='2012')
+    #    actual_year=models.PositiveIntegerField(default='2012')
 
     @property
     def actual_year(self):
@@ -218,24 +217,23 @@ class StudentSemesterCourses(models.Model):
             return self.student.entering_year + self.year
 
 class CreateYourOwnCourse(models.Model):
-# 
-# Objects in this class correspond to courses that are transferred in 
-# (and may not correspond exactly to TU courses, e.g., the course may have a 
-# different # of credit hours), or courses that are not in the database
-# for some reason.  The student has the option to choose an "equivalent"
-# course at Taylor, for the purpose of the graduation audit.  For example,
-# maybe the student has taken Calc III somewhere else during the summer,
-# but it was a 3-hr course there.  They could choose Calc III at TU
-# as the equivalent course, and it would show up in the graduation audit,
-# but it would show up as being deficient by one hour.
-#
-# the following are the possible choices for "semester":
-#   pre-TU: 0 (irrelevant, in this case, so we assign it "zero")
-#   Fall:   1
-#   J-term: 2
-#   Spring: 3
-#   Summer: 4
-#
+    # Objects in this class correspond to courses that are transferred in
+    # (and may not correspond exactly to TU courses, e.g., the course may have a
+    # different # of credit hours), or courses that are not in the database
+    # for some reason.  The student has the option to choose an "equivalent"
+    # course at Taylor, for the purpose of the graduation audit.  For example,
+    # maybe the student has taken Calc III somewhere else during the summer,
+    # but it was a 3-hr course there.  They could choose Calc III at TU
+    # as the equivalent course, and it would show up in the graduation audit,
+    # but it would show up as being deficient by one hour.
+    #
+    # the following are the possible choices for "semester":
+    #   pre-TU: 0 (irrelevant, in this case, so we assign it "zero")
+    #   Fall:   1
+    #   J-term: 2
+    #   Spring: 3
+    #   Summer: 4
+    #
     cr0 = 0
     cr1 = 1
     cr2 = 2
@@ -291,13 +289,12 @@ class CreateYourOwnCourse(models.Model):
     cc = models.BooleanField(default = False, verbose_name="CC")
 
 class AdvisingNote(models.Model):
-
     student = models.ForeignKey(Student, related_name='advisingnotes_student')
     note = models.TextField(max_length=1000, blank=True)
     datestamp = models.DateTimeField(auto_now=True, auto_now_add=True)
 
 class EnteringYear(models.Model):
-    
+
     Y2009 = 2009
     Y2010 = 2010
     Y2011 = 2011
@@ -330,7 +327,6 @@ class EnteringYear(models.Model):
         return str(self.year)
 
 class PrepopulateSemesters(models.Model):
-
     name = models.CharField(max_length=100,help_text="e.g., Physics BS, entering odd years")
     enteringyear = models.ManyToManyField(EnteringYear)
     major = models.ForeignKey(Major)
