@@ -57,7 +57,7 @@ def student_registration(request):
         '''user is not submitting the form; show them the blank registration form'''
         form = RegistrationForm()
         context = {'form': form}
-        return render(request, 'register.html', context, context_instance = RequestContext(request))
+        return render(request, 'register.html', context)
 
 @login_required
 def profile(request):
@@ -110,7 +110,7 @@ def update_major(request, id):
         '''user is not submitting the form; show them the blank add major form'''
         form = update_majorForm(instance=instance)
         context = {'form': form}
-        return render(request, 'updatemajor.html', context, context_instance = RequestContext(request))
+        return render(request, 'updatemajor.html', context)
 
 def login_request(request):
     if request.user.is_authenticated(): # so that the user can't login twice....
@@ -121,7 +121,7 @@ def login_request(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password'] # local variables that can be used
-# see if username/password combo authenticates; returns None otherwise
+            # see if username/password combo authenticates; returns None otherwise
             student = authenticate(username=username, password=password)
             if student is not None: # authentication passed
                 login(request, student) # log the person in using django's login function
@@ -137,14 +137,14 @@ def login_request(request):
                         Professor.objects.filter(id=professorid).update(advisee=None)
                     return HttpResponseRedirect('/profile/')
             else: # let person try to login again
-                return render(request, 'login.html', context, context_instance = RequestContext(request))
+                return render(request, 'login.html', context)
         else: #form wasn't valid....
-            return render(request, 'login.html', context, context_instance = RequestContext(request))
+            return render(request, 'login.html', context)
     else:
         ''' user is not submitting the form; show the login form '''
         form = LoginForm()
         context = {'form': form}
-        return render(request, 'login.html', context, context_instance = RequestContext(request))
+        return render(request, 'login.html', context)
 
 def logout_request(request):
     # check if the "professor" is actually a professor, if so, clear "advisee" object before logging out
@@ -226,7 +226,7 @@ def update_student_semester(request, id):
         )
         form = AddStudentSemesterForm(**my_kwargs)
         context = {'form': form, 'sccdatablock':sccdatablock,'instanceid':id}
-        return render(request, 'updatesemester.html', context, context_instance = RequestContext(request))
+        return render(request, 'updatesemester.html', context)
 
 
 @login_required
@@ -281,7 +281,7 @@ def add_new_advising_note(request):
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context)
 
 
 @login_required
@@ -305,7 +305,7 @@ def update_advising_note(request, id):
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm(instance=instance)
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context)
 
 @login_required
 def delete_advising_note(request, id):
@@ -754,7 +754,7 @@ def add_new_advising_note(request):
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context)
 
 @login_required
 def add_create_your_own_course(request,id):
@@ -790,7 +790,7 @@ def add_create_your_own_course(request,id):
         '''user is not submitting the form; show them the blank add create your own course form'''
         form = add_create_your_own_courseForm()
         context = {'form': form}
-        return render(request, 'addcreateyourowncourse.html', context, context_instance = RequestContext(request))
+        return render(request, 'addcreateyourowncourse.html', context)
 
 
 @login_required
@@ -818,7 +818,7 @@ def update_create_your_own_course(request,id,id2):
         '''user is not submitting the form; show them the blank add create your own course form'''
         form = add_create_your_own_courseForm(instance=instance)
         context = {'form': form}
-        return render(request, 'addcreateyourowncourse.html', context, context_instance = RequestContext(request))
+        return render(request, 'addcreateyourowncourse.html', context)
 
 
 # in the following, "wherefrom" is:
@@ -1134,7 +1134,7 @@ def update_advisee(request, wherefrom):
         '''user is not submitting the form; show them the blank add advisee form'''
         form = AddAdviseeForm()
         context = {'form': form}
-        return render(request, 'addadvisee.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisee.html', context)
 
 # PUT in something to limit search results!!!!  maybe only display first 20 records or something!!!
 # !!! do we need to do any security stuff here to make sure this is really a prof?!?
@@ -1179,7 +1179,7 @@ def search(request):
                 semlistfinal.append([semesterdict[row[1]]+", "+str(row[0]),row[2], row[3]])
             datablock.append([course.id, course.name, course.number, semlistfinal])
         context={'courses':courses,'query':q, 'datablock':datablock}
-        return render(request, 'course_enrollment_results.html',context, context_instance = RequestContext(request))
+        return render(request, 'course_enrollment_results.html',context)
     else:
         return HttpResponseRedirect('/profile/')
 
@@ -1212,4 +1212,4 @@ def view_enrolled_students(request,courseid,semesterid):
                     studentlist.append(ssc.student.name)
     temp = request.META.items()
     context={'coursename':coursename,'semestername':semestername,'studentlist':studentlist}
-    return render(request, 'student_enrollment_results.html',context, context_instance = RequestContext(request))
+    return render(request, 'student_enrollment_results.html', context)

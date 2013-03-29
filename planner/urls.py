@@ -4,10 +4,7 @@ urlpatterns = patterns(
     'planner.views',
 
     url(r'^home/$', 'home'),
-    url(r'^register/$', 'student_registration'),
-    url(r'^login/$', 'login_request'),
-    url(r'^logout/$', 'logout_request'),
-    url(r'^profile/$', 'profile'),
+
     url(r'^changemajor/(\d+)/$', 'update_major'),
     url(r'^updatesemester/(\d+)/$', 'update_student_semester'),
     url(r'^fouryearplan/$', 'display_four_year_plan'),
@@ -24,4 +21,10 @@ urlpatterns = patterns(
     url(r'^changeadvisee/(\d+)/$', 'update_advisee'),
     url(r'^search/$', 'search'),
     url(r'^viewstudents/(\d+)/(\d+)/$', 'view_enrolled_students'),
+    url(r'^register/$', 'student_registration'),
+
+    url(r'^login/$', 'login_request', name='login'),
+    url(r'^logout/$', 'logout_request'),
+    url(r'^profile/$', 'profile'),
+
 )

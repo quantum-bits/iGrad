@@ -209,6 +209,15 @@ class StudentSemesterCourses(models.Model):
     courses = models.ManyToManyField(Course, related_name='semestercourses', blank=True)
     #    actual_year=models.PositiveIntegerField(default='2012')
 
+    class Meta:
+        verbose_name_plural = 'Student semester courses'
+
+    def __unicode__(self):
+        return "{0} {1} {2}".format(self.student,
+                                    self.get_year_display(),
+                                    self.get_semester_display())
+
+
     @property
     def actual_year(self):
         if self.semester == 1:
@@ -288,10 +297,16 @@ class CreateYourOwnCourse(models.Model):
     sp = models.BooleanField(default = False, verbose_name="SP")
     cc = models.BooleanField(default = False, verbose_name="CC")
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.number, self.name)
+
 class AdvisingNote(models.Model):
     student = models.ForeignKey(Student, related_name='advisingnotes_student')
     note = models.TextField(max_length=1000, blank=True)
     datestamp = models.DateTimeField(auto_now=True, auto_now_add=True)
+
+    def __unicode__(self):
+        return "{0} on {1}".format(self.student, self.datestamp)
 
 class EnteringYear(models.Model):
 
@@ -350,6 +365,9 @@ class PrepopulateSemesters(models.Model):
     senior_jterm_courses = models.ManyToManyField(Course, related_name='srjterm', blank=True)
     senior_spring_courses = models.ManyToManyField(Course, related_name='srspring', blank=True)
     senior_summer_courses = models.ManyToManyField(Course, related_name='srsummer', blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Prepopulate semesters'
 
     def __unicode__(self):
         return self.name

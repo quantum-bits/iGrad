@@ -9,10 +9,15 @@
 
   <body>
     <div class="container-fluid">
+      <div class="hero-unit">
+	<h1>Taylor Four Year Planner</h1>
+	<p>Brought to you by Professor Ken Kiers and a cast of dozens.</p>
+      </div>
       <div class="row-fluid">
         <div class="span2">
 	  <nav>
 	    <ul>
+	      <li><a href="{% url 'planner.views.home' %}">Home</a></li>
 	      <li><a href="{% url 'planner.views.profile' %}">Profile</a></li>
 	      <li><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a></li>
 	      <li><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a></li>
@@ -24,9 +29,9 @@
 		</ul>
 	      </li>
 	      {% if user.is_authenticated %}
-              <li><a href="{% url 'planner.views.logout_request' %}">Logout</a></li>
+		<li><a href="{% url 'planner.views.logout_request' %}">Logout</a></li>
 	      {% else %}
-	      <li><a href="{% url 'planner.views.login_request' %}">Login</a></li>
+		<li><a href="{% url 'planner.views.login_request' %}">Login</a></li>
 	      {% endif %}
 	    </ul>
 	  </nav>
