@@ -1,0 +1,6727 @@
+[
+{
+    "pk": 1, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2012, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa12"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa13"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa14"
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2015, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa15"
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2016, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa16"
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 2, 
+        "name": "J13"
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 2, 
+        "name": "J14"
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2015, 
+        "semester_of_acad_year": 2, 
+        "name": "J15"
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2016, 
+        "semester_of_acad_year": 2, 
+        "name": "J16"
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2017, 
+        "semester_of_acad_year": 2, 
+        "name": "J17"
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp13"
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp14"
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2015, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp15"
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2016, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp16"
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2017, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp17"
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 4, 
+        "name": "Sum13"
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 4, 
+        "name": "Sum14"
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2015, 
+        "semester_of_acad_year": 4, 
+        "name": "Sum15"
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2016, 
+        "semester_of_acad_year": 4, 
+        "name": "Sum16"
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2017, 
+        "semester_of_acad_year": 4, 
+        "name": "Sum17"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Physics and Engineering"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Mathematics"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Computer Science and Engineering"
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Chemistry and Biochemistry"
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Biology"
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "BSCEP"
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Interarea Studies"
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "School of Science"
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "PHP"
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Humanities"
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Art"
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Music"
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Communications Studies"
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "English"
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "History"
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Environmental Science"
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Business"
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Psychology"
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Political Science"
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Sociology"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Calculus I", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT151", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Calculus II", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT230", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            1
+        ], 
+        "department": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Calculus III", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT240", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            2
+        ], 
+        "department": 2
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Differential Equations", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT251", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            3
+        ], 
+        "department": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Linear Algebra", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT245", 
+        "coreqs": [], 
+        "semester": [
+            12, 
+            14
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Math Modeling with Numerical Analysis", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT310", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            3, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "University Physics I & Lab", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY211", 
+        "coreqs": [
+            1
+        ], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 5, 
+        "name": "University Physics II & Lab", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY212", 
+        "coreqs": [
+            2
+        ], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            1, 
+            7
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Modern Physics & Lab", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY311", 
+        "coreqs": [
+            3
+        ], 
+        "semester": [
+            2, 
+            3, 
+            4, 
+            5, 
+            11
+        ], 
+        "prereqs": [
+            8
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Advanced Lab", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY330", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Thermodynamics and Statistical Mechanics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY350", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            3, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Preparation for the Physics GRE", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY491", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Math Methods in Physics and Engineering", 
+        "cc": false, 
+        "sp": true, 
+        "number": "PHY341", 
+        "coreqs": [
+            4
+        ], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            3, 
+            8
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Advanced Mathematical Methods in Physics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY441", 
+        "coreqs": [], 
+        "semester": [
+            3, 
+            5, 
+            11
+        ], 
+        "prereqs": [
+            13
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Electricity & Magnetism", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY321", 
+        "coreqs": [], 
+        "semester": [
+            2, 
+            4
+        ], 
+        "prereqs": [
+            8, 
+            13
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Waves & Physical Optics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY322", 
+        "coreqs": [], 
+        "semester": [
+            12, 
+            14
+        ], 
+        "prereqs": [
+            15
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Analytical Mechanics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY342", 
+        "coreqs": [], 
+        "semester": [
+            12, 
+            14
+        ], 
+        "prereqs": [
+            4, 
+            13
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Directed Research", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY450", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Quantum Mechanics I", 
+        "cc": false, 
+        "sp": true, 
+        "number": "PHY412", 
+        "coreqs": [], 
+        "semester": [
+            2, 
+            13, 
+            15
+        ], 
+        "prereqs": [
+            4, 
+            9, 
+            13
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Quantum Mechanics II", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY413", 
+        "coreqs": [], 
+        "semester": [
+            4, 
+            12
+        ], 
+        "prereqs": [
+            19
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 21, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Physics Senior Capstone", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY493", 
+        "coreqs": [], 
+        "semester": [
+            7, 
+            9, 
+            10
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 22, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Biblical Literature I", 
+        "cc": false, 
+        "sp": false, 
+        "number": "BIB110", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 6
+    }
+},
+{
+    "pk": 23, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Biblical Literature II", 
+        "cc": false, 
+        "sp": false, 
+        "number": "BIB210", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            22
+        ], 
+        "department": 6
+    }
+},
+{
+    "pk": 24, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Historic Christian Belief", 
+        "cc": false, 
+        "sp": false, 
+        "number": "REL313", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            23
+        ], 
+        "department": 6
+    }
+},
+{
+    "pk": 25, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Contemporary Christian Belief", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHI413", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            24
+        ], 
+        "department": 6
+    }
+},
+{
+    "pk": 26, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Practicum", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY393", 
+        "coreqs": [], 
+        "semester": [
+            16, 
+            17, 
+            18, 
+            19, 
+            20
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 27, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "College Chemistry I", 
+        "cc": false, 
+        "sp": false, 
+        "number": "CHE211", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 4
+    }
+},
+{
+    "pk": 28, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "College Chemistry II", 
+        "cc": false, 
+        "sp": false, 
+        "number": "CHE212", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            27
+        ], 
+        "department": 4
+    }
+},
+{
+    "pk": 29, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Introduction to Computational Problem Solving", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS120", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 30, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Introduction to Engineering & Software Tools", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP104", 
+        "coreqs": [], 
+        "semester": [
+            6, 
+            7, 
+            8, 
+            9, 
+            10
+        ], 
+        "prereqs": [
+            7
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 31, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Introduction to Engineering Ethics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP105", 
+        "coreqs": [], 
+        "semester": [
+            6, 
+            7, 
+            8, 
+            9, 
+            10
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 32, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Issues in Science and Religion", 
+        "cc": false, 
+        "sp": false, 
+        "number": "IAS231", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 7
+    }
+},
+{
+    "pk": 33, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Natural Science Seminar", 
+        "cc": false, 
+        "sp": false, 
+        "number": "NAS480", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 8
+    }
+},
+{
+    "pk": 34, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Mathematical Statistics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT352", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 35, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Advanced Statistical Methods", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT382", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            34
+        ], 
+        "department": 2
+    }
+},
+{
+    "pk": 36, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Statics and Dynamics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP301", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            7
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 37, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Introduction to Electronics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP331", 
+        "coreqs": [
+            3
+        ], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            8
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 38, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Principles of Engineering & Lab", 
+        "cc": false, 
+        "sp": true, 
+        "number": "ENP252", 
+        "coreqs": [
+            4
+        ], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            37
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 39, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Strength of Materials and Machine Design", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP302", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            3, 
+            5
+        ], 
+        "prereqs": [
+            38
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 40, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Microcomputer Interfacing", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP341", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            13, 
+            15
+        ], 
+        "prereqs": [
+            38, 
+            37
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 41, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Junior Engineering Project", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP392", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            38
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 42, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Applied Electromagnetics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENP321", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            3, 
+            5
+        ], 
+        "prereqs": [
+            38, 
+            37
+        ], 
+        "department": 1
+    }
+},
+{
+    "pk": 43, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "New Student Orientation", 
+        "cc": false, 
+        "sp": false, 
+        "number": "IAS101", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 7
+    }
+},
+{
+    "pk": 44, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Foundations of Christian Thought", 
+        "cc": false, 
+        "sp": false, 
+        "number": "IAS110", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 7
+    }
+},
+{
+    "pk": 45, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Senior Seminar", 
+        "cc": false, 
+        "sp": false, 
+        "number": "IAS495", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 7
+    }
+},
+{
+    "pk": 46, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Fitness for Life", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHP100", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 9
+    }
+},
+{
+    "pk": 47, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "General Physical Education", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHP200x", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            46
+        ], 
+        "department": 9
+    }
+},
+{
+    "pk": 48, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Art as Experience", 
+        "cc": false, 
+        "sp": false, 
+        "number": "HUM230", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 10
+    }
+},
+{
+    "pk": 49, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Arts and Ideas", 
+        "cc": false, 
+        "sp": false, 
+        "number": "HUM330", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 10
+    }
+},
+{
+    "pk": 50, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Studio Course", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ARTxxx", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 11
+    }
+},
+{
+    "pk": 51, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Participation in the Arts", 
+        "cc": false, 
+        "sp": false, 
+        "number": "HUM250x", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 10
+    }
+},
+{
+    "pk": 52, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Music Ensemble", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MUSxxx", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 12
+    }
+},
+{
+    "pk": 53, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Music Lesson", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MUSyyy", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 12
+    }
+},
+{
+    "pk": 54, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Public Speaking", 
+        "cc": false, 
+        "sp": false, 
+        "number": "CAS110", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 13
+    }
+},
+{
+    "pk": 55, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Interpersonal Communication", 
+        "cc": false, 
+        "sp": false, 
+        "number": "CAS120", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 13
+    }
+},
+{
+    "pk": 56, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Expository Writing", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENG110", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 14
+    }
+},
+{
+    "pk": 57, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "History Course", 
+        "cc": false, 
+        "sp": false, 
+        "number": "HISxxx", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 15
+    }
+},
+{
+    "pk": 58, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "World Literature", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENG230", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 14
+    }
+},
+{
+    "pk": 59, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "American Literature", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENG240", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 14
+    }
+},
+{
+    "pk": 60, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "British Literature", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENG250", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 14
+    }
+},
+{
+    "pk": 61, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "General Biology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "BIO100", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 5
+    }
+},
+{
+    "pk": 62, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Principles of Cell Biology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "BIO101", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 5
+    }
+},
+{
+    "pk": 63, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Environment and Society", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENS200", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 16
+    }
+},
+{
+    "pk": 64, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Physical Geology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ENS241", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 16
+    }
+},
+{
+    "pk": 65, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Principles of Microeconomics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "ECO201", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 17
+    }
+},
+{
+    "pk": 66, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Introduction to Psychology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "PSY200", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 18
+    }
+},
+{
+    "pk": 67, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "American Politics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "POS100", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 19
+    }
+},
+{
+    "pk": 68, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Introduction to Sociology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "SOC100", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 20
+    }
+},
+{
+    "pk": 69, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Foundations of Computer Science", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS121", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            29
+        ], 
+        "department": 3
+    }
+},
+{
+    "pk": 70, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Interactive Web Page Design", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS143", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 71, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Multi-tier Web Application Development", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS243", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            70
+        ], 
+        "department": 3
+    }
+},
+{
+    "pk": 72, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Data Structures and Algorithms", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS265", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            69
+        ], 
+        "department": 3
+    }
+},
+{
+    "pk": 73, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Introduction to Computer Systems", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS284", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 74, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Current Literature Survey", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS310", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 75, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Ethics in Computer Science", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS311", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 76, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Algorithm Design", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS320", 
+        "coreqs": [], 
+        "semester": [
+            12, 
+            14
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 77, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Language Structures", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS382", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            13, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 78, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Theory of Computation", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS435", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            3, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 79, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Research I", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS452", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 80, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Research II", 
+        "cc": false, 
+        "sp": true, 
+        "number": "COS453", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [
+            79
+        ], 
+        "department": 3
+    }
+},
+{
+    "pk": 81, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Computer Science Senior Capstone", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS493", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 82, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Discrete Mathematics for Computer Science", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT215", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 83, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Introduction to Systems", 
+        "cc": false, 
+        "sp": false, 
+        "number": "SYS101", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 84, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 4, 
+        "name": "Introductory Statistics", 
+        "cc": false, 
+        "sp": false, 
+        "number": "MAT210", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 2
+    }
+},
+{
+    "pk": 85, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Computer Architecture", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS381", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 86, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Operating Systems", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS421", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            13, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 87, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Distributed Processing", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS436", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 88, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Business Applications Programming", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS240", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 89, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Missions Technology", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS230", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 90, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Introduction to Artificial Intelligence", 
+        "cc": false, 
+        "sp": true, 
+        "number": "COS280", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 91, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Principles of Human Computer Interactions", 
+        "cc": false, 
+        "sp": false, 
+        "number": "SYS214", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [
+            83
+        ], 
+        "department": 3
+    }
+},
+{
+    "pk": 92, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 2, 
+        "name": "Computing and Culture -- Applications and Context", 
+        "cc": false, 
+        "sp": false, 
+        "number": "COS106", 
+        "coreqs": [], 
+        "semester": [
+            11, 
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "prereqs": [], 
+        "department": 3
+    }
+},
+{
+    "pk": 93, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 1, 
+        "name": "Introduction to International Ministry", 
+        "cc": false, 
+        "sp": false, 
+        "number": "IAS120", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            3, 
+            4, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 7
+    }
+},
+{
+    "pk": 94, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Lighthouse Trip", 
+        "cc": true, 
+        "sp": false, 
+        "number": "IAS320", 
+        "coreqs": [], 
+        "semester": [
+            6, 
+            7, 
+            8, 
+            9, 
+            10
+        ], 
+        "prereqs": [
+            93
+        ], 
+        "department": 7
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Major Requirements", 
+        "name": "PhyBS Major Requirements", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 1, 
+        "courselist": [
+            7, 
+            8, 
+            9, 
+            15, 
+            16, 
+            10, 
+            13, 
+            17, 
+            11, 
+            19, 
+            20, 
+            14, 
+            12, 
+            21
+        ], 
+        "minimum_number_of_credit_hours": 43, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Major Requirements II", 
+        "name": "PhyBS Major Requirements II", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 2, 
+        "courselist": [
+            26, 
+            18
+        ], 
+        "minimum_number_of_credit_hours": 2, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Additional Major Requirements", 
+        "name": "PhyBS Additional Major Requirements", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 4, 
+        "courselist": [
+            27, 
+            28, 
+            29, 
+            30, 
+            31, 
+            1, 
+            2, 
+            3, 
+            5, 
+            4
+        ], 
+        "minimum_number_of_credit_hours": 35, 
+        "text_for_user": "COS104 may be taken in place of ENP104+ENP105"
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Technical Electives", 
+        "name": "PhyBS Technical Electives", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 3, 
+        "courselist": [
+            38, 
+            36, 
+            39, 
+            42, 
+            37, 
+            40, 
+            41, 
+            6, 
+            34, 
+            35
+        ], 
+        "minimum_number_of_credit_hours": 11, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Sci & Rel/Nat Sci Seminar", 
+        "name": "PhyBS Sci & Rel/Nat Sci Sem", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 5, 
+        "courselist": [
+            32, 
+            33
+        ], 
+        "minimum_number_of_credit_hours": 1, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Orientation & Spiritual Foundation", 
+        "name": "GenEd Orientation & Spiritual Foundation", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 10, 
+        "courselist": [
+            22, 
+            23, 
+            43, 
+            44, 
+            45, 
+            25, 
+            24
+        ], 
+        "minimum_number_of_credit_hours": 17, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Stewardship of the Body", 
+        "name": "GenEd Stewardship of the Body", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 12, 
+        "courselist": [
+            46, 
+            47
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Fine Arts I", 
+        "name": "GenEd Fine Arts I", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 12, 
+        "courselist": [
+            48, 
+            49
+        ], 
+        "minimum_number_of_credit_hours": 4, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Fine Arts II", 
+        "name": "GenEd Fine Arts II", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 13, 
+        "courselist": [
+            50, 
+            51, 
+            52, 
+            53
+        ], 
+        "minimum_number_of_credit_hours": 1, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Speaking", 
+        "name": "GenEd Speaking", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 14, 
+        "courselist": [
+            54, 
+            55
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "History", 
+        "name": "GenEd History", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 15, 
+        "courselist": [
+            57
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Literature", 
+        "name": "GenEd Literature", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 16, 
+        "courselist": [
+            58, 
+            59, 
+            60
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Life or Earth Science", 
+        "name": "GenEd Life or Earth Science", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 18, 
+        "courselist": [
+            61, 
+            62, 
+            63, 
+            64
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Social Science", 
+        "name": "GenEd Social Science", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 20, 
+        "courselist": [
+            65, 
+            67, 
+            66, 
+            68
+        ], 
+        "minimum_number_of_credit_hours": 6, 
+        "text_for_user": "2 courses; 2 diff depts; at least 1 civic engmnt"
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Writing", 
+        "name": "GenEd Writing", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 15, 
+        "courselist": [
+            56
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Core Requirements", 
+        "name": "COSBs Core Requirements", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 1, 
+        "courselist": [
+            29, 
+            69, 
+            70, 
+            71, 
+            72, 
+            73, 
+            74, 
+            75, 
+            76, 
+            77, 
+            78, 
+            79, 
+            80, 
+            81, 
+            1, 
+            82, 
+            83
+        ], 
+        "minimum_number_of_credit_hours": 49, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Statistics", 
+        "name": "COSBs Statistics", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 2, 
+        "courselist": [
+            84, 
+            34
+        ], 
+        "minimum_number_of_credit_hours": 4, 
+        "text_for_user": "Choose one course."
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Technical Electives", 
+        "name": "COSBs Technical Electives", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 3, 
+        "courselist": [
+            85, 
+            86, 
+            87
+        ], 
+        "minimum_number_of_credit_hours": 6, 
+        "text_for_user": "Choose two courses."
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Scientific Computing Requirements", 
+        "name": "COSBs Scientific Computing Track", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 4, 
+        "courselist": [
+            2, 
+            3, 
+            5, 
+            4, 
+            6
+        ], 
+        "minimum_number_of_credit_hours": 19, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Technical Electives II", 
+        "name": "COSBs SC Technical Electives II", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 8, 
+        "courselist": [
+            88
+        ], 
+        "minimum_number_of_credit_hours": 8, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 21, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Technical Electives II", 
+        "name": "COSBs SC Technical Electives II", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 8, 
+        "courselist": [
+            89, 
+            88, 
+            90, 
+            91
+        ], 
+        "minimum_number_of_credit_hours": 8, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 22, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Computer Science", 
+        "name": "GenEd CompSci", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 15, 
+        "courselist": [
+            92
+        ], 
+        "minimum_number_of_credit_hours": 2, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 23, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Science", 
+        "name": "GenEd Science", 
+        "AND_or_OR_Requirement": 2, 
+        "list_order": 16, 
+        "courselist": [
+            61, 
+            62, 
+            63, 
+            64, 
+            7
+        ], 
+        "minimum_number_of_credit_hours": 6, 
+        "text_for_user": "Choose 2 courses from 2 areas."
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.major", 
+    "fields": {
+        "major_requirements": [
+            8, 
+            9, 
+            11, 
+            13, 
+            12, 
+            6, 
+            14, 
+            10, 
+            7, 
+            15, 
+            3, 
+            1, 
+            2, 
+            5, 
+            4
+        ], 
+        "name": "Physics BS"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.major", 
+    "fields": {
+        "major_requirements": [
+            16, 
+            20, 
+            21, 
+            19, 
+            17, 
+            18, 
+            22, 
+            8, 
+            9, 
+            11, 
+            12, 
+            6, 
+            23, 
+            14, 
+            10, 
+            7, 
+            15
+        ], 
+        "name": "Computer Science BS -- Scientific Computing Track"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 2, 
+        "year": 0
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            54, 
+            27, 
+            1
+        ], 
+        "semester": 1, 
+        "student": 2, 
+        "year": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 2, 
+        "year": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            23, 
+            61, 
+            54, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 2, 
+        "year": 1
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 2, 
+        "year": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            9
+        ], 
+        "semester": 1, 
+        "student": 2, 
+        "year": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 2, 
+        "year": 2
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            38, 
+            4
+        ], 
+        "semester": 3, 
+        "student": 2, 
+        "year": 2
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 2, 
+        "year": 2
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            62, 
+            54, 
+            85, 
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 2, 
+        "year": 3
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            22
+        ], 
+        "semester": 2, 
+        "student": 2, 
+        "year": 3
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            28, 
+            86, 
+            63, 
+            13, 
+            19
+        ], 
+        "semester": 3, 
+        "student": 2, 
+        "year": 3
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 2, 
+        "year": 3
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 2, 
+        "year": 4
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 2, 
+        "year": 4
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            60, 
+            57, 
+            45, 
+            25, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 2, 
+        "year": 4
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 2, 
+        "year": 4
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 2, 
+        "year": 5
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 2, 
+        "year": 5
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 2, 
+        "year": 5
+    }
+},
+{
+    "pk": 21, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 2, 
+        "year": 5
+    }
+},
+{
+    "pk": 64, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 5, 
+        "year": 0
+    }
+},
+{
+    "pk": 65, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            43, 
+            44, 
+            1, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 5, 
+        "year": 1
+    }
+},
+{
+    "pk": 66, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 5, 
+        "year": 1
+    }
+},
+{
+    "pk": 67, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 5, 
+        "year": 1
+    }
+},
+{
+    "pk": 68, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 5, 
+        "year": 1
+    }
+},
+{
+    "pk": 69, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 5, 
+        "year": 2
+    }
+},
+{
+    "pk": 70, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 5, 
+        "year": 2
+    }
+},
+{
+    "pk": 71, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 5, 
+        "year": 2
+    }
+},
+{
+    "pk": 72, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 5, 
+        "year": 2
+    }
+},
+{
+    "pk": 73, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 5, 
+        "year": 3
+    }
+},
+{
+    "pk": 74, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 5, 
+        "year": 3
+    }
+},
+{
+    "pk": 75, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 5, 
+        "year": 3
+    }
+},
+{
+    "pk": 76, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 5, 
+        "year": 3
+    }
+},
+{
+    "pk": 77, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 5, 
+        "year": 4
+    }
+},
+{
+    "pk": 78, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 5, 
+        "year": 4
+    }
+},
+{
+    "pk": 79, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 5, 
+        "year": 4
+    }
+},
+{
+    "pk": 80, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 5, 
+        "year": 4
+    }
+},
+{
+    "pk": 81, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 5, 
+        "year": 5
+    }
+},
+{
+    "pk": 82, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 5, 
+        "year": 5
+    }
+},
+{
+    "pk": 83, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 5, 
+        "year": 5
+    }
+},
+{
+    "pk": 84, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 5, 
+        "year": 5
+    }
+},
+{
+    "pk": 85, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 7, 
+        "year": 0
+    }
+},
+{
+    "pk": 86, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            7
+        ], 
+        "semester": 1, 
+        "student": 7, 
+        "year": 1
+    }
+},
+{
+    "pk": 87, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 7, 
+        "year": 1
+    }
+},
+{
+    "pk": 88, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 7, 
+        "year": 1
+    }
+},
+{
+    "pk": 89, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 7, 
+        "year": 1
+    }
+},
+{
+    "pk": 90, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 7, 
+        "year": 2
+    }
+},
+{
+    "pk": 91, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 7, 
+        "year": 2
+    }
+},
+{
+    "pk": 92, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            8
+        ], 
+        "semester": 3, 
+        "student": 7, 
+        "year": 2
+    }
+},
+{
+    "pk": 93, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 7, 
+        "year": 2
+    }
+},
+{
+    "pk": 94, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 7, 
+        "year": 3
+    }
+},
+{
+    "pk": 95, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 7, 
+        "year": 3
+    }
+},
+{
+    "pk": 96, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 7, 
+        "year": 3
+    }
+},
+{
+    "pk": 97, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 7, 
+        "year": 3
+    }
+},
+{
+    "pk": 98, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 7, 
+        "year": 4
+    }
+},
+{
+    "pk": 99, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 7, 
+        "year": 4
+    }
+},
+{
+    "pk": 100, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 7, 
+        "year": 4
+    }
+},
+{
+    "pk": 101, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 7, 
+        "year": 4
+    }
+},
+{
+    "pk": 102, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 7, 
+        "year": 5
+    }
+},
+{
+    "pk": 103, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 7, 
+        "year": 5
+    }
+},
+{
+    "pk": 104, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 7, 
+        "year": 5
+    }
+},
+{
+    "pk": 105, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 7, 
+        "year": 5
+    }
+},
+{
+    "pk": 106, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 8, 
+        "year": 0
+    }
+},
+{
+    "pk": 107, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            44, 
+            1, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 8, 
+        "year": 1
+    }
+},
+{
+    "pk": 108, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 8, 
+        "year": 1
+    }
+},
+{
+    "pk": 109, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            38, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 8, 
+        "year": 1
+    }
+},
+{
+    "pk": 110, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 8, 
+        "year": 1
+    }
+},
+{
+    "pk": 111, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            54, 
+            3, 
+            33, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 8, 
+        "year": 2
+    }
+},
+{
+    "pk": 112, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 8, 
+        "year": 2
+    }
+},
+{
+    "pk": 113, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 8, 
+        "year": 2
+    }
+},
+{
+    "pk": 114, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 8, 
+        "year": 2
+    }
+},
+{
+    "pk": 115, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            10, 
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 8, 
+        "year": 3
+    }
+},
+{
+    "pk": 116, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 8, 
+        "year": 3
+    }
+},
+{
+    "pk": 117, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 8, 
+        "year": 3
+    }
+},
+{
+    "pk": 118, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 8, 
+        "year": 3
+    }
+},
+{
+    "pk": 119, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            27, 
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 8, 
+        "year": 4
+    }
+},
+{
+    "pk": 120, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 8, 
+        "year": 4
+    }
+},
+{
+    "pk": 121, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 8, 
+        "year": 4
+    }
+},
+{
+    "pk": 122, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 8, 
+        "year": 4
+    }
+},
+{
+    "pk": 123, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 8, 
+        "year": 5
+    }
+},
+{
+    "pk": 124, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 8, 
+        "year": 5
+    }
+},
+{
+    "pk": 125, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 8, 
+        "year": 5
+    }
+},
+{
+    "pk": 126, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 8, 
+        "year": 5
+    }
+},
+{
+    "pk": 127, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 9, 
+        "year": 0
+    }
+},
+{
+    "pk": 128, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            44, 
+            1, 
+            7, 
+            11
+        ], 
+        "semester": 1, 
+        "student": 9, 
+        "year": 1
+    }
+},
+{
+    "pk": 129, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 9, 
+        "year": 1
+    }
+},
+{
+    "pk": 130, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 9, 
+        "year": 1
+    }
+},
+{
+    "pk": 131, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 9, 
+        "year": 1
+    }
+},
+{
+    "pk": 132, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            37, 
+            93, 
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 9, 
+        "year": 2
+    }
+},
+{
+    "pk": 133, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            94
+        ], 
+        "semester": 2, 
+        "student": 9, 
+        "year": 2
+    }
+},
+{
+    "pk": 134, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            38, 
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 9, 
+        "year": 2
+    }
+},
+{
+    "pk": 135, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 9, 
+        "year": 2
+    }
+},
+{
+    "pk": 136, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            27, 
+            6, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 9, 
+        "year": 3
+    }
+},
+{
+    "pk": 137, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 9, 
+        "year": 3
+    }
+},
+{
+    "pk": 138, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            28, 
+            19
+        ], 
+        "semester": 3, 
+        "student": 9, 
+        "year": 3
+    }
+},
+{
+    "pk": 139, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 9, 
+        "year": 3
+    }
+},
+{
+    "pk": 140, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 9, 
+        "year": 4
+    }
+},
+{
+    "pk": 141, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 9, 
+        "year": 4
+    }
+},
+{
+    "pk": 142, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16, 
+            10
+        ], 
+        "semester": 3, 
+        "student": 9, 
+        "year": 4
+    }
+},
+{
+    "pk": 143, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 9, 
+        "year": 4
+    }
+},
+{
+    "pk": 144, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 9, 
+        "year": 5
+    }
+},
+{
+    "pk": 145, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 9, 
+        "year": 5
+    }
+},
+{
+    "pk": 146, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 9, 
+        "year": 5
+    }
+},
+{
+    "pk": 147, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 9, 
+        "year": 5
+    }
+},
+{
+    "pk": 148, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 10, 
+        "year": 0
+    }
+},
+{
+    "pk": 149, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            43, 
+            44, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 10, 
+        "year": 1
+    }
+},
+{
+    "pk": 150, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 10, 
+        "year": 1
+    }
+},
+{
+    "pk": 151, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 10, 
+        "year": 1
+    }
+},
+{
+    "pk": 152, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 10, 
+        "year": 1
+    }
+},
+{
+    "pk": 153, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            36, 
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 10, 
+        "year": 2
+    }
+},
+{
+    "pk": 154, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 10, 
+        "year": 2
+    }
+},
+{
+    "pk": 155, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            38, 
+            4, 
+            13
+        ], 
+        "semester": 3, 
+        "student": 10, 
+        "year": 2
+    }
+},
+{
+    "pk": 156, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 10, 
+        "year": 2
+    }
+},
+{
+    "pk": 157, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            37, 
+            1, 
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 10, 
+        "year": 3
+    }
+},
+{
+    "pk": 158, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 10, 
+        "year": 3
+    }
+},
+{
+    "pk": 159, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 10, 
+        "year": 3
+    }
+},
+{
+    "pk": 160, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 10, 
+        "year": 3
+    }
+},
+{
+    "pk": 161, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 10, 
+        "year": 4
+    }
+},
+{
+    "pk": 162, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 10, 
+        "year": 4
+    }
+},
+{
+    "pk": 163, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 10, 
+        "year": 4
+    }
+},
+{
+    "pk": 164, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 10, 
+        "year": 4
+    }
+},
+{
+    "pk": 165, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 10, 
+        "year": 5
+    }
+},
+{
+    "pk": 166, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 10, 
+        "year": 5
+    }
+},
+{
+    "pk": 167, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 10, 
+        "year": 5
+    }
+},
+{
+    "pk": 168, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 10, 
+        "year": 5
+    }
+},
+{
+    "pk": 169, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 11, 
+        "year": 0
+    }
+},
+{
+    "pk": 170, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            22, 
+            43, 
+            44, 
+            1, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 11, 
+        "year": 1
+    }
+},
+{
+    "pk": 171, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 11, 
+        "year": 1
+    }
+},
+{
+    "pk": 172, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            46, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 11, 
+        "year": 1
+    }
+},
+{
+    "pk": 173, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 11, 
+        "year": 1
+    }
+},
+{
+    "pk": 174, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            23, 
+            37, 
+            3
+        ], 
+        "semester": 1, 
+        "student": 11, 
+        "year": 2
+    }
+},
+{
+    "pk": 175, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 11, 
+        "year": 2
+    }
+},
+{
+    "pk": 176, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 11, 
+        "year": 2
+    }
+},
+{
+    "pk": 177, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 11, 
+        "year": 2
+    }
+},
+{
+    "pk": 178, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            6, 
+            25, 
+            10, 
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 11, 
+        "year": 3
+    }
+},
+{
+    "pk": 179, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 11, 
+        "year": 3
+    }
+},
+{
+    "pk": 180, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            38, 
+            19
+        ], 
+        "semester": 3, 
+        "student": 11, 
+        "year": 3
+    }
+},
+{
+    "pk": 181, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 11, 
+        "year": 3
+    }
+},
+{
+    "pk": 182, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            27, 
+            36, 
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 11, 
+        "year": 4
+    }
+},
+{
+    "pk": 183, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 11, 
+        "year": 4
+    }
+},
+{
+    "pk": 184, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            28, 
+            5, 
+            16, 
+            24
+        ], 
+        "semester": 3, 
+        "student": 11, 
+        "year": 4
+    }
+},
+{
+    "pk": 185, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 11, 
+        "year": 4
+    }
+},
+{
+    "pk": 186, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 11, 
+        "year": 5
+    }
+},
+{
+    "pk": 187, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 11, 
+        "year": 5
+    }
+},
+{
+    "pk": 188, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 11, 
+        "year": 5
+    }
+},
+{
+    "pk": 189, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 11, 
+        "year": 5
+    }
+},
+{
+    "pk": 190, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 12, 
+        "year": 0
+    }
+},
+{
+    "pk": 191, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 12, 
+        "year": 1
+    }
+},
+{
+    "pk": 192, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 12, 
+        "year": 1
+    }
+},
+{
+    "pk": 193, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 12, 
+        "year": 1
+    }
+},
+{
+    "pk": 194, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 12, 
+        "year": 1
+    }
+},
+{
+    "pk": 195, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 12, 
+        "year": 2
+    }
+},
+{
+    "pk": 196, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 12, 
+        "year": 2
+    }
+},
+{
+    "pk": 197, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 12, 
+        "year": 2
+    }
+},
+{
+    "pk": 198, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 12, 
+        "year": 2
+    }
+},
+{
+    "pk": 199, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 12, 
+        "year": 3
+    }
+},
+{
+    "pk": 200, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 12, 
+        "year": 3
+    }
+},
+{
+    "pk": 201, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 12, 
+        "year": 3
+    }
+},
+{
+    "pk": 202, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 12, 
+        "year": 3
+    }
+},
+{
+    "pk": 203, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 12, 
+        "year": 4
+    }
+},
+{
+    "pk": 204, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 12, 
+        "year": 4
+    }
+},
+{
+    "pk": 205, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 12, 
+        "year": 4
+    }
+},
+{
+    "pk": 206, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 12, 
+        "year": 4
+    }
+},
+{
+    "pk": 207, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 12, 
+        "year": 5
+    }
+},
+{
+    "pk": 208, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 12, 
+        "year": 5
+    }
+},
+{
+    "pk": 209, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 12, 
+        "year": 5
+    }
+},
+{
+    "pk": 210, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 12, 
+        "year": 5
+    }
+},
+{
+    "pk": 211, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 13, 
+        "year": 0
+    }
+},
+{
+    "pk": 212, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            43, 
+            44, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 13, 
+        "year": 1
+    }
+},
+{
+    "pk": 213, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 13, 
+        "year": 1
+    }
+},
+{
+    "pk": 214, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 13, 
+        "year": 1
+    }
+},
+{
+    "pk": 215, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 13, 
+        "year": 1
+    }
+},
+{
+    "pk": 216, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 13, 
+        "year": 2
+    }
+},
+{
+    "pk": 217, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 13, 
+        "year": 2
+    }
+},
+{
+    "pk": 218, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 13, 
+        "year": 2
+    }
+},
+{
+    "pk": 219, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 13, 
+        "year": 2
+    }
+},
+{
+    "pk": 220, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 13, 
+        "year": 3
+    }
+},
+{
+    "pk": 221, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 13, 
+        "year": 3
+    }
+},
+{
+    "pk": 222, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 13, 
+        "year": 3
+    }
+},
+{
+    "pk": 223, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 13, 
+        "year": 3
+    }
+},
+{
+    "pk": 224, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            27, 
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 13, 
+        "year": 4
+    }
+},
+{
+    "pk": 225, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 13, 
+        "year": 4
+    }
+},
+{
+    "pk": 226, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            28, 
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 13, 
+        "year": 4
+    }
+},
+{
+    "pk": 227, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 13, 
+        "year": 4
+    }
+},
+{
+    "pk": 228, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 13, 
+        "year": 5
+    }
+},
+{
+    "pk": 229, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 13, 
+        "year": 5
+    }
+},
+{
+    "pk": 230, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 13, 
+        "year": 5
+    }
+},
+{
+    "pk": 231, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 13, 
+        "year": 5
+    }
+},
+{
+    "pk": 232, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 14, 
+        "year": 0
+    }
+},
+{
+    "pk": 233, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            23, 
+            43, 
+            44, 
+            1, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 14, 
+        "year": 1
+    }
+},
+{
+    "pk": 234, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 14, 
+        "year": 1
+    }
+},
+{
+    "pk": 235, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 14, 
+        "year": 1
+    }
+},
+{
+    "pk": 236, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 14, 
+        "year": 1
+    }
+},
+{
+    "pk": 237, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 14, 
+        "year": 2
+    }
+},
+{
+    "pk": 238, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 14, 
+        "year": 2
+    }
+},
+{
+    "pk": 239, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 14, 
+        "year": 2
+    }
+},
+{
+    "pk": 240, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 14, 
+        "year": 2
+    }
+},
+{
+    "pk": 241, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 14, 
+        "year": 3
+    }
+},
+{
+    "pk": 242, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 14, 
+        "year": 3
+    }
+},
+{
+    "pk": 243, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 14, 
+        "year": 3
+    }
+},
+{
+    "pk": 244, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 14, 
+        "year": 3
+    }
+},
+{
+    "pk": 245, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 14, 
+        "year": 4
+    }
+},
+{
+    "pk": 246, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 14, 
+        "year": 4
+    }
+},
+{
+    "pk": 247, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 14, 
+        "year": 4
+    }
+},
+{
+    "pk": 248, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 14, 
+        "year": 4
+    }
+},
+{
+    "pk": 249, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 14, 
+        "year": 5
+    }
+},
+{
+    "pk": 250, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 14, 
+        "year": 5
+    }
+},
+{
+    "pk": 251, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 14, 
+        "year": 5
+    }
+},
+{
+    "pk": 252, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 14, 
+        "year": 5
+    }
+},
+{
+    "pk": 253, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 15, 
+        "year": 0
+    }
+},
+{
+    "pk": 254, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            43, 
+            44, 
+            1, 
+            7
+        ], 
+        "semester": 1, 
+        "student": 15, 
+        "year": 1
+    }
+},
+{
+    "pk": 255, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 15, 
+        "year": 1
+    }
+},
+{
+    "pk": 256, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 15, 
+        "year": 1
+    }
+},
+{
+    "pk": 257, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 15, 
+        "year": 1
+    }
+},
+{
+    "pk": 258, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            3, 
+            9
+        ], 
+        "semester": 1, 
+        "student": 15, 
+        "year": 2
+    }
+},
+{
+    "pk": 259, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 15, 
+        "year": 2
+    }
+},
+{
+    "pk": 260, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 15, 
+        "year": 2
+    }
+},
+{
+    "pk": 261, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 15, 
+        "year": 2
+    }
+},
+{
+    "pk": 262, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 15, 
+        "year": 3
+    }
+},
+{
+    "pk": 263, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 15, 
+        "year": 3
+    }
+},
+{
+    "pk": 264, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 15, 
+        "year": 3
+    }
+},
+{
+    "pk": 265, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 15, 
+        "year": 3
+    }
+},
+{
+    "pk": 266, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 15, 
+        "year": 4
+    }
+},
+{
+    "pk": 267, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 15, 
+        "year": 4
+    }
+},
+{
+    "pk": 268, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 15, 
+        "year": 4
+    }
+},
+{
+    "pk": 269, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 15, 
+        "year": 4
+    }
+},
+{
+    "pk": 270, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 15, 
+        "year": 5
+    }
+},
+{
+    "pk": 271, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 15, 
+        "year": 5
+    }
+},
+{
+    "pk": 272, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 15, 
+        "year": 5
+    }
+},
+{
+    "pk": 273, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 15, 
+        "year": 5
+    }
+},
+{
+    "pk": 274, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 0, 
+        "student": 16, 
+        "year": 0
+    }
+},
+{
+    "pk": 275, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            43, 
+            44, 
+            1
+        ], 
+        "semester": 1, 
+        "student": 16, 
+        "year": 1
+    }
+},
+{
+    "pk": 276, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            30, 
+            31
+        ], 
+        "semester": 2, 
+        "student": 16, 
+        "year": 1
+    }
+},
+{
+    "pk": 277, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "semester": 3, 
+        "student": 16, 
+        "year": 1
+    }
+},
+{
+    "pk": 278, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 16, 
+        "year": 1
+    }
+},
+{
+    "pk": 279, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            3
+        ], 
+        "semester": 1, 
+        "student": 16, 
+        "year": 2
+    }
+},
+{
+    "pk": 280, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 16, 
+        "year": 2
+    }
+},
+{
+    "pk": 281, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "semester": 3, 
+        "student": 16, 
+        "year": 2
+    }
+},
+{
+    "pk": 282, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 16, 
+        "year": 2
+    }
+},
+{
+    "pk": 283, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            9, 
+            11, 
+            14
+        ], 
+        "semester": 1, 
+        "student": 16, 
+        "year": 3
+    }
+},
+{
+    "pk": 284, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 16, 
+        "year": 3
+    }
+},
+{
+    "pk": 285, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            19
+        ], 
+        "semester": 3, 
+        "student": 16, 
+        "year": 3
+    }
+},
+{
+    "pk": 286, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            26
+        ], 
+        "semester": 4, 
+        "student": 16, 
+        "year": 3
+    }
+},
+{
+    "pk": 287, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            7, 
+            15, 
+            20, 
+            12
+        ], 
+        "semester": 1, 
+        "student": 16, 
+        "year": 4
+    }
+},
+{
+    "pk": 288, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            21
+        ], 
+        "semester": 2, 
+        "student": 16, 
+        "year": 4
+    }
+},
+{
+    "pk": 289, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [
+            5, 
+            16
+        ], 
+        "semester": 3, 
+        "student": 16, 
+        "year": 4
+    }
+},
+{
+    "pk": 290, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 16, 
+        "year": 4
+    }
+},
+{
+    "pk": 291, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 1, 
+        "student": 16, 
+        "year": 5
+    }
+},
+{
+    "pk": 292, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 2, 
+        "student": 16, 
+        "year": 5
+    }
+},
+{
+    "pk": 293, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 3, 
+        "student": 16, 
+        "year": 5
+    }
+},
+{
+    "pk": 294, 
+    "model": "planner.studentsemestercourses", 
+    "fields": {
+        "courses": [], 
+        "semester": 4, 
+        "student": 16, 
+        "year": 5
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "new course", 
+        "equivalentcourse": null, 
+        "cc": false, 
+        "sp": false, 
+        "number": "abc123", 
+        "actual_year": 2012, 
+        "semester": 1, 
+        "student": 9
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 6, 
+        "name": "another new course", 
+        "equivalentcourse": null, 
+        "cc": false, 
+        "sp": false, 
+        "number": "abc456", 
+        "actual_year": 2012, 
+        "semester": 1, 
+        "student": 9
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Modern Substitute", 
+        "equivalentcourse": 9, 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY4F3", 
+        "actual_year": 2013, 
+        "semester": 1, 
+        "student": 11
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "course1", 
+        "equivalentcourse": 23, 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY101b", 
+        "actual_year": 2013, 
+        "semester": 0, 
+        "student": 12
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "course", 
+        "equivalentcourse": 23, 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY101a", 
+        "actual_year": 2012, 
+        "semester": 0, 
+        "student": 2
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "transfer from IWU", 
+        "equivalentcourse": 69, 
+        "cc": false, 
+        "sp": false, 
+        "number": "PHY101", 
+        "actual_year": 2013, 
+        "semester": 1, 
+        "student": 2
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.createyourowncourse", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Underwater Basket Weaving", 
+        "equivalentcourse": 27, 
+        "cc": true, 
+        "sp": false, 
+        "number": "UWB101", 
+        "actual_year": 2012, 
+        "semester": 1, 
+        "student": 2
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "Second note.", 
+        "datestamp": "2013-01-24T15:45:33.112Z", 
+        "student": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "This is an advising note.", 
+        "datestamp": "2013-01-11T10:55:11.177Z", 
+        "student": 5
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "Remember to sign up for Lighthouse in Jr fall.", 
+        "datestamp": "2013-01-19T15:52:14.338Z", 
+        "student": 13
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "Remember to get dept approval for course subs.", 
+        "datestamp": "2013-01-22T18:47:20.371Z", 
+        "student": 14
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "Need to do a course substitution; approve by dept.", 
+        "datestamp": "2013-01-24T17:41:39.782Z", 
+        "student": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.advisingnote", 
+    "fields": {
+        "note": "j;lkjdsf;lkajsdf;lkasfj", 
+        "datestamp": "2013-01-31T22:00:44.767Z", 
+        "student": 16
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2009
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2010
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2011
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2012
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2013
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2014
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2015
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2016
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2017
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2018
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.enteringyear", 
+    "fields": {
+        "year": 2019
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.prepopulatesemesters", 
+    "fields": {
+        "major": 1, 
+        "sophomore_fall_courses": [
+            3, 
+            9
+        ], 
+        "name": "Physics BS, entering even years", 
+        "senior_summer_courses": [], 
+        "sophomore_jterm_courses": [], 
+        "senior_jterm_courses": [
+            21
+        ], 
+        "junior_fall_courses": [
+            11, 
+            14
+        ], 
+        "freshman_fall_courses": [
+            43, 
+            44, 
+            1, 
+            7
+        ], 
+        "freshman_summer_courses": [], 
+        "enteringyear": [
+            2, 
+            4, 
+            6, 
+            8, 
+            10
+        ], 
+        "junior_summer_courses": [
+            26
+        ], 
+        "sophomore_spring_courses": [
+            4, 
+            13, 
+            17
+        ], 
+        "junior_jterm_courses": [], 
+        "freshman_spring_courses": [
+            29, 
+            2, 
+            8
+        ], 
+        "freshman_jterm_courses": [
+            30, 
+            31
+        ], 
+        "junior_spring_courses": [
+            19
+        ], 
+        "senior_fall_courses": [
+            15, 
+            20, 
+            12
+        ], 
+        "senior_spring_courses": [
+            5, 
+            16
+        ], 
+        "sophomore_summer_courses": []
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "kenkiers", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-01-31T22:27:28.207Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$JTR2EVObVLWH$ItGms1z6uXWCFA6jbkKV2g3WCntiemZHKtFN2EaKOv8=", 
+        "email": "knkiers@taylor.edu", 
+        "date_joined": "2013-01-07T01:35:05.355Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "johnlennon", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-02-01T13:10:14.716Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$ZKYwrCNdQMtR$urgHi2LkKBWjEDf4jvrGV1/CJYshYkyNnqyEQpqlFlA=", 
+        "email": "john@taylor.edu", 
+        "date_joined": "2013-01-07T02:51:38.242Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "stefan", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-10T02:34:00.980Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$971b6tokjABL$64iYlT+hqIhu5HUpsv8NIUunZGgZWSJ2f92f3ZJEp9M=", 
+        "email": "stefan@taylor.edu", 
+        "date_joined": "2013-01-07T13:41:30.531Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "paulmccartney", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-11T10:54:55.433Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$usd8P9ePpbbq$tgqWdXQlYXPhAu3eQ3tz9s9H1GT0YqwNAPeLbB5AiAg=", 
+        "email": "paul@taylor.edu", 
+        "date_joined": "2013-01-10T18:37:59.665Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "professor", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-02-01T13:08:51.553Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$w4ucdWTkcEQD$ryt+PAW9svdwff/fF/E+xLcf6h4PDAghMZyYeblKVQU=", 
+        "email": "prof@taylor.edu", 
+        "date_joined": "2013-01-11T11:55:23Z"
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "hola", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-13T20:14:18.267Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$mC8IaAqtQaa2$PeNc9lbI47k34YrHu/nMNnM1QhXdbNQvrf8EtlFAtk4=", 
+        "email": "kgkiers@sbcglobal.net", 
+        "date_joined": "2013-01-13T20:13:49.115Z"
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "stefan3", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-13T20:17:40.842Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$MtqKF27XZDIM$ctgWI8KzADl85Q4hqCWuFKrDPxyV1MUimzuj70x0fuU=", 
+        "email": "stefan@taylor.edu", 
+        "date_joined": "2013-01-13T20:17:30.813Z"
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "lmk", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-13T20:33:30.189Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$qPSTLpnlOMhe$bv+86rtbpgE8ICS/Ll0Yq9S261o/5KuCTbjEX92UFwc=", 
+        "email": "leah@taylor.edu", 
+        "date_joined": "2013-01-13T20:33:18.007Z"
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ringo", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-30T22:03:10.851Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$TpvOGxNRRnHE$KUnAEb5EzxoFyc9mlBavbMUOdSgabZRC5axgwE9QPkE=", 
+        "email": "ringo@taylor.edu", 
+        "date_joined": "2013-01-16T03:36:39.282Z"
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "george", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-17T14:28:10.372Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$6M73Absn2GH2$TdWTMBd1ccKE55yMemVdshFYtLLCnwzhJQQdyoeAnII=", 
+        "email": "george@taylor.edu", 
+        "date_joined": "2013-01-17T14:28:02.446Z"
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "huey", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-25T01:16:53.981Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$tNhJbZyVNxEc$ayVlCDGs2HZQiI52/T1ndqpgA+GArFuXbRrOdi0UNMg=", 
+        "email": "huey@taylor.edu", 
+        "date_joined": "2013-01-19T13:15:14.583Z"
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "art", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-20T01:28:05.692Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$7zz3xWI76bLY$VqkD0yTDoeb0evTtq6KWH2ZkE7vrNqSZ8Ow3ZJVOp70=", 
+        "email": "art@taylor.edu", 
+        "date_joined": "2013-01-19T15:49:27.011Z"
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "edwin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-22T18:45:44.290Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$o3FKgR7HmVi9$9gecKsFOZyjfJ3lEtNpDZIlOXTaSS/aa8BDcXCXVrj4=", 
+        "email": "edwin@taylor.edu", 
+        "date_joined": "2013-01-22T18:45:35.117Z"
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "steven", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-30T22:17:48.608Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$IFeUN0fN5b3C$tHXjuf2pNSbemMtjsB11t6vQ4xur1mDRi6PsxHOU0ZI=", 
+        "email": "steven@taylor.edu", 
+        "date_joined": "2013-01-30T22:17:41.678Z"
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "tom", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-31T21:57:40.243Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$urUOuUgpR90O$IM8fHVFVld9qiTlr3CpdhoLdSViqq45iIwhTfCIEokQ=", 
+        "email": "tom@taylor.edu", 
+        "date_joined": "2013-01-31T21:57:33.433Z"
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-03-29T15:35:38.531Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$xjf9lor5y5pg$G/WRxmGXiDVEZJ+g6TDLBN1E8ncn3JpKht5JrD7cOIM=", 
+        "email": "admin@example.com", 
+        "date_joined": "2013-03-29T15:35:31.196Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.student", 
+    "fields": {
+        "major": null, 
+        "entering_year": 2012, 
+        "user": 1, 
+        "name": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 2, 
+        "name": "John Lennon"
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 5, 
+        "name": "Paul McCartney"
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.student", 
+    "fields": {
+        "major": null, 
+        "entering_year": 2012, 
+        "user": 6, 
+        "name": ""
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2013, 
+        "user": 7, 
+        "name": "G. Kiers"
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 8, 
+        "name": "Stefan Brandle3"
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 9, 
+        "name": "Leah Kiers"
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 10, 
+        "name": "Ringo"
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 11, 
+        "name": "George"
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2013, 
+        "user": 12, 
+        "name": "Huey Lewis"
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 13, 
+        "name": "Art White"
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 14, 
+        "name": "Edwin Welch"
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 15, 
+        "name": "Steven Barnett"
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2012, 
+        "user": 16, 
+        "name": "Tom"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.professor", 
+    "fields": {
+        "user": 6, 
+        "advisee": null, 
+        "name": "Professor X"
+    }
+}
+]

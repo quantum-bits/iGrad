@@ -1,10 +1,13 @@
 # Django settings for four_year_plan project.
 
-DEBUG = True
+from run_mode import RunMode
+run_mode = RunMode('dev')
+
+DEBUG = run_mode.dev
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Tom Nurkkala', 'tnurkkala@cse.taylor.edu'),
 )
 
 MANAGERS = ADMINS
@@ -67,6 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    run_mode.path_to('shared'),
 )
 
 # List of finder classes that know how to find static files in

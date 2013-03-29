@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-
-    <nav>
-      <ul>
-	<li><a href="/profile/">Profile</a></li>
-	<li><a href="/fouryearplan/">Four Year Plan</a></li>
-	<li><a href="/graduationaudit/">Graduation Audit</a></li>
-	<li><a href="/advisingnotes/">Advising Notes</a></li>
-	<li><a href="#">About</a>
-          <ul>
-	    <li><a href="#">Getting Started</a></li>
-	    <li><a href="#">Acknowledgements</a></li>
-	  </ul>
-	</li>
-	{% if user.is_authenticated %}
-        <li><a href="/logout/">Logout</a></li>
-	{% else %}
-	<li><a href="/login/">Login</a></li>
-	{% endif %}
-      </ul>
-    </nav>
-
+    <title>Taylor Four Year Planner</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
     {% block extrahead %}
     {% endblock %}
   </head>
 
   <body>
-
-    <div id="content">
-      {% block content %}
-      {% endblock %}
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+	  <nav>
+	    <ul>
+	      <li><a href="{% url 'planner.views.profile' %}">Profile</a></li>
+	      <li><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a></li>
+	      <li><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a></li>
+	      <li><a href="{% url 'planner.views.display_advising_notes' %}">Advising Notes</a></li>
+	      <li><a href="#">About</a>
+		<ul>
+		  <li><a href="#">Getting Started</a></li>
+		  <li><a href="#">Acknowledgements</a></li>
+		</ul>
+	      </li>
+	      {% if user.is_authenticated %}
+              <li><a href="{% url 'planner.views.logout_request' %}">Logout</a></li>
+	      {% else %}
+	      <li><a href="{% url 'planner.views.login_request' %}">Login</a></li>
+	      {% endif %}
+	    </ul>
+	  </nav>
+        </div>
+	<div class="span10">
+	  {% block content %}
+	  {% endblock %}
+	</div>
+      </div>
     </div>
 
-    <div id="footer">
-    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
   </body>
 </html>

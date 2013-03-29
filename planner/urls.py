@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns(
     'planner.views',
 
-    url(r'^$', 'home'),
+    url(r'^home/$', 'home'),
     url(r'^register/$', 'student_registration'),
     url(r'^login/$', 'login_request'),
     url(r'^logout/$', 'logout_request'),
