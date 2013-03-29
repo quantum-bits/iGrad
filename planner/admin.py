@@ -1,12 +1,11 @@
 from django.contrib import admin
-from four_year_plan_v1.majors.models import Semester, Department, Course, RequirementBlock, Major, Student, StudentSemesterCourses, CreateYourOwnCourse, AdvisingNote, EnteringYear, PrepopulateSemesters, Professor
+from planner.models import *
 
 class SemesterAdmin(admin.ModelAdmin):
     list_display = ('name', 'semester_of_acad_year', 'actual_year')
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ('name', 'department', 'number', 'credit_hours','sp', 'cc')
-#    ordering = ('semester',)
     search_fields = ('name', 'number')
     filter_horizontal = ('semester','prereqs','coreqs',)
 
@@ -19,11 +18,6 @@ class MajorAdmin(admin.ModelAdmin):
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('name','entering_year',)
-#    filter_horizontal = ('freshman_fall_courses','freshman_spring_courses','sophomore_fall_courses','sophomore_spring_courses','junior_fall_courses',)
-
-#class StudentAdmin(admin.ModelAdmin):
-#    list_display = ('last_name','first_name','email', 'major', 'entering_year',)
-#    filter_horizontal = ('freshman_fall_courses','freshman_spring_courses','sophomore_fall_courses','sophomore_spring_courses','junior_fall_courses',)
 
 class AdvisingNoteAdmin(admin.ModelAdmin):
     list_display = ('student','note',)
@@ -61,4 +55,3 @@ admin.site.register(CreateYourOwnCourse)
 admin.site.register(EnteringYear, EnteringYearAdmin)
 admin.site.register(PrepopulateSemesters, PrepopulateSemestersAdmin)
 admin.site.register(Professor, ProfessorAdmin)
-

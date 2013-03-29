@@ -1,133 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
 
-<!--
-to get the horizontal filters, could try the following:
-
-http://chase-seibert.github.com/blog/2010/05/14/reuse-djangos-filter_horizontal-admin-widget.html
--->
-
-<nav>
-  <ul>
-    <li><a href="/profile/">Profile</a></li>
-    <li><a href="/fouryearplan/">Four Year Plan</a></li>
-    <li><a href="/graduationaudit/">Graduation Audit</a></li>
-    <li><a href="/advisingnotes/">Advising Notes</a></li>
-    <li><a href="#">About</a>
-        <ul>
-	  <li><a href="#">Getting Started</a></li>
-	  <li><a href="#">Acknowledgements</a></li>
-	</ul>
+    <nav>
+      <ul>
+	<li><a href="/profile/">Profile</a></li>
+	<li><a href="/fouryearplan/">Four Year Plan</a></li>
+	<li><a href="/graduationaudit/">Graduation Audit</a></li>
+	<li><a href="/advisingnotes/">Advising Notes</a></li>
+	<li><a href="#">About</a>
+          <ul>
+	    <li><a href="#">Getting Started</a></li>
+	    <li><a href="#">Acknowledgements</a></li>
+	  </ul>
 	</li>
-    {% if user.is_authenticated %}
-            <li><a href="/logout/">Logout</a></li>
-	  {% else %}
-	    <li><a href="/login/">Login</a></li>
-	  {% endif %}
+	{% if user.is_authenticated %}
+        <li><a href="/logout/">Logout</a></li>
+	{% else %}
+	<li><a href="/login/">Login</a></li>
+	{% endif %}
+      </ul>
+    </nav>
 
-    </ul>
-</nav>
+    {% block extrahead %}
+    {% endblock %}
+  </head>
 
-<script type="text/javascript">
-function setCookie (name, value, expires, path, domain, secure) {
-    document.cookie = name + "=" + escape(value) +
-    ((expires) ? "; expires=" + expires : "") +
-    ((path) ? "; path=" + path : "") +
-    ((domain) ? "; domain=" + domain : "") +
-    ((secure) ? "; secure" : "");
-}
-function getCookie (name) {
-    var cookie = " " + document.cookie;
-    var search = " " + name + "=";
-    var setStr = null;
-    var offset = 0;
-    var end = 0;
-    if (cookie.length > 0) {
-        offset = cookie.indexOf(search);
-        if (offset != -1) {
-            offset += search.length;
-            end = cookie.indexOf(";", offset);
-            if (end == -1) {
-                end = cookie.length;
-            }
-            setStr = unescape(cookie.substring(offset, end));
-        }
-    }
-    if (setStr == 'false') {
-        setStr = false;
-    } 
-    if (setStr == 'true') {
-        setStr = true;
-    }
-    if (setStr == 'null') {
-        setStr = null;
-    }
-    return(setStr);
-}
-function checkPopup(elID) {
-    if (getCookie(elID+'_state') == null) { // if popup was not closed
-        document.getElementById(elID).style.display = 'block';
-    }   
-}
-function toggleDiv(divid){
-    if(document.getElementById(divid).style.display == 'none'){
-        setCookie(divid+'_state', null);
-        document.getElementById(divid).style.display = 'block';
-    }else{
-        setCookie(divid+'_state', false); 
-        document.getElementById(divid).style.display = 'none';
-    }
-}
-</script>
+  <body>
 
-<script type="text/javascript" src="/media/js/admin/RelatedObjectLookups.js"></script>
-<script type="text/javascript" src="/admin/jsi18n/"></script>
-<script type="text/javascript" src="/media/js/core.js"></script>
-<script type="text/javascript" src="/media/js/SelectBox.js"></script>
-<script type="text/javascript" src="/media/js/SelectFilter2.js"></script>
-<link rel="stylesheet" type="text/css" href="/media/css/widgets.css" />
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
 
-<!--<link rel="stylesheet" type="text/css" href="templates/javascript_addons/django-admin-widgets.css" />-->
-<!--<scipt type="text/javascript" src="templates/javascript_addons/django_admin.multiselect.js" ></script>-->
-	{% block extrahead %}{% endblock %}
-<link href="{{ STATIC_URL }}css/style1.css" rel="stylesheet" type="text/css" />
-<link href="{{ STATIC_URL }}css/django-admin-widgets.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/django-admin.multiselect.js"></script>
-</head>
-
-<!-- not sure where to put the following....
-jQuery.each($("select[multiple]"), function () {  
- // "Locations" can be any label you want  
- SelectFilter.init(this.id, "Locations", 0, "/media/");  
-});  
--->
-
-<body onload="checkPopup('idPre-TU');
-	      checkPopup('idFreshman');
-	      checkPopup('idSophomore');
-	      checkPopup('idJunior');
-	      checkPopup('idSenior');
-	      checkPopup('idSupersenior');">
-
-<script type ="text/javascript">
-jQuery.each($("select[multiple]"), function () {  
- // "Locations" can be any label you want  
- SelectFilter.init(this.id, "Locations", 0, "/media/");  
-</script>
-
-
-<div id="pageContainer">
-
-        {% block content %}
-        {% endblock %}
-</div>
-
-<br><br>
-<p></p>
-
-<div id="footer">
-</div>
-<!-- end #footer -->
-</body>
+    <div id="footer">
+    </div>
+  </body>
 </html>
