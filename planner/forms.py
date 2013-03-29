@@ -34,19 +34,12 @@ class RegistrationForm(forms.ModelForm):
         # it doesn't specifically give the password error message....
         return self.cleaned_data
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label=(u'User Name'))
-    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
-
-    # the following is no longer used, but maybe a good idea to keep it for a bit, just in
-    # case.
-    # class SaveStudentSemesterForm(forms.ModelForm):
-    #    class Meta:
-    #        model = StudentSemesterCourses
-    #        exclude = ('semester','year','student')
+# class LoginForm(forms.Form):
+#     username = forms.CharField(label=(u'User Name'))
+#     password = forms.CharField(label=(u'Password'),
+#                                widget=forms.PasswordInput(render_value=False))
 
 class AddStudentSemesterForm(forms.ModelForm):
-
     class Meta:
         model = StudentSemesterCourses
         exclude = ('semester','year','student')

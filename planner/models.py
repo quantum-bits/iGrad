@@ -163,7 +163,7 @@ class Student(models.Model):
     #    birthday = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
-        return u'%s' % (self.name)
+        return self.name
 
     # create user object to attach to student object
 
@@ -173,6 +173,14 @@ class Student(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Professor(models.Model):
+    user = models.OneToOneField(User)
+    name = models.CharField(max_length=100)
+    advisee = models.ForeignKey(Student, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
 class StudentSemesterCourses(models.Model):
     PRETU_SEMESTER = 0
@@ -371,11 +379,3 @@ class PrepopulateSemesters(models.Model):
 
     def __unicode__(self):
         return self.name
-
-class Professor(models.Model):
-    user = models.OneToOneField(User)
-    name = models.CharField(max_length=100)
-    advisee = models.ForeignKey(Student, blank=True, null=True)
-
-    def __unicode__(self):
-        return u'%s' % (self.name)

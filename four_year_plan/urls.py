@@ -8,6 +8,8 @@ urlpatterns = patterns('',
     url(r'^$', 'planner.views.home'),
     url(r'^planner/', include('planner.urls')),
 
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -110,6 +110,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    run_mode.path_to('shared/templates')
 )
 
 INSTALLED_APPS = (
@@ -125,8 +126,13 @@ INSTALLED_APPS = (
     'planner',
 )
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = LOGIN_URL
+if not run_mode.prod:
+    INSTALLED_APPS += ('debug_toolbar',)
+    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    INTERNAL_IPS = ('127.0.0.1',)
+    DEBUG_TOOLBAR_CONFIG = { 'INTERCEPT_REDIRECTS': False }
+
+LOGIN_REDIRECT_URL = 'profile'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

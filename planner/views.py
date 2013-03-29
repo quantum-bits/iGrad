@@ -61,8 +61,6 @@ def student_registration(request):
 
 @login_required
 def profile(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login/')
     student = request.user.get_profile
 
     # check if the "student" is actually a professor....
@@ -82,9 +80,12 @@ def profile(request):
         else:
             adviseename = temp[0].advisee.name
 
-# Note: to access the email address in the view, you could set it to
-# email = student.user.email
-    context = {'student': student, 'isProfessor': isProfessor, 'professorname': professorname, 'advisee': adviseename}
+    # Note: to access the email address in the view, you could set it to
+    # email = student.user.email
+    context = {'student': student,
+               'isProfessor': isProfessor,
+               'professorname': professorname,
+               'advisee': adviseename}
     return render(request, 'profile.html', context)
 
 @login_required
