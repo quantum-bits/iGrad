@@ -1,25 +1,24 @@
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-#from django.contrib.auth import authenticate, login
-from studentform.forms import RegistrationForm, LoginForm, AddStudentSemesterForm, AddAdvisingNoteForm, AddCreateYourOwnCourseForm, AddAdviseeForm, UpdateMajorForm
-from four_year_plan_v1.majors.models import Course, Student, StudentSemesterCourses, AdvisingNote, CreateYourOwnCourse, PrepopulateSemesters, EnteringYear, Major, Professor, Semester
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db.models import Q
+from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
+from django.template import RequestContext
+from forms import *
+from models import *
 
-def Home(request):
-    return render_to_response('home.html', context_instance=RequestContext(request))
+def home(request):
+    return render(request, 'home.html')
 
-def StudentRegistration(request):
+def student_registration(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/profile/')
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username = form.cleaned_data['username'], 
-                                            email = form.cleaned_data['email'], 
+            user = User.objects.create_user(username = form.cleaned_data['username'],
+                                            email = form.cleaned_data['email'],
                                             password = form.cleaned_data['password'])
             user.save()
             student = user.get_profile()
@@ -50,7 +49,7 @@ def StudentRegistration(request):
 
             return HttpResponseRedirect('/profile/')
         else:
-            return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'register.html', {'form': form})
 
 # should the other things (advising notes, etc.) be included here as well?!?
 
@@ -58,10 +57,10 @@ def StudentRegistration(request):
         '''user is not submitting the form; show them the blank registration form'''
         form = RegistrationForm()
         context = {'form': form}
-        return render_to_response('register.html', context, context_instance = RequestContext(request))
+        return render(request, 'register.html', context, context_instance = RequestContext(request))
 
 @login_required
-def Profile(request):
+def profile(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     student = request.user.get_profile
@@ -86,10 +85,10 @@ def Profile(request):
 # Note: to access the email address in the view, you could set it to
 # email = student.user.email
     context = {'student': student, 'isProfessor': isProfessor, 'professorname': professorname, 'advisee': adviseename}
-    return render_to_response('profile.html', context, context_instance=RequestContext(request))
-		
+    return render(request, 'profile.html', context)
+
 @login_required
-def UpdateMajor(request, id):
+def update_major(request, id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 
@@ -101,19 +100,19 @@ def UpdateMajor(request, id):
     instance = Student.objects.get(pk = id)
 
     if request.method == 'POST':
-        form = UpdateMajorForm(request.POST, instance=instance)
+        form = update_majorForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/profile/')
         else:
-            return render_to_response('updatemajor.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'updatemajor.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add major form'''
-        form = UpdateMajorForm(instance=instance)
+        form = update_majorForm(instance=instance)
         context = {'form': form}
-        return render_to_response('updatemajor.html', context, context_instance = RequestContext(request))
+        return render(request, 'updatemajor.html', context, context_instance = RequestContext(request))
 
-def LoginRequest(request):
+def login_request(request):
     if request.user.is_authenticated(): # so that the user can't login twice....
         return HttpResponseRedirect('/profile/')
     if request.method == 'POST':
@@ -123,7 +122,7 @@ def LoginRequest(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password'] # local variables that can be used
 # see if username/password combo authenticates; returns None otherwise
-            student = authenticate(username=username, password=password) 
+            student = authenticate(username=username, password=password)
             if student is not None: # authentication passed
                 login(request, student) # log the person in using django's login function
                 # check if the "professor" is actually a professor....
@@ -138,16 +137,16 @@ def LoginRequest(request):
                         Professor.objects.filter(id=professorid).update(advisee=None)
                     return HttpResponseRedirect('/profile/')
             else: # let person try to login again
-                return render_to_response('login.html', context, context_instance = RequestContext(request))
+                return render(request, 'login.html', context, context_instance = RequestContext(request))
         else: #form wasn't valid....
-            return render_to_response('login.html', context, context_instance = RequestContext(request))
+            return render(request, 'login.html', context, context_instance = RequestContext(request))
     else:
         ''' user is not submitting the form; show the login form '''
         form = LoginForm()
         context = {'form': form}
-        return render_to_response('login.html', context, context_instance = RequestContext(request))
+        return render(request, 'login.html', context, context_instance = RequestContext(request))
 
-def LogoutRequest(request):
+def logout_request(request):
     # check if the "professor" is actually a professor, if so, clear "advisee" object before logging out
     professor = request.user.get_profile
     temp = Professor.objects.all().filter(user=professor)
@@ -164,7 +163,7 @@ def LogoutRequest(request):
 #    --> I think the way that I have passed the object's id is not the best way to do it....
 #    --> maybe look here: http://stackoverflow.com/questions/9013697/django-how-to-pass-object-object-id-to-another-template
 @login_required
-def UpdateStudentSemester(request, id):
+def update_student_semester(request, id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 
@@ -198,10 +197,10 @@ def UpdateStudentSemester(request, id):
             CCtemp=", CC"
         else:
             CCtemp=""
-        sccdatablock.append({'cname':scc.name, 'cnumber':scc.number, 
-                             'ccredithrs':scc.credit_hours, 'csemester':scc.semester, 
-                             'cyear':scc.actual_year, 
-                             'equivalentcourse':eqnum, 'sp':SPtemp, 'cc':CCtemp, 
+        sccdatablock.append({'cname':scc.name, 'cnumber':scc.number,
+                             'ccredithrs':scc.credit_hours, 'csemester':scc.semester,
+                             'cyear':scc.actual_year,
+                             'equivalentcourse':eqnum, 'sp':SPtemp, 'cc':CCtemp,
                              'courseid':scc.id})
 
 #    assert False, locals()
@@ -217,7 +216,7 @@ def UpdateStudentSemester(request, id):
             form.save()
             return HttpResponseRedirect('/fouryearplan/')
         else:
-            return render_to_response('updatesemester.html', {'form': form, 'sccdatablock':sccdatablock}, context_instance=RequestContext(request))
+            return render(request, 'updatesemester.html', {'form': form, 'sccdatablock':sccdatablock})
     else:
         '''user is not submitting the form; show them the blank add semester form'''
         my_kwargs = dict(
@@ -227,11 +226,11 @@ def UpdateStudentSemester(request, id):
         )
         form = AddStudentSemesterForm(**my_kwargs)
         context = {'form': form, 'sccdatablock':sccdatablock,'instanceid':id}
-        return render_to_response('updatesemester.html', context, context_instance = RequestContext(request))
+        return render(request, 'updatesemester.html', context, context_instance = RequestContext(request))
 
 
 @login_required
-def DisplayAdvisingNotes(request):
+def display_advising_notes(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     studentlocal = request.user.get_profile
@@ -258,12 +257,12 @@ def DisplayAdvisingNotes(request):
 #    assert False, locals()
 
     context = {'student': studentlocal, 'datablock':datablock, 'isProfessor': isProfessor}
-    return render_to_response('advisingnotes.html', context, context_instance=RequestContext(request))
+    return render(request, 'advisingnotes.html', context)
 
 
 
 @login_required
-def AddNewAdvisingNote(request):
+def add_new_advising_note(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 # the following list should just have one element(!)...hence "listofstudents[0]" is used in the following....
@@ -277,16 +276,16 @@ def AddNewAdvisingNote(request):
             p1.save()
             return HttpResponseRedirect('/advisingnotes/')
         else:
-            return render_to_response('addadvisingnote.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addadvisingnote.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render_to_response('addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
 
 
 @login_required
-def UpdateAdvisingNote(request, id):
+def update_advising_note(request, id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     instance = AdvisingNote.objects.get(pk = id)
@@ -301,15 +300,15 @@ def UpdateAdvisingNote(request, id):
             form.save()
             return HttpResponseRedirect('/advisingnotes/')
         else:
-            return render_to_response('addadvisingnote.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addadvisingnote.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm(instance=instance)
         context = {'form': form}
-        return render_to_response('addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
 
 @login_required
-def DeleteAdvisingNote(request, id):
+def delete_advising_note(request, id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     instance = AdvisingNote.objects.get(pk = id)
@@ -322,7 +321,7 @@ def DeleteAdvisingNote(request, id):
     return HttpResponseRedirect('/advisingnotes/')
 
 @login_required
-def DisplayFourYearPlan(request):
+def display_four_year_plan(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     studentlocal = request.user.get_profile
@@ -363,7 +362,7 @@ def DisplayFourYearPlan(request):
 
     termdictionaryalphabetize={0:"aPre-TU", 1:"eFall", 2:"bJ-term", 3:"cSpring", 4:"dSummer"}
     termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
-    
+
 # first, form an array containing the info for the "create your own" type courses
     cyocarray=[]
     for cyoc in tempdata2:
@@ -371,8 +370,8 @@ def DisplayFourYearPlan(request):
             equivcoursenamestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
         else:
             equivcoursenamestring =''
-        cyocarray.append([cyoc.actual_year, termdictionaryalphabetize[cyoc.semester], 
-                          cyoc.name+equivcoursenamestring, 
+        cyocarray.append([cyoc.actual_year, termdictionaryalphabetize[cyoc.semester],
+                          cyoc.name+equivcoursenamestring,
                           cyoc.number, cyoc.credit_hours, cyoc.sp, cyoc.cc, cyoc.id])
 
     datablock=[]
@@ -403,7 +402,7 @@ def DisplayFourYearPlan(request):
             totalcredithrs = totalcredithrs+temparray[4]
             iscyoc = True
             semestercontainscyoc = True
-            tempcoursename.append({'cname':temparray[2],'cnumber':temparray[3],'ccredithours':temparray[4], 
+            tempcoursename.append({'cname':temparray[2],'cnumber':temparray[3],'ccredithours':temparray[4],
                                    'sp':temparray[5], 'cc':temparray[6], 'iscyoc':iscyoc, 'courseid':temparray[7],
                                    'othersemesters':[]})
         for cc in sem1.courses.all():
@@ -433,14 +432,14 @@ def DisplayFourYearPlan(request):
             semarray=[]
             for row in semarrayreordered:
 #                semarray.append([NamedYear(enteringyear, row[0], row[1]),row[2], row[3]])
-                semarray.append({'semester':NamedYear(enteringyear, row[0], row[1]),'courseid':row[2], 
+                semarray.append({'semester':NamedYear(enteringyear, row[0], row[1]),'courseid':row[2],
                                  'numhrsthissem':row[3]})
-      
+
             tempcoursename.append({'cname':cc.name,'cnumber':cc.number,'ccredithours':cc.credit_hours,
                                    'sp':cc.sp,'cc':cc.cc,'iscyoc':iscyoc, 'courseid':cc.id,
                                    'othersemesters':semarray})
-        datablock.append({'year':actyeartemp, 'semestername':termdictionaryalphabetize[semtemp], 
-                          'studentname':sem1.student.name, 'listofcourses':tempcoursename, 
+        datablock.append({'year':actyeartemp, 'semestername':termdictionaryalphabetize[semtemp],
+                          'studentname':sem1.student.name, 'listofcourses':tempcoursename,
                           'semesterid':sem1.id, 'totalcredithours':totalcredithrs,
                           'semestercontainscyoc':semestercontainscyoc, 'precocommentlist':precocommentlist})
         totalcredithoursfouryears=totalcredithoursfouryears+totalcredithrs
@@ -450,7 +449,7 @@ def DisplayFourYearPlan(request):
     datablock3 = []
     for row in datablock2:
         row['semestername']=row['semestername'][1:]
-        datablock3.append(row)    
+        datablock3.append(row)
 
     if totalcredithoursfouryears > 159:
         credithrmaxreached = True
@@ -459,7 +458,7 @@ def DisplayFourYearPlan(request):
 
 #    assert False, locals()
 
-# now organize the 21 (pre-TU, plus 4 for each of freshman,..., super-senior) lists into 6 
+# now organize the 21 (pre-TU, plus 4 for each of freshman,..., super-senior) lists into 6
 # (pre-TU, freshman, etc.)
 
 # first check to make sure that there are, in fact, 21 rows....
@@ -475,13 +474,13 @@ def DisplayFourYearPlan(request):
         datablock4.append(temp)
 
     context = {'student': studentlocal, 'datablock':datablock4,
-               'totalhrsfouryears':totalcredithoursfouryears, 'credithrmaxreached':credithrmaxreached, 
+               'totalhrsfouryears':totalcredithoursfouryears, 'credithrmaxreached':credithrmaxreached,
                'isProfessor': isProfessor}
-    return render_to_response('fouryearplan.html', context, context_instance=RequestContext(request))
+    return render(request, 'fouryearplan.html', context)
 
 
 @login_required
-def DisplayGradAudit(request):
+def display_grad_audit(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     studentlocal = request.user.get_profile
@@ -508,7 +507,7 @@ def DisplayGradAudit(request):
     if tempdata2[0].major == None:
         hasMajor = False
         context = {'student': studentlocal,'isProfessor': isProfessor,'hasMajor':hasMajor}
-        return render_to_response('graduationaudit.html', context, context_instance=RequestContext(request))
+        return render(request, 'graduationaudit.html', context)
     else:
         hasMajor = True
         studentmajor = tempdata2[0].major
@@ -540,7 +539,7 @@ def DisplayGradAudit(request):
         numhrsthissemester = 0
         for course in ssc.courses.all():
             iscyoc = False
-            studentcourselist.append([course.name, ssc.semester, ssc.actual_year, 
+            studentcourselist.append([course.name, ssc.semester, ssc.actual_year,
                                       course.credit_hours,course.sp, course.cc, iscyoc, course.number, ssc.id])
             coursenumberlist.append(course.number)
 #    assert False, locals()
@@ -553,7 +552,7 @@ def DisplayGradAudit(request):
         else:
             equivcoursenamestring =''
             eqcoursenum = ''
-        studentcourselist.append([cyoc.name+equivcoursenamestring, cyoc.semester, cyoc.actual_year, 
+        studentcourselist.append([cyoc.name+equivcoursenamestring, cyoc.semester, cyoc.actual_year,
                                       cyoc.credit_hours,cyoc.sp, cyoc.cc, iscyoc, cyoc.number, cyoc.id])
         coursenumberlist.append(eqcoursenum)
 
@@ -668,17 +667,17 @@ def DisplayGradAudit(request):
                 semarrayreordered=ReorderList(semarraynonordered)
                 semarray=[]
                 for row in semarrayreordered:
-                    semarray.append({'semester':NamedYear(enteringyear, row[0], row[1]),'courseid':row[2], 
+                    semarray.append({'semester':NamedYear(enteringyear, row[0], row[1]),'courseid':row[2],
                                      'numhrsthissem':row[3]})
 
 #            if len(semarray)==0:
 #                assert False, locals()
 
 
-            courselisttemp.append({'cname':course.name, 'cnumber':course.number, 
-                                   'ccredithrs':course.credit_hours, 'sp':course.sp, 
+            courselisttemp.append({'cname':course.name, 'cnumber':course.number,
+                                   'ccredithrs':course.credit_hours, 'sp':course.sp,
                                    'cc':course.cc, 'comment':comment, 'numcrhrstaken':numcrhrstaken,
-                                   'courseid':course.id, 'othersemesters':semarray, 'sscid':sscid, 
+                                   'courseid':course.id, 'othersemesters':semarray, 'sscid':sscid,
                                    'iscyoc':iscyoc})
 
 #            assert False, locals()
@@ -688,14 +687,14 @@ def DisplayGradAudit(request):
         else:
             credits_ok=False
 
-        majordatablock.append({'listorder':mr.list_order, 'blockname':mr.display_name, 
-                               'andorcomment':AND_OR_comment, 
-                               'mincredithours':mr.minimum_number_of_credit_hours, 
-                               'textforuser':mr.text_for_user, 'courselist':courselisttemp, 
-                               'credithrs':total_credit_hours_so_far, 'creditsok':credits_ok, 
-                               'blockcontainscyoc':requirementblockcontainscyoc, 
+        majordatablock.append({'listorder':mr.list_order, 'blockname':mr.display_name,
+                               'andorcomment':AND_OR_comment,
+                               'mincredithours':mr.minimum_number_of_credit_hours,
+                               'textforuser':mr.text_for_user, 'courselist':courselisttemp,
+                               'credithrs':total_credit_hours_so_far, 'creditsok':credits_ok,
+                               'blockcontainscyoc':requirementblockcontainscyoc,
                                'precocommentlist':precocommentlist})
-        
+
         majordatablock2 = sorted(majordatablock, key=lambda rrow: (rrow['listorder']))
 
         unusedcourses=[]
@@ -730,13 +729,13 @@ def DisplayGradAudit(request):
     context = {'student': studentlocal, 'majordatablock': majordatablock2,
                'unusedcourses': unusedcourses,'unusedcredithours':unusedcredithours, 'SPlist': SPlist,
                'CClist':CClist, 'numSPs': numSPs, 'numCCs': numCCs, 'SPreq': SPreq, 'CCreq': CCreq,
-               'totalhrsfouryears':totalcredithoursfouryears, 'credithrmaxreached':credithrmaxreached, 
+               'totalhrsfouryears':totalcredithoursfouryears, 'credithrmaxreached':credithrmaxreached,
                'isProfessor': isProfessor, 'hasMajor': hasMajor}
-    return render_to_response('graduationaudit.html', context, context_instance=RequestContext(request))
+    return render(request, 'graduationaudit.html', context)
 
 
 @login_required
-def AddNewAdvisingNote(request):
+def add_new_advising_note(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 # the following list should just have one element(!)...hence "listofstudents[0]" is used in the following....
@@ -750,15 +749,15 @@ def AddNewAdvisingNote(request):
             p1.save()
             return HttpResponseRedirect('/advisingnotes/')
         else:
-            return render_to_response('addadvisingnote.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addadvisingnote.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add semester form'''
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render_to_response('addadvisingnote.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisingnote.html', context, context_instance = RequestContext(request))
 
 @login_required
-def AddCreateYourOwnCourse(request,id):
+def add_create_your_own_course(request,id):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 # the following list should just have one element(!)...hence "listofstudents[0]" is used in the following....
@@ -772,7 +771,7 @@ def AddCreateYourOwnCourse(request,id):
     semester=ssc.semester
 
     if request.method == 'POST':
-        form = AddCreateYourOwnCourseForm(request.POST)
+        form = add_create_your_own_courseForm(request.POST)
         if form.is_valid():
             p1 = CreateYourOwnCourse(student=listofstudents[0])
             p1.name = form.cleaned_data['name']
@@ -786,16 +785,16 @@ def AddCreateYourOwnCourse(request,id):
             p1.save()
             return HttpResponseRedirect('/updatesemester/'+str(id)+'/')
         else:
-            return render_to_response('addcreateyourowncourse.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add create your own course form'''
-        form = AddCreateYourOwnCourseForm()
+        form = add_create_your_own_courseForm()
         context = {'form': form}
-        return render_to_response('addcreateyourowncourse.html', context, context_instance = RequestContext(request))
+        return render(request, 'addcreateyourowncourse.html', context, context_instance = RequestContext(request))
 
 
 @login_required
-def UpdateCreateYourOwnCourse(request,id,id2):
+def update_create_your_own_course(request,id,id2):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     instance = CreateYourOwnCourse.objects.get(pk = id2)
@@ -809,17 +808,17 @@ def UpdateCreateYourOwnCourse(request,id,id2):
         return HttpResponseRedirect('/profile/')
 
     if request.method == 'POST':
-        form = AddCreateYourOwnCourseForm(request.POST, instance=instance)
+        form = add_create_your_own_courseForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/updatesemester/'+str(id)+'/')
         else:
-            return render_to_response('addcreateyourowncourse.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add create your own course form'''
-        form = AddCreateYourOwnCourseForm(instance=instance)
+        form = add_create_your_own_courseForm(instance=instance)
         context = {'form': form}
-        return render_to_response('addcreateyourowncourse.html', context, context_instance = RequestContext(request))
+        return render(request, 'addcreateyourowncourse.html', context, context_instance = RequestContext(request))
 
 
 # in the following, "wherefrom" is:
@@ -831,7 +830,7 @@ def UpdateCreateYourOwnCourse(request,id,id2):
 #    0: coming from gradaudit (doesn't matter; not used)
 #    ssc id: coming from updatesemester
 @login_required
-def DeleteCreateYourOwnCourse(request, wherefrom, id, id2):
+def delete_create_your_own_course(request, wherefrom, id, id2):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     instance = CreateYourOwnCourse.objects.get(pk = id2)
@@ -855,7 +854,7 @@ def DeleteCreateYourOwnCourse(request, wherefrom, id, id2):
 # id is id of the ssc object
 # id2 is id of the course itself
 @login_required
-def DeleteCourseInsideSSCObject(request, wherefromflag, id, id2):
+def delete_course_inside_SSCObject(request, wherefromflag, id, id2):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 
@@ -885,7 +884,7 @@ def DeleteCourseInsideSSCObject(request, wherefromflag, id, id2):
 # integrity error
 #
 @login_required
-def MoveCourseToNewSSCObject(request, wherefromflag, id, idnew, id2):
+def move_course_to_new_SSCObject(request, wherefromflag, id, idnew, id2):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 
@@ -897,7 +896,7 @@ def MoveCourseToNewSSCObject(request, wherefromflag, id, idnew, id2):
     incomingid = instance.student.id
     if requestid != incomingid:
         return HttpResponseRedirect('/profile/')
-    
+
     if idint !=-1: # if id == -1, the course is not being taken, so there is nothing to remove
         instanceold = StudentSemesterCourses.objects.get(pk = idint)
         incomingidold = instanceold.student.id
@@ -968,16 +967,16 @@ def PreCoReqCheck(studentid):
     courselist2=courselist
     for row in courselist:
         coursesemester = row[0]
-# don't do prereq and coreq check for pre-TU courses, 
+# don't do prereq and coreq check for pre-TU courses,
 # although pre-TU courses can be pre and coreqs for OTHER courses
-        if coursesemester != 0:  
+        if coursesemester != 0:
             prereqlist = row[4]
             coreqlist = row[5]
             sscid = row[6]
             courseid = row[3]
-# now for each preid, need to find the semester that that course was taken, 
+# now for each preid, need to find the semester that that course was taken,
 # check that it was earlier than course itself
-            for preid in prereqlist: 
+            for preid in prereqlist:
                 prereqsatisfied = False
                 for row2 in courselist2:
                     courseidtemp = row2[3]
@@ -987,9 +986,9 @@ def PreCoReqCheck(studentid):
                         allprelist.append([courseiddict[courseid],courseiddict[preid]])
                 if prereqsatisfied == False:
                     prenotmetlist.append([sscid, courseid,courseiddict[courseid],preid,courseiddict[preid]])
-# now for each coid, need to find the semester that that course was taken, 
+# now for each coid, need to find the semester that that course was taken,
 # check that it was <= than semester for course itself
-            for coid in coreqlist: 
+            for coid in coreqlist:
                 coreqsatisfied = False
                 for row2 in courselist2:
                     courseidtemp = row2[3]
@@ -1044,7 +1043,7 @@ def ReorderList(listin):
     return newlist3
 
 def PrepopulateStudentSemesters(studentid):
-    
+
     student = Student.objects.all().get(pk = studentid)
     major = student.major
     enteringyear=student.entering_year
@@ -1101,7 +1100,7 @@ def PrepopulateStudentSemesters(studentid):
 # 2: graduaudit
 # 3: advising note
 @login_required
-def UpdateAdvisee(request, wherefrom):
+def update_advisee(request, wherefrom):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
 
@@ -1130,12 +1129,12 @@ def UpdateAdvisee(request, wherefrom):
             else:
                 return HttpResponseRedirect('/profile/')
         else:
-            return render_to_response('addadvisee.html', {'form': form}, context_instance=RequestContext(request))
+            return render(request, 'addadvisee.html', {'form': form})
     else:
         '''user is not submitting the form; show them the blank add advisee form'''
         form = AddAdviseeForm()
         context = {'form': form}
-        return render_to_response('addadvisee.html', context, context_instance = RequestContext(request))
+        return render(request, 'addadvisee.html', context, context_instance = RequestContext(request))
 
 # PUT in something to limit search results!!!!  maybe only display first 20 records or something!!!
 # !!! do we need to do any security stuff here to make sure this is really a prof?!?
@@ -1180,13 +1179,13 @@ def search(request):
                 semlistfinal.append([semesterdict[row[1]]+", "+str(row[0]),row[2], row[3]])
             datablock.append([course.id, course.name, course.number, semlistfinal])
         context={'courses':courses,'query':q, 'datablock':datablock}
-        return render_to_response('course_enrollment_results.html',context, context_instance = RequestContext(request))
+        return render(request, 'course_enrollment_results.html',context, context_instance = RequestContext(request))
     else:
         return HttpResponseRedirect('/profile/')
 
 
 @login_required
-def ViewEnrolledStudents(request,courseid,semesterid):
+def view_enrolled_students(request,courseid,semesterid):
     '''displays students enrolled in a given course and semester'''
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login/')
@@ -1213,4 +1212,4 @@ def ViewEnrolledStudents(request,courseid,semesterid):
                     studentlist.append(ssc.student.name)
     temp = request.META.items()
     context={'coursename':coursename,'semestername':semestername,'studentlist':studentlist}
-    return render_to_response('student_enrollment_results.html',context, context_instance = RequestContext(request))
+    return render(request, 'student_enrollment_results.html',context, context_instance = RequestContext(request))
