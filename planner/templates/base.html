@@ -13,6 +13,13 @@
 	<h1>Taylor Four Year Planner</h1>
 	<p>Brought to you by Professor Ken Kiers and a cast of dozens.</p>
       </div>
+      <div class="alert alert-info">
+	{% if user.is_authenticated %}
+	  Logged in as {{ user }} ({{ user.info }}).
+	{% else %}
+	  Not logged in.
+	{% endif %}
+      </div>
       <div class="row-fluid">
         <div class="span2">
 	  <nav>

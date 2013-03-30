@@ -154,6 +154,43 @@ class Major(models.Model):
     class Meta:
         ordering = ['name']
 
+class UserProxy(User):
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        return self.get_full_name()
+
+    def info(self):
+        info = [ "id '{0}'".format(self.get_username()) ]
+        if self.is_student():
+            info.append('student')
+        if self.is_professor():
+            info.append('professor')
+        return ", ".join(info)
+
+    def is_student(self):
+        try:
+            if self.student:
+                return True
+        except Student.DoesNotExist:
+            return False
+
+    def is_professor(self):
+        try:
+            if self.professor:
+                return True
+        except Professor.DoesNotExist:
+            return False
+
+from django.contrib.auth.backends import ModelBackend
+class ProxiedModelBackend(ModelBackend):
+    def get_user(self, user_id):
+        try:
+            return UserProxy.objects.get(pk=user_id)
+        except UserProxy.DoesNotExist:
+            return None
+
 class Student(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=100)

@@ -1,15 +1,20 @@
 {% extends "base.html" %}
-{% block extrahead %}
-{% endblock %}
+
 {% block content %}
-<form action="" method="post">
-{% csrf_token %}
-{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
-<div class="addNote_div">
-  {% if form.note.errors %}<p class = "error">{{ form.note.errors }}</p>{% endif %}
-  <p><label form="courses" {% if form.note.errors %} class ="error"{% endif %}>Note:</label></p>
-  <p>{{ form.note }}</p>
-</div>
-<p><input type="submit" alt="register" /></p>
-</form>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+
+    <div class="addNote_div">
+      {% if form.note.errors %}
+	<p class = "error">{{ form.note.errors }}</p>
+      {% endif %}
+      <p>
+	<label form="courses" {% if form.note.errors %} class ="error"{% endif %}>Note:</label>
+      </p>
+      <p>{{ form.note }}</p>
+    </div>
+
+    <p><input type="submit" alt="register" /></p>
+  </form>
 {% endblock %}

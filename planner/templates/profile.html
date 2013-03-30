@@ -1,29 +1,37 @@
 {% extends "base.html" %}
+
 {% block content %}
-
-
   {% if isProfessor %}
-  <p> Name: {{ professorname }}</p>
-  <p> Email: {{ student.user.email }} </p>
-  <p> Advisee: {{ advisee }}</p>
-  {% if advisee == "None currently selected" %}
-    <p> <b>Note:</b> To view an advisee's Four Year Plan, Graduation Audit or Advising Notes, you first need to 
-       <a class="other" href="/changeadvisee/0/">choose</a> an advisee.</p>
+    <p>Name: {{ professorname }}</p>
+    <p>Email: {{ user.email }} </p>
+    <p> Advisee: {{ advisee }}</p>
+    {% if advisee == "None currently selected" %}
+      <p>
+	<b>Note:</b> To view an advisee's Four Year Plan, Graduation Audit or Advising
+	Notes, you first need to
+	<a class="other" href="{% url 'update_advisee' 0 %}">choose an advisee</a>.
+      </p>
+    {% else %}
+      <p>
+	<b>Note:</b> To view a different advisee's Four Year Plan, Graduation Audit or
+	Advising Notes, you first need to
+	<a class="other" href="{% url 'update_advisee' 0 %}">change to that advisee</a>.
+      </p>
+    {% endif %}
+    <p>
+      You can also <strong>view enrollments</strong> in classes.
+      To do so, first type in a full or partial course number (e.g., phy211 or mat15):
+    </p>
+    <form action="/search/" method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Search">
+    </form>
   {% else %}
-    <p> <b>Note:</b> To view a different advisee's Four Year Plan, Graduation Audit or Advising Notes, you first need to 
-       <a class="other" href="/changeadvisee/0/">change</a> to that advisee.</p>
+    <p>Name: {{ user.student.name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Major: {{ user.student.major }}
+      (<a class="other" href="/changemajor/{{user.student.id}}/">Edit</a>)
+    </p>
+    <p>Entering Year: {{ user.student.entering_year }}</p>
   {% endif %}
-    <p> You can also <strong> view enrollments </strong> in classes.  To do so, first type in a full or partial course number (e.g., phy211 or mat15):</p>
-<form action="/search/" method="get">
-        <input type="text" name="q">
-        <input type="submit" value="Search">
-</form>
-
-  {% else %}
-  <p> Name: {{ student.name }}</p>
-  <p> Email: {{ student.user.email }} </p>
-  <p> Major: {{ student.major }} (<a class="other" href="/changemajor/{{student.id}}/">Edit</a>)</p>
-  <p> Entering Year: {{ student.entering_year }} </p>
-  {% endif %}
-
 {% endblock %}

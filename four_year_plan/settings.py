@@ -113,6 +113,11 @@ TEMPLATE_DIRS = (
     run_mode.path_to('shared/templates')
 )
 
+AUTHENTICATION_BACKENDS = (
+    'planner.models.ProxiedModelBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
