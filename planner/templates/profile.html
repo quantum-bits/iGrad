@@ -2,30 +2,44 @@
 
 {% block content %}
   {% if isProfessor %}
-    <p>Name: {{ professorname }}</p>
-    <p>Email: {{ user.email }} </p>
-    <p> Advisee: {{ advisee }}</p>
-    {% if advisee == "None currently selected" %}
-      <p>
-	<b>Note:</b> To view an advisee's Four Year Plan, Graduation Audit or Advising
-	Notes, you first need to
-	<a class="other" href="{% url 'update_advisee' 0 %}">choose an advisee</a>.
-      </p>
-    {% else %}
-      <p>
-	<b>Note:</b> To view a different advisee's Four Year Plan, Graduation Audit or
-	Advising Notes, you first need to
-	<a class="other" href="{% url 'update_advisee' 0 %}">change to that advisee</a>.
-      </p>
-    {% endif %}
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+	<tr>
+	  <th>Name</th>
+	  <td>{{ professorname }}</td>
+	</tr>
+	<tr>
+	  <th>E-mail</th>
+	  <td>{{ user.email }}</td>
+	</tr>
+      </tbody>
+    </table>
+
+    <table class="table table-striped table-bordered table-hover">
+      <tbody>
+	<tr>
+	  <th>Advisee</th>
+	  <td>{{ advisee.name }}</td>
+	  <td>
+	    {% if advisee %}
+	      <a class="btn" href="{% url 'update_advisee' 0 %}">Change</a>
+	    {% else %}
+	      <a class="btn" href="{% url 'update_advisee' 0 %}">Choose</a>
+	    {% endif %}
+	  </td>
+	</tr>
+      </tbody>
+    </table>
+
     <p>
       You can also <strong>view enrollments</strong> in classes.
       To do so, first type in a full or partial course number (e.g., phy211 or mat15):
     </p>
-    <form action="/search/" method="get">
+    <form action="{% url 'search' %}" method="get">
       <input type="text" name="q">
       <input type="submit" value="Search">
     </form>
+
   {% else %}
     <p>Name: {{ user.student.name }}</p>
     <p>Email: {{ user.email }}</p>
@@ -33,5 +47,6 @@
       (<a class="other" href="/changemajor/{{user.student.id}}/">Edit</a>)
     </p>
     <p>Entering Year: {{ user.student.entering_year }}</p>
+
   {% endif %}
 {% endblock %}

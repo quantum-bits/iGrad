@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.template import RequestContext
 from forms import *
@@ -22,7 +21,7 @@ def student_registration(request):
                                             password = form.cleaned_data['password'])
             user.save()
 
-            student = user.get_profile()
+            student = user.student
             student.name = form.cleaned_data['name']
             student.entering_year = form.cleaned_data['entering_year']
             student.major = form.cleaned_data['major']
@@ -68,26 +67,22 @@ def profile(request):
     if user.is_student():
         isProfessor = False
         professorname = ''
-        adviseename = ''
+        advisee = None
     else:
         isProfessor = True
         professorname = user.professor.name
-        adviseeobj = user.professor.advisee
-        if adviseeobj is None:
-            adviseename = 'None currently selected'
-        else:
-            adviseename = user.professor.advisee.name
+        advisee = user.professor.advisee
 
     # Note: to access the email address in the view, you could set it to
     # email = student.user.email
     context = { 'isProfessor': isProfessor,
                 'professorname': professorname,
-                'advisee': adviseename }
+                'advisee': advisee }
     return render(request, 'profile.html', context)
 
 @login_required
 def update_major(request, id):
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = int(id)
 
     if requestid != incomingid:
@@ -108,55 +103,8 @@ def update_major(request, id):
         context = {'form': form}
         return render(request, 'updatemajor.html', context)
 
-def login_request(request):
-    if request.user.is_authenticated(): # so that the user can't login twice....
-        return redirect('profile')
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        context = {'form': form}
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password'] # local variables that can be used
-            # see if username/password combo authenticates; returns None otherwise
-            student = authenticate(username=username, password=password)
-            if student is not None: # authentication passed
-                login(request, student) # log the person in using django's login function
-                # check if the "professor" is actually a professor....
-                professor = request.user.get_profile
-                temp = Professor.objects.all().filter(user=professor)
-                if len(temp) == 0: # this is a student, not a professor
-                    return redirect('profile')
-                else: # this is a professor; clear "advisee" field if it is currently not None....
-                    advisee = temp[0].advisee # advisee is a Student object
-                    if advisee is not None:
-                        professorid = temp[0].id
-                        Professor.objects.filter(id=professorid).update(advisee=None)
-                    return redirect('profile')
-            else: # let person try to login again
-                return render(request, 'login.html', context)
-        else: #form wasn't valid....
-            return render(request, 'login.html', context)
-    else:
-        #  user is not submitting the form; show the login form 
-        form = LoginForm()
-        context = {'form': form}
-        return render(request, 'login.html', context)
 
-def logout_request(request):
-    # Check if the "professor" is actually a professor, if so, clear "advisee" object
-    # before logging out.
-    professor = request.user.get_profile
-    temp = Professor.objects.all().filter(user=professor)
-    if len(temp) != 0: # this is a professor
-        advisee = temp[0].advisee # advisee is a Student object
-        if advisee is not None:
-            professorid = temp[0].id
-            Professor.objects.filter(id=professorid).update(advisee=None)
-    logout(request)
-    return HttpResponseRedirect('/home/')
-
-
-# Problems: 
+# problems: 
 # --> I think the way that I have passed the object's id is not the best way to do it....
 # --> maybe look here:
 #     http://stackoverflow.com/questions/9013697/django-how-to-pass-object-object-id-to-another-template
@@ -173,16 +121,17 @@ def update_student_semester(request, id):
     if requestid != incomingid:
         return redirect('profile')
 
-    year=instance.actual_year
-    semester=instance.semester
-    student_local=request.user
-    studentcreatedcourses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local)
-                           & Q(semester = semester) & Q(actual_year = year))
+    year = instance.actual_year
+    semester = instance.semester
+    student_local = request.user
+    studentcreatedcourses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local) &
+                                                                     Q(semester=semester) &
+                                                                     Q(actual_year=year))
 
     sccdatablock=[]
     for scc in studentcreatedcourses:
         if scc.equivalentcourse:
-            eqnum = ", equiv to "+scc.equivalentcourse.number
+            eqnum = ", equiv to " + scc.equivalentcourse.number
         else:
             eqnum  =  ""
         if scc.sp:
@@ -204,25 +153,21 @@ def update_student_semester(request, id):
                              'courseid':scc.id})
 
     if request.method == 'POST':
-        my_kwargs = dict(
-            instance=instance,
-            actualyear=year,
-            semester=semester
-        )
+        my_kwargs = dict(instance=instance,
+                         actualyear=year,
+                         semester=semester)
         form = AddStudentSemesterForm(request.POST, **my_kwargs)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/fouryearplan/')
+            return redirect('four_year_plan')
         else:
             return render(request, 'updatesemester.html',
                           {'form': form, 'sccdatablock':sccdatablock})
     else:
         # User is not submitting the form; show them the blank add semester form.
-        my_kwargs = dict(
-            instance=instance,
-            actualyear=year,
-            semester=semester
-        )
+        my_kwargs = dict(instance=instance,
+                         actualyear=year,
+                         semester=semester)
         form = AddStudentSemesterForm(**my_kwargs)
         context = {'form': form,
                    'sccdatablock':sccdatablock,
@@ -240,7 +185,7 @@ def display_advising_notes(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return HttpResponseRedirect('/changeadvisee/3/')
+            return redirect('update_advisee', args=[3])
 
     tempdata = AdvisingNote.objects.all().filter(student=student_local)
 
@@ -268,7 +213,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return HttpResponseRedirect('/advisingnotes/')
+            return redirect('advising_notes')
         else:
             return render(request, 'addadvisingnote.html', {'form': form})
     else:
@@ -281,7 +226,7 @@ def add_new_advising_note(request):
 @login_required
 def update_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = instance.student.id
     if requestid != incomingid:
         return redirect('profile')
@@ -290,7 +235,7 @@ def update_advising_note(request, id):
         form = AddAdvisingNoteForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/advisingnotes/')
+            return redirect('advising_notes')
         else:
             return render(request, 'addadvisingnote.html', {'form': form})
     else:
@@ -302,25 +247,25 @@ def update_advising_note(request, id):
 @login_required
 def delete_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = instance.student.id
     if requestid != incomingid:
         return redirect('profile')
 
     instance.delete()
-    return HttpResponseRedirect('/advisingnotes/')
+    return redirect('advising_notes')
 
 @login_required
 def display_four_year_plan(request):
     if request.user.is_student():
         isProfessor = False
-        student_local = request.user
+        student_local = request.user.student
     else:
         isProfessor = True
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first.
-            return HttpResponseRedirect('/changeadvisee/1/')
+            return redirect('update_advisee', args=[1])
 
     totalcredithoursfouryears = 0
     tempdata = StudentSemesterCourses.objects.all().filter(student=student_local)
@@ -495,7 +440,7 @@ def display_grad_audit(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return HttpResponseRedirect('/changeadvisee/2/')
+            return redirect('update_advisee', args=[2])
 
     tempdata = StudentSemesterCourses.objects.all().filter(student=student_local)
     tempdata2 = Student.objects.all().filter(user=student_local)
@@ -783,7 +728,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return HttpResponseRedirect('/advisingnotes/')
+            return redirect('advising_notes')
         else:
             return render(request, 'addadvisingnote.html', {'form': form})
     else:
@@ -798,7 +743,7 @@ def add_create_your_own_course(request,id):
     # used in the following....
     listofstudents = Student.objects.all().filter(user=request.user)
     ssc = StudentSemesterCourses.objects.get(pk = id)
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = ssc.student.id
     if requestid != incomingid:
         return redirect('profile')
@@ -818,7 +763,7 @@ def add_create_your_own_course(request,id):
             p1.actual_year = year
             p1.equivalentcourse = form.cleaned_data['equivalentcourse']
             p1.save()
-            return HttpResponseRedirect('/updatesemester/'+str(id)+'/')
+            return redirect('update_student_semester', args=[id])
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
@@ -833,7 +778,7 @@ def add_create_your_own_course(request,id):
 def update_create_your_own_course(request,id,id2):
     instance = CreateYourOwnCourse.objects.get(pk = id2)
     ssc = StudentSemesterCourses.objects.get(pk = id)
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = ssc.student.id
     incomingid2 = instance.student.id
     if requestid != incomingid:
@@ -845,7 +790,7 @@ def update_create_your_own_course(request,id,id2):
         form = add_create_your_own_courseForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/updatesemester/'+str(id)+'/')
+            return redirect('update_student_semester', args=[id])
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
@@ -867,18 +812,18 @@ def update_create_your_own_course(request,id,id2):
 def delete_create_your_own_course(request, wherefrom, id, id2):
     instance = CreateYourOwnCourse.objects.get(pk = id2)
 
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid2 = instance.student.id
     if requestid != incomingid2:
         return redirect('profile')
 
     instance.delete()
     if int(wherefrom) == 2:
-        return HttpResponseRedirect('/updatesemester/'+str(id)+'/')
+        return redirect('update_student_semester', args=[id])
     elif int(wherefrom) == 0:
-        return HttpResponseRedirect('/fouryearplan/')
+        return redirect('four_year_plan')
     else:
-        return HttpResponseRedirect('/graduationaudit/')
+        return redirect('grad_audit')
 
 # In the following, wherefrom is:
 #    0: fouryearplan
@@ -889,16 +834,16 @@ def delete_create_your_own_course(request, wherefrom, id, id2):
 def delete_course_inside_SSCObject(request, wherefromflag, id, id2):
     instance = StudentSemesterCourses.objects.get(pk = id)
 
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = instance.student.id
     if requestid != incomingid:
         return redirect('profile')
 
     StudentSemesterCourses.objects.get(pk = id).courses.remove(id2)
     if int(wherefromflag) == 0:
-        return HttpResponseRedirect('/fouryearplan/')
+        return redirect('four_year_plan')
     else:
-        return HttpResponseRedirect('/graduationaudit/')
+        return redirect('grad_audit')
 
 # In the following, wherefrom is:
 #    0: fouryearplan
@@ -1170,13 +1115,9 @@ def update_advisee(request, wherefrom):
 def search(request):
     """Determine the # of students enrolled in courses that match a search request."""
 
-    # check if the "professor" is actually a professor....
-    professor = request.user.get_profile
-
-    temp = Professor.objects.all().filter(user=professor)
-
-    if len(temp) == 0: # this is a student, not a professor
+    if request.user.is_student():
         return redirect('profile')
+
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
         courses = Course.objects.filter(number__icontains=q)
@@ -1216,12 +1157,7 @@ def search(request):
 def view_enrolled_students(request,courseid,semesterid):
     """Display students enrolled in a given course and semester"""
 
-    # Check if the "professor" is actually a professor....
-    professor = request.user.get_profile
-
-    temp = Professor.objects.all().filter(user=professor)
-
-    if len(temp) == 0: # this is a student, not a professor
+    if request.user.is_student():
         return redirect('profile')
 
     actualsem = Semester.objects.get(pk=semesterid).semester_of_acad_year

@@ -1,27 +1,31 @@
 {% extends "base.html" %}
-{% block extrahead %}
-{% endblock %}
+
 {% block content %}
-<p>You searched for: <strong>{{ query }}</strong></p>
+  <p>
+    You searched for: <strong>{{ query }}</strong>
+  </p>
 
-{% if courses %}
-    <p>Found {{ courses|length }} course{{ courses|pluralize }}.  To display names of students for a given semester, click on the number of students.</p>
+  {% if courses %}
+    <p>
+      Found {{ courses|length }} course{{ courses|pluralize }}.
+    </p>
 
-<ul>
-{% for course in datablock %}
-    <li> {{course.1}} ({{course.2}}):
-      <ul>
-         {% for actsem in course.3 %}
-	   <li> {{actsem.0}}; <a class="other" href="/viewstudents/{{course.0}}/{{actsem.2}}/">{{actsem.1}}</a> student{{actsem.1|pluralize}}</li>
-	 {% endfor %}
-      </ul>
-    </li>
-{% endfor %}
-</ul>
+    <ul>
+      {% for course in datablock %}
+	<li>{{course.1}} ({{course.2}})
+	  <ul>
+            {% for actsem in course.3 %}
+	      <li>
+		<a class="btn" href="{% url 'view_students' course.0 actsem.2 %}">{{ actsem.0 }}</a>:
+		{{ actsem.1 }} student{{actsem.1|pluralize}}
+	      </li>
+	    {% endfor %}
+	  </ul>
+	</li>
+      {% endfor %}
+    </ul>
 
-{% else %}
+  {% else %}
     <p>No courses matched your search criteria.</p>
-{% endif %}
-
-
+  {% endif %}
 {% endblock %}

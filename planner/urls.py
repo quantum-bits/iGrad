@@ -26,8 +26,8 @@ urlpatterns = patterns(
     url(r'^movecoursetonewsemester/(\d+)/(-?\d+)/(\d+)/(\d+)/$', 'move_course_to_new_SSCObject', name='move_course'),
 
     url(r'^changeadvisee/(\d+)/$', 'update_advisee', name='update_advisee'),
-    url(r'^search/$', 'search'),
-    url(r'^viewstudents/(\d+)/(\d+)/$', 'view_enrolled_students'),
+    url(r'^search/$', 'search', name='search'),
+    url(r'^viewstudents/(\d+)/(\d+)/$', 'view_enrolled_students', name='view_students'),
 
 
 )

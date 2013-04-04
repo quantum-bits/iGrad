@@ -72,12 +72,11 @@
 	    </td>
 	    {# TODO: Eliminate redundant markup for SP/CC #}
 	    <td>
-	      {% if course.sp and course.cc %}
-		SP/CC
-	      {% elif course.sp %}
-		SP
-	      {% elif course.cc %}
-		CC
+	      {% if course.sp %}
+		<span class="badge badge-success">SP</span>
+	      {% endif %}
+	      {% if course.cc %}
+		<span class="badge badge-success">CC</span>
 	      {% endif %}
 	    </td>
 	    <td>
@@ -166,12 +165,11 @@
 	    <td>{{ course.cnumber }}</td>
 	    <td>{{ course.ccredithrs }} hrs</td>
 	    <td>
-	      {% if course.sp and course.cc %}
-		SP/CC
-	      {% elif course.sp %}
-		SP
-	      {% elif course.cc %}
-		CC
+	      {% if course.sp %}
+		<span class="badge badge-success">SP</span> FOO
+	      {% endif %}
+	      {% if course.cc %}
+		<span class="badge badge-success">CC</span>
 	      {% endif %}
 	    </td>
 	    <td>
@@ -198,13 +196,13 @@
     <h1>SP Requirement</h1>
 
     <p>
-      At least 2 SP courses are required; you have
-      {% if not SPreq %}
-	<b style="color:red;">{{ numSPs }}</b>
+      {% if SPreq %}
+	SP requirements met!
       {% else %}
-	{{ numSPs }}
+	<span class="label label-warning">Warning</span>
+	At least 2 SP courses are required;
+	you have {{ numSPs }} in your plan.
       {% endif %}
-      in your plan.
     </p>
     <ul>
       {% for course in SPlist %}
@@ -215,19 +213,20 @@
     <h1>CC Requirement</h1>
 
     <p>
-      At least 1 CC course is required; you have
-      {% if not CCreq %}
-	<b style="color:red;">{{ numCCs }}</b>
+      {% if CCreq %}
+	CC requirements met!
       {% else %}
-	{{ numCCs }}
+	<span class="label label-warning">Warning</span>
+	At least 1 CC course is required; 
+	you have {{ numCCs }} in your plan.
       {% endif %}
-      in your plan.
     </p>
     <ul>
       {% for course in CClist %}
 	<li>{{course.cname}} ({{course.cnumber}}), {{course.comment}}</li>
       {% endfor %}
     </ul>
+
   {% else %}
     {% if isProfessor %}
       <p>
