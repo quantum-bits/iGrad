@@ -1,243 +1,246 @@
 {% extends "base.html" %}
+
+{% block sidebar %}
+  {% if isProfessor %}
+    <p>
+      Advisee Name: {{ student.name }}
+      (<a href="{% url 'update_advisee' 2 %}">Choose a different advisee</a>)
+    </p>
+  {% else %}
+    <p>Name: {{ student.name }}</p>
+  {% endif %}
+
+  <p>Major: {{ student.major }}</p>
+
+  {% if hasMajor %}
+    <p>Total Number of Credit Hours for Plan:
+      {% if credithrmaxreached %}
+	<b style="color:red;"> {{ totalhrsfouryears }}
+	  <p>
+	    (Note: Please consult with the Financial Aid Office
+	    regarding the 160 credit hour limit.)
+	    </p>
+	</b>
+      {% else %}
+	{{ totalhrsfouryears }}
+      {% endif %}
+    </p>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
-  {% if isProfessor %}
-  <p> Advisee Name: {{ student.name }}  (<a class="other" href="/changeadvisee/2/">Choose a different advisee</a>)</p>
-  {% else %}
-  <p> Name: {{ student.name }}</p>
-  {% endif %}
-  <p> Major: {{ student.major }} </p>
   {% if hasMajor %}
-  <p> Total Number of Credit Hours for Plan: 
-    {% if credithrmaxreached %} 
-       <b style="color:red;"> {{ totalhrsfouryears }}
-  <p>(Note: Please consult with the Financial Aid Office regarding the 160 credit hour limit.)
-   </p></b>
-    {% else %}
-       {{ totalhrsfouryears }}
-    {% endif %}
-  </p>
-  <p></p>
-  <p> Requirements:
-
+    <h1>Requirements</h1>
 
     {% for req in majordatablock %}
 
-     <ul style="list-style: none;">
-	 <li> <b>{{ req.blockname }}</b> ({{ req.mincredithours }} hrs): </il>
-         <li> {{ req.andorcomment }} </il>
-         {% if req.textforuser %} 
-	 </li><b> Note: </b>{{req.textforuser}} </il>
-         {% endif %}
-       </ul>
+      <h2>{{ req.blockname }} ({{ req.mincredithours }} hrs)</h2>
 
+      <p>{{ req.andorcomment }}</p>
 
-       <table>
-       <tr>
-       <th class = "name">
-	 Course Name
-       </th>
-       <th class = "number">
-	 TU Course #
-       </th>
-       <th class = "hrs">
-	 Req Cr Hrs
-       </th>
-       <th class = "acthrs">
-	 Actual Cr Hrs
-       </th>
-       <th class = "SPCC">
-	 SP/CC
-       </th>
-       <th class = "taken">
-	 Comments
-       </th>
-       </tr>
+      {% if req.textforuser %}
+	<p><b>Note:</b>{{req.textforuser}}</p>
+      {% endif %}
 
-       {% for course in req.courselist %}
+      <table class="table table-striped table-bordered table-hover table-condensed">
+	<tr>
+	  <th class="name">Course Name</th>
+	  <th class="number">TU Course #</th>
+	  <th class="hrs">Req Cr Hrs</th>
+	  <th class="acthrs">Actual Cr Hrs</th>
+	  <th class="SPCC">SP/CC</th>
+	  <th class="taken">Comments</th>
+	  {% if not isProfessor %}<th>Action</th>{% endif %}
+	</tr>
 
-       <tr>
-       <td class = "thickleft">
-         <p class = "margin">{{ course.cname }}</p></td>
-       <td class = "thick">
-	 {{ course.cnumber }}</td>
-       <td class = "thick">
-	   {{ course.ccredithrs }} hrs</td>
-       <td class = "thick">
-	 {% if course.numcrhrstaken %}
-          {% ifnotequal course.numcrhrstaken course.ccredithrs %}
-	   <b style="color:red;">
-	   {{ course.numcrhrstaken }} hrs
-	   </b>
-	   {% else %}
-	   {{ course.numcrhrstaken }} hrs
-	   {% endifnotequal %}
-         {% endif %} 
-       </td>
-       <td class = "thick">
-	   {% if course.sp and course.cc %} SP/CC {% elif course.sp %} SP {% elif course.cc %} CC {% endif %}</td>
-	
-
-	   {% if course.comment %}
-	<td class = "thick">
-	     {{course.comment }}
-	   {% else %}
-		{% if req.creditsok %}
-	<td class = "thick">
-	     
+	{% for course in req.courselist %}
+	  <tr>
+	    <td>{{ course.cname }}</td>
+	    <td>{{ course.cnumber }}</td>
+	    <td>{{ course.ccredithrs }} hrs</td>
+	    <td>
+	      {% if course.numcrhrstaken %}
+		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
+		  <b style="color:red;">
+		    {{ course.numcrhrstaken }} hrs
+		  </b>
 		{% else %}
-		   <td class = "red">
-		   Requirement not yet met.
+		  {{ course.numcrhrstaken }} hrs
+		{% endifnotequal %}
+              {% endif %}
+	    </td>
+	    {# TODO: Eliminate redundant markup for SP/CC #}
+	    <td>
+	      {% if course.sp and course.cc %}
+		SP/CC
+	      {% elif course.sp %}
+		SP
+	      {% elif course.cc %}
+		CC
+	      {% endif %}
+	    </td>
+	    <td>
+	      {% if course.comment %}
+		{{course.comment }}
+	      {% else %}
+		{% if not req.creditsok %}
+		  <div class="alert alert-error">
+		    Requirement not yet met.
+		  </div>
 		{% endif %}
-	   {% endif %}
-       </td>
+	      {% endif %}
+	    </td>
 
-       <td>
-<!--
-in the following the 1 means that we are coming FROM the grad audit page, {{course.sscid}} gives the ssc object
-id and {{course.courseid}} gives the course id within the ssc objec
--->
-  {% if isProfessor %} {% else %}
-  <ul id="nav" class="drop">
-    <li><a href="#">Add/Delete/Move</a>
-        <ul>
-	 {% if course.comment %}<!-- a course is currently scheduled -->
-	  <li>
-	    {% if course.iscyoc %}<!-- this is a cyoc -->
-	      <a href="/deletecyoc/1/0/{{course.sscid}}/">delete</a></li>
-	    {% else %}
-	      <a href="/deletecourse/1/{{course.sscid}}/{{course.courseid}}/">delete</a></li>
-            {% endif %}
-         {% endif %}
-            {% for alternatesemesters in course.othersemesters %}
-	  <li><a href="/movecoursetonewsemester/1/{{course.sscid}}/{{alternatesemesters.courseid}}/{{course.courseid}}/"> 
-	      {{alternatesemesters.semester}}; {{alternatesemesters.numhrsthissem}} hrs </a></li>
-	    {% endfor %}
-	</ul>
-	</li>
-   </ul>
-   {% endif %} 
+	    <!-- In the following the 1 means that we are coming FROM the grad audit
+		 page, {{course.sscid}} gives the ssc object id and {{course.courseid}}
+		 gives the course id within the ssc objec -->
 
-
-
-
-       </tr>
-       {% endfor %}
-
-	<tr>
-	<td class="blank">  {% if req.blockcontainscyoc %}<p class = "margin">*User-created course(s).</p>{% endif %}  </td>
-	<td class="blank"></td>
-	<td class="blank"></td>
-	{% if req.creditsok %}
-	<td class="thick"> 
-	{% else %}
-	<td class="red">
-	{% endif %}
-	{{ req.credithrs }} hrs </td>
-	<td class="blank"></td>
-	<td class="blank"></td>
-	</tr>
-
-
-	</table>
-       <p> </p>
-
-       {% for comment in req.precocommentlist %}
-          <p> <b style="color:darkred;">Warning: </b>{{comment}} </p>
-       {% endfor %}
-
-       
-
-
-    {% endfor %}
-  </p>
-
-  <p> Courses Not Used to Meet Above Requirements:
-
-       <table>
-       <tr>
-       <th class = "name">
-	 Course Name
-       </th>
-       <th class = "number">
-	 Course #
-       </th>
-       <th class = "acthrs">
-	 Actual Cr Hrs
-       </th>
-       <th class = "SPCC">
-	 SP/CC
-       </th>
-       <th class = "taken">
-	 Comments
-       </th>
-       </tr>
-
-       {% for course in unusedcourses %}
-
-       <tr>
-       <td class = "thickleft">
-         <p class = "margin">{{ course.cname }}</p></td>
-       <td class = "thick">
-	 {{ course.cnumber }}</td>
-       <td class = "thick">
-	   {{ course.ccredithrs }} hrs</td>
-       <td class = "thick">
-	   {% if course.sp and course.cc %} SP/CC {% elif course.sp %} SP {% elif course.cc %} CC {% endif %}</td>
-       <td class = "thick">
-	 {% if course.comment %}
-	     {{course.comment }}
-	 {% endif %}
-       </td>
-       </tr>
-       {% endfor %}
+	    {% if not isProfessor %}
+	      <td>
+		<div class="btn-group">
+		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		    Delete/Modify
+		    <span class="caret"></span>
+		  </a>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		    <li>
+		      {% if course.comment %} {# Course is currently scheduled #}
+			{% if course.iscyoc %} {# A cyoc #}
+			  <a href="{% url 'delete_create_your_own_course' 1 0 course.sscid %}">Delete</a>
+			{% else %}
+			  <a href="{% url 'delete_course_inside_SSCObject' 1 course.sscid course.courseid %}">Delete</a>
+			{% endif %} {# cyoc #}
+		      {% endif %} {# comment #}
+		    </li>
+		    <li class="divider"></li>
+		    {% for alternatesemesters in course.othersemesters %}
+		      <li>
+			<a href="{% url 'move_course_to_new_SSCObject' 1 course.sscid alternatesemesters.courseid course.courseid %}">
+	      {{alternatesemesters.semester}}; {{alternatesemesters.numhrsthissem}} hrs</a>
+		      </li>
+		    {% endfor %} {# other semesters #}
+		  </ul>
+		</div> {# btn-group #}
+	      </td>
+	    {% endif %} {# Not professor #}
+	  </tr>
+	{% endfor %} {# course in courselist #}
 
 	<tr>
-	<td class="blank"></td>
-	<td class="blank"></td>
-	{% if unusedcredithours %}
-	<td class="thick"> 
-	{{ unusedcredithours }} hrs </td>
-	{% else %}
-	<td class="blank"></td>
-	{% endif %}
-	<td class="blank"></td>
-	<td class="blank"></td>
+	  <td class="blank">
+	    {% if req.blockcontainscyoc %}<p>* User-created course</p>{% endif %}
+	  </td>
+	  <td class="blank"></td>
+	  <td class="blank"></td>
+	  <td {% if req.creditsok %}class="red"{% endif %}>{{ req.credithrs }} hrs</td>
+	  <td class="blank"></td>
+	  <td class="blank"></td>
 	</tr>
+      </table>
 
+      {% for comment in req.precocommentlist %}
+	<p>
+	  <span class="label label-warning">Warning</span>
+          {{comment}}
+	</p>
+      {% endfor %}
+    {% endfor %} {# req in majordatablock #}
 
-	</table>
-       <p> </p>
+    <h1>Courses Not Used to Meet Above Requirements</h1>
 
-  </p>
+    <table class="table table-striped table-bordered table-hover table-condensed">
+      <thead>
+	<tr>
+	  <th class="name">Course Name</th>
+	  <th class="number">Course #</th>
+	  <th class="acthrs">Actual Cr Hrs</th>
+	  <th class="SPCC">SP/CC</th>
+	  <th class="taken">Comments</th>
+	</tr>
+      </thead>
+      <tbody>
+	{% for course in unusedcourses %}
+	  <tr>
+	    <td>{{ course.cname }}</td>
+	    <td>{{ course.cnumber }}</td>
+	    <td>{{ course.ccredithrs }} hrs</td>
+	    <td>
+	      {% if course.sp and course.cc %}
+		SP/CC
+	      {% elif course.sp %}
+		SP
+	      {% elif course.cc %}
+		CC
+	      {% endif %}
+	    </td>
+	    <td>
+	      {% if course.comment %}
+		{{course.comment }}
+	      {% endif %}
+	    </td>
+	  </tr>
+	{% endfor %} {# unused courses #}
+	<tr>
+	  <td class="blank"></td>
+	  <td class="blank"></td>
+	  {% if unusedcredithours %}
+	    <td>{{ unusedcredithours }} hrs</td>
+	  {% else %}
+	    <td class="blank"></td>
+	  {% endif %}
+	  <td class="blank"></td>
+	  <td class="blank"></td>
+	</tr>
+      </tbody>
+    </table>
 
-<p> SP Requirement -- at least 2 SP courses are required; you have {% if not SPreq %} <b style="color:red;">
-    {{ numSPs }}</b>{% else %}{{ numSPs }}{% endif %} in your plan: </p>
-  <p>
-  <ul>
-    {% for course in SPlist %}
-    <li> {{course.cname}} ({{course.cnumber}}), {{course.comment}} </li>
-    {% endfor %}
-  </ul>
-  </p>
+    <h1>SP Requirement</h1>
 
-  <p> CC Requirement -- at least 1 CC course is required; you have {% if not CCreq %} <b style="color:red;">
-      {{ numCCs }}</b>{% else %}{{ numCCs }}{% endif %} in your plan: </p>
-  <p>
-  <ul>
-    {% for course in CClist %}
-    <li> {{course.cname}} ({{course.cnumber}}), {{course.comment}} </li>
-    {% endfor %}
-  </ul>
-  </p>
+    <p>
+      At least 2 SP courses are required; you have
+      {% if not SPreq %}
+	<b style="color:red;">{{ numSPs }}</b>
+      {% else %}
+	{{ numSPs }}
+      {% endif %}
+      in your plan.
+    </p>
+    <ul>
+      {% for course in SPlist %}
+	<li>{{course.cname}} ({{course.cnumber}}), {{course.comment}}</li>
+      {% endfor %}
+    </ul>
 
+    <h1>CC Requirement</h1>
+
+    <p>
+      At least 1 CC course is required; you have
+      {% if not CCreq %}
+	<b style="color:red;">{{ numCCs }}</b>
+      {% else %}
+	{{ numCCs }}
+      {% endif %}
+      in your plan.
+    </p>
+    <ul>
+      {% for course in CClist %}
+	<li>{{course.cname}} ({{course.cnumber}}), {{course.comment}}</li>
+      {% endfor %}
+    </ul>
   {% else %}
-  {% if isProfessor %}
-  <p> <b>A graduation audit cannot be performed, since the student has not yet chosen a major. </b></p>
-  {% else %}
-  <p> <b>Since you do not currently have a major, a graduation audit cannot be performed.</b>  You can choose
-a major under <a class="other" href="/profile/">profile</a>.</p>
-  {% endif %}
-  {% endif %}
-
+    {% if isProfessor %}
+      <p>
+	<b>A graduation audit cannot be performed, since the student has not yet chosen a
+	major.</b>
+      </p>
+    {% else %}
+      <p>
+	<b>Because you do not currently have a major, a graduation audit cannot be
+	  performed.</b>
+	  You can choose a major under
+	  <a href="{% url 'profile' %}">profile</a>.
+      </p>
+    {% endif %} {# is professor #}
+  {% endif %} {# doesn't have major #}
 {% endblock %}

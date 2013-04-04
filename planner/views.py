@@ -515,7 +515,8 @@ def display_grad_audit(request):
 #    assert False, locals()
 
     enteringyear=tempdata[0].student.entering_year
-    # ssclist is used for later on when we try to find other semesters that a given course is offered
+    # ssclist is used for later on when we try to find other semesters that a given course
+    # is offered.
     ssclist=[]
     for ssc in tempdata:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
@@ -916,7 +917,7 @@ def move_course_to_new_SSCObject(request, wherefromflag, id, idnew, id2):
     idint = int(id)
     # Using idnew here instead of id, since sometimes we are only creating a new course,
     # and not deleting an old one.
-    instance = StudentSemesterCourses.objects.get(pk = idnew)
+    instance = StudentSemesterCourses.objects.get(pk=idnew)
 
     requestid = request.user.get_profile().id
     incomingid = instance.student.id
@@ -1094,25 +1095,25 @@ def prepopulate_student_semesters(studentid):
 
     semarray = []
 
-    semarray.append([enteringyear, 1, popsemdata.freshman_fall_courses.all()])
-    semarray.append([enteringyear+1, 2, popsemdata.freshman_jterm_courses.all()])
-    semarray.append([enteringyear+1, 3, popsemdata.freshman_spring_courses.all()])
-    semarray.append([enteringyear+1, 4, popsemdata.freshman_summer_courses.all()])
+    semarray.append([enteringyear,     1, popsemdata.freshman_fall_courses.all()])
+    semarray.append([enteringyear + 1, 2, popsemdata.freshman_jterm_courses.all()])
+    semarray.append([enteringyear + 1, 3, popsemdata.freshman_spring_courses.all()])
+    semarray.append([enteringyear + 1, 4, popsemdata.freshman_summer_courses.all()])
 
-    semarray.append([enteringyear+1, 1, popsemdata.sophomore_fall_courses.all()])
-    semarray.append([enteringyear+2, 2, popsemdata.sophomore_jterm_courses.all()])
-    semarray.append([enteringyear+2, 3, popsemdata.sophomore_spring_courses.all()])
-    semarray.append([enteringyear+2, 4, popsemdata.sophomore_summer_courses.all()])
+    semarray.append([enteringyear + 1, 1, popsemdata.sophomore_fall_courses.all()])
+    semarray.append([enteringyear + 2, 2, popsemdata.sophomore_jterm_courses.all()])
+    semarray.append([enteringyear + 2, 3, popsemdata.sophomore_spring_courses.all()])
+    semarray.append([enteringyear + 2, 4, popsemdata.sophomore_summer_courses.all()])
 
-    semarray.append([enteringyear+2, 1, popsemdata.junior_fall_courses.all()])
-    semarray.append([enteringyear+3, 2, popsemdata.junior_jterm_courses.all()])
-    semarray.append([enteringyear+3, 3, popsemdata.junior_spring_courses.all()])
-    semarray.append([enteringyear+3, 4, popsemdata.junior_summer_courses.all()])
+    semarray.append([enteringyear + 2, 1, popsemdata.junior_fall_courses.all()])
+    semarray.append([enteringyear + 3, 2, popsemdata.junior_jterm_courses.all()])
+    semarray.append([enteringyear + 3, 3, popsemdata.junior_spring_courses.all()])
+    semarray.append([enteringyear + 3, 4, popsemdata.junior_summer_courses.all()])
 
-    semarray.append([enteringyear+3, 1, popsemdata.senior_fall_courses.all()])
-    semarray.append([enteringyear+4, 2, popsemdata.senior_jterm_courses.all()])
-    semarray.append([enteringyear+4, 3, popsemdata.senior_spring_courses.all()])
-    semarray.append([enteringyear+4, 4, popsemdata.senior_summer_courses.all()])
+    semarray.append([enteringyear + 3, 1, popsemdata.senior_fall_courses.all()])
+    semarray.append([enteringyear + 4, 2, popsemdata.senior_jterm_courses.all()])
+    semarray.append([enteringyear + 4, 3, popsemdata.senior_spring_courses.all()])
+    semarray.append([enteringyear + 4, 4, popsemdata.senior_summer_courses.all()])
 
     for sem in semarray:
         tempsem=sem[1]
@@ -1195,13 +1196,13 @@ def search(request):
                     if ssc.actual_year == actualyear:
                         for courseinssc in ssc.courses.all():
                             if courseinssc.id == course.id:
-                                numberstudents=numberstudents+1
+                                numberstudents=numberstudents + 1
                                 studentlist.append(ssc.student.name)
                 semlist.append([actualyear, actualsem, numberstudents,availablesemester.id])
             semlist2 = reorder_list(semlist)
             semlistfinal = []
             for row in semlist2:
-                semlistfinal.append([semesterdict[row[1]]+", "+str(row[0]),row[2], row[3]])
+                semlistfinal.append([semesterdict[row[1]] + ", " + str(row[0]),row[2], row[3]])
             datablock.append([course.id, course.name, course.number, semlistfinal])
         context={'courses':courses,'query':q, 'datablock':datablock}
         return render(request, 'course_enrollment_results.html',context)
@@ -1225,9 +1226,9 @@ def view_enrolled_students(request,courseid,semesterid):
     actualyear = Semester.objects.get(pk=semesterid).actual_year
     sscdata = StudentSemesterCourses.objects.filter(semester=actualsem)
     course = Course.objects.get(pk=courseid)
-    coursename = course.name+' ('+course.number+')'
+    coursename = course.name + ' (' + course.number + ')'
     semesterdict = {1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
-    semestername = semesterdict[actualsem]+' of '+str(actualyear)
+    semestername = semesterdict[actualsem] + ' of ' + str(actualyear)
     studentlist=[]
     for ssc in sscdata:
         if ssc.actual_year == actualyear:

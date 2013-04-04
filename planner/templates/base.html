@@ -13,6 +13,7 @@
 	<h1>Taylor Four Year Planner</h1>
 	<p>Brought to you by Professor Ken Kiers and a cast of dozens.</p>
       </div>
+
       <div class="alert alert-info">
 	{% if user.is_authenticated %}
 	  Logged in as {{ user }} ({{ user.info }}).
@@ -20,32 +21,40 @@
 	  Not logged in.
 	{% endif %}
       </div>
+
+      <div class="navbar">
+	<div class="navbar-inner">
+	  <ul class="nav">
+	    <li><a href="{% url 'planner.views.home' %}">Home</a></li>
+	    <li><a href="{% url 'planner.views.profile' %}">Profile</a></li>
+	    <li><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a></li>
+	    <li><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a></li>
+	    <li><a href="{% url 'planner.views.display_advising_notes' %}">Advising Notes</a></li>
+	    <li class="dropdown">
+	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		About
+		<b class="caret"></b>
+	      </a>
+	      <ul class="dropdown-menu">
+		<li><a href="#">Getting Started</a></li>
+		<li><a href="#">Acknowledgements</a></li>
+	      </ul>
+	    </li>
+	    {% if user.is_authenticated %}
+	      <li><a href="{% url 'logout' %}">Logout</a></li>
+	    {% else %}
+	      <li><a href="{% url 'login' %}">Login</a></li>
+	    {% endif %}
+	  </ul>
+	</div> {# navbar-inner #}
+      </div> {# navbar #}
+
       <div class="row-fluid">
-        <div class="span2">
-	  <nav>
-	    <ul>
-	      <li><a href="{% url 'planner.views.home' %}">Home</a></li>
-	      <li><a href="{% url 'planner.views.profile' %}">Profile</a></li>
-	      <li><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a></li>
-	      <li><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a></li>
-	      <li><a href="{% url 'planner.views.display_advising_notes' %}">Advising Notes</a></li>
-	      <li><a href="#">About</a>
-		<ul>
-		  <li><a href="#">Getting Started</a></li>
-		  <li><a href="#">Acknowledgements</a></li>
-		</ul>
-	      </li>
-	      {% if user.is_authenticated %}
-		<li><a href="{% url 'logout' %}">Logout</a></li>
-	      {% else %}
-		<li><a href="{% url 'login' %}">Login</a></li>
-	      {% endif %}
-	    </ul>
-	  </nav>
-        </div>
-	<div class="span10">
-	  {% block content %}
-	  {% endblock %}
+	<div class="span3">
+	  {% block sidebar %}{% endblock %}
+	</div>
+	<div class="span9">
+	  {% block content %}{% endblock %}
 	</div>
       </div>
     </div>
