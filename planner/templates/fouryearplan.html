@@ -96,7 +96,7 @@
 			  </a>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 			    <li>
-			      {% if course.cyoc %}
+			      {% if course.iscyoc %}
 				<a href="{% url 'delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
 			      {% else %}
 				<a href="{% url 'delete_course' 0 row.semesterid course.courseid %}">delete</a>
