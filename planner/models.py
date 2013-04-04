@@ -176,12 +176,20 @@ class UserProxy(User):
         except Student.DoesNotExist:
             return False
 
+    def get_student_id(self):
+        assert(self.is_student())
+        return self.student.id
+
     def is_professor(self):
         try:
             if self.professor:
                 return True
         except Professor.DoesNotExist:
             return False
+
+    def get_professor_id(self):
+        assert(self.is_professor())
+        return self.professor.id
 
 from django.contrib.auth.backends import ModelBackend
 class ProxiedModelBackend(ModelBackend):

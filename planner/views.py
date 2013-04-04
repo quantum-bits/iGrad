@@ -168,14 +168,14 @@ def update_student_semester(request, id):
     # someone else's "update student semester" function...if the name of the requester and
     # the person who "belongs" to the id are different, the requester gets sent back to
     # his/her profile as punishment :)
-    requestid = request.user.get_profile().id
+    requestid = request.user.get_student_id()
     incomingid = instance.student.id
     if requestid != incomingid:
         return redirect('profile')
 
     year=instance.actual_year
     semester=instance.semester
-    student_local=request.user.get_profile
+    student_local=request.user
     studentcreatedcourses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local)
                            & Q(semester = semester) & Q(actual_year = year))
 
@@ -904,38 +904,40 @@ def delete_course_inside_SSCObject(request, wherefromflag, id, id2):
 #    0: fouryearplan
 #    1: gradaudit
 #
-# id is id of the current ssc object (from which the course needs to be deleted); set to
-#    "-1" if course is not currently being taken (which can happen if request comes from
-#    the grad audit page)
-# idnew is the id of the new ssc object (to which the course needs to be added)
-# id2 is the id of the course itself
+# src_ssc_id is id of the current ssc object (from which the course needs to be deleted); set to
+# "-1" if course is not currently being taken (which can happen if request comes from the
+# grad audit page)
 #
-# This routine failed once and I don't know why!!! said columns for course_id and ssc_id
-# were not unique, or something, and gave an integrity error
+# dest_ssc_id is the id of the new ssc object (to which the course needs to be added)
+#
+# course_id is the id of the course itself
+#
+# This routine failed once and I don't know why!!! Said columns for course_id and ssc_id
+# were not unique, or something, and gave an integrity error.
 @login_required
-def move_course_to_new_SSCObject(request, wherefromflag, id, idnew, id2):
-    idint = int(id)
-    # Using idnew here instead of id, since sometimes we are only creating a new course,
-    # and not deleting an old one.
-    instance = StudentSemesterCourses.objects.get(pk=idnew)
+def move_course_to_new_SSCObject(request, wherefromflag, src_ssc_id, dest_ssc_id, course_id):
+    src_ssc_id_int = int(src_ssc_id)
 
-    requestid = request.user.get_profile().id
-    incomingid = instance.student.id
-    if requestid != incomingid:
+    # Using dest_ssc_id here instead of src_ssc_id, since sometimes we are only creating a
+    # new course, and not deleting an old one.
+    dest_ssc = StudentSemesterCourses.objects.get(pk=dest_ssc_id)
+    request_id = request.user.get_student_id()
+    incoming_id = dest_ssc.student.id
+    if request_id != incoming_id:
         return redirect('profile')
 
-    if idint !=-1: 
-        # If id == -1, the course is not being taken, so there is nothing to remove
-        instanceold = StudentSemesterCourses.objects.get(pk = idint)
-        incomingidold = instanceold.student.id
-        if requestid != incomingidold:
+    if src_ssc_id_int != -1:
+        # If src_ssc_id == -1, the course is not being taken, so there is nothing to remove
+        instance_old = StudentSemesterCourses.objects.get(pk=src_ssc_id_int)
+        incoming_id_old = instance_old.student.id
+        if request_id != incoming_id_old:
             return redirect('profile')
-        StudentSemesterCourses.objects.get(pk = id).courses.remove(id2)
-    StudentSemesterCourses.objects.get(pk = idnew).courses.add(id2)
+        StudentSemesterCourses.objects.get(pk=src_ssc_id).courses.remove(course_id)
+    StudentSemesterCourses.objects.get(pk=dest_ssc_id).courses.add(course_id)
     if int(wherefromflag) == 0:
-        return HttpResponseRedirect('/fouryearplan/')
+        return redirect('four_year_plan')
     else:
-        return HttpResponseRedirect('/graduationaudit/')
+        return redirect('grad_audit')
 
 
 def pre_co_req_check(studentid):
