@@ -108,7 +108,7 @@
 			{% if course.iscyoc %} {# A cyoc #}
 			  <a href="{% url 'delete_create_your_own_course' 1 0 course.sscid %}">Delete</a>
 			{% else %}
-			  <a href="{% url 'delete_cyoc' 1 course.sscid course.courseid %}">Delete</a>
+			  <a href="{% url 'delete_course' 1 course.sscid course.courseid %}">Delete</a>
 			{% endif %} {# cyoc #}
 		      {% endif %} {# comment #}
 		    </li>
