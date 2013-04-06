@@ -21,38 +21,38 @@ def student_registration(request):
                                             password = form.cleaned_data['password'])
             user.save()
 
-            student = user.student
-            student.name = form.cleaned_data['name']
-            student.entering_year = form.cleaned_data['entering_year']
-            student.major = form.cleaned_data['major']
+            student = Student(user=user,
+                              name=form.cleaned_data['name'],
+                              entering_year=form.cleaned_data['entering_year'],
+                              major = form.cleaned_data['major'])
             student.save()
 
             yearlist = [0, 1, 2, 3, 4, 5]
             semesterlist = [1, 2, 3, 4]
-            for yeartemp in yearlist:
-                if yeartemp == 0:
-                    semestertemp = 0
+            for year_temp in yearlist:
+                if year_temp == 0:
+                    semester_temp = 0
                     p1 = StudentSemesterCourses(student=student,
-                                                year=yeartemp,
-                                                semester=semestertemp)
+                                                year=year_temp,
+                                                semester=semester_temp)
                     p1.save()
                 else:
-                    for semestertemp in semesterlist:
+                    for semester_temp in semesterlist:
                         p1 = StudentSemesterCourses(student=student,
-                                                    year=yeartemp,
-                                                    semester=semestertemp)
+                                                    year=year_temp,
+                                                    semester=semester_temp)
                         p1.save()
 
             if student.major is not None:
-                coursesadded = prepopulate_student_semesters(student.id)
+                courses_added = prepopulate_student_semesters(student.id)
             else:
-                coursesadded = False
+                courses_added = False
 
             return redirect('profile')
         else:
             return render(request, 'register.html', {'form': form})
 
-        # should the other things (advising notes, etc.) be included here as well?!?
+        # Should the other things (advising notes, etc.) be included here as well?!?
 
     else:
         # User is not submitting the form; show them the blank registration form.
@@ -82,16 +82,16 @@ def profile(request):
 
 @login_required
 def update_major(request, id):
-    requestid = request.user.get_student_id()
-    incomingid = int(id)
+    request_id = request.user.get_student_id()
+    incoming_id = int(id)
 
-    if requestid != incomingid:
+    if request_id != incoming_id:
         return redirect('profile')
 
     instance = Student.objects.get(pk=id)
 
     if request.method == 'POST':
-        form = update_majorForm(request.POST, instance=instance)
+        form = UpdateMajorForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return redirect('profile')
@@ -99,7 +99,7 @@ def update_major(request, id):
             return render(request, 'updatemajor.html', {'form': form})
     else:
         # User is not submitting the form; show them the blank add major form.
-        form = update_majorForm(instance=instance)
+        form = UpdateMajorForm(instance=instance)
         context = {'form': form}
         return render(request, 'updatemajor.html', context)
 
@@ -116,20 +116,20 @@ def update_student_semester(request, id):
     # someone else's "update student semester" function...if the name of the requester and
     # the person who "belongs" to the id are different, the requester gets sent back to
     # his/her profile as punishment :)
-    requestid = request.user.get_student_id()
-    incomingid = instance.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = instance.student.id
+    if request_id != incoming_id:
         return redirect('profile')
 
     year = instance.actual_year
     semester = instance.semester
     student_local = request.user
-    studentcreatedcourses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local) &
-                                                                     Q(semester=semester) &
-                                                                     Q(actual_year=year))
+    student_created_courses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local) &
+                                                                       Q(semester=semester) &
+                                                                       Q(actual_year=year))
 
     sccdatablock=[]
-    for scc in studentcreatedcourses:
+    for scc in student_created_courses:
         if scc.equivalentcourse:
             eqnum = ", equiv to " + scc.equivalentcourse.number
         else:
@@ -154,7 +154,7 @@ def update_student_semester(request, id):
 
     if request.method == 'POST':
         my_kwargs = dict(instance=instance,
-                         actualyear=year,
+                         actual_year=year,
                          semester=semester)
         form = AddStudentSemesterForm(request.POST, **my_kwargs)
         if form.is_valid():
@@ -166,7 +166,7 @@ def update_student_semester(request, id):
     else:
         # User is not submitting the form; show them the blank add semester form.
         my_kwargs = dict(instance=instance,
-                         actualyear=year,
+                         actual_year=year,
                          semester=semester)
         form = AddStudentSemesterForm(**my_kwargs)
         context = {'form': form,
@@ -185,15 +185,15 @@ def display_advising_notes(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return redirect('update_advisee', args=[3])
+            return redirect('update_advisee', 3)
 
-    tempdata = AdvisingNote.objects.all().filter(student=student_local)
+    temp_data = AdvisingNote.objects.all().filter(student=student_local)
 
     datablock = []
     ii = 0
-    for advnotes in tempdata:
+    for adv_notes in temp_data:
         ii = ii + 1
-        datablock.append([advnotes.datestamp, advnotes.note, advnotes.id, ii])
+        datablock.append([adv_notes.datestamp, adv_notes.note, adv_notes.id, ii])
 
     context = {'student': student_local,
                'datablock': datablock,
@@ -226,9 +226,9 @@ def add_new_advising_note(request):
 @login_required
 def update_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
-    requestid = request.user.get_student_id()
-    incomingid = instance.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = instance.student.id
+    if request_id != incoming_id:
         return redirect('profile')
 
     if request.method == 'POST':
@@ -247,9 +247,9 @@ def update_advising_note(request, id):
 @login_required
 def delete_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
-    requestid = request.user.get_student_id()
-    incomingid = instance.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = instance.student.id
+    if request_id != incoming_id:
         return redirect('profile')
 
     instance.delete()
@@ -265,29 +265,29 @@ def display_four_year_plan(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first.
-            return redirect('update_advisee', args=[1])
+            return redirect('update_advisee', 1)
 
-    totalcredithoursfouryears = 0
-    tempdata = StudentSemesterCourses.objects.all().filter(student=student_local)
-    tempdata2 = CreateYourOwnCourse.objects.all().filter(student=student_local)
+    total_credit_hours_four_years = 0
+    temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
+    temp_data2 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
-    enteringyear = tempdata[0].student.entering_year
+    enteringyear = temp_data[0].student.entering_year
 
-    studentid = tempdata[0].student.id
-    prenotmetlist, conotmetlist = pre_co_req_check(studentid)
+    studentid = temp_data[0].student.id
+    pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
     # ssclist is used for later on when we try to find other semesters that a given course
     # is offered.
     ssclist=[]
-    for ssc in tempdata:
+    for ssc in temp_data:
         if ssc.semester !=0:
             # Don't include pre-TU ssc object here
             numcrhrsthissem = 0
             for course in ssc.courses.all():
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
             # Now add in credit hours from any create your own type courses
-            tempdata4 = tempdata2.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
-            for course in tempdata4:
+            temp_data4 = temp_data2.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
+            for course in temp_data4:
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
@@ -296,46 +296,46 @@ def display_four_year_plan(request):
 
     # First, form an array containing the info for the "create your own" type courses
     cyocarray=[]
-    for cyoc in tempdata2:
+    for cyoc in temp_data2:
         if cyoc.equivalentcourse:
-            equivcoursenamestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
+            equivcourse_namestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
         else:
-            equivcoursenamestring =''
+            equivcourse_namestring =''
         cyocarray.append([cyoc.actual_year, termdictionaryalphabetize[cyoc.semester],
-                          cyoc.name+equivcoursenamestring,
+                          cyoc.name+equivcourse_namestring,
                           cyoc.number, cyoc.credit_hours, cyoc.sp, cyoc.cc, cyoc.id])
 
     datablock=[]
     # "Alphabetize" the semesters.
-    for sem1 in tempdata:
+    for sem1 in temp_data:
         semestercontainscyoc = False
-        tempcoursename=[]
+        temp_course_name=[]
         semtemp = sem1.semester
-        actyeartemp = sem1.actual_year
+        act_year_temp = sem1.actual_year
         semid = sem1.id
-        totalcredithrs = 0
+        total_credit_hrs = 0
         tempcyocarray =[]
         ii = 0
         # Assemble any prereq or coreq comments into a list....
         precocommentlist=[]
-        for row in conotmetlist:
+        for row in co_not_met_list:
             if row[0] == semid:
                 precocommentlist.append(row[4] + " is a corequisite for " +
                                         row[2] + "; the requirement is currently not being met.")
-        for row in prenotmetlist:
+        for row in pre_not_met_list:
             if row[0] == semid:
                 precocommentlist.append(row[4] + " is a prerequisite for " +
                                         row[2] + "; the requirement is currently not being met.")
         for row in cyocarray:
-            if row[0] == actyeartemp and row[1] == termdictionaryalphabetize[semtemp]:
+            if row[0] == act_year_temp and row[1] == termdictionaryalphabetize[semtemp]:
                 tempcyocarray.append(ii)
             ii=ii+1
         for indexii in reversed(tempcyocarray):
             temparray = cyocarray.pop(indexii)
-            totalcredithrs = totalcredithrs+temparray[4]
+            total_credit_hrs = total_credit_hrs+temparray[4]
             iscyoc = True
             semestercontainscyoc = True
-            tempcoursename.append({'cname': temparray[2],
+            temp_course_name.append({'cname': temparray[2],
                                    'cnumber': temparray[3],
                                    'ccredithours': temparray[4],
                                    'sp': temparray[5],
@@ -345,7 +345,7 @@ def display_four_year_plan(request):
                                    'othersemesters': []})
         for cc in sem1.courses.all():
             iscyoc = False
-            totalcredithrs = totalcredithrs + cc.credit_hours
+            total_credit_hrs = total_credit_hrs + cc.credit_hours
             allsemestersthiscourse = cc.semester.all()
             # Form an array of other semesters when this course is offered.
             semarraynonordered = []
@@ -353,7 +353,7 @@ def display_four_year_plan(request):
                 yearotheroffering=semthiscourse.actual_year
                 semotheroffering=semthiscourse.semester_of_acad_year
                 keepthisone = True
-                if yearotheroffering == actyeartemp and semotheroffering == semtemp:
+                if yearotheroffering == act_year_temp and semotheroffering == semtemp:
                     keepthisone = False
                 else:
                     elementid = -1
@@ -376,7 +376,7 @@ def display_four_year_plan(request):
                                  'courseid': row[2],
                                  'numhrsthissem': row[3]})
 
-            tempcoursename.append({'cname': cc.name,
+            temp_course_name.append({'cname': cc.name,
                                    'cnumber': cc.number,
                                    'ccredithours': cc.credit_hours,
                                    'sp': cc.sp,
@@ -384,15 +384,15 @@ def display_four_year_plan(request):
                                    'iscyoc': iscyoc,
                                    'courseid': cc.id,
                                    'othersemesters':semarray})
-        datablock.append({'year': actyeartemp,
+        datablock.append({'year': act_year_temp,
                           'semestername': termdictionaryalphabetize[semtemp],
                           'studentname': sem1.student.name,
-                          'listofcourses': tempcoursename,
+                          'listofcourses': temp_course_name,
                           'semesterid': sem1.id,
-                          'totalcredithours': totalcredithrs,
+                          'totalcredithours': total_credit_hrs,
                           'semestercontainscyoc': semestercontainscyoc,
                           'precocommentlist': precocommentlist})
-        totalcredithoursfouryears = totalcredithoursfouryears+totalcredithrs
+        total_credit_hours_four_years = total_credit_hours_four_years + total_credit_hrs
 
     # initial sort
     datablock2 = sorted(datablock, key=lambda rrow: (rrow['year'], rrow['semestername']))
@@ -401,7 +401,7 @@ def display_four_year_plan(request):
         row['semestername'] = row['semestername'][1:]
         datablock3.append(row)
 
-    if totalcredithoursfouryears > 159:
+    if total_credit_hours_four_years > 159:
         credithrmaxreached = True
     else:
         credithrmaxreached = False
@@ -425,7 +425,7 @@ def display_four_year_plan(request):
 
     context = {'student': student_local,
                'datablock': datablock4,
-               'totalhrsfouryears': totalcredithoursfouryears,
+               'totalhrsfouryears': total_credit_hours_four_years,
                'credithrmaxreached': credithrmaxreached,
                'isProfessor': isProfessor}
     return render(request, 'fouryearplan.html', context)
@@ -440,37 +440,36 @@ def display_grad_audit(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return redirect('update_advisee', args=[2])
+            return redirect('update_advisee', 2)
 
-    tempdata = StudentSemesterCourses.objects.all().filter(student=student_local)
-    tempdata2 = Student.objects.all().filter(user=student_local)
-    tempdata3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
+    temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
+    temp_data2 = Student.objects.all().filter(user=student_local)
+    temp_data3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
-    studentid = tempdata[0].student.id
-    prenotmetlist, conotmetlist = pre_co_req_check(studentid)
+    studentid = temp_data[0].student.id
+    pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
-    if tempdata2[0].major is None:
+    if temp_data2[0].major is None:
         hasMajor = False
         context = {'student': student_local,'isProfessor': isProfessor,'hasMajor':hasMajor}
         return render(request, 'graduationaudit.html', context)
     else:
         hasMajor = True
-        studentmajor = tempdata2[0].major
+        studentmajor = temp_data2[0].major
 
-#    assert False, locals()
+    enteringyear=temp_data[0].student.entering_year
 
-    enteringyear=tempdata[0].student.entering_year
     # ssclist is used for later on when we try to find other semesters that a given course
     # is offered.
     ssclist=[]
-    for ssc in tempdata:
+    for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             numcrhrsthissem = 0
             for course in ssc.courses.all():
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
             # now add in credit hours from any create your own type courses
-            tempdata4 = tempdata3.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
-            for course in tempdata4:
+            temp_data4 = temp_data3.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
+            for course in temp_data4:
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
@@ -481,8 +480,8 @@ def display_grad_audit(request):
     # In the next line of code I use "len()" in order to force django to evaluate the
     # QuerySet...otherwise I get an error saying that the "ManyRelatedManager object is
     # not iterable"
-    numrecords=len(tempdata)
-    for ssc in tempdata:
+    numrecords=len(temp_data)
+    for ssc in temp_data:
         numhrsthissemester = 0
         for course in ssc.courses.all():
             iscyoc = False
@@ -498,15 +497,15 @@ def display_grad_audit(request):
             coursenumberlist.append(course.number)
 
     # Now add in the user-created ("create your own") type courses.
-    for cyoc in tempdata3:
+    for cyoc in temp_data3:
         iscyoc = True
         if cyoc.equivalentcourse:
-            equivcoursenamestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
+            equivcourse_namestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
             eqcoursenum = cyoc.equivalentcourse.number
         else:
-            equivcoursenamestring =''
+            equivcourse_namestring =''
             eqcoursenum = ''
-        studentcourselist.append([cyoc.name+equivcoursenamestring,
+        studentcourselist.append([cyoc.name+equivcourse_namestring,
                                   cyoc.semester,
                                   cyoc.actual_year,
                                   cyoc.credit_hours,
@@ -522,9 +521,9 @@ def display_grad_audit(request):
     numSPs=0
     numCCs=0
     ii=0
-    totalcredithoursfouryears=0
+    total_credit_hours_four_years=0
     for course in studentcourselist:
-        totalcredithoursfouryears=totalcredithoursfouryears+course[3]
+        total_credit_hours_four_years=total_credit_hours_four_years+course[3]
         if course[4]:
             #
             # CLEAN UP the following!!! ("Pre-TU" stuff -- this comes up several
@@ -555,12 +554,12 @@ def display_grad_audit(request):
         else:
             AND_OR_comment = "Choose from the following."
         total_credit_hours_so_far=0
-        courseidlist=[]
+        course_id_list=[]
         for course in mr.courselist.all():
             iscyoc=False
             cnumber=course.number
-            courseid = course.id
-            courseidlist.append(courseid)
+            course_id = course.id
+            course_id_list.append(course_id)
             numcrhrstaken = ''
             sscid = -1
             try:
@@ -569,12 +568,12 @@ def display_grad_audit(request):
                 ii=-1
             if ii !=-1:
                 # Assemble any prereq or coreq comments into a list.
-                for row in conotmetlist:
-                    if row[1] == courseid:
+                for row in co_not_met_list:
+                    if row[1] == course_id:
                         precocommentlist.append(row[4] + " is a corequisite for " +
                                                 row[2] + "; the requirement is currently not being met.")
-                for row in prenotmetlist:
-                    if row[1] == courseid:
+                for row in pre_not_met_list:
+                    if row[1] == course_id:
                         precocommentlist.append(row[4] + " is a prerequisite for " +
                                                 row[2] + "; the requirement is currently not being met.")
                 courseinfo=studentcourselist.pop(ii)
@@ -582,7 +581,7 @@ def display_grad_audit(request):
                 numcrhrstaken = courseinfo[3]
                 total_credit_hours_so_far+=numcrhrstaken
                 semtemp = courseinfo[1]
-                actyeartemp = courseinfo[2]
+                act_year_temp = courseinfo[2]
                 sscid = courseinfo[8]
                 iscyoc = courseinfo[6]
                 if courseinfo[1]==0:
@@ -603,7 +602,7 @@ def display_grad_audit(request):
                 # html page
                 comment=False
                 semtemp = -1
-                actyeartemp = -1
+                act_year_temp = -1
 
             # If course is user-defined ("cyoc"), then don't show options for moving the
             # course, so skip the next part
@@ -619,7 +618,7 @@ def display_grad_audit(request):
                     yearotheroffering=semthiscourse.actual_year
                     semotheroffering=semthiscourse.semester_of_acad_year
                     keepthisone = True
-                    if yearotheroffering == actyeartemp and semotheroffering == semtemp:
+                    if yearotheroffering == act_year_temp and semotheroffering == semtemp:
                         keepthisone = False
                     else:
                         elementid = -1
@@ -685,16 +684,16 @@ def display_grad_audit(request):
                                   'ccredithrs':course[3],'sp':course[4],'cc':course[5],
                                   'comment':comment})
 
-        if numSPs<2:
-            SPreq=False
+        if numSPs < 2:
+            SPreq = False
         else:
-            SPreq=True
-        if numCCs==0:
-            CCreq=False
+            SPreq = True
+        if numCCs == 0:
+            CCreq = False
         else:
-            CCreq=True
+            CCreq = True
 
-    if totalcredithoursfouryears > 159:
+    if total_credit_hours_four_years > 159:
         credithrmaxreached = True
     else:
         credithrmaxreached = False
@@ -709,7 +708,7 @@ def display_grad_audit(request):
                'numCCs': numCCs,
                'SPreq': SPreq,
                'CCreq': CCreq,
-               'totalhrsfouryears': totalcredithoursfouryears,
+               'totalhrsfouryears': total_credit_hours_four_years,
                'credithrmaxreached': credithrmaxreached,
                'isProfessor': isProfessor,
                'hasMajor': hasMajor}
@@ -743,33 +742,33 @@ def add_create_your_own_course(request,id):
     # used in the following....
     listofstudents = Student.objects.all().filter(user=request.user)
     ssc = StudentSemesterCourses.objects.get(pk = id)
-    requestid = request.user.get_student_id()
-    incomingid = ssc.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = ssc.student.id
+    if request_id != incoming_id:
         return redirect('profile')
     year=ssc.actual_year
     semester=ssc.semester
 
     if request.method == 'POST':
-        form = add_create_your_own_courseForm(request.POST)
+        form = AddCreateYourOwnCourseForm(request.POST)
         if form.is_valid():
-            p1 = CreateYourOwnCourse(student = listofstudents[0])
-            p1.name = form.cleaned_data['name']
-            p1.number = form.cleaned_data['number']
-            p1.credit_hours = form.cleaned_data['credit_hours']
-            p1.sp = form.cleaned_data['sp']
-            p1.cc = form.cleaned_data['cc']
-            p1.semester = semester
-            p1.actual_year = year
-            p1.equivalentcourse = form.cleaned_data['equivalentcourse']
-            p1.save()
-            return redirect('update_student_semester', args=[id])
+            new_cyoc = CreateYourOwnCourse(student = listofstudents[0])
+            new_cyoc.name = form.cleaned_data['name']
+            new_cyoc.number = form.cleaned_data['number']
+            new_cyoc.credit_hours = form.cleaned_data['credit_hours']
+            new_cyoc.sp = form.cleaned_data['sp']
+            new_cyoc.cc = form.cleaned_data['cc']
+            new_cyoc.semester = semester
+            new_cyoc.actual_year = year
+            new_cyoc.equivalentcourse = form.cleaned_data['equivalentcourse']
+            new_cyoc.save()
+            return redirect('update_student_semester', id)
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
         # User is not submitting the form; show them the blank add create your own course
         # form.
-        form = add_create_your_own_courseForm()
+        form = AddCreateYourOwnCourseForm()
         context = {'form': form}
         return render(request, 'addcreateyourowncourse.html', context)
 
@@ -778,29 +777,29 @@ def add_create_your_own_course(request,id):
 def update_create_your_own_course(request,id,id2):
     instance = CreateYourOwnCourse.objects.get(pk = id2)
     ssc = StudentSemesterCourses.objects.get(pk = id)
-    requestid = request.user.get_student_id()
-    incomingid = ssc.student.id
-    incomingid2 = instance.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = ssc.student.id
+    incoming_id2 = instance.student.id
+    if request_id != incoming_id:
         return redirect('profile')
-    if requestid != incomingid2:
+    if request_id != incoming_id2:
         return redirect('profile')
 
     if request.method == 'POST':
-        form = add_create_your_own_courseForm(request.POST, instance=instance)
+        form = AddCreateYourOwnCourseForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('update_student_semester', args=[id])
+            return redirect('update_student_semester', id)
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
         # User is not submitting the form; show them the blank add create your own course form
-        form = add_create_your_own_courseForm(instance=instance)
+        form = AddCreateYourOwnCourseForm(instance=instance)
         context = {'form': form}
         return render(request, 'addcreateyourowncourse.html', context)
 
 
-# In the following, "wherefrom" is:
+# In the following, "where_from" is:
 #    0: fouryearplan
 #    1: gradaudit
 #    2: updatesemester
@@ -809,43 +808,43 @@ def update_create_your_own_course(request,id,id2):
 #    0: coming from gradaudit (doesn't matter; not used)
 #    ssc id: coming from updatesemester
 @login_required
-def delete_create_your_own_course(request, wherefrom, id, id2):
+def delete_create_your_own_course(request, where_from, id, id2):
     instance = CreateYourOwnCourse.objects.get(pk = id2)
 
-    requestid = request.user.get_student_id()
-    incomingid2 = instance.student.id
-    if requestid != incomingid2:
+    request_id = request.user.get_student_id()
+    incoming_id2 = instance.student.id
+    if request_id != incoming_id2:
         return redirect('profile')
 
     instance.delete()
-    if int(wherefrom) == 2:
-        return redirect('update_student_semester', args=[id])
-    elif int(wherefrom) == 0:
+    if int(where_from) == 2:
+        return redirect('update_student_semester', id)
+    elif int(where_from) == 0:
         return redirect('four_year_plan')
     else:
         return redirect('grad_audit')
 
-# In the following, wherefrom is:
+# In the following, where_from is:
 #    0: fouryearplan
 #    1: gradaudit
-# id is id of the ssc object
-# id2 is id of the course itself
+# ssc_id is id of the ssc object
+# course_id is id of the course itself
 @login_required
-def delete_course_inside_SSCObject(request, wherefromflag, id, id2):
-    instance = StudentSemesterCourses.objects.get(pk = id)
+def delete_course_inside_SSCObject(request, where_from, ssc_id, course_id):
+    instance = StudentSemesterCourses.objects.get(pk = ssc_id)
 
-    requestid = request.user.get_student_id()
-    incomingid = instance.student.id
-    if requestid != incomingid:
+    request_id = request.user.get_student_id()
+    incoming_id = instance.student.id
+    if request_id != incoming_id:
         return redirect('profile')
 
-    StudentSemesterCourses.objects.get(pk = id).courses.remove(id2)
-    if int(wherefromflag) == 0:
+    StudentSemesterCourses.objects.get(pk = ssc_id).courses.remove(course_id)
+    if int(where_from) == 0:
         return redirect('four_year_plan')
     else:
         return redirect('grad_audit')
 
-# In the following, wherefrom is:
+# In the following, where_from is:
 #    0: fouryearplan
 #    1: gradaudit
 #
@@ -860,7 +859,7 @@ def delete_course_inside_SSCObject(request, wherefromflag, id, id2):
 # This routine failed once and I don't know why!!! Said columns for course_id and ssc_id
 # were not unique, or something, and gave an integrity error.
 @login_required
-def move_course_to_new_SSCObject(request, wherefromflag, src_ssc_id, dest_ssc_id, course_id):
+def move_course_to_new_SSCObject(request, where_from, src_ssc_id, dest_ssc_id, course_id):
     src_ssc_id_int = int(src_ssc_id)
 
     # Using dest_ssc_id here instead of src_ssc_id, since sometimes we are only creating a
@@ -879,7 +878,7 @@ def move_course_to_new_SSCObject(request, wherefromflag, src_ssc_id, dest_ssc_id
             return redirect('profile')
         StudentSemesterCourses.objects.get(pk=src_ssc_id).courses.remove(course_id)
     StudentSemesterCourses.objects.get(pk=dest_ssc_id).courses.add(course_id)
-    if int(wherefromflag) == 0:
+    if int(where_from) == 0:
         return redirect('four_year_plan')
     else:
         return redirect('grad_audit')
@@ -895,25 +894,25 @@ def pre_co_req_check(studentid):
 
     enteringyear = student.entering_year
     courselist = []
-    courseiddict=dict()
+    course_id_dict=dict()
     semesterdict=dict()
     for ssc in sscdata:
         sscid = ssc.id
-        actualyear = ssc.actual_year
+        actual_year = ssc.actual_year
         semester = ssc.semester
-        semestersincebeginning = get_semester_from_beginning(enteringyear, actualyear, semester)
+        semestersincebeginning = get_semester_from_beginning(enteringyear, actual_year, semester)
         semesterdict[semestersincebeginning]=sscid
         for course in ssc.courses.all():
-            courseiddict[course.id]=course.number
+            course_id_dict[course.id]=course.number
             prereq = []
             coreq = []
             for pre in course.prereqs.all():
                 prereq.append(pre.id)
-                courseiddict[pre.id]=pre.number
+                course_id_dict[pre.id]=pre.number
             for co in course.coreqs.all():
                 coreq.append(co.id)
-                courseiddict[co.id]=co.number
-            courselist.append([semestersincebeginning, actualyear, semester, course.id, prereq, coreq, sscid])
+                course_id_dict[co.id]=co.number
+            courselist.append([semestersincebeginning, actual_year, semester, course.id, prereq, coreq, sscid])
 
     # Now in add in "create your own" type courses that have exact equivalents at TU....
     # note: in the way I have done this, it is assumed that the course functions exactly
@@ -922,84 +921,87 @@ def pre_co_req_check(studentid):
     for cyoc in cyocdata:
         if cyoc.equivalentcourse is not None:
             semester = cyoc.semester
-            actualyear = cyoc.actual_year
-            semestersincebeginning = get_semester_from_beginning(enteringyear, actualyear, semester)
+            actual_year = cyoc.actual_year
+            semestersincebeginning = get_semester_from_beginning(enteringyear, actual_year, semester)
             sscid = semesterdict[semestersincebeginning]
             prereq = []
             coreq = []
             course = cyoc.equivalentcourse
-            courseiddict[course.id]=course.number
+            course_id_dict[course.id]=course.number
             for pre in course.prereqs.all():
                 prereq.append(pre.id)
-                courseiddict[pre.id]=pre.number
+                course_id_dict[pre.id]=pre.number
             for co in course.coreqs.all():
                 coreq.append(co.id)
-                courseiddict[co.id]=co.number
-            courselist.append([semestersincebeginning, actualyear, semester, course.id, prereq, coreq, sscid])
+                course_id_dict[co.id]=co.number
+            courselist.append([semestersincebeginning, actual_year, semester, course.id, prereq, coreq, sscid])
 
     # Now need to do the actual check....
-    allprelist=[]
-    allcolist=[]
-    prenotmetlist=[]
-    conotmetlist=[]
+    all_pre_list = []
+    all_co_list = []
+    pre_not_met_list = []
+    co_not_met_list = []
     courselist2=courselist
     for row in courselist:
         coursesemester = row[0]
         # Don't do prereq and coreq check for pre-TU courses, although pre-TU courses can
         # be pre and coreqs for OTHER courses
         if coursesemester != 0:
-            prereqlist = row[4]
-            coreqlist = row[5]
+            prereq_list = row[4]
+            coreq_list = row[5]
             sscid = row[6]
-            courseid = row[3]
+            course_id = row[3]
             # Now for each preid, need to find the semester that that course was taken,
             # check that it was earlier than course itself
-            for preid in prereqlist:
+            for preid in prereq_list:
                 prereqsatisfied = False
                 for row2 in courselist2:
-                    courseidtemp = row2[3]
+                    course_idtemp = row2[3]
                     coursesemesterpre = row2[0]
-                    if courseidtemp==preid and coursesemesterpre<coursesemester:
+                    if course_idtemp==preid and coursesemesterpre<coursesemester:
                         prereqsatisfied = True
-                        allprelist.append([courseiddict[courseid],courseiddict[preid]])
+                        all_pre_list.append([course_id_dict[course_id],course_id_dict[preid]])
                 if prereqsatisfied == False:
-                    prenotmetlist.append([sscid, courseid, courseiddict[courseid],
-                                          preid, courseiddict[preid]])
+                    pre_not_met_list.append([sscid, course_id, course_id_dict[course_id],
+                                          preid, course_id_dict[preid]])
             # Now for each coid, need to find the semester that that course was taken,
             # check that it was <= than semester for course itself
-            for coid in coreqlist:
+            for coid in coreq_list:
                 coreqsatisfied = False
                 for row2 in courselist2:
-                    courseidtemp = row2[3]
+                    course_idtemp = row2[3]
                     coursesemesterco = row2[0]
-                    if courseidtemp==coid and coursesemesterco<=coursesemester:
+                    if course_idtemp==coid and coursesemesterco<=coursesemester:
                         coreqsatisfied = True
-                        allcolist.append([courseiddict[courseid],courseiddict[coid]])
+                        all_co_list.append([course_id_dict[course_id],course_id_dict[coid]])
                 if coreqsatisfied == False:
-                    conotmetlist.append([sscid,courseid,courseiddict[courseid],
-                                         coid,courseiddict[coid]])
+                    co_not_met_list.append([sscid,
+                                            course_id,
+                                            course_id_dict[course_id],
+                                            coid,
+                                            course_id_dict[coid]])
 
-    return prenotmetlist, conotmetlist
+    return pre_not_met_list, co_not_met_list
 
-def get_semester_from_beginning(enteringyear, actualyear, semester):
+def get_semester_from_beginning(enteringyear, actual_year, semester):
     """Return semester #, starting with "0" for pre-TU, "1" for freshman fall, etc."""
     if semester == 0:
         semesteroutput = 0
     else:
         if semester == 1:
-            semesteroutput = 4 * (actualyear - enteringyear) + semester
+            semesteroutput = 4 * (actual_year - enteringyear) + semester
         else:
-            semesteroutput = 4 * (actualyear - enteringyear - 1) + semester
+            semesteroutput = 4 * (actual_year - enteringyear - 1) + semester
     return semesteroutput
 
-def named_year(enteringyear, actualyear, semester):
+def named_year(enteringyear, actual_year, semester):
     termdict = {1: "fall", 2: "j-term", 3: "spring", 4: "summer"}
     yeardict = {0: "freshman", 1: "sophomore", 2: "junior", 3: "senior", 4: "supersenior"}
     if semester == 1:
-        yeardiff = actualyear - enteringyear
+        yeardiff = actual_year - enteringyear
     else:
-        yeardiff = actualyear - enteringyear - 1
-    return yeardict[yeardiff]+' '+termdict[semester]+' ('+str(actualyear)+')'
+        yeardiff = actual_year - enteringyear - 1
+    return yeardict[yeardiff]+' '+termdict[semester]+' ('+str(actual_year)+')'
 
 # list is assumed to be of the form:
 #     - [[year, sem, id],[year, sem, id],...]; or
@@ -1007,29 +1009,30 @@ def named_year(enteringyear, actualyear, semester):
 def reorder_list(listin):
     alphdict={2:'a', 3:'b', 4:'c', 1:'d'}
     revalphdict={'a':2, 'b':3, 'c':4, 'd':1}
-    newlist=[]
+    new_list=[]
     for row in listin:
         if len(row) == 4:
-            newlist.append([row[0],alphdict[row[1]],row[2], row[3]])
+            new_list.append([row[0],alphdict[row[1]],row[2], row[3]])
         else:
-            newlist.append([row[0],alphdict[row[1]],row[2]])
-    newlist2=sorted(newlist, key=lambda rrow: (rrow[0], rrow[1]))
-    newlist3=[]
-    for row in newlist2:
+            new_list.append([row[0],alphdict[row[1]],row[2]])
+    new_list2=sorted(new_list, key=lambda rrow: (rrow[0], rrow[1]))
+    new_list3=[]
+    for row in new_list2:
         if len(row) == 4:
-            newlist3.append([row[0],revalphdict[row[1]],row[2], row[3]])
+            new_list3.append([row[0],revalphdict[row[1]],row[2], row[3]])
         else:
-            newlist3.append([row[0],revalphdict[row[1]],row[2]])
-    return newlist3
+            new_list3.append([row[0],revalphdict[row[1]],row[2]])
+    return new_list3
 
 def prepopulate_student_semesters(studentid):
     student = Student.objects.all().get(pk = studentid)
     major = student.major
     enteringyear=student.entering_year
-    datalist = PrepopulateSemesters.objects.all().filter(Q(major=major)&Q(enteringyear__year=enteringyear))
-    tempdata=StudentSemesterCourses.objects.all().filter(student=student)
+    datalist = PrepopulateSemesters.objects.all().filter(Q(major=major) &
+                                                         Q(enteringyear__year=enteringyear))
+    temp_data=StudentSemesterCourses.objects.all().filter(student=student)
     ssclist=[]
-    for ssc in tempdata:
+    for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester])
 
@@ -1069,18 +1072,18 @@ def prepopulate_student_semesters(studentid):
             if ssc[1] == tempyear and ssc[2] == tempsem:
                 sscid=ssc[0]
                 for course in sem[2]:
-                    courseid = course.id
-                    StudentSemesterCourses.objects.get(pk = sscid).courses.add(courseid)
+                    course_id = course.id
+                    StudentSemesterCourses.objects.get(pk = sscid).courses.add(course_id)
 
     return True
 
-# In the following, "wherefrom" is:
+# In the following, "where_from" is:
 # 0: profile
 # 1: fouryearplan
 # 2: graduaudit
 # 3: advising note
 @login_required
-def update_advisee(request, wherefrom):
+def update_advisee(request, where_from):
     if request.user.is_student():
         return redirect('profile')
 
@@ -1090,13 +1093,13 @@ def update_advisee(request, wherefrom):
         form = AddAdviseeForm(request.POST, instance=professor)
         if form.is_valid():
             form.save()
-            if int(wherefrom) == 0:
+            if int(where_from) == 0:
                 return redirect('profile')
-            elif int(wherefrom) == 1:
+            elif int(where_from) == 1:
                 return redirect('four_year_plan')
-            elif int(wherefrom) == 2:
+            elif int(where_from) == 2:
                 return redirect('grad_audit')
-            elif int(wherefrom) == 3:
+            elif int(where_from) == 3:
                 return redirect('advising_notes')
             else:
                 return redirect('profile')
@@ -1128,20 +1131,20 @@ def search(request):
 
             # This approach is only going to capture non-pre-TU courses...which is good.
             for availablesemester in course.semester.all():
-                actualsem = availablesemester.semester_of_acad_year
-                actualyear = availablesemester.actual_year
+                actual_sem = availablesemester.semester_of_acad_year
+                actual_year = availablesemester.actual_year
 
                 # Now need to find all the ssc records for each of these courses....
-                sscdata = StudentSemesterCourses.objects.filter(semester=actualsem)
+                sscdata = StudentSemesterCourses.objects.filter(semester=actual_sem)
                 numberstudents=0
                 studentlist=[]
                 for ssc in sscdata:
-                    if ssc.actual_year == actualyear:
+                    if ssc.actual_year == actual_year:
                         for courseinssc in ssc.courses.all():
                             if courseinssc.id == course.id:
                                 numberstudents=numberstudents + 1
                                 studentlist.append(ssc.student.name)
-                semlist.append([actualyear, actualsem, numberstudents,availablesemester.id])
+                semlist.append([actual_year, actual_sem, numberstudents,availablesemester.id])
             semlist2 = reorder_list(semlist)
             semlistfinal = []
             for row in semlist2:
@@ -1154,25 +1157,25 @@ def search(request):
 
 
 @login_required
-def view_enrolled_students(request,courseid,semesterid):
+def view_enrolled_students(request,course_id,semesterid):
     """Display students enrolled in a given course and semester"""
 
     if request.user.is_student():
         return redirect('profile')
 
-    actualsem = Semester.objects.get(pk=semesterid).semester_of_acad_year
-    actualyear = Semester.objects.get(pk=semesterid).actual_year
-    sscdata = StudentSemesterCourses.objects.filter(semester=actualsem)
-    course = Course.objects.get(pk=courseid)
-    coursename = course.name + ' (' + course.number + ')'
+    actual_sem = Semester.objects.get(pk=semesterid).semester_of_acad_year
+    actual_year = Semester.objects.get(pk=semesterid).actual_year
+    sscdata = StudentSemesterCourses.objects.filter(semester=actual_sem)
+    course = Course.objects.get(pk=course_id)
+    course_name = course.name + ' (' + course.number + ')'
     semesterdict = {1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
-    semestername = semesterdict[actualsem] + ' of ' + str(actualyear)
+    semester_name = semesterdict[actual_sem] + ' of ' + str(actual_year)
     studentlist=[]
     for ssc in sscdata:
-        if ssc.actual_year == actualyear:
+        if ssc.actual_year == actual_year:
             for courseinssc in ssc.courses.all():
-                if courseinssc.id == int(courseid):
+                if courseinssc.id == int(course_id):
                     studentlist.append(ssc.student.name)
     temp = request.META.items()
-    context={'coursename':coursename,'semestername':semestername,'studentlist':studentlist}
+    context={'coursename':course_name,'semestername':semester_name,'studentlist':studentlist}
     return render(request, 'student_enrollment_results.html', context)

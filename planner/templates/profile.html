@@ -44,7 +44,7 @@
     <p>Name: {{ user.student.name }}</p>
     <p>Email: {{ user.email }}</p>
     <p>Major: {{ user.student.major }}
-      (<a class="other" href="/changemajor/{{user.student.id}}/">Edit</a>)
+      (<a class="other" href="{% url 'update_major' user.student.id %}">Change</a>)
     </p>
     <p>Entering Year: {{ user.student.entering_year }}</p>
 
