@@ -52,7 +52,7 @@
 	    <p>
 	      {{ row.semestername }}, {{ row.year }}
 	      {% if not isProfessor %}
-		(<a href="{% url 'update_student_semester' row.semesterid %}">Edit</a>)
+		(<a href="{% url 'update_student_semester' row.semesterid %}">Add Course</a>)
 	      {% endif %}
 	    </p>
 	    <table class="table table-striped table-bordered table-hover table-condensed">
@@ -96,7 +96,7 @@
 			  </a>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 			    <li>
-			      {% if course.cyoc %}
+			      {% if course.iscyoc %}
 				<a href="{% url 'delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
 			      {% else %}
 				<a href="{% url 'delete_course' 0 row.semesterid course.courseid %}">delete</a>
