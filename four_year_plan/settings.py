@@ -1,7 +1,7 @@
 # Django settings for four_year_plan project.
 
 from run_mode import RunMode
-run_mode = RunMode('dev')
+run_mode = RunMode('dev', debug_toolbar=False)
 
 DEBUG = run_mode.dev
 TEMPLATE_DEBUG = DEBUG
@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'planner',
 )
 
-if not run_mode.prod:
+if run_mode.debug_toolbar:
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     INTERNAL_IPS = ('127.0.0.1',)
