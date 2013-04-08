@@ -12,12 +12,26 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '4yearplan.db'
+if run_mode.dev:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'igrad.db',
+        }
     }
-}
+elif run_mode.prod:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'igrad',
+            'USER': 'postgres',
+            'PASSWORD': 'igrad',
+            'HOST': 'localhost',
+            'PORT': '5432',
+            }
+        }
+else:
+    raise RuntimeError("No database configured.")
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
