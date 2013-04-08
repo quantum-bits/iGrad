@@ -1,4 +1,4 @@
-# Django settings for four_year_plan project.
+# Django settings for iGrad project.
 
 from run_mode import RunMode
 run_mode = RunMode('dev', debug_toolbar=False)
