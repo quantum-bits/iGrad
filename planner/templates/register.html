@@ -7,7 +7,7 @@
 {% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
 <div class="register_div">
   {% if form.username.errors %}<p class = "error">{{ form.username.errors }}</p>{% endif %}
-  <p><label form="username" {% if form.username.errors %} class ="error"{% endif %}>Username (this will be your login):</label></p>
+  <p><label form="username" {% if form.username.errors %} class ="error"{% endif %}>Student ID (e.g., @00551111; this will be your login):</label></p>
   <p>{{ form.username }}</p>
 </div>
 <div class="register_div">
