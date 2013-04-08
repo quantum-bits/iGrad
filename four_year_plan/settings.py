@@ -1,7 +1,7 @@
 # Django settings for four_year_plan project.
 
 from run_mode import RunMode
-run_mode = RunMode('dev', debug_toolbar=False)
+run_mode = RunMode('dev', debug_toolbar=True)
 
 DEBUG = run_mode.dev
 TEMPLATE_DEBUG = DEBUG

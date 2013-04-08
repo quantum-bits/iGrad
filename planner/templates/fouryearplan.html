@@ -13,11 +13,12 @@
   <p>Major: {{ student.major }}</p>
   <p>Total Number of Credit Hours for Plan:
     {% if credithrmaxreached %}
-      <b style="color:red;"> {{ totalhrsfouryears }}
-	<p>(Note: Please consult with the Financial Aid Office
-	  regarding the 160 credit hour limit.)
-	</p>
-      </b>
+      <b style="color:red;"> {{ totalhrsfouryears }}</b>
+	<div class="alert alert-error">
+	  <p><b> Note: </b> Please consult with the Financial Aid Office
+	  regarding the 160 credit hour limit.
+	  </p>
+	</div>
     {% else %}
       {{ totalhrsfouryears }}
     {% endif %}

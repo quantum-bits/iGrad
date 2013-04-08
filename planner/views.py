@@ -434,7 +434,7 @@ def display_four_year_plan(request):
 def display_grad_audit(request):
     if request.user.is_student():
         isProfessor = False
-        student_local = request.user
+        student_local = request.user.student
     else:
         isProfessor = True
         student_local = request.user.professor.advisee

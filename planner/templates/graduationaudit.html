@@ -15,12 +15,13 @@
   {% if hasMajor %}
     <p>Total Number of Credit Hours for Plan:
       {% if credithrmaxreached %}
-	<b style="color:red;"> {{ totalhrsfouryears }}
+	<b style="color:red;"> {{ totalhrsfouryears }}</b>
+	 <div class="alert alert-error">
 	  <p>
-	    (Note: Please consult with the Financial Aid Office
-	    regarding the 160 credit hour limit.)
+	    <b> Note: </b>Please consult with the Financial Aid Office
+	    regarding the 160 credit hour limit.
 	    </p>
-	</b>
+	  </div>
       {% else %}
 	{{ totalhrsfouryears }}
       {% endif %}
@@ -62,9 +63,9 @@
 	    <td>
 	      {% if course.numcrhrstaken %}
 		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
-		  <b style="color:red;">
+		  <div class="alert alert-error">
 		    {{ course.numcrhrstaken }} hrs
-		  </b>
+		  </div>
 		{% else %}
 		  {{ course.numcrhrstaken }} hrs
 		{% endifnotequal %}
