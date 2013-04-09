@@ -215,12 +215,12 @@ def add_new_advising_note(request):
             p1.save()
             return redirect('advising_notes')
         else:
-            return render(request, 'addadvisingnote.html', {'form': form})
+            return render(request, 'addAdvisingNote.html', {'form': form})
     else:
         # user is not submitting the form; show them the blank add semester form
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render(request, 'addAdvisingnote.html', context)
+        return render(request, 'addAdvisingNote.html', context)
 
 
 @login_required
@@ -237,12 +237,12 @@ def update_advising_note(request, id):
             form.save()
             return redirect('advising_notes')
         else:
-            return render(request, 'addadvisingnote.html', {'form': form})
+            return render(request, 'addAdvisingNote.html', {'form': form})
     else:
         # user is not submitting the form; show them the blank add semester form
         form = AddAdvisingNoteForm(instance=instance)
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context)
+        return render(request, 'addAdvisingNote.html', context)
 
 @login_required
 def delete_advising_note(request, id):
