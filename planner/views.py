@@ -220,7 +220,7 @@ def add_new_advising_note(request):
         # user is not submitting the form; show them the blank add semester form
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context)
+        return render(request, 'addAdvisingnote.html', context)
 
 
 @login_required
@@ -729,12 +729,12 @@ def add_new_advising_note(request):
             p1.save()
             return redirect('advising_notes')
         else:
-            return render(request, 'addadvisingnote.html', {'form': form})
+            return render(request, 'addAdvisingNote.html', {'form': form})
     else:
         # User is not submitting the form; show them the blank add semester form
         form = AddAdvisingNoteForm()
         context = {'form': form}
-        return render(request, 'addadvisingnote.html', context)
+        return render(request, 'addAdvisingNote.html', context)
 
 @login_required
 def add_create_your_own_course(request,id):
