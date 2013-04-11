@@ -210,14 +210,9 @@ class Student(models.Model):
     def __unicode__(self):
         return self.name
 
-    # create user object to attach to student object
-
-    def create_student_user_callback(sender, instance, **kwargs):
-        student, new = Student.objects.get_or_create(user=instance)
-        post_save.connect(create_student_user_callback, User)
-
     class Meta:
         ordering = ['name']
+
 
 class Professor(models.Model):
     user = models.OneToOneField(User)

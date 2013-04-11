@@ -257,6 +257,7 @@ def delete_advising_note(request, id):
 
 @login_required
 def display_four_year_plan(request):
+    print request.user.is_student()
     if request.user.is_student():
         isProfessor = False
         student_local = request.user.student

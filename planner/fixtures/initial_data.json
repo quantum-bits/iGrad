@@ -6575,16 +6575,7 @@
         "date_joined": "2013-03-29T15:35:31.196Z"
     }
 },
-{
-    "pk": 1, 
-    "model": "planner.student", 
-    "fields": {
-        "major": null, 
-        "entering_year": 2012, 
-        "user": 1, 
-        "name": ""
-    }
-},
+
 {
     "pk": 2, 
     "model": "planner.student", 
@@ -6603,16 +6594,6 @@
         "entering_year": 2012, 
         "user": 5, 
         "name": "Paul McCartney"
-    }
-},
-{
-    "pk": 6, 
-    "model": "planner.student", 
-    "fields": {
-        "major": null, 
-        "entering_year": 2012, 
-        "user": 6, 
-        "name": ""
     }
 },
 {
