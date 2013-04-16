@@ -40,7 +40,7 @@ class AddStudentSemesterForm(forms.ModelForm):
         exclude = ('semester','year','student')
 
     def __init__(self, *args, **kwargs):
-        actyear = kwargs.pop('actualyear')
+        actyear = kwargs.pop('actual_year')
         sem = kwargs.pop('semester')
         super (AddStudentSemesterForm,self).__init__(*args,**kwargs)
         if sem == 0:
