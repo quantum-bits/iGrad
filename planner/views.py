@@ -449,7 +449,7 @@ def display_grad_audit(request):
             return redirect('update_advisee', 2)
 
     temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
-    temp_data2 = Student.objects.all().filter(user=student_local)
+    temp_data2 = Student.objects.all().filter(user=request.user)
     temp_data3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
     studentid = temp_data[0].student.id
