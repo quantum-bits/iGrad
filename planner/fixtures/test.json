@@ -1,0 +1,152 @@
+[
+{
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+        "domain": "example.com", 
+        "name": "example.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 1, 
+        "name": "Fa13"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp13"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2013, 
+        "semester_of_acad_year": 2, 
+        "name": "J13"
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 2, 
+        "name": "J14"
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.semester", 
+    "fields": {
+        "actual_year": 2014, 
+        "semester_of_acad_year": 3, 
+        "name": "Sp14"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.department", 
+    "fields": {
+        "name": "Basket Weaving"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.course", 
+    "fields": {
+        "credit_hours": 3, 
+        "name": "Intro to Basket Weaving", 
+        "cc": false, 
+        "sp": false, 
+        "number": "BA101", 
+        "coreqs": [], 
+        "semester": [
+            1, 
+            2, 
+            5
+        ], 
+        "prereqs": [], 
+        "department": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.requirementblock", 
+    "fields": {
+        "display_name": "Basket Weaving Core", 
+        "name": "Basket Weaving Core", 
+        "AND_or_OR_Requirement": 1, 
+        "list_order": 1, 
+        "courselist": [
+            1
+        ], 
+        "minimum_number_of_credit_hours": 3, 
+        "text_for_user": ""
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.major", 
+    "fields": {
+        "major_requirements": [
+            1
+        ], 
+        "name": "Basket Weaving BS"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-04-18T19:02:08.025Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$2LTHxnjrsY1V$UrlpbhXhmY5VdVX6iTNzm9Z2Xj6BF/gK1INznCdCsqk=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-04-18T19:01:13.224Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "majorStudent", 
+        "first_name": "Major", 
+        "last_name": "Student", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-18T19:02:39Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1zMycbozhskC$l+VcgyXLQmYHee9YDXQxxx+snq1bNlRIUKlwvwWUotA=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-04-18T19:02:39Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 1, 
+        "entering_year": 2013, 
+        "user": 2, 
+        "name": "Major Student"
+    }
+}
+]
