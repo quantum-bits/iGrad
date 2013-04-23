@@ -7,10 +7,9 @@ Replace this with more appropriate tests for your application.
 
 from django.test import TestCase
 
-
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+class PlannerTest(TestCase):
+    def test_login(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Test basic login.
         """
-        self.assertEqual(1 + 1, 2)
+        login = self.client.login(username='majorStudent', password='password')
