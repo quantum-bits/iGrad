@@ -449,19 +449,18 @@ def display_grad_audit(request):
             return redirect('update_advisee', 2)
 
     temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
-    temp_data2 = Student.objects.all().filter(user=request.user)
     temp_data3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
     studentid = temp_data[0].student.id
     pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
-    if temp_data2[0].major is None:
+    if student_local.major is None:
         hasMajor = False
         context = {'student': student_local,'isProfessor': isProfessor,'hasMajor':hasMajor}
         return render(request, 'graduationaudit.html', context)
     else:
         hasMajor = True
-        studentmajor = temp_data2[0].major
+        studentmajor = student_local.major
 
     enteringyear=temp_data[0].student.entering_year
 
