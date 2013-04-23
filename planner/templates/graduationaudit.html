@@ -17,7 +17,7 @@
     <p>Total Number of Credit Hours for Plan:
       {% if credithrmaxreached %}
 	<b style="color:red;"> {{ totalhrsfouryears }}</b>
-	 <div class="alert alert-requirments">
+	 <div class="alert alert-requirements">
 	  <p>
 	    <b> Note: </b>Please consult with the Financial Aid Office
 	    regarding the 160 credit hour limit.
@@ -100,7 +100,7 @@
 	    {% if not isProfessor %}
 	      <td>
 		<div class="btn-group">
-		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  <a name="{{course.cnumber}}" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 		    Delete/Modify
 		    <span class="caret"></span>
 		  </a>
@@ -108,16 +108,16 @@
 		    <li>
 		      {% if course.comment %} {# Course is currently scheduled #}
 			{% if course.iscyoc %} {# A cyoc #}
-			  <a href="{% url 'delete_cyoc' 1 0 course.sscid %}">Delete</a>
+			  <a href="{% url 'delete_cyoc' 1 0 course.sscid %}#{{course.cnumber}}">Delete</a>
 			{% else %}
-			  <a href="{% url 'delete_course' 1 course.sscid course.courseid %}">Delete</a>
+			  <a href="{% url 'delete_course' 1 course.sscid course.courseid %}#{{course.cnumber}}">Delete</a>
 			{% endif %} {# cyoc #}
 		      {% endif %} {# comment #}
 		    </li>
 		    <li class="divider"></li>
 		    {% for alternatesemesters in course.othersemesters %}
 		      <li>
-			<a href="{% url 'move_course' 1 course.sscid alternatesemesters.courseid course.courseid %}">
+			<a href="{% url 'move_course' 1 course.sscid alternatesemesters.courseid course.courseid %}#{{course.cnumber}}">
 	      {{alternatesemesters.semester}}; {{alternatesemesters.numhrsthissem}} hrs</a>
 		      </li>
 		    {% endfor %} {# other semesters #}
