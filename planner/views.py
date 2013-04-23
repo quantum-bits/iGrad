@@ -449,34 +449,37 @@ def display_grad_audit(request):
             return redirect('update_advisee', 2)
 
     temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
-    temp_data2 = Student.objects.all().filter(user=request.user)
     temp_data3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
     studentid = temp_data[0].student.id
     pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
-    if temp_data2[0].major is None:
+    if student_local.major is None:
         hasMajor = False
         context = {'student': student_local,'isProfessor': isProfessor,'hasMajor':hasMajor}
         return render(request, 'graduationaudit.html', context)
     else:
         hasMajor = True
-        studentmajor = temp_data2[0].major
+        studentmajor = student_local.major
 
-    enteringyear=temp_data[0].student.entering_year
+    enteringyear = student_local.entering_year
 
     # ssclist is used for later on when we try to find other semesters that a given course
     # is offered.
+    #for every course in the grad audit, returning alternative courses that course is offered.
     ssclist=[]
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             numcrhrsthissem = 0
+            #TODO: add method to Student that gets all  credit hours given a semester.
             for course in ssc.courses.all():
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
+
             # now add in credit hours from any create your own type courses
             temp_data4 = temp_data3.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
             for course in temp_data4:
                 numcrhrsthissem = numcrhrsthissem + course.credit_hours
+
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
     termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
