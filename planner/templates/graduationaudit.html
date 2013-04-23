@@ -60,7 +60,7 @@
 	  <tr>
 	    <td>{{ course.cname }}</td>
 	    <td>{{ course.cnumber }}</td>
-	    <td>{{ course.ccredithrs }} hrs</td>
+	    <td>{{course.ccredithrs}} {{ course.ccredithrs|pluralize:"hr,hrs" }}</td>
 	    <td>
 	      {% if course.numcrhrstaken %}
 		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
