@@ -1,32 +1,27 @@
 {% extends "base.html" %}
 
 {% block sidebar %}
-  {% if isProfessor %}
-    <p>
-      Advisee Name: {{ student.name }} 
-      (<a href="{% url 'update_advisee' 1 %}">Change</a>)
-    </p>
-  {% else %}
-    <p>Name: {{ student.name }}</p>
-  {% endif %}
+  <div class="alert alert-student-info">
+    {% if isProfessor %}
 
-  <p>Major: {{ student.major }}</p>
-  <p>Total Number of Credit Hours for Plan:
-    {% if credithrmaxreached %}
-      <b style="color:red;"> {{ totalhrsfouryears }}</b>
-	<div class="alert alert-error">
-	  <p><b> Note: </b> Please consult with the Financial Aid Office
-	  regarding the 160 credit hour limit.
-	  </p>
-	</div>
+    <p>Advisee Name: {{ student.name }} (<a href="{% url 'update_advisee' 1 %}">Change</a>)</p>
     {% else %}
-      {{ totalhrsfouryears }}
-    {% endif %}
-  </p>
+
+    <p>Name: {{ student.name }}</p>{% endif %}
+
+    <p>Major: {{ student.major }}</p>
+
+    <p>Total Number of Credit Hours for Plan: {% if credithrmaxreached %} <b style=
+    "color:red;">{{ totalhrsfouryears }}</b></p>
+
+    <div class="alert alert-error">
+      <p><b>Note:</b> Please consult with the Financial Aid Office regarding the 160
+      credit hour limit.</p>
+    </div>{% else %} {{ totalhrsfouryears }} {% endif %}
+  </div>
 {% endblock %}
 
 {% block content %}
-  <h1>Four Year Plan</h1>
   <div id="year-accordion" class="accordion">
   {% for year in datablock %}
     <div class="accordion-group">
@@ -147,4 +142,12 @@
     {% endfor %}
   </div> {# year-accordion #}
 
+  <script>
+    $(window).load(function(){
+    $("#nav-plan").addClass("current");
+    $('.page-name').find('h1').replaceWith('<h1>Four Year Plan</h1>');
+    $(".page-name").stop().animate({opacity: 1,'margin-left': '5%'}, 700);});
+  </script>
+
 {% endblock %}
+

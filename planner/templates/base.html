@@ -2,34 +2,40 @@
 <html lang="en">
   <head>
     <title>iGrad Four Year Planner</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
     <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen">
     {% block extrahead %}
     {% endblock %}
   </head>
 
   <body>
+   <div class="banner-head">
     <div class="container-fluid">
       <div class="hero-unit">
 	<h1>iGrad Four Year Planner</h1>
 	<p>Brought to you by Professor Ken Kiers and a cast of dozens.</p>
       </div>
-
-      <div class="alert alert-info">
-	{% if user.is_authenticated %}
+    <div class="page-name">
+    <h1>Four Year Planner</h1>
+    </div>
+    <div class="login-data">
+    <p>{% if user.is_authenticated %}
 	  Logged in as {{ user }} ({{ user.info }}).
 	{% else %}
 	  Not logged in.
 	{% endif %}
-      </div>
-
+    </p>
+    </div>
+    </div>
+        </div>
       <div class="navbar">
 	<div class="navbar-inner">
 	  <ul class="nav">
-	    <li><a href="{% url 'planner.views.home' %}">Home</a></li>
-	    <li><a href="{% url 'planner.views.profile' %}">Profile</a></li>
-	    <li><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a></li>
-	    <li><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a></li>
-	    <li><a href="{% url 'planner.views.display_advising_notes' %}">Advising Notes</a></li>
+	    <li id="nav-home"><a href="{% url 'planner.views.home' %}">Home</a><i></i></li>
+	    <li id="nav-profile"><a href="{% url 'planner.views.profile' %}">Profile</a><i></i></li>
+	    <li id="nav-plan"><a href="{% url 'planner.views.display_four_year_plan' %}">Four Year Plan</a><i></i></li>
+	    <li id="nav-audit"><a href="{% url 'planner.views.display_grad_audit' %}">Graduation Audit</a><i></i></li>
+	    <li id="nav-notes"><a href="{% url 'planner.views.display_advising_notes' %}">Advising Notes</a><i></i></li>
 	    <li class="dropdown">
 	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		About
@@ -41,9 +47,9 @@
 	      </ul>
 	    </li>
 	    {% if user.is_authenticated %}
-	      <li><a href="{% url 'logout' %}">Logout</a></li>
+	      <li><a href="{% url 'logout' %}">Logout</a><i></i></li>
 	    {% else %}
-	      <li><a href="{% url 'login' %}">Login</a></li>
+	      <li id="nav-login"><a href="{% url 'login' %}">Login</a><i></i></li>
 	    {% endif %}
 	  </ul>
 	</div> {# navbar-inner #}
@@ -57,9 +63,13 @@
 	  {% block content %}{% endblock %}
 	</div>
       </div>
-    </div>
-
-    <script src="http://code.jquery.com/jquery.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.sticky.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+     <script>
+    $(window).load(function(){
+      $(".navbar").sticky({ topSpacing: 0 });
+    });
+  </script>
   </body>
 </html>

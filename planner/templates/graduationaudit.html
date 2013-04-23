@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block sidebar %}
+  <div class="alert alert-student-info">
   {% if isProfessor %}
     <p>
       Advisee Name: {{ student.name }}
@@ -16,7 +17,7 @@
     <p>Total Number of Credit Hours for Plan:
       {% if credithrmaxreached %}
 	<b style="color:red;"> {{ totalhrsfouryears }}</b>
-	 <div class="alert alert-error">
+	 <div class="alert alert-requirments">
 	  <p>
 	    <b> Note: </b>Please consult with the Financial Aid Office
 	    regarding the 160 credit hour limit.
@@ -27,10 +28,10 @@
       {% endif %}
     </p>
   {% endif %}
+  </div>
 {% endblock %}
 
 {% block content %}
-
   {% if hasMajor %}
     <h1>Requirements</h1>
 
@@ -63,7 +64,7 @@
 	    <td>
 	      {% if course.numcrhrstaken %}
 		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
-		  <div class="alert alert-error">
+		  <div class="alert alert-requirements">
 		    {{ course.numcrhrstaken }} hrs
 		  </div>
 		{% else %}
@@ -85,7 +86,7 @@
 		{{course.comment }}
 	      {% else %}
 		{% if not req.creditsok %}
-		  <div class="alert alert-error">
+		  <div class="alert alert-requirements">
 		    Requirement not yet met.
 		  </div>
 		{% endif %}
@@ -243,4 +244,11 @@
       </p>
     {% endif %} {# is professor #}
   {% endif %} {# doesn't have major #}
+  </div>
+  <script>
+    $(window).load(function(){
+    $("#nav-audit").addClass("current");
+    $('.page-name').find('h1').replaceWith('<h1>Graduation Audit</h1>');
+    $(".page-name").stop().animate({opacity: 1,'margin-left': '5%'}, 700);});
+  </script>
 {% endblock %}

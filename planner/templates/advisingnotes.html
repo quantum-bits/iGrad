@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block sidebar %}
+  <div class="alert alert-student-info">
   {% if isProfessor %}
     <p>
       Advisee Name: {{ student.name }} (<a href="{% url 'update_advisee' 3 %}">Change</a>)
@@ -12,6 +13,7 @@
   <p>Email: {{ student.user.email }}</p>
   <p>Major: {{ student.major }}</p>
   <p>Entering Year: {{ student.entering_year }}</p>
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -42,4 +44,11 @@
       <a class="btn btn-primary" href="{% url 'add_new_note' %}">Add a Note</a>
     </p>
   {% endif %}
+  <script>
+    $(window).load(function(){
+    $("#nav-notes").addClass("current");
+    $('.page-name').find('h1').replaceWith('<h1>Advising Note</h1>');
+    $(".page-name").stop().animate({opacity: 1,'margin-left': '5%'}, 700);});
+  </script>
+
 {% endblock %}
