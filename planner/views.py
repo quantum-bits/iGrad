@@ -438,6 +438,15 @@ def display_four_year_plan(request):
 
 @login_required
 def display_grad_audit(request):
+    # NOTES: 
+    #       1. In the current approach no double-counting of courses is allowed, since the course gets popped
+    #          out of studentcourselist as soon as it meets a requirement.  Maybe this should be changed?  The problem
+    #          could be that in some situations, maybe a course is not ALLOWED to double-count.  Maybe if one course
+    #          is used to meet requirements in two requirement blocks, a flag could be set and a warning given, in case
+    #          such double-counting is not allowed.
+    #       2. There is some redundancy between this function and display_four_year_plan.  Some methods/functions could 
+    #          probably be written that would serve in both places
+
     if request.user.is_student():
         isProfessor = False
         student_local = request.user.student
@@ -464,9 +473,48 @@ def display_grad_audit(request):
 
     enteringyear = student_local.entering_year
 
-    # ssclist is used for later on when we try to find other semesters that a given course
-    # is offered.
-    #for every course in the grad audit, returning alternative courses that course is offered.
+#
+# OVERVIEW of majordatablock:
+#
+# one of the main tasks performed here is to construct "majordatablock";
+# "majordatablock" is a list of dictionaries that is eventually reordered and renamed "majordatablock2";
+# aside from the reordering, these two lists are identical.
+# majordatablock2 is *the* main chunk of data that is sent to the graduationaudit template.
+#
+# each element in the list (majordatablock) is a "requirement block"; 
+# the requirement blocks have the following keywords:
+#
+#  - listorder: an integer used to determine what order the requirements should be displayed in
+#  - blockname: the name of the requirement block; this will show up on the grad audit page
+#  - andorcomment: string that states whether all or only some of the courses need to be taken 
+#  - mincredithours: minimum # of credit hours to satisfy the requirement
+#  - textforuser: optional text to display to the user
+#  - credithrs: total # credit hours in this block so far
+#  - creditsok: whether or not the # credit hours taken so far matches the required number
+#  - blockcontainscyoc: whether or not the requirement block currently contains a course that is 
+#                       of the "create your own" variety; if so, a not is put at the bottom
+#  - precocommentlist: list of comments about prereqs or coreqs not being met, if that is the case
+#  - courselist: list of dictionaries; each element in the list represents a course
+#                keywords are the following:
+#      - cname: course name
+#      - cnumber: course number (e.g., PHY311)
+#      - ccredithrs': # credit hours required for this course requirement
+#      - sp: boolean 
+#      - cc: boolean 
+#      - comment: comment to be associated with the course
+#      - numcrhrstaken: # of credit hours taken for this requirement
+#      - courseid: course id in the database
+#      - sscid: id of the studentsemestercourse object associated with this course
+#      - iscyoc: boolean; TRUE if the course is of the "create your own" variety
+#      - othersemester: list of dictionaries; each element represents another
+#                       semester during which this course could be taken; 
+#                       keywords are the following:
+#           - semester: string that identifies the other semester (e.g., 'junior spring (2015)')
+#           - courseid: *poorly named*; actually the id of the studentsemestercourse object for the course in the other semester
+#           - numhrsthissem: # credit hrs currently being taken in the other semester
+#
+
+    # ssclist is used below to construct "semarray", which is eventually assigned to the keyword "othersemester" (see above)
     ssclist=[]
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
@@ -484,12 +532,17 @@ def display_grad_audit(request):
 
     termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
 
+    # the following assembles studentcourselist and coursenumberlist;
+    # studentcourselist is a list of all courses in the student's plan;
+    # elements in the list correspond to information about the courses (name, semester, etc.)
+    # coursenumberlist is a parallel list to studentcourselist, but it just contains course numbers (e.g., PHY311)
     studentcourselist=[]
     coursenumberlist=[]
     # In the next line of code I use "len()" in order to force django to evaluate the
     # QuerySet...otherwise I get an error saying that the "ManyRelatedManager object is
     # not iterable"
     numrecords=len(temp_data)
+    # loop through all studentsemestercourse objects for the student, picking out the courses in the student's plan
     for ssc in temp_data:
         numhrsthissemester = 0
         for course in ssc.courses.all():
@@ -525,6 +578,9 @@ def display_grad_audit(request):
                                   cyoc.id])
         coursenumberlist.append(eqcoursenum)
 
+    # the following assembles SPlist and CClist; these lists contain information about
+    # SP and CC courses in the student's plan and are passed directly to the template
+
     SPlist=[]
     CClist=[]
     numSPs=0
@@ -553,7 +609,17 @@ def display_grad_audit(request):
             numCCs=numCCs+1
         ii=ii+1
 
+    # the following code assembles majordatablock (described in detail above);
+    # the general approach is the following:
+    # - the outer loop cycles through each requirement block for the student's major
+    #   - the next loop cycles through each course in the list of courses within the requirement block
+    #   - if a course in the student's plan ("studentcourselist") matches a course in a requirement block, it is 
+    #     popped out of the student's course list
+    #   - for most courses in the requirement block, a list of semesters is constructed, showing when the course
+    #     could be taken (or moved to, if it is currently being taken during some semester)
+
     majordatablock = []
+    # loop over requirement blocks for the student's chosen major
     for mr in studentmajor.major_requirements.all():
         precocommentlist=[]
         requirementblockcontainscyoc = False
@@ -564,6 +630,7 @@ def display_grad_audit(request):
             AND_OR_comment = "Choose from the following."
         total_credit_hours_so_far=0
         course_id_list=[]
+        # loop over courses within each requirement block
         for course in mr.courselist.all():
             iscyoc=False
             cnumber=course.number
@@ -575,6 +642,7 @@ def display_grad_audit(request):
                 ii=coursenumberlist.index(cnumber)
             except ValueError:
                 ii=-1
+            # if the requirement is met, pop the course out of the student's list of courses
             if ii !=-1:
                 # Assemble any prereq or coreq comments into a list.
                 for row in co_not_met_list:
@@ -617,6 +685,7 @@ def display_grad_audit(request):
             # course, so skip the next part
             if iscyoc:
                 semarray = []
+            # if the course is a regular course, assemble a list of possible semesters to take the course
             else:
                 allsemestersthiscourse = course.semester.all()
 
@@ -668,6 +737,7 @@ def display_grad_audit(request):
         else:
             credits_ok=False
 
+        # the following appends a new dictionary for this particular requirement block
         majordatablock.append({'listorder': mr.list_order,
                                'blockname': mr.display_name,
                                'andorcomment': AND_OR_comment,
@@ -679,8 +749,12 @@ def display_grad_audit(request):
                                'blockcontainscyoc': requirementblockcontainscyoc,
                                'precocommentlist': precocommentlist})
 
+        # the following reorders majordatablock in the desired order 
+        # (this ordering is defined when the requirement blocks are defined in the first place)
         majordatablock2 = sorted(majordatablock, key=lambda rrow: (rrow['listorder']))
 
+        # anything remaining in the studentcourselist at this point has not been used to meet a 
+        # course requirement in one of the requirement blocks;  unusedcourses keeps track of these courses
         unusedcourses=[]
         unusedcredithours=0
         for course in studentcourselist:
@@ -692,7 +766,7 @@ def display_grad_audit(request):
             unusedcourses.append({'cname':course[0],'cnumber':course[7],
                                   'ccredithrs':course[3],'sp':course[4],'cc':course[5],
                                   'comment':comment})
-
+        # the following checks to see if the SP and CC requirements have been met
         if numSPs < 2:
             SPreq = False
         else:
