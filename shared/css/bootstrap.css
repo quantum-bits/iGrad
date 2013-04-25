@@ -4664,6 +4664,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .nav > li {
+  position:relative;
   float: none;
   display: inline-block;
 }
@@ -6144,6 +6145,7 @@ width: 8px;
 height: 4px;
 position: absolute;
 bottom: -5px;
+left:50%;
 margin-left: -4px;
 }
 
