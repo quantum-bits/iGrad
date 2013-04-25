@@ -482,6 +482,7 @@ a:focus {
   *width: 74.41489361702126%;*/
   width:96%;
   min-width:750px;
+  margin-bottom:5%;
   
 }
 
@@ -2950,6 +2951,7 @@ table th[class*="span"],
 }
 
 .dropdown-menu {
+  text-align:right;
   position: absolute;
   /*top: 100%;
   left: 0;*/
