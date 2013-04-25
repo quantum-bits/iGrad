@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 # for courses in jterm_course_list:
 #    print courses.id
 #
-# information on having a user login, including a template and login stuff:
+# information on having a user login, including a emplate and login stuff:
 # https://docs.djangoproject.com/en/dev/topics/auth/
 #
 # the following might help, too:
@@ -209,6 +209,13 @@ class Student(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def num_credit_hours(self, student_semester_course):
+        student_semester_course_hours = sum(course.credit_hours for course in student_semester_course.courses.all())
+        cyo_courses = CreateYourOwnCourse.objects.filter(student=self, semester=student_semester_course.semester, 
+                                                         actual_year=student_semester_course.actual_year)
+        cyo_courses_hours = sum(cyo_course.credit_hours for cyo_course in cyo_courses)
+        return student_semester_course_hours + cyo_courses_hours
 
     class Meta:
         ordering = ['name']

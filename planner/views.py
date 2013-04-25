@@ -518,16 +518,7 @@ def display_grad_audit(request):
     ssclist=[]
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
-            numcrhrsthissem = 0
-            #TODO: add method to Student that gets all  credit hours given a semester.
-            for course in ssc.courses.all():
-                numcrhrsthissem = numcrhrsthissem + course.credit_hours
-
-            # now add in credit hours from any create your own type courses
-            temp_data4 = temp_data3.filter(Q(semester=ssc.semester)&Q(actual_year=ssc.actual_year))
-            for course in temp_data4:
-                numcrhrsthissem = numcrhrsthissem + course.credit_hours
-
+            numcrhrsthissem = student_local.num_credit_hours(ssc)
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
     termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
