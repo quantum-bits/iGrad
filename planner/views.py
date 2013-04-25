@@ -457,8 +457,8 @@ def display_grad_audit(request):
             # No advisee currently selected; go pick one first
             return redirect('update_advisee', 2)
 
-    temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
-    temp_data3 = CreateYourOwnCourse.objects.all().filter(student=student_local)
+    temp_data = StudentSemesterCourses.objects.filter(student=student_local)
+    temp_data3 = CreateYourOwnCourse.objects.filter(student=student_local)
 
     studentid = temp_data[0].student.id
     pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
@@ -527,8 +527,9 @@ def display_grad_audit(request):
     # studentcourselist is a list of all courses in the student's plan;
     # elements in the list correspond to information about the courses (name, semester, etc.)
     # coursenumberlist is a parallel list to studentcourselist, but it just contains course numbers (e.g., PHY311)
-    studentcourselist=[]
-    coursenumberlist=[]
+
+    student_course_dict = {}
+
     # In the next line of code I use "len()" in order to force django to evaluate the
     # QuerySet...otherwise I get an error saying that the "ManyRelatedManager object is
     # not iterable"
@@ -538,16 +539,16 @@ def display_grad_audit(request):
         numhrsthissemester = 0
         for course in ssc.courses.all():
             iscyoc = False
-            studentcourselist.append([course.name,
-                                      ssc.semester,
-                                      ssc.actual_year,
-                                      course.credit_hours,
-                                      course.sp,
-                                      course.cc,
-                                      iscyoc,
-                                      course.number,
-                                      ssc.id])
-            coursenumberlist.append(course.number)
+            student_course_dict[course.number] = [course.name,
+                                                  ssc.semester,
+                                                  ssc.actual_year,
+                                                  course.credit_hours,
+                                                  course.sp,
+                                                  course.cc,
+                                                  iscyoc,
+                                                  course.number,
+                                                  ssc.id]
+
 
     # Now add in the user-created ("create your own") type courses.
     for cyoc in temp_data3:
@@ -558,16 +559,16 @@ def display_grad_audit(request):
         else:
             equivcourse_namestring =''
             eqcoursenum = ''
-        studentcourselist.append([cyoc.name+equivcourse_namestring,
-                                  cyoc.semester,
-                                  cyoc.actual_year,
-                                  cyoc.credit_hours,
-                                  cyoc.sp,
-                                  cyoc.cc,
-                                  iscyoc,
-                                  cyoc.number,
-                                  cyoc.id])
-        coursenumberlist.append(eqcoursenum)
+        student_course_dict[cyoc.number] = [cyoc.name+equivcourse_namestring,
+                                            cyoc.semester,
+                                            cyoc.actual_year,
+                                            cyoc.credit_hours,
+                                            cyoc.sp,
+                                            cyoc.cc,
+                                            iscyoc,
+                                            cyoc.number,
+                                            cyoc.id]
+
 
     # the following assembles SPlist and CClist; these lists contain information about
     # SP and CC courses in the student's plan and are passed directly to the template
@@ -578,7 +579,8 @@ def display_grad_audit(request):
     numCCs=0
     ii=0
     total_credit_hours_four_years=0
-    for course in studentcourselist:
+    for course_number in student_course_dict:
+        course = student_course_dict[course_number]
         total_credit_hours_four_years=total_credit_hours_four_years+course[3]
         if course[4]:
             #
@@ -629,12 +631,9 @@ def display_grad_audit(request):
             course_id_list.append(course_id)
             numcrhrstaken = ''
             sscid = -1
-            try:
-                ii=coursenumberlist.index(cnumber)
-            except ValueError:
-                ii=-1
+            requirement_met = cnumber in student_course_dict
             # if the requirement is met, pop the course out of the student's list of courses
-            if ii !=-1:
+            if requirement_met:
                 # Assemble any prereq or coreq comments into a list.
                 for row in co_not_met_list:
                     if row[1] == course_id:
@@ -644,8 +643,8 @@ def display_grad_audit(request):
                     if row[1] == course_id:
                         precocommentlist.append(row[4] + " is a prerequisite for " +
                                                 row[2] + "; the requirement is currently not being met.")
-                courseinfo=studentcourselist.pop(ii)
-                cnumbertemp=coursenumberlist.pop(ii)
+                
+                courseinfo= student_course_dict[cnumber]
                 numcrhrstaken = courseinfo[3]
                 total_credit_hours_so_far+=numcrhrstaken
                 semtemp = courseinfo[1]
@@ -664,7 +663,6 @@ def display_grad_audit(request):
                     # Regular TU course...no problem....
                     comment = commentfirstpart
             else:
-
                 # NOTE: comment is a string if there is a course scheduled; if not, it is
                 # False, in which case it is used as a flag for things within graduation
                 # html page
@@ -748,7 +746,8 @@ def display_grad_audit(request):
         # course requirement in one of the requirement blocks;  unusedcourses keeps track of these courses
         unusedcourses=[]
         unusedcredithours=0
-        for course in studentcourselist:
+        for course_number in student_course_dict:
+            course = student_course_dict[course_number]
             unusedcredithours=unusedcredithours+course[3]
             if course[1]==0:
                 comment = "Pre-TU"
