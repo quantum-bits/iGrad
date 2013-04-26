@@ -1,11 +1,13 @@
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from models import *
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.shortcuts import render, redirect
 from django.template import RequestContext
 from forms import *
-from models import *
+from django.contrib.auth.decorators import login_required
+
+
 
 def home(request):
     return render(request, 'home.html')
@@ -572,35 +574,32 @@ def display_grad_audit(request):
 
     # the following assembles SPlist and CClist; these lists contain information about
     # SP and CC courses in the student's plan and are passed directly to the template
-
+    def cc_sp_course_info(semester,course_name,course_number,actual_year):
+        if semester == 0:
+            comment = "Pre-TU"
+        else:
+            comment = termdictionary[semester]+', '+str(actual_year)
+        return {'cname':course_name, 'comment':comment, 'cnumber':course_number}
+    
     SPlist=[]
     CClist=[]
     numSPs=0
     numCCs=0
-    ii=0
     total_credit_hours_four_years=0
     for course_number in student_course_dict:
         course = student_course_dict[course_number]
         total_credit_hours_four_years=total_credit_hours_four_years+course[3]
-        if course[4]:
-            #
-            # CLEAN UP the following!!! ("Pre-TU" stuff -- this comes up several
-            # times...define a function or something!!!!)
-            #
-            if course[1]==0:
-                comment = "Pre-TU"
-            else:
-                comment = termdictionary[course[1]]+', '+str(course[2])
-            SPlist.append({'cname':course[0], 'comment':comment, 'cnumber':course[7]})
+        semester = course[1]
+        course_name = course[0]
+        course_number = course[7]
+        actual_year = course[2]
+        info = cc_sp_course_info(semester,course_name,course_number,actual_year)
+        if course[4]:       
+            SPlist.append(info)
             numSPs=numSPs+1
         if course[5]:
-            if course[1]==0:
-                comment = "Pre-TU"
-            else:
-                comment = termdictionary[course[1]]+', '+str(course[2])
-            CClist.append({'cname':course[0], 'comment':comment, 'cnumber':course[7]})
+            CClist.append(info)
             numCCs=numCCs+1
-        ii=ii+1
 
     # the following code assembles majordatablock (described in detail above);
     # the general approach is the following:
