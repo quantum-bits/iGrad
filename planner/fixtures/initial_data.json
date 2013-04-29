@@ -1,6 +1,14 @@
 [
 {
     "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+        "domain": "example.com", 
+        "name": "example.com"
+    }
+},
+{
+    "pk": 1, 
     "model": "planner.semester", 
     "fields": {
         "actual_year": 2012, 
@@ -6324,6 +6332,24 @@
     }
 },
 {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "MajorStudent", 
+        "first_name": "Major", 
+        "last_name": "Student", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-23T19:17:37.479Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$3wGHSq7fW1eq$k9ObDSapGwj56Axg8CIP4Bfpu4ntcFMNRlfWDWqVYqM=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-04-23T19:04:33Z"
+    }
+},
+{
     "pk": 4, 
     "model": "auth.user", 
     "fields": {
@@ -6549,7 +6575,7 @@
         "is_active": true, 
         "is_superuser": false, 
         "is_staff": false, 
-        "last_login": "2013-01-31T21:57:40.243Z", 
+        "last_login": "2013-04-29T00:26:12.963Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$urUOuUgpR90O$IM8fHVFVld9qiTlr3CpdhoLdSViqq45iIwhTfCIEokQ=", 
@@ -6567,7 +6593,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-03-29T15:35:38.531Z", 
+        "last_login": "2013-04-29T00:47:14.206Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$xjf9lor5y5pg$G/WRxmGXiDVEZJ+g6TDLBN1E8ncn3JpKht5JrD7cOIM=", 
@@ -6575,7 +6601,6 @@
         "date_joined": "2013-03-29T15:35:31.196Z"
     }
 },
-
 {
     "pk": 2, 
     "model": "planner.student", 
@@ -6694,6 +6719,16 @@
         "entering_year": 2012, 
         "user": 16, 
         "name": "Tom"
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.student", 
+    "fields": {
+        "major": 2, 
+        "entering_year": 2012, 
+        "user": 3, 
+        "name": "Major Student"
     }
 },
 {

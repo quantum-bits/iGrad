@@ -1,7 +1,7 @@
 # Django settings for iGrad project.
 
 from run_mode import RunMode
-run_mode = RunMode('dev',debug_toolbar=True)
+run_mode = RunMode('dev',debug_toolbar=False)
 
 DEBUG = run_mode.dev
 TEMPLATE_DEBUG = DEBUG
