@@ -2,6 +2,7 @@
 {% block extrahead %}
 {% endblock %}
 {% block content %}
+ <div class="content-center">
 <p> The following students are enrolled in {{coursename}} for {{semestername}}:</p>
 <ul>
 {% for student in studentlist %}
@@ -10,3 +11,4 @@
 </ul>
 
 {% endblock %}
+</div>
