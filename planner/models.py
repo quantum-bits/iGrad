@@ -3,7 +3,6 @@ from django.forms import ModelForm
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-#
 # here's how to extract all courses for a given semester:
 # from django.db.models import Q
 # jterm_course_list = Course.objects.filter(Q(semester__actual_year="2013") & Q(semester__semester_of_acad_year = 1))

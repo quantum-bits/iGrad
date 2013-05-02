@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.template import RequestContext
 from forms import *
 from django.contrib.auth.decorators import login_required
-
+from collections import namedtuple
 
 
 def home(request):
@@ -438,6 +438,64 @@ def display_four_year_plan(request):
                'isProfessor': isProfessor}
     return render(request, 'fouryearplan.html', context)
 
+CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id")
+class CourseInfoCollection(object):
+    def __init__(self):
+        self.collection = {}
+        self.sp_list = []
+        self.cc_list = []
+    
+    def __contains__(self, course_number):
+        """
+        Returns True if course_number in collection.
+        """
+        return course_number in self.collection
+
+    def __getitem__(self, course_number):
+        """
+        Returns course corresponding to course_number in collection.
+        """
+        return self.collection[course_number]
+
+    def add(self, *courses):
+        def sp_cc_info(course):
+            termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
+
+            semester = course.semester
+            course_name = course.name
+            course_number = course.number
+            actual_year = course.actual_year
+
+            if semester == 0:
+                comment = "Pre-TU"
+            else:
+                comment = termdictionary[semester]+', '+str(actual_year)
+            return {'cname':course_name, 'comment':comment, 'cnumber':course_number}
+
+        for course in courses:
+            self.collection[course.number] = course
+            if course.sp:
+                self.sp_list.append(sp_cc_info(course))
+            if course.cc:
+                self.cc_list.append(sp_cc_info(course))
+    
+    @property
+    def courses(self):
+        return [self.collection[course_number] for course_number in self.collection]
+
+    @property
+    def num_sps(self):
+        return len(self.sp_list)
+    
+    @property
+    def num_ccs(self):
+        return len(self.cc_list)
+
+    @property
+    def total_credit_hours(self):
+        return sum(course.credit_hours for course in self.courses)
+        
+
 @login_required
 def display_grad_audit(request):
     # NOTES: 
@@ -523,7 +581,6 @@ def display_grad_audit(request):
             numcrhrsthissem = student_local.num_credit_hours(ssc)
             ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
-    termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
 
     # the following assembles studentcourselist and coursenumberlist;
     # studentcourselist is a list of all courses in the student's plan;
@@ -531,6 +588,7 @@ def display_grad_audit(request):
     # coursenumberlist is a parallel list to studentcourselist, but it just contains course numbers (e.g., PHY311)
 
     student_course_dict = {}
+    student_courses = CourseInfoCollection()
 
     # In the next line of code I use "len()" in order to force django to evaluate the
     # QuerySet...otherwise I get an error saying that the "ManyRelatedManager object is
@@ -551,6 +609,16 @@ def display_grad_audit(request):
                                                   course.number,
                                                   ssc.id]
 
+            course_info = CourseInfo(name = course.name, 
+                                     semester = ssc.semester,
+                                     actual_year = ssc.actual_year,
+                                     credit_hours = course.credit_hours,
+                                     sp = course.sp,
+                                     cc = course.cc,
+                                     iscyoc = iscyoc,
+                                     number = course.number,
+                                     id = ssc.id)
+            student_courses.add(course_info)
 
     # Now add in the user-created ("create your own") type courses.
     for cyoc in temp_data3:
@@ -571,35 +639,27 @@ def display_grad_audit(request):
                                             cyoc.number,
                                             cyoc.id]
 
+        course_info = CourseInfo(name = cyoc.name + equivcourse_namestring,
+                                 semester = ssc.semester,
+                                 actual_year = ssc.actual_year,
+                                 credit_hours = cyoc.credithours,
+                                 sp = cyoc.sp,
+                                 cc = cyoc.cc,
+                                 iscyoc = iscyoc,
+                                 number = cyoc.number,
+                                 id = cyoc.id)
+
+        student_courses.add(course_info)
 
     # the following assembles SPlist and CClist; these lists contain information about
     # SP and CC courses in the student's plan and are passed directly to the template
-    def cc_sp_course_info(semester,course_name,course_number,actual_year):
-        if semester == 0:
-            comment = "Pre-TU"
-        else:
-            comment = termdictionary[semester]+', '+str(actual_year)
-        return {'cname':course_name, 'comment':comment, 'cnumber':course_number}
     
-    SPlist=[]
-    CClist=[]
-    numSPs=0
-    numCCs=0
-    total_credit_hours_four_years=0
-    for course_number in student_course_dict:
-        course = student_course_dict[course_number]
-        total_credit_hours_four_years=total_credit_hours_four_years+course[3]
-        semester = course[1]
-        course_name = course[0]
-        course_number = course[7]
-        actual_year = course[2]
-        info = cc_sp_course_info(semester,course_name,course_number,actual_year)
-        if course[4]:       
-            SPlist.append(info)
-            numSPs=numSPs+1
-        if course[5]:
-            CClist.append(info)
-            numCCs=numCCs+1
+    SPlist= student_courses.sp_list
+    CClist= student_courses.cc_list
+    numSPs= student_courses.num_sps
+    numCCs= student_courses.num_ccs
+    total_credit_hours_four_years= student_courses.total_credit_hours
+
 
     # the following code assembles majordatablock (described in detail above);
     # the general approach is the following:
