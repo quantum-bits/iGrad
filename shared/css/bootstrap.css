@@ -3976,7 +3976,7 @@ input[type="submit"].btn.btn-mini {
   border-color: #bce8f1;
 }
 .alert-student-info{
-  width:350px;
+  width: 330px!important;
   color: #3a87ad;
   background-color: #d9edf7;
   border-color: #bce8f1;
@@ -4419,7 +4419,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar {
   *position: relative;
-  *z-index: 2;
+  z-index: 1001;
   margin-bottom: 20px;
   overflow: visible;
   width:100%;
@@ -6133,6 +6133,7 @@ a.badge:focus {
 
 li.current i {
 bottom: 0!important;
+display:inline!important;
 }
 
 .nav li i{
@@ -6145,6 +6146,7 @@ width: 8px;
 height: 4px;
 position: absolute;
 bottom: -5px;
+display:none;
 left:50%;
 margin-left: -4px;
 }
