@@ -18,14 +18,6 @@
     <div class="page-name">
     <h1>Four Year Planner</h1>
     </div>
-    <div class="login-data">
-    <p>{% if user.is_authenticated %}
-	  Logged in as {{ user }} ({{ user.info }}).
-	{% else %}
-	  Not logged in.
-	{% endif %}
-    </p>
-    </div>
     </div>
         </div>
       <div class="navbar">
@@ -46,7 +38,7 @@
 	      </ul>
 	    </li>
 	    {% if user.is_authenticated %}
-	      <li><a href="{% url 'logout' %}">Logout</a><i></i></li>
+	      <li><a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a><i></i></li>
 	    {% else %}
 	      <li id="nav-login"><a href="{% url 'login' %}">Login</a><i></i></li>
 	    {% endif %}
