@@ -439,7 +439,7 @@ def display_four_year_plan(request):
     return render(request, 'fouryearplan.html', context)
 
 CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id")
-class CourseInfoCollection(object):
+class FourYearPlanCourses(object):
     def __init__(self):
         self.collection = {}
         self.sp_list = []
@@ -576,6 +576,7 @@ def display_grad_audit(request):
 
     # ssclist is used below to construct "semarray", which is eventually assigned to the keyword "othersemester" (see above)
     ssclist=[]
+
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             numcrhrsthissem = student_local.num_credit_hours(ssc)
@@ -588,12 +589,9 @@ def display_grad_audit(request):
     # coursenumberlist is a parallel list to studentcourselist, but it just contains course numbers (e.g., PHY311)
 
     student_course_dict = {}
-    student_courses = CourseInfoCollection()
+    student_courses = FourYearPlanCourses()
 
-    # In the next line of code I use "len()" in order to force django to evaluate the
-    # QuerySet...otherwise I get an error saying that the "ManyRelatedManager object is
-    # not iterable"
-    numrecords=len(temp_data)
+
     # loop through all studentsemestercourse objects for the student, picking out the courses in the student's plan
     for ssc in temp_data:
         numhrsthissemester = 0
@@ -644,8 +642,7 @@ def display_grad_audit(request):
                                  actual_year = ssc.actual_year,
                                  credit_hours = cyoc.credithours,
                                  sp = cyoc.sp,
-                                 cc = cyoc.cc,
-                                 iscyoc = iscyoc,
+                                 cc = cyoc.cc,                                 iscyoc = iscyoc,
                                  number = cyoc.number,
                                  id = cyoc.id)
 
@@ -658,6 +655,16 @@ def display_grad_audit(request):
     CClist= student_courses.cc_list
     numSPs= student_courses.num_sps
     numCCs= student_courses.num_ccs
+    # the following checks to see if the SP and CC requirements have been met
+    if numSPs < 2:
+        SPreq = False
+    else:
+        SPreq = True
+    if numCCs == 0:
+        CCreq = False
+    else:
+        CCreq = True
+
     total_credit_hours_four_years= student_courses.total_credit_hours
 
 
@@ -680,14 +687,13 @@ def display_grad_audit(request):
             AND_OR_comment = "All of the following are required."
         else:
             AND_OR_comment = "Choose from the following."
+
         total_credit_hours_so_far=0
-        course_id_list=[]
         # loop over courses within each requirement block
         for course in mr.courselist.all():
             iscyoc=False
             cnumber=course.number
             course_id = course.id
-            course_id_list.append(course_id)
             numcrhrstaken = ''
             sscid = -1
             requirement_met = cnumber in student_course_dict
@@ -702,18 +708,21 @@ def display_grad_audit(request):
                     if row[1] == course_id:
                         precocommentlist.append(row[4] + " is a prerequisite for " +
                                                 row[2] + "; the requirement is currently not being met.")
-                
+
+                student_course = student_courses[cnumber]
                 courseinfo= student_course_dict[cnumber]
-                numcrhrstaken = courseinfo[3]
+                numcrhrstaken = student_course.credit_hours
+
                 total_credit_hours_so_far+=numcrhrstaken
-                semtemp = courseinfo[1]
-                act_year_temp = courseinfo[2]
-                sscid = courseinfo[8]
-                iscyoc = courseinfo[6]
-                if courseinfo[1]==0:
+                semester = student_course.semester
+                actual_year = student_course.actual_year
+                sscid = student_course.id
+                iscyoc = student_course.iscyoc
+                
+                if semester == 0:
                     commentfirstpart = "Pre-TU"
                 else:
-                    commentfirstpart = named_year(enteringyear, courseinfo[2], courseinfo[1])
+                    commentfirstpart = named_year(enteringyear, actual_year, semester)
                 if iscyoc:
                     # This is a "create your own course...need to exercise some caution!
                     requirementblockcontainscyoc = True
@@ -726,8 +735,8 @@ def display_grad_audit(request):
                 # False, in which case it is used as a flag for things within graduation
                 # html page
                 comment=False
-                semtemp = -1
-                act_year_temp = -1
+                semester = -1
+                actual_year = -1
 
             # If course is user-defined ("cyoc"), then don't show options for moving the
             # course, so skip the next part
@@ -735,33 +744,37 @@ def display_grad_audit(request):
                 semarray = []
             # if the course is a regular course, assemble a list of possible semesters to take the course
             else:
+
                 allsemestersthiscourse = course.semester.all()
 
                 # Form an array of other semesters when this course is offered.
                 semarraynonordered = []
 
                 for semthiscourse in allsemestersthiscourse:
-                    yearotheroffering=semthiscourse.actual_year
-                    semotheroffering=semthiscourse.semester_of_acad_year
+                    yearotheroffering = semthiscourse.actual_year
+                    semotheroffering = semthiscourse.semester_of_acad_year
                     keepthisone = True
-                    if yearotheroffering == act_year_temp and semotheroffering == semtemp:
+                    if yearotheroffering == actual_year and semotheroffering == semester:
                         keepthisone = False
                     else:
                         elementid = -1
-                        for row in ssclist:
-                            if yearotheroffering == row[1] and semotheroffering == row[2]:
-                                elementid = row[0]
-                                numhrsthissem = row[3]
+                        for course_id, actual_year,semester, credit_hours in ssclist:
+                            if yearotheroffering == actual_year and semotheroffering == semester:
+                                elementid = course_id
+                                numhrsthissem = credit_hours
                         if elementid == -1:
                             # Id wasn't found, meaning this course offering is not during
                             # a time the student is at TU
                             keepthisone = False
-                    if keepthisone == True:
+                    if keepthisone:
                         semarraynonordered.append([yearotheroffering,
                                                    semotheroffering,
                                                    elementid,
-                                                   numhrsthissem])
+                                                   credit_hours])
+
+
                 semarrayreordered=reorder_list(semarraynonordered)
+
                 semarray=[]
                 for row in semarrayreordered:
                     semarray.append({'semester': named_year(enteringyear, row[0], row[1]),
@@ -799,7 +812,7 @@ def display_grad_audit(request):
 
         # the following reorders majordatablock in the desired order 
         # (this ordering is defined when the requirement blocks are defined in the first place)
-        majordatablock2 = sorted(majordatablock, key=lambda rrow: (rrow['listorder']))
+        majordatablock = sorted(majordatablock, key=lambda rrow: (rrow['listorder']))
 
         # anything remaining in the studentcourselist at this point has not been used to meet a 
         # course requirement in one of the requirement blocks;  unusedcourses keeps track of these courses
@@ -831,7 +844,7 @@ def display_grad_audit(request):
         credithrmaxreached = False
 
     context = {'student': student_local,
-               'majordatablock': majordatablock2,
+               'majordatablock': majordatablock,
                'unusedcourses': unusedcourses,
                'unusedcredithours': unusedcredithours,
                'SPlist': SPlist,
@@ -844,6 +857,7 @@ def display_grad_audit(request):
                'credithrmaxreached': credithrmaxreached,
                'isProfessor': isProfessor,
                'hasMajor': hasMajor}
+
     return render(request, 'graduationaudit.html', context)
 
 
