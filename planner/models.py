@@ -205,6 +205,8 @@ class Student(models.Model):
     entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2012")
     # might need to add null=True above as well....
     #    birthday = models.DateField(blank=True, null=True)
+    # Update 5/9/2013 - Items to add
+    # current_status = models.CharField(max_length=100) Freshman - Senior For display purposes
 
     def __unicode__(self):
         return self.name

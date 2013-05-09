@@ -115,6 +115,15 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTH_PROFILE_MODULE = 'planner.UserProxy'
+
+AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.ModelBackend']
+if run_mode.prod:
+    AUTHENTICATION_BACKENDS.append('four_year_plan.auth.CampusLDAPBackend')
+elif run_mode.dev:
+    AUTHENTICATION_BACKENDS.append('four_year_plan.auth.FakeBackend')
+
+
 ROOT_URLCONF = 'four_year_plan.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -125,11 +134,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     run_mode.path_to('shared/templates')
-)
-
-AUTHENTICATION_BACKENDS = (
-    'planner.models.ProxiedModelBackend',
-    'django.contrib.auth.backends.ModelBackend'
 )
 
 INSTALLED_APPS = (

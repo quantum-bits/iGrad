@@ -65,6 +65,7 @@ def student_registration(request):
 @login_required
 def profile(request):
     user = request.user
+    courselist= Course.objects.all()
 
     if user.is_student():
         isProfessor = False
@@ -79,7 +80,8 @@ def profile(request):
     # email = student.user.email
     context = { 'isProfessor': isProfessor,
                 'professorname': professorname,
-                'advisee': advisee }
+                'advisee': advisee,
+		'courselist':courselist }
     return render(request, 'profile.html', context)
 
 @login_required

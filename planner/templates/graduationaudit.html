@@ -143,7 +143,7 @@
       {% for comment in req.precocommentlist %}
 	<p>
 	  <span class="label label-warning">Warning</span>
-          {{comment}}
+          <strong style="color:#f89406">{{comment}}</strong>
 	</p>
       {% endfor %}
     {% endfor %} {# req in majordatablock #}
@@ -199,11 +199,11 @@
 
     <p>
       {% if SPreq %}
-	SP requirements met!
+	<strong style="color:#08BD1D">SP requirements met!</strong>
       {% else %}
 	<span class="label label-warning">Warning</span>
-	At least 2 SP courses are required;
-	you have {{ numSPs }} in your plan.
+	<strong style="color:#ED0202">At least 2 SP courses are required;
+	you have {{ numSPs }} in your plan.</strong>
       {% endif %}
     </p>
     <ul>
@@ -216,11 +216,11 @@
 
     <p>
       {% if CCreq %}
-	CC requirements met!
+	<strong style="color:#08BD1D">CC requirements met!</strong>
       {% else %}
 	<span class="label label-warning">Warning</span>
-	At least 1 CC course is required; 
-	you have {{ numCCs }} in your plan.
+	<strong style="color:#f89406">At least 1 CC course is required; 
+	you have {{ numCCs }} in your plan.</strong>
       {% endif %}
     </p>
     <ul>
