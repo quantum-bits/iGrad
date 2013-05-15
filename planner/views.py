@@ -642,7 +642,7 @@ def display_grad_audit(request):
         course_info = CourseInfo(name = cyoc.name + equivcourse_namestring,
                                  semester = ssc.semester,
                                  actual_year = ssc.actual_year,
-                                 credit_hours = cyoc.credithours,
+                                 credit_hours = cyoc.credit_hours,
                                  sp = cyoc.sp,
                                  cc = cyoc.cc,                                 iscyoc = iscyoc,
                                  number = cyoc.number,
