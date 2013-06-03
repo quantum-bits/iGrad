@@ -459,6 +459,9 @@ class FourYearPlanCourses(object):
         """
         return self.collection[course_number]
 
+    def __setitem__(self, course_number, value):
+        self.collection[course_number] = value
+
     def add(self, *courses):
         def sp_cc_info(course):
             termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
@@ -496,7 +499,12 @@ class FourYearPlanCourses(object):
     @property
     def total_credit_hours(self):
         return sum(course.credit_hours for course in self.courses)
-        
+
+def major_courses(major):
+    """
+    Given a major, returrns a list of all of the courses for each of the requirements blocks.
+    """
+    pass
 
 @login_required
 def display_grad_audit(request):
@@ -590,7 +598,6 @@ def display_grad_audit(request):
     # elements in the list correspond to information about the courses (name, semester, etc.)
     # coursenumberlist is a parallel list to studentcourselist, but it just contains course numbers (e.g., PHY311)
 
-    student_course_dict = {}
     student_courses = FourYearPlanCourses()
 
 
@@ -599,15 +606,6 @@ def display_grad_audit(request):
         numhrsthissemester = 0
         for course in ssc.courses.all():
             iscyoc = False
-            student_course_dict[course.number] = [course.name,
-                                                  ssc.semester,
-                                                  ssc.actual_year,
-                                                  course.credit_hours,
-                                                  course.sp,
-                                                  course.cc,
-                                                  iscyoc,
-                                                  course.number,
-                                                  ssc.id]
 
             course_info = CourseInfo(name = course.name, 
                                      semester = ssc.semester,
@@ -630,16 +628,7 @@ def display_grad_audit(request):
         else:
             equivcourse_namestring =''
             eqcoursenum = ''
-        student_course_dict[cyoc.number] = [cyoc.name+equivcourse_namestring,
-                                            cyoc.semester,
-                                            cyoc.actual_year,
-                                            cyoc.credit_hours,
-                                            cyoc.sp,
-                                            cyoc.cc,
-                                            iscyoc,
-                                            cyoc.number,
-                                            cyoc.id,
-                                            False]
+
 
         course_info = CourseInfo(name = cyoc.name + equivcourse_namestring,
                                  semester = ssc.semester,
@@ -649,12 +638,11 @@ def display_grad_audit(request):
                                  cc = cyoc.cc,
                                  iscyoc = iscyoc,
                                  number = cyoc.number,
-                                 id = cyoc.id)
+                                 id = cyoc.id,
+                                 met = False)
 
         student_courses.add(course_info)
 
-    # the following assembles SPlist and CClist; these lists contain information about
-    # SP and CC courses in the student's plan and are passed directly to the template
     
     SPlist = student_courses.sp_list
     CClist = student_courses.cc_list
@@ -678,7 +666,7 @@ def display_grad_audit(request):
     # - the outer loop cycles through each requirement block for the student's major
     #   - the next loop cycles through each course in the list of courses within the requirement block
     #   - if a course in the student's plan ("studentcourselist") matches a course in a requirement block, it is 
-    #     popped out of the student's course list
+    #     popped out of the student's course list (Edit: not anymore.)
     #   - for most courses in the requirement block, a list of semesters is constructed, showing when the course
     #     could be taken (or moved to, if it is currently being taken during some semester)
 
@@ -693,7 +681,7 @@ def display_grad_audit(request):
         else:
             AND_OR_comment = "Choose from the following."
 
-        total_credit_hours_so_far=0
+        total_credit_hours_so_far = 0
         # loop over courses within each requirement block
         for course in mr.courselist.all():
             iscyoc=False
@@ -701,7 +689,7 @@ def display_grad_audit(request):
             course_id = course.id
             numcrhrstaken = ''
             sscid = -1
-            requirement_met = cnumber in student_course_dict
+            requirement_met = cnumber in student_courses
             # if the requirement is met, pop the course out of the student's list of courses
             if requirement_met:
                 # Assemble any prereq or coreq comments into a list.
@@ -715,8 +703,7 @@ def display_grad_audit(request):
                                                 row[2] + "; the requirement is currently not being met.")
 
                 student_course = student_courses[cnumber]
-                courseinfo = student_course_dict[cnumber]
-                student_course_dict[cnumber][-1] = True
+                student_courses[cnumber] = student_course._replace(met=True)
                 numcrhrstaken = student_course.credit_hours
 
                 total_credit_hours_so_far+=numcrhrstaken
@@ -732,7 +719,7 @@ def display_grad_audit(request):
                 if iscyoc:
                     # This is a "create your own course...need to exercise some caution!
                     requirementblockcontainscyoc = True
-                    comment = commentfirstpart+'; ('+str(courseinfo[7])+')*'
+                    comment = "{}; ({})*".format(commentfirstpart, course.number)
                 else:
                     # Regular TU course...no problem....
                     comment = commentfirstpart
@@ -740,16 +727,15 @@ def display_grad_audit(request):
                 # NOTE: comment is a string if there is a course scheduled; if not, it is
                 # False, in which case it is used as a flag for things within graduation
                 # html page
-                comment=False
+                comment = False
                 semester = -1
                 actual_year = -1
 
             # If course is user-defined ("cyoc"), then don't show options for moving the
             # course, so skip the next part
-            if iscyoc:
-                semarray = []
-            # if the course is a regular course, assemble a list of possible semesters to take the course
-            else:
+            semarray = []
+
+            if not iscyoc:
 
                 allsemestersthiscourse = course.semester.all()
 
@@ -772,6 +758,7 @@ def display_grad_audit(request):
                             # Id wasn't found, meaning this course offering is not during
                             # a time the student is at TU
                             keepthisone = False
+
                     if keepthisone:
                         semarraynonordered.append([yearotheroffering,
                                                    semotheroffering,
@@ -781,7 +768,6 @@ def display_grad_audit(request):
 
                 semarrayreordered=reorder_list(semarraynonordered)
 
-                semarray=[]
                 for row in semarrayreordered:
                     semarray.append({'semester': named_year(enteringyear, row[0], row[1]),
                                      'courseid': row[2],
@@ -824,16 +810,17 @@ def display_grad_audit(request):
         # course requirement in one of the requirement blocks;  unusedcourses keeps track of these courses
         unusedcourses=[]
         unusedcredithours=0
-        for course_number in student_course_dict:
-            course = student_course_dict[course_number]
-            if not course[-1]:
+        for course in student_courses.courses:
+            # the last element in course is whether it was met. Earlier in the code this is 
+            # initialized to false, and set to true it is met.
+            if not course.met: 
                 unusedcredithours=unusedcredithours+course[3]
-                if course[1]==0:
+                if course.semester == 0:
                     comment = "Pre-TU"
                 else:
-                    comment = named_year(enteringyear, course[2], course[1])
-                    unusedcourses.append({'cname':course[0],'cnumber':course[7],
-                                          'ccredithrs':course[3],'sp':course[4],'cc':course[5],
+                    comment = named_year(enteringyear, course.actual_year, course.semester)
+                    unusedcourses.append({'cname':course.name,'cnumber':course.number,
+                                          'ccredithrs':course.credit_hours,'sp':course.sp,'cc':course.cc,
                                           'comment':comment})
 
         # the following checks to see if the SP and CC requirements have been met
