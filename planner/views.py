@@ -440,7 +440,7 @@ def display_four_year_plan(request):
                'isProfessor': isProfessor}
     return render(request, 'fouryearplan.html', context)
 
-CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id")
+CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id, met")
 class FourYearPlanCourses(object):
     def __init__(self):
         self.collection = {}
@@ -617,7 +617,8 @@ def display_grad_audit(request):
                                      cc = course.cc,
                                      iscyoc = iscyoc,
                                      number = course.number,
-                                     id = ssc.id)
+                                     id = ssc.id,
+                                     met = False)
             student_courses.add(course_info)
 
     # Now add in the user-created ("create your own") type courses.
@@ -637,14 +638,16 @@ def display_grad_audit(request):
                                             cyoc.cc,
                                             iscyoc,
                                             cyoc.number,
-                                            cyoc.id]
+                                            cyoc.id,
+                                            False]
 
         course_info = CourseInfo(name = cyoc.name + equivcourse_namestring,
                                  semester = ssc.semester,
                                  actual_year = ssc.actual_year,
                                  credit_hours = cyoc.credit_hours,
                                  sp = cyoc.sp,
-                                 cc = cyoc.cc,                                 iscyoc = iscyoc,
+                                 cc = cyoc.cc,
+                                 iscyoc = iscyoc,
                                  number = cyoc.number,
                                  id = cyoc.id)
 
@@ -653,10 +656,10 @@ def display_grad_audit(request):
     # the following assembles SPlist and CClist; these lists contain information about
     # SP and CC courses in the student's plan and are passed directly to the template
     
-    SPlist= student_courses.sp_list
-    CClist= student_courses.cc_list
-    numSPs= student_courses.num_sps
-    numCCs= student_courses.num_ccs
+    SPlist = student_courses.sp_list
+    CClist = student_courses.cc_list
+    numSPs = student_courses.num_sps
+    numCCs = student_courses.num_ccs
     # the following checks to see if the SP and CC requirements have been met
     if numSPs < 2:
         SPreq = False
@@ -712,7 +715,8 @@ def display_grad_audit(request):
                                                 row[2] + "; the requirement is currently not being met.")
 
                 student_course = student_courses[cnumber]
-                courseinfo= student_course_dict[cnumber]
+                courseinfo = student_course_dict[cnumber]
+                student_course_dict[cnumber][-1] = True
                 numcrhrstaken = student_course.credit_hours
 
                 total_credit_hours_so_far+=numcrhrstaken
@@ -822,14 +826,16 @@ def display_grad_audit(request):
         unusedcredithours=0
         for course_number in student_course_dict:
             course = student_course_dict[course_number]
-            unusedcredithours=unusedcredithours+course[3]
-            if course[1]==0:
-                comment = "Pre-TU"
-            else:
-                comment = named_year(enteringyear, course[2], course[1])
-            unusedcourses.append({'cname':course[0],'cnumber':course[7],
-                                  'ccredithrs':course[3],'sp':course[4],'cc':course[5],
-                                  'comment':comment})
+            if not course[-1]:
+                unusedcredithours=unusedcredithours+course[3]
+                if course[1]==0:
+                    comment = "Pre-TU"
+                else:
+                    comment = named_year(enteringyear, course[2], course[1])
+                    unusedcourses.append({'cname':course[0],'cnumber':course[7],
+                                          'ccredithrs':course[3],'sp':course[4],'cc':course[5],
+                                          'comment':comment})
+
         # the following checks to see if the SP and CC requirements have been met
         if numSPs < 2:
             SPreq = False
