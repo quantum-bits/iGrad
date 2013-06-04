@@ -97,7 +97,7 @@ class SemesterName(models.Model):
 
 
 class Semester(models.Model):
-    """Intance of a single semester in a given academic year."""
+    """Instance of a single semester in a given academic year."""
     name = models.ForeignKey(SemesterName)
     year = models.ForeignKey(AcademicYear, related_name='semesters')
     begin_on = models.DateField()
@@ -263,3 +263,16 @@ class ClassMeeting(StampedModel):
 
     def __unicode__(self):
         return '{0} ({1} {2})'.format(self.course_offering, self.held_on, self.begin_at)
+
+
+
+
+
+
+
+
+
+
+
+
+

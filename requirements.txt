@@ -5,3 +5,4 @@ django-debug-toolbar==0.9.4
 gunicorn==0.17.2
 psycopg2==2.5
 wsgiref==0.1.2
+PIL==1.1.7
