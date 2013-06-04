@@ -1084,6 +1084,201 @@
     }
 },
 {
+    "pk": 7, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:15:40.164Z", 
+        "object_repr": "Fall Term", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 8, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:16:04.590Z", 
+        "object_repr": "January Term", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 9, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-04T20:16:15.154Z", 
+        "object_repr": "January Term", 
+        "object_id": "2", 
+        "change_message": "Changed seq.", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 10, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:16:31.062Z", 
+        "object_repr": "Spring Term", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 11, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:16:40.132Z", 
+        "object_repr": "Summer Term", 
+        "object_id": "4", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 12, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-04T20:16:44.614Z", 
+        "object_repr": "Summer Term", 
+        "object_id": "4", 
+        "change_message": "Changed seq.", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 13, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-04T20:16:49.187Z", 
+        "object_repr": "Fall Term", 
+        "object_id": "1", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 14, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-04T20:16:52.756Z", 
+        "object_repr": "Fall Term", 
+        "object_id": "1", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "content_type": 17
+    }
+},
+{
+    "pk": 15, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:18:08.197Z", 
+        "object_repr": "Fall Term 2011-2012", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 18
+    }
+},
+{
+    "pk": 16, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:18:40.928Z", 
+        "object_repr": "Minor object", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 13
+    }
+},
+{
+    "pk": 17, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:19:28.392Z", 
+        "object_repr": "Computer Science BS", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 35
+    }
+},
+{
+    "pk": 18, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:21:31.589Z", 
+        "object_repr": "COS", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 22
+    }
+},
+{
+    "pk": 19, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:26:04.497Z", 
+        "object_repr": "Speaking", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 23
+    }
+},
+{
+    "pk": 20, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:26:14.876Z", 
+        "object_repr": "Cross Cultural", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 23
+    }
+},
+{
+    "pk": 21, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-04T20:26:23.757Z", 
+        "object_repr": "Writing", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 23
+    }
+},
+{
     "pk": 1, 
     "model": "planner.university", 
     "fields": {
@@ -1124,6 +1319,14 @@
 },
 {
     "pk": 1, 
+    "model": "planner.minor", 
+    "fields": {
+        "department": 1, 
+        "name": "Computer Science"
+    }
+},
+{
+    "pk": 1, 
     "model": "planner.academicyear", 
     "fields": {
         "end_on": "2013-08-18", 
@@ -1136,6 +1339,104 @@
     "fields": {
         "end_on": "2012-08-26", 
         "begin_on": "2011-08-29"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.semestername", 
+    "fields": {
+        "full_name": "Fall Term", 
+        "abbrev_name": "F", 
+        "seq": 10
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.semestername", 
+    "fields": {
+        "full_name": "January Term", 
+        "abbrev_name": "J-Term", 
+        "seq": 20
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.semestername", 
+    "fields": {
+        "full_name": "Spring Term", 
+        "abbrev_name": "Spring ", 
+        "seq": 30
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.semestername", 
+    "fields": {
+        "full_name": "Summer Term", 
+        "abbrev_name": "Summer", 
+        "seq": 40
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.semester", 
+    "fields": {
+        "begin_on": "2011-08-28", 
+        "end_on": "2011-12-15", 
+        "name": 1, 
+        "year": 2
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.subject", 
+    "fields": {
+        "department": 1, 
+        "abbrev": "COS", 
+        "created_at": "2013-06-04T20:21:31.584Z", 
+        "updated_at": "2013-06-04T20:21:31.584Z", 
+        "name": "Computer Science"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.courseattribute", 
+    "fields": {
+        "abbrev": "SP", 
+        "created_at": "2013-06-04T20:26:04.492Z", 
+        "updated_at": "2013-06-04T20:26:04.492Z", 
+        "name": "Speaking"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.courseattribute", 
+    "fields": {
+        "abbrev": "CC", 
+        "created_at": "2013-06-04T20:26:14.871Z", 
+        "updated_at": "2013-06-04T20:26:14.871Z", 
+        "name": "Cross Cultural"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.courseattribute", 
+    "fields": {
+        "abbrev": "WR", 
+        "created_at": "2013-06-04T20:26:23.753Z", 
+        "updated_at": "2013-06-04T20:26:23.753Z", 
+        "name": "Writing"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.degreeprogram", 
+    "fields": {
+        "created_at": "2013-06-04T20:19:28.385Z", 
+        "entering_year": "E", 
+        "major": 1, 
+        "updated_at": "2013-06-04T20:19:28.385Z", 
+        "name": "Computer Science BS"
     }
 }
 ]
