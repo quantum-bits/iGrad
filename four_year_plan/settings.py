@@ -128,8 +128,8 @@ TEMPLATE_DIRS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'planner.models.ProxiedModelBackend',
-    'django.contrib.auth.backends.ModelBackend'
+    #'planner.models.ProxiedModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 INSTALLED_APPS = (

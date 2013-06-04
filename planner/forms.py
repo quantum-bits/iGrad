@@ -8,6 +8,7 @@ class RegistrationForm(forms.ModelForm):
     email = forms.EmailField(label=(u'Email Address'))
     password = forms.CharField(label=(u'Password'),
                                widget=forms.PasswordInput(render_value=False))
+    
     password1 = forms.CharField(label=(u'Verify Password'),
                                 widget=forms.PasswordInput(render_value=False))
 
@@ -34,6 +35,7 @@ class RegistrationForm(forms.ModelForm):
         # it doesn't specifically give the password error message....
         return self.cleaned_data
 
+"""
 class AddStudentSemesterForm(forms.ModelForm):
     class Meta:
         model = StudentSemesterCourses
@@ -52,6 +54,7 @@ class AddStudentSemesterForm(forms.ModelForm):
     def clean_student(self):
         courses = self.cleaned_data['courses']
         return courses
+"""
 
 class AddAdvisingNoteForm(forms.ModelForm):
 
@@ -59,20 +62,23 @@ class AddAdvisingNoteForm(forms.ModelForm):
         model = AdvisingNote
         exclude = ('student', 'datestamp')
 
-class AddCreateYourOwnCourseForm(forms.ModelForm):
+class AddTransferCourse(forms.ModelForm):
 
     class Meta:
-        model = CreateYourOwnCourse
-        exclude = ('semester', 'actual_year', 'student')
+        model = TransferCourse
+        exclude = ('semester', 'student',)
 
+"""
 class AddAdviseeForm(forms.ModelForm):
 
     class Meta:
         model = Professor
         exclude = ('user', 'name')
+"""
 
 class UpdateMajorForm(forms.ModelForm):
 
     class Meta:
         model = Student
         exclude = ('user', 'name', 'entering_year')
+

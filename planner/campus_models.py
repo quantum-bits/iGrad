@@ -45,6 +45,9 @@ class Major(models.Model):
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='majors')
 
+    def __unicode__(self):
+        return self.name
+        
 
 class Minor(models.Model):
     """Academic minor"""
