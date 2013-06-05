@@ -54,6 +54,8 @@ class Minor(models.Model):
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='minors')
 
+    def __unicode__(self):
+        return self.name
 
 class FacultyMember(Person):
     RANK_CHOICES = (('Inst', 'Instructor'),
@@ -89,14 +91,13 @@ class SemesterName(models.Model):
     which to order the semesters throughout the academic year.
     """
     seq = models.PositiveIntegerField(default=10)
-    abbrev_name = models.CharField(max_length=10)
-    full_name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40)
 
     class Meta:
         ordering = ['seq']
 
     def __unicode__(self):
-        return self.full_name
+        return self.name
 
 
 class Semester(models.Model):
