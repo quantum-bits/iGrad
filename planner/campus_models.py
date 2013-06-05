@@ -206,8 +206,8 @@ class Student(Person):
                                       help_text='Year student entered university')
     catalog_year = models.ForeignKey(AcademicYear, related_name='+',
                                      help_text='Catalog year for graduation plan')
-    majors = models.ManyToManyField(Major, related_name='students')
-    minors = models.ManyToManyField(Minor, related_name='students')
+    majors = models.ManyToManyField(Major, related_name='students', blank=True, null=True)
+    minors = models.ManyToManyField(Minor, related_name='students', blank=True, null=True)
 
 
 class CourseOffering(StampedModel):
