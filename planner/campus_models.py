@@ -186,7 +186,7 @@ class Course(StampedModel):
     coreqs = models.ManyToManyField('self', symmetrical=False, blank=True,
                                     related_name='coreq_for')
 
-    attributes = models.ManyToManyField(CourseAttribute, related_name='courses') 
+    attributes = models.ManyToManyField(CourseAttribute, related_name='courses', blank=True, null=True)
 
     schedule_semester = models.ManyToManyField(SemesterName, help_text='Semester(s) offered')
     schedule_year = models.CharField(max_length=1, choices=SCHEDULE_YEAR_CHOICES)

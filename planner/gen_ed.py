@@ -82,64 +82,65 @@ REQUIRED_COURSES = format_course_numbers(ORIENTATION +
 
 
 
+if __name__ == '__main__':
 
 #remove whitespace so and uppercase to make comparison easy
-data = open('planned_courses.txt', 'r').read()
-courses = format_course_numbers(data.split(','))
-unmet_courses = list(set(REQUIRED_COURSES) - set(courses))
-courses_meeting_reqs = []
+    data = open('planned_courses.txt', 'r').read()
+    courses = format_course_numbers(data.split(','))
+    unmet_courses = list(set(REQUIRED_COURSES) - set(courses))
+    courses_meeting_reqs = []
 
-if unmet_courses:
-    print "Missing required courses."
-    print "Unmet courses:\n{}".format("\n".join(unmet_courses))
-else:
-    print "All required courses met."
+    if unmet_courses:
+        print "Missing required courses."
+        print "Unmet courses:\n{}".format("\n".join(unmet_courses))
+    else:
+        print "All required courses met."
 
 
-meet_one_of(courses, MATH_ONE_OF, courses_meeting_reqs, "Math")
-meet_one_of(courses, LITERATURE_ONE_OF, courses_meeting_reqs, "Literature")
-meet_one_of(courses, COMPUTER_SCIENCE_ONE_OF, courses_meeting_reqs, "Computer Science")
-meet_one_of(courses, SPEAKING_ONE_OF, courses_meeting_reqs, "Speaking")
-meet_one_of(courses, STEWARDSHIP_ONE_OF, courses_meeting_reqs, "Stewardship")
+    meet_one_of(courses, MATH_ONE_OF, courses_meeting_reqs, "Math")
+    meet_one_of(courses, LITERATURE_ONE_OF, courses_meeting_reqs, "Literature")
+    meet_one_of(courses, COMPUTER_SCIENCE_ONE_OF, courses_meeting_reqs, "Computer Science")
+    meet_one_of(courses, SPEAKING_ONE_OF, courses_meeting_reqs, "Speaking")
+    meet_one_of(courses, STEWARDSHIP_ONE_OF, courses_meeting_reqs, "Stewardship")
 
-meet_life_sci = []
-meet_phy_sci  = []
-meet_earth_sci = []
-for course in courses:
-    if course in LIFE_SCIENCE:
-        meet_life_sci.append(course)
-    if course in PHYSICAL_SCIENCE:
-        meet_phy_sci.append(course)
-    if course in EARTH_SCIENCE:
-        meet_earth_sci.append(course)
+    meet_life_sci = []
+    meet_phy_sci  = []
+    meet_earth_sci = []
+    for course in courses:
+        if course in LIFE_SCIENCE:
+            meet_life_sci.append(course)
+        if course in PHYSICAL_SCIENCE:
+            meet_phy_sci.append(course)
+        if course in EARTH_SCIENCE:
+            meet_earth_sci.append(course)
 
-if (len(meet_life_sci) +  len(meet_phy_sci)  + len(meet_earth_sci)) >= 2:
-    # If we have duplicates appending the lists and changing them to a set 
-    # should remove them. This is for when one class meets multiple reqs. 
-    all_sci = set(meet_life_sci + meet_phy_sci + meet_earth_sci)
-    if len(all_sci) >= 2:
-        print "Science Requirement met."
+    if (len(meet_life_sci) +  len(meet_phy_sci)  + len(meet_earth_sci)) >= 2:
+        # If we have duplicates appending the lists and changing them to a set 
+        # should remove them. This is for when one class meets multiple reqs. 
+        all_sci = set(meet_life_sci + meet_phy_sci + meet_earth_sci)
+        if len(all_sci) >= 2:
+            print "Science Requirement met."
+        else:
+            print "Does not meet science requirement."
     else:
         print "Does not meet science requirement."
-else:
-    print "Does not meet science requirement."
 
 
-meet_civic_eng   = []
-meet_general_soc = []
-for course in courses:
-    if course in CIVIC_ENGAGE:
-        meet_civic_eng.append(course)
-    if course in GENERAL_SOCIAL:
-        meet_general_soc.append(course)
+    meet_civic_eng   = []
+    meet_general_soc = []
+    for course in courses:
+        if course in CIVIC_ENGAGE:
+            meet_civic_eng.append(course)
+        if course in GENERAL_SOCIAL:
+            meet_general_soc.append(course)
 
-if meet_civic_eng:
-    soc_courses = meet_civic_eng + meet_general_soc
+    if meet_civic_eng:
+        soc_courses = meet_civic_eng + meet_general_soc
 
-    prefixes = [course_prefix(course) for course in soc_courses]
-    if len(set(prefixes)) >= 2:
-        print "Meets Social Science Requirement."
+        prefixes = [course_prefix(course) for course in soc_courses]
+        if len(set(prefixes)) >= 2:
+            print "Meets Social Science Requirement."
+        else:
+            print "Does not meet social science requirement."
     else:
         print "Does not meet social science requirement."
-else:
-    print "Does not meet social science requirement."
