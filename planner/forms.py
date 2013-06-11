@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from models import *
 
+class RequirementForm(forms.ModelForm):
+    class Meta:
+        model = Requirement
+    
+    def clean(self):
+        courses = self.cleaned_data.get('courses')
+        requirements = self.cleaned_data.get('requirements')
+        print self.cleaned_data
+        if bool(courses) == bool(requirements):
+            raise forms.ValidationError("You need either courses or requirements but not both.")
+        
+        return self.cleaned_data
+
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label=(u'User Name'))
     email = forms.EmailField(label=(u'Email Address'))

@@ -1,6 +1,6 @@
-from django.db import models
-
 from common_models import *
+from django.db import models
+from itertools import chain
 
 import logging
 logger = logging.getLogger(__name__)
@@ -30,7 +30,8 @@ class School(StampedModel):
 
 class Department(models.Model):
     """Academic department"""
-    abbrev = models.CharField(max_length=10)
+    # not every department has a convient abbreviation.
+    abbrev = models.CharField(max_length=10, blank=True)
     name = models.CharField(max_length=100)
     school = models.ForeignKey(School, related_name='departments')
     chair = models.OneToOneField('FacultyMember', blank=True, null=True,
@@ -173,6 +174,87 @@ class CourseAttribute(StampedModel):
         return self.name
 
 
+class Constraint(models.Model):
+    name = models.CharField(max_length = 80)
+    constraint_text = models.CharField(max_length = 100)
+
+    def __unicode__(self):
+        return self.name
+
+    def parse_constraint_text(self):
+        tokens = self.constraint_text.split()
+        name,args = tokens[0],tokens[1:]
+        parameters = {}
+        
+        for i in range(0, len(args), 2):
+            parameters[args[i]] = args[i + 1]
+        
+        return (name, parameters)
+
+    def satisfied(self, courses, requirement):
+        name, arguments = self.parse_constraint_text()
+        return getattr(self, name)(courses, requirement, **arguments)
+
+    def any(self, courses, requirement, **kwargs):
+        required_courses = requirement.all_courses()
+        common_courses = set(required_courses).intersection(set(courses))
+        return len(common_courses) >= 1
+
+    def all(self, courses, requirement, **kwargs):
+        required_courses = requirement.all_courses()
+        un_met_courses = set(required_courses) - set(courses)
+        return un_met_courses == 0
+
+    def meet_some(self, courses, requirement, **kwargs):
+        required_courses = requirement.all_courses()
+        met_courses = set(required_courses).intersection(set(courses))
+        at_least = int(kwargs['at_least'])
+        return len(met_courses) >= at_least
+    
+    def min_requried_credit_hours (self, courses, requirement, **kwargs):
+        at_least = int(kwargs['at_least'])
+        all_courses = requirement.all_courses()
+        courses_meeting_reqs = set(all_courses).intersection(set(courses))
+        return len(courses_meeting_reqs) >= at_least
+                                      
+class Requirement(models.Model):
+    name = models.CharField(max_length=50,
+                            help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature;"
+                            "first part is helpful for searching (when creating a major).")
+    
+    display_name = models.CharField(max_length=50,
+                                    help_text="e.g., Technical Electives, or Literature;"
+                                    "this is the title that will show up when students"
+                                    "do a graduation audit.")
+
+    constraints = models.ManyToManyField(Constraint, related_name='constraints', blank=True)
+    requirements = models.ManyToManyField('self', symmetrical=False, blank=True, related_name = 'sub_requirements')
+    courses = models.ManyToManyField('Course', related_name = 'courses', blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+    def all_courses(self):
+        courses = self.courses.all()
+        reqs = self.requirements.all()
+        req_courses = [list(req.all_courses()) for req in reqs]
+
+        return list(courses) + (list(chain(*req_courses)))
+
+    def satisfied(self, *courses):
+        satisfied = True
+        requirements = self.sub_requirements.all()
+        if requirements:
+            for requirement in requirements:
+                satisfied = satisfied and requirement.satisfied(courses)
+
+        constraints = self.constraints.all()
+        for constraint in constraints:
+            satisfied = satisfied and constraint.satisfied(courses, self)
+        return satisfied
+
+
+
 class Course(StampedModel):
     """Course as listed in the catalog."""
     SCHEDULE_YEAR_CHOICES = (('E', 'Even'), ('O', 'Odd'), ('B', 'Both'))
@@ -181,10 +263,8 @@ class Course(StampedModel):
     number = models.CharField(max_length=10)
     title = models.CharField(max_length=80)
     credit_hours = models.PositiveIntegerField(default=3)
-    prereqs = models.ManyToManyField('self', symmetrical=False, blank=True,
-                                     related_name='prereq_for')
-    coreqs = models.ManyToManyField('self', symmetrical=False, blank=True,
-                                    related_name='coreq_for')
+    prereqs = models.ManyToManyField('Requirement', blank=True, related_name='prereq_for')
+    coreqs  = models.ManyToManyField('Requirement', blank=True, related_name='coreq_for')
 
     attributes = models.ManyToManyField(CourseAttribute, related_name='courses', blank=True, null=True)
 
@@ -197,6 +277,9 @@ class Course(StampedModel):
     @property
     def department(self):
         return self.subject.department
+
+    class Meta:
+        ordering = ['subject', 'number' , 'title']
 
 
 class Student(Person):

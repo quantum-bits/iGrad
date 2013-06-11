@@ -1,38 +1,52 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
-from planner.models import User
+from planner.campus_models import Course, Requirement
 
-class PlannerTest(TestCase):
+class RequirementTest(TestCase):
+    def test_any_prereq(self):
+        cos310 = Course.objects.get(subject__abbrev = 'COS', number = 310)
+        cos_300_courses = Course.objects.filter(subject__abbrev = 'COS', number__gte = 300)
+        cos_300_courses = cos_300_courses.exclude(subject__abbrev = 'COS', number = 310)
+        cos310_prereqs = cos310.prereqs.all()
 
-    #fixtures = ['test.json']
+        for prereq in cos310_prereqs:
+            for course in cos_300_courses:
+                satisfied = prereq.satisfied(course)
+                self.assertTrue(satisfied)
+            self.assertFalse(prereq.satisfied(cos310))
+                
 
-    def test_login(self):
-        """
-        Tests login of iGrad page
-        1. Test to make sure unregistered user can't login
-        2. Test that registered user can login
-        """
-        #Test Attributes of Login Page
-        response = self.client.get('/accounts/login/?=next/')
-        self.assertContains(response, 'iGrad Four Year Planner')
-        self.assertContains(response, 'Login')
-        self.assertContains(response, 'Not logged in.')
+    def test_all_prereq(self):
+        cos120 = Course.objects.get(subject__abbrev = 'COS', number = 120)
+        cos121 = Course.objects.get(subject__abbrev = 'COS', number = 121)
+        cos121_prereqs = cos121.prereqs.all()
 
+        for prereq in cos121_prereqs:
+            self.assertTrue(prereq.satisfied(cos120))
 
-        #Unregistered user should not be able to login
-        response = self.client.login(username="badUser",password="junk")
-        self.assertFalse(response)
+        for prereq in cos121_prereqs:
+            self.assertFalse(prereq.satisfied())
 
-        #Registered user should be able to login
-        response = self.client.login(username="majorStudent",password="foobar")
-        self.assertTrue(response)
-        self.assertContains(self.client.get('/'), 'Logged in as ')
+    def test_meet_two(self):
+        requirement = Requirement.objects.get(name='CS Theory Courses')
+        cos_320 = Course.objects.get(subject__abbrev = 'COS', number = 320)
+        cos_382 = Course.objects.get(subject__abbrev = 'COS', number = 382)
+        cos_435 = Course.objects.get(subject__abbrev = 'COS', number = 435)
+
+        satisfied = requirement.satisfied(cos_320, cos_382, cos_435)
+        self.assertTrue(satisfied)
+        self.assertFalse(requirement.satisfied(cos_320))
         
-        #A user is able to log out
+    def test_multilevel_requirments(self):
+        pass
+
+        
+
+    
+
+
+
+
+
+
+
 

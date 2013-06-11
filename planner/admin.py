@@ -1,5 +1,10 @@
 from django.contrib import admin
 from planner.models import *
+from planner.forms import RequirementForm
+
+
+class RequirementAdmin(admin.ModelAdmin):
+    form = RequirementForm
 
 class SemesterAdmin(admin.ModelAdmin):
     list_display = ('name', 'year')
@@ -33,22 +38,24 @@ class DegreeProgramCourseAdmin(admin.ModelAdmin):
     search_fields = ('degree_program',)
 
 
-admin.site.register(CourseOffering)
-admin.site.register(SemesterName)
-admin.site.register(FacultyMember)
-admin.site.register(Semester, SemesterAdmin)
-admin.site.register(Department)
-admin.site.register(Course, CourseAdmin)
-admin.site.register(RequirementBlock, RequirementBlockAdmin)
-admin.site.register(Major, MajorAdmin)
-admin.site.register(Student, StudentAdmin)
-admin.site.register(AdvisingNote)
 admin.site.register(AcademicYear)
-admin.site.register(TransferCourse)
+admin.site.register(AdvisingNote)
+admin.site.register(Course, CourseAdmin)
+admin.site.register(CourseAttribute)
+admin.site.register(CourseOffering)
 admin.site.register(DegreeProgram, DegreeProgramAdmin)
 admin.site.register(DegreeProgramCourse, DegreeProgramCourseAdmin)
+admin.site.register(Department)
+admin.site.register(FacultyMember)
+admin.site.register(Major, MajorAdmin)
 admin.site.register(Minor)
-admin.site.register(University)
+admin.site.register(Requirement, RequirementAdmin)
 admin.site.register(School)
+admin.site.register(Semester, SemesterAdmin)
+admin.site.register(SemesterName)
+admin.site.register(Student, StudentAdmin)
 admin.site.register(Subject)
-admin.site.register(CourseAttribute)
+admin.site.register(TransferCourse)
+admin.site.register(University)
+admin.site.register(Constraint)
+
