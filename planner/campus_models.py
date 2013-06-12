@@ -4,6 +4,8 @@ from itertools import chain
 
 import logging
 logger = logging.getLogger(__name__)
+LOG_FILENAME = 'constraint.log'
+logging.basicConfig(filename=LOG_FILENAME, level = logging.DEBUG, filemode = 'w')
 
 
 class University(StampedModel):
@@ -185,10 +187,8 @@ class Constraint(models.Model):
         tokens = self.constraint_text.split()
         name,args = tokens[0],tokens[1:]
         parameters = {}
-        
         for i in range(0, len(args), 2):
             parameters[args[i]] = args[i + 1]
-        
         return (name, parameters)
 
     def satisfied(self, courses, requirement):
@@ -211,12 +211,22 @@ class Constraint(models.Model):
         at_least = int(kwargs['at_least'])
         return len(met_courses) >= at_least
     
-    def min_requried_credit_hours (self, courses, requirement, **kwargs):
+    def min_required_credit_hours (self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
         all_courses = requirement.all_courses()
         courses_meeting_reqs = set(all_courses).intersection(set(courses))
-        return len(courses_meeting_reqs) >= at_least
-                                      
+        return sum(course.credit_hours for course in courses_meeting_reqs) >= at_least
+
+    def all_sub_categories_satisfied(self, courses, requirement, **kwargs):
+        sub_categories = requirement.sub_categories()
+        satisfied = [sub_category.satisfied(*courses) for sub_category in sub_categories]
+        return all(satisfied)
+
+    def satisfy_some_sub_categories(self, courses, requirement, **kwargs):
+        at_least = int(kwargs['at_least'])
+        return len(requirement.satisfied_sub_categories(courses)) >= at_least
+        
+        
 class Requirement(models.Model):
     name = models.CharField(max_length=50,
                             help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature;"
@@ -234,6 +244,12 @@ class Requirement(models.Model):
     def __unicode__(self):
         return self.name
 
+    def satisfied_sub_categories(self, courses):
+        satisfied_sub_categories = [sub_category 
+                                    for sub_category in self.sub_categories()
+                                    if sub_category.satisfied(*courses)]
+        return satisfied_sub_categories
+
     def all_courses(self):
         courses = self.courses.all()
         reqs = self.requirements.all()
@@ -243,16 +259,15 @@ class Requirement(models.Model):
 
     def satisfied(self, *courses):
         satisfied = True
-        requirements = self.sub_requirements.all()
-        if requirements:
-            for requirement in requirements:
-                satisfied = satisfied and requirement.satisfied(courses)
-
-        constraints = self.constraints.all()
-        for constraint in constraints:
-            satisfied = satisfied and constraint.satisfied(courses, self)
+        for constraint in self.constraints.all():
+            constraint_satisfied = constraint.satisfied(courses, self)
+            if not constraint_satisfied:
+                logging.debug('{}: {} not satisfied'.format(self, constraint.name))
+            satisfied = constraint_satisfied and satisfied 
         return satisfied
 
+    def sub_categories(self):
+        return [sub_category for sub_category in self.requirements.all()]
 
 
 class Course(StampedModel):

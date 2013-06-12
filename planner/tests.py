@@ -36,17 +36,20 @@ class RequirementTest(TestCase):
         self.assertTrue(satisfied)
         self.assertFalse(requirement.satisfied(cos_320))
         
-    def test_multilevel_requirments(self):
-        pass
-
+    def test_sub_requirements_retrieval(self):
+        science_gen_ed = Requirement.objects.get(name = 'Science Gen Eds')
+        self.assertEqual(len(science_gen_ed.requirements.all()), 3, 'Science Gen Ed should have 3 sub requirements.')
+        self.assertEqual(len(science_gen_ed.sub_categories()), 3, 'Science Gen Ed should have 3 sub categories.')
         
+                                              
+    def test_multilevel_requirments(self):
+        science_gen_ed = Requirement.objects.get(name='Science Gen Eds')
+        geo_210 = Course.objects.get(subject__abbrev = 'GEO', number = 210)
+        bio_100 = Course.objects.get(subject__abbrev = 'BIO', number = 100)
+        
+        che_120 = Course.objects.get(subject__abbrev = 'CHE', number = 120)
 
-    
-
-
-
-
-
-
-
+        self.assertTrue(science_gen_ed.satisfied(geo_210, bio_100))
+        self.assertFalse(science_gen_ed.satisfied(che_120))
+        self.assertTrue(science_gen_ed.satisfied(geo_210, che_120, bio_100))
 
