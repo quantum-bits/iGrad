@@ -1,10 +1,6 @@
 from django.contrib import admin
 from planner.models import *
-from planner.forms import RequirementForm
 
-
-class RequirementAdmin(admin.ModelAdmin):
-    form = RequirementForm
 
 class SemesterAdmin(admin.ModelAdmin):
     list_display = ('name', 'year')
@@ -49,7 +45,7 @@ admin.site.register(Department)
 admin.site.register(FacultyMember)
 admin.site.register(Major, MajorAdmin)
 admin.site.register(Minor)
-admin.site.register(Requirement, RequirementAdmin)
+admin.site.register(Requirement)
 admin.site.register(School)
 admin.site.register(Semester, SemesterAdmin)
 admin.site.register(SemesterName)
