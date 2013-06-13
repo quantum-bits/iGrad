@@ -10,6 +10,9 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ('title', 'number')
     filter_horizontal = ('schedule_semester','prereqs','coreqs',)
 
+class RequirementAdmin(admin.ModelAdmin):
+    filter_horizontal = ('constraints', 'requirements', 'courses',)
+
 class RequirementBlockAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     filter_horizontal = ('courselist',)
@@ -45,7 +48,7 @@ admin.site.register(Department)
 admin.site.register(FacultyMember)
 admin.site.register(Major, MajorAdmin)
 admin.site.register(Minor)
-admin.site.register(Requirement)
+admin.site.register(Requirement, RequirementAdmin)
 admin.site.register(School)
 admin.site.register(Semester, SemesterAdmin)
 admin.site.register(SemesterName)
