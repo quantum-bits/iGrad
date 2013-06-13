@@ -53,3 +53,14 @@ class RequirementTest(TestCase):
         self.assertFalse(science_gen_ed.satisfied(che_120))
         self.assertTrue(science_gen_ed.satisfied(geo_210, che_120, bio_100))
 
+    def test_courses_and_requirments_block(self):
+        """Test requirements blocks that have both courses
+           and sub requirement blocks.
+        """
+        stewardship_req = Requirement.objects.get(name='Stewardship of the Body Gen Eds')
+        php_100 = Course.objects.get(subject__abbrev = 'PHP', number = 100)
+        php_200 = Course.objects.get(subject__abbrev = 'PHP', number = 200)
+
+        self.assertTrue(stewardship_req.satisfied(php_100, php_200))
+
+

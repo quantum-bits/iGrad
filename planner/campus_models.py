@@ -159,7 +159,7 @@ class Subject(StampedModel):
     """Subject areas such as COS, PHY, SYS, etc. Note that subject and department are not the
     same thing. A department usually offers courses in multiple subjects.
     """
-    department = models.ForeignKey(Department, related_name='subjects')
+    department = models.ForeignKey(Department, related_name='subjects', blank = True, null = True)
     abbrev = models.CharField(max_length=10) # EG: COS, SYS
     name = models.CharField(max_length=80)   # EG: Computer Science, Systems
 
@@ -196,14 +196,14 @@ class Constraint(models.Model):
         return getattr(self, name)(courses, requirement, **arguments)
 
     def any(self, courses, requirement, **kwargs):
-        required_courses = requirement.all_courses()
+        required_courses = list(requirement.courses.all())
         common_courses = set(required_courses).intersection(set(courses))
         return len(common_courses) >= 1
 
     def all(self, courses, requirement, **kwargs):
-        required_courses = requirement.all_courses()
+        required_courses = list(requirement.courses.all())
         un_met_courses = set(required_courses) - set(courses)
-        return un_met_courses == 0
+        return len(un_met_courses) == 0
 
     def meet_some(self, courses, requirement, **kwargs):
         required_courses = requirement.all_courses()
@@ -241,6 +241,7 @@ class Requirement(models.Model):
     requirements = models.ManyToManyField('self', symmetrical=False, blank=True, related_name = 'sub_requirements')
     courses = models.ManyToManyField('Course', related_name = 'courses', blank=True)
     
+
     def __unicode__(self):
         return self.name
 
@@ -251,6 +252,10 @@ class Requirement(models.Model):
         return satisfied_sub_categories
 
     def all_courses(self):
+        """
+        Returns a list of all courses. The courses from Requirement, 
+        as well as the courses from sub_requriements.
+        """
         courses = self.courses.all()
         reqs = self.requirements.all()
         req_courses = [list(req.all_courses()) for req in reqs]
@@ -258,6 +263,10 @@ class Requirement(models.Model):
         return list(courses) + (list(chain(*req_courses)))
 
     def satisfied(self, *courses):
+        # Here is where we will check for transfer and substitution reqs.
+        return self._satisfied_helper(*courses)
+
+    def _satisfied_helper(self, *courses):
         satisfied = True
         for constraint in self.constraints.all():
             constraint_satisfied = constraint.satisfied(courses, self)
