@@ -66,6 +66,7 @@ class FacultyMember(Person):
                     ('Asst', 'Assistant Professor'),
                     ('Assoc', 'Associate Professor'),
                     ('Full', 'Professor'))
+
     university = models.ForeignKey(University, related_name='faculty')
     faculty_id = models.CharField(max_length=25)
     department = models.ForeignKey(Department, related_name='faculty')
@@ -166,6 +167,9 @@ class Subject(StampedModel):
     def __unicode__(self):
         return self.abbrev
 
+    class Meta:
+        ordering = ['abbrev',]
+
 
 class CourseAttribute(StampedModel):
     """Course attribute such as SP or CC."""
@@ -174,6 +178,7 @@ class CourseAttribute(StampedModel):
 
     def __unicode__(self):
         return self.name
+
 
 
 class Constraint(models.Model):
@@ -225,6 +230,14 @@ class Constraint(models.Model):
     def satisfy_some_sub_categories(self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
         return len(requirement.satisfied_sub_categories(courses)) >= at_least
+    
+    def different_departments(self, courses, requirement, **kwargs):
+        at_least = int(kwargs['at_least'])
+        courses_meeting_reqs = set(requirement.all_courses()).intersection(set(courses))
+        unique_departments = set(course.subject.abbrev for course in courses_meeting_reqs)
+        return len(unique_departments) >= at_least
+
+
         
         
 class Requirement(models.Model):
@@ -278,6 +291,8 @@ class Requirement(models.Model):
     def sub_categories(self):
         return [sub_category for sub_category in self.requirements.all()]
 
+    class Meta:
+        ordering = ['display_name', ]
 
 class Course(StampedModel):
     """Course as listed in the catalog."""
@@ -304,6 +319,7 @@ class Course(StampedModel):
 
     class Meta:
         ordering = ['subject', 'number' , 'title']
+        unique_together = ('subject', 'number')
 
 
 class Student(Person):

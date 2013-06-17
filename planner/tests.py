@@ -14,7 +14,6 @@ class RequirementTest(TestCase):
                 self.assertTrue(satisfied)
             self.assertFalse(prereq.satisfied(cos310))
                 
-
     def test_all_prereq(self):
         cos120 = Course.objects.get(subject__abbrev = 'COS', number = 120)
         cos121 = Course.objects.get(subject__abbrev = 'COS', number = 121)
@@ -63,4 +62,13 @@ class RequirementTest(TestCase):
 
         self.assertTrue(stewardship_req.satisfied(php_100, php_200))
 
+    
+    def test_different_department_constraint(self):
+        social_science_gen_eds = Requirement.objects.get(name='Social Science Gen Eds')
+        eco_190 = Course.objects.get(subject__abbrev = 'ECO', number = 190)
+        eco_201 = Course.objects.get(subject__abbrev = 'ECO', number = 201)
+        geo_230 = Course.objects.get(subject__abbrev = 'GEO', number = 230)
+
+        self.assertTrue(social_science_gen_eds.satisfied(eco_190, geo_230))
+        self.assertFalse(social_science_gen_eds.satisfied(eco_201, eco_201))
 
