@@ -301,7 +301,8 @@ class Course(StampedModel):
     subject = models.ForeignKey(Subject, related_name='courses')
     number = models.CharField(max_length=10)
     title = models.CharField(max_length=80)
-    credit_hours = models.PositiveIntegerField(default=3)
+    min_credit_hours = models.PositiveIntegerField(default = 3)
+    max_credit_hours = models.PositiveIntegerField(default = 3)
     prereqs = models.ManyToManyField('Requirement', blank=True, related_name='prereq_for')
     coreqs  = models.ManyToManyField('Requirement', blank=True, related_name='coreq_for')
 

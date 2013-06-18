@@ -6,7 +6,7 @@ class SemesterAdmin(admin.ModelAdmin):
     list_display = ('name', 'year')
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'department', 'number', 'credit_hours')
+    list_display = ('title', 'department', 'number', 'min_credit_hours', 'max_credit_hours')
     search_fields = ('title', 'number')
     filter_horizontal = ('schedule_semester','prereqs','coreqs',)
 
