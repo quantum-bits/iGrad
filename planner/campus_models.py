@@ -220,7 +220,7 @@ class Constraint(models.Model):
         at_least = int(kwargs['at_least'])
         all_courses = requirement.all_courses()
         courses_meeting_reqs = set(all_courses).intersection(set(courses))
-        return sum(course.credit_hours for course in courses_meeting_reqs) >= at_least
+        return sum(course.min_credit_hours for course in courses_meeting_reqs) >= at_least
 
     def all_sub_categories_satisfied(self, courses, requirement, **kwargs):
         sub_categories = requirement.sub_categories()
