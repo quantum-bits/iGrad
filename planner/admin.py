@@ -26,8 +26,8 @@ class StudentAdmin(admin.ModelAdmin):
 class AdvisingNoteAdmin(admin.ModelAdmin):
     list_display = ('student','note',)
 
-class TransferCourseAdmin(admin.ModelAdmin):
-    list_display = ('name','number','student','equivalentcourse',)
+class CourseSubstitutionAdmin(admin.ModelAdmin):
+    list_display = ('student','equivalent_course',)
 
 
 class DegreeProgramAdmin(admin.ModelAdmin):
@@ -39,9 +39,11 @@ class DegreeProgramCourseAdmin(admin.ModelAdmin):
 
 admin.site.register(AcademicYear)
 admin.site.register(AdvisingNote)
+admin.site.register(Constraint)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseAttribute)
 admin.site.register(CourseOffering)
+admin.site.register(CourseSubstitution, CourseSubstitutionAdmin)
 admin.site.register(DegreeProgram, DegreeProgramAdmin)
 admin.site.register(DegreeProgramCourse, DegreeProgramCourseAdmin)
 admin.site.register(Department)
@@ -54,7 +56,5 @@ admin.site.register(Semester, SemesterAdmin)
 admin.site.register(SemesterName)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Subject)
-admin.site.register(TransferCourse)
 admin.site.register(University)
-admin.site.register(Constraint)
 
