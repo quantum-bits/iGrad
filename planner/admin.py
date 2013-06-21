@@ -6,7 +6,7 @@ class SemesterAdmin(admin.ModelAdmin):
     list_display = ('name', 'year')
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'department', 'number', 'min_credit_hours', 'max_credit_hours')
+    list_display = ('title', 'department', 'number', 'credit_hours',)
     search_fields = ('title', 'number')
     filter_horizontal = ('schedule_semester','prereqs','coreqs',)
 
@@ -40,6 +40,7 @@ class DegreeProgramCourseAdmin(admin.ModelAdmin):
 admin.site.register(AcademicYear)
 admin.site.register(AdvisingNote)
 admin.site.register(Constraint)
+admin.site.register(CreditHour)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseAttribute)
 admin.site.register(CourseOffering)
@@ -57,4 +58,5 @@ admin.site.register(SemesterName)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Subject)
 admin.site.register(University)
+admin.site.register(PlannedCourse)
 

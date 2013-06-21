@@ -207,7 +207,7 @@ class Constraint(models.Model):
 
     def all(self, courses, requirement, **kwargs):
         required_courses = list(requirement.courses.all())
-        un_met_courses = set(required_courses) - set(courses)
+        nun_met_courses = set(required_courses) - set(courses)
         return len(un_met_courses) == 0
 
     def meet_some(self, courses, requirement, **kwargs):
@@ -294,6 +294,25 @@ class Requirement(models.Model):
     class Meta:
         ordering = ['display_name', ]
 
+class CreditHour(models.Model):
+    name = models.CharField(max_length = 80)
+    value = models.CharField(max_length = 20)
+    
+    def __unicode__(self):
+        return self.name
+
+    def valid_credit_hour(self, credit_hour):
+        return credit_hour in self.possible_credit_hours
+        
+    def possible_credit_hours(self):
+        if '-' in self.value:
+            start, end = self.value.split('-')
+            return range(int(start), int(end) + 1)
+        elif ',' in self.value:
+            return [int(num) for num in self.value.split(',')]
+        else:
+            return [int(self.value)]
+            
 class Course(StampedModel):
     """Course as listed in the catalog."""
     SCHEDULE_YEAR_CHOICES = (('E', 'Even'), ('O', 'Odd'), ('B', 'Both'))
@@ -301,8 +320,7 @@ class Course(StampedModel):
     subject = models.ForeignKey(Subject, related_name='courses')
     number = models.CharField(max_length=10)
     title = models.CharField(max_length=80)
-    min_credit_hours = models.PositiveIntegerField(default = 3)
-    max_credit_hours = models.PositiveIntegerField(default = 3)
+    credit_hours = models.ForeignKey(CreditHour, related_name = 'courses')
     prereqs = models.ManyToManyField('Requirement', blank=True, related_name='prereq_for')
     coreqs  = models.ManyToManyField('Requirement', blank=True, related_name='coreq_for')
 
@@ -314,6 +332,16 @@ class Course(StampedModel):
     def __unicode__(self):
         return "{0} {1} - {2}".format(self.subject, self.number, self.title)
 
+    def offered_even_years(self):
+        return self.schedule_year == 'E' or self.schedule_year == 'B'
+
+    def offered_odd_years(self):
+        return self.schedule_year == 'O' or self.schedule_year == 'B'
+
+    def offerd_this_year(self, year):
+        return ((year % 2 == 0 and self.offered_even_years()) or
+                (year % 2 != 0 and self.offered_odd_years()))
+                 
     @property
     def department(self):
         return self.subject.department
@@ -333,15 +361,28 @@ class Student(Person):
     majors = models.ManyToManyField(Major, related_name='students', blank=True, null=True)
     minors = models.ManyToManyField(Minor, related_name='students', blank=True, null=True)
 
+    def __unicode__(self):
+        return "{},{}".format(self.student_id, self.first_name, self.last_name)
+
 
 class CourseOffering(StampedModel):
     """Course as listed in the course schedule (i.e., an offering of a course)."""
+    WILL_BE_OFFERED = 0
+    NORMALLY_OFFERED_BUT_NOT = 1
+    NOT_NORMALLY_OFFERED_BUT_IS = 2
+    STATUS_CHOICES = (
+        (WILL_BE_OFFERED, 'Will be offered'),
+        (NORMALLY_OFFERED_BUT_NOT, 'Normally offered but will not be offered this semester'),
+        (NOT_NORMALLY_OFFERED_BUT_IS, 'Not normally offered but will be offered this semester'),
+    )
+
     course = models.ForeignKey(Course, related_name='offerings')
     semester = models.ForeignKey(Semester)
     instructor = models.ManyToManyField(FacultyMember, through='OfferingInstructor',
                                         blank=True, null=True,
                                         related_name='course_offerings')
-
+    status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
+    
     def __unicode__(self):
         return "{0} ({1})".format(self.course, self.semester)
 
@@ -352,6 +393,13 @@ class CourseOffering(StampedModel):
         """Students enrolled in this course offering"""
         return Student.objects.filter(courses_taken=self)
 
+class PlannedCourse(StampedModel):
+    """Course that a student is actually planning to take."""
+    student = models.ForeignKey(Student, related_name='planned_courses')
+    offering = models.ForeignKey(CourseOffering, related_name='+')
+    
+    def __unicode__(self):
+        return "{} {}".format(self.student,self.offering.course)
 
 class Grade(models.Model):
     letter_grade = models.CharField(max_length=5)
