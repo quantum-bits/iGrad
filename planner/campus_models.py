@@ -4,9 +4,6 @@ from itertools import chain
 
 import logging
 logger = logging.getLogger(__name__)
-LOG_FILENAME = 'constraint.log'
-logging.basicConfig(filename=LOG_FILENAME, level = logging.DEBUG, filemode = 'w')
-
 
 class University(StampedModel):
     """University. Top-level organizational entity."""
@@ -42,15 +39,14 @@ class Department(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class Major(models.Model):
     """Academic major"""
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='majors')
-
+    
     def __unicode__(self):
         return self.name
-        
+     
 
 class Minor(models.Model):
     """Academic minor"""
@@ -80,15 +76,15 @@ class StaffMember(Person):
 
 
 class AcademicYear(models.Model):
-    begin_on = models.DateField()
-    end_on = models.DateField()
+    begin_on = models.DateField(unique_for_year=True)
+    end_on = models.DateField(unique_for_year=True)
 
     class Meta:
         ordering = [ 'begin_on' ]
 
     def __unicode__(self):
         return '{0}-{1}'.format(self.begin_on.year, self.end_on.year)
-
+    
 
 class SemesterName(models.Model):
     """Name for a semester. Using model here may be overkill, but it provides a nice way in
@@ -99,6 +95,23 @@ class SemesterName(models.Model):
 
     class Meta:
         ordering = ['seq']
+
+    @property
+    def fall(self):
+        return self.name == 'Fall'
+    
+    @property
+    def j_term(self):
+        return self.name == 'J-Term'
+
+    @property
+    def spring(self):
+        return self.name == 'Spring'
+
+    @property
+    def summer(self):
+        return self.name == 'Summer'
+
 
     def __unicode__(self):
         return self.name
@@ -113,6 +126,7 @@ class Semester(models.Model):
 
     class Meta:
         ordering = ['year', 'name']
+        unique_together = ['name', 'year']
 
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.year)
@@ -275,18 +289,19 @@ class Requirement(models.Model):
 
         return list(courses) + (list(chain(*req_courses)))
 
-    def satisfied(self, *courses):
-        # Here is where we will check for transfer and substitution reqs.
-        return self._satisfied_helper(*courses)
+    def satisfied(self, planned_courses, course_substitutions = None):
+        if course_substitutions is None:
+            course_substitutions = []
+        courses = planned_courses + [course_sub.equivalent_course for course_sub in course_substitutions]
+        satisfied, course_audit = self._satisfied_helper(courses)
+        return satisfied, course_audit
 
-    def _satisfied_helper(self, *courses):
+    def _satisfied_helper(self, courses):
         satisfied = True
         for constraint in self.constraints.all():
-            constraint_satisfied = constraint.satisfied(courses, self)
-            if not constraint_satisfied:
-                logging.debug('{}: {} not satisfied'.format(self, constraint.name))
+            constraint_satisfied, course_audit = constraint.satisfied(courses, self)
             satisfied = constraint_satisfied and satisfied 
-        return satisfied
+        return satisfied, []
 
     def sub_categories(self):
         return [sub_category for sub_category in self.requirements.all()]
@@ -338,7 +353,7 @@ class Course(StampedModel):
     def offered_odd_years(self):
         return self.schedule_year == 'O' or self.schedule_year == 'B'
 
-    def offerd_this_year(self, year):
+    def offered_this_year(self, year):
         return ((year % 2 == 0 and self.offered_even_years()) or
                 (year % 2 != 0 and self.offered_odd_years()))
                  
