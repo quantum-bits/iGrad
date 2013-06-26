@@ -1,9 +1,16 @@
 from common_models import *
 from django.db import models
 from itertools import chain
+from collections import namedtuple
+
 
 import logging
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+fileHandler = logging.FileHandler('campus_models.log', mode='w')
+fileHandler.setLevel(logging.DEBUG)
+logger.addHandler(fileHandler)
+
 
 class University(StampedModel):
     """University. Top-level organizational entity."""
@@ -39,22 +46,7 @@ class Department(models.Model):
     def __unicode__(self):
         return self.name
 
-class Major(models.Model):
-    """Academic major"""
-    name = models.CharField(max_length=80)
-    department = models.ForeignKey(Department, related_name='majors')
-    
-    def __unicode__(self):
-        return self.name
-     
 
-class Minor(models.Model):
-    """Academic minor"""
-    name = models.CharField(max_length=80)
-    department = models.ForeignKey(Department, related_name='minors')
-
-    def __unicode__(self):
-        return self.name
 
 class FacultyMember(Person):
     RANK_CHOICES = (('Inst', 'Instructor'),
@@ -194,6 +186,7 @@ class CourseAttribute(StampedModel):
         return self.name
 
 
+AuditInfo = namedtuple("AuditInfo", "requirement, is_satisfied, courses_meeting_reqs")
 
 class Constraint(models.Model):
     name = models.CharField(max_length = 80)
@@ -214,31 +207,31 @@ class Constraint(models.Model):
         name, arguments = self.parse_constraint_text()
         return getattr(self, name)(courses, requirement, **arguments)
 
+    def courses_meeting_requirement(self, courses, requirement):
+        required_courses = requirement.required_courses()
+        return set([course for course in required_courses if course in courses])
+
+    def courses_meeting_all_requirements(self, courses, requirement):
+        required_courses = requirement.all_courses()
+        return set(required_courses).intersection(set(courses))
+
     def any(self, courses, requirement, **kwargs):
-        required_courses = list(requirement.courses.all())
-        common_courses = set(required_courses).intersection(set(courses))
-        return len(common_courses) >= 1
+        return len(self.courses_meeting_requirement(courses, requirement)) >= 1
 
     def all(self, courses, requirement, **kwargs):
-        required_courses = list(requirement.courses.all())
-        nun_met_courses = set(required_courses) - set(courses)
-        return len(un_met_courses) == 0
+        return len(self.courses_meeting_requirement(courses, requirement)) == len(requirement.required_courses())
 
     def meet_some(self, courses, requirement, **kwargs):
-        required_courses = requirement.all_courses()
-        met_courses = set(required_courses).intersection(set(courses))
         at_least = int(kwargs['at_least'])
-        return len(met_courses) >= at_least
+        return len(self.courses_meeting_requirement(courses, requirement)) >= at_least
     
     def min_required_credit_hours (self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
-        all_courses = requirement.all_courses()
-        courses_meeting_reqs = set(all_courses).intersection(set(courses))
-        return sum(course.min_credit_hours for course in courses_meeting_reqs) >= at_least
+        return sum(course.credit_hours for course in self.courses_meeting_all_requirements(courses,requirement)) >= at_least
 
     def all_sub_categories_satisfied(self, courses, requirement, **kwargs):
         sub_categories = requirement.sub_categories()
-        satisfied = [sub_category.satisfied(*courses) for sub_category in sub_categories]
+        satisfied = [sub_category.satisfied(courses) for sub_category in sub_categories]
         return all(satisfied)
 
     def satisfy_some_sub_categories(self, courses, requirement, **kwargs):
@@ -247,13 +240,10 @@ class Constraint(models.Model):
     
     def different_departments(self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
-        courses_meeting_reqs = set(requirement.all_courses()).intersection(set(courses))
-        unique_departments = set(course.subject.abbrev for course in courses_meeting_reqs)
+        unique_departments = set(course.subject.abbrev for course in self.courses_meeting_all_requirements(courses, requirement))
         return len(unique_departments) >= at_least
 
 
-        
-        
 class Requirement(models.Model):
     name = models.CharField(max_length=50,
                             help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature;"
@@ -267,7 +257,6 @@ class Requirement(models.Model):
     constraints = models.ManyToManyField(Constraint, related_name='constraints', blank=True)
     requirements = models.ManyToManyField('self', symmetrical=False, blank=True, related_name = 'sub_requirements')
     courses = models.ManyToManyField('Course', related_name = 'courses', blank=True)
-    
 
     def __unicode__(self):
         return self.name
@@ -275,39 +264,52 @@ class Requirement(models.Model):
     def satisfied_sub_categories(self, courses):
         satisfied_sub_categories = [sub_category 
                                     for sub_category in self.sub_categories()
-                                    if sub_category.satisfied(*courses)]
+                                    if sub_category.satisfied(courses)]
         return satisfied_sub_categories
+
+
+    def required_courses(self):
+        return list(self.courses.all())
 
     def all_courses(self):
         """
         Returns a list of all courses. The courses from Requirement, 
         as well as the courses from sub_requriements.
         """
-        courses = self.courses.all()
         reqs = self.requirements.all()
         req_courses = [list(req.all_courses()) for req in reqs]
 
-        return list(courses) + (list(chain(*req_courses)))
+        return self.required_courses() + (list(chain(*req_courses)))
 
-    def satisfied(self, planned_courses, course_substitutions = None):
-        if course_substitutions is None:
-            course_substitutions = []
-        courses = planned_courses + [course_sub.equivalent_course for course_sub in course_substitutions]
-        satisfied, course_audit = self._satisfied_helper(courses)
-        return satisfied, course_audit
+    def satisfied(self, courses=None):
+        courses = [] if courses is None else courses
+        return self._satisfied_helper(courses)
 
     def _satisfied_helper(self, courses):
         satisfied = True
         for constraint in self.constraints.all():
-            constraint_satisfied, course_audit = constraint.satisfied(courses, self)
+            constraint_satisfied = constraint.satisfied(courses, self)
             satisfied = constraint_satisfied and satisfied 
-        return satisfied, []
+        return satisfied
 
     def sub_categories(self):
         return [sub_category for sub_category in self.requirements.all()]
 
     class Meta:
         ordering = ['display_name', ]
+
+
+def possible_credit_hours(credit_hour):
+    """
+    Created for migration. Probably a better way.
+    """
+    if '-' in credit_hour.value:
+        start, end = credit_hour.value.split('-')
+        return range(int(start), int(end) + 1)
+    elif ',' in credit_hour.value:
+        return [int(num) for num in credit_hour.value.split(',')]
+    else:
+        return [int(credit_hour.value)]
 
 class CreditHour(models.Model):
     name = models.CharField(max_length = 80)
@@ -316,9 +318,10 @@ class CreditHour(models.Model):
     def __unicode__(self):
         return self.name
 
+
     def valid_credit_hour(self, credit_hour):
         return credit_hour in self.possible_credit_hours
-        
+
     def possible_credit_hours(self):
         if '-' in self.value:
             start, end = self.value.split('-')
@@ -327,7 +330,27 @@ class CreditHour(models.Model):
             return [int(num) for num in self.value.split(',')]
         else:
             return [int(self.value)]
-            
+
+class Major(models.Model):
+    """Academic major"""
+    name = models.CharField(max_length=80)
+    department = models.ForeignKey(Department, related_name='majors')
+    requirement = models.ForeignKey(Requirement, related_name='majors', null=True)
+
+    def __unicode__(self):
+        return self.name
+     
+
+class Minor(models.Model):
+    """Academic minor"""
+    name = models.CharField(max_length=80)
+    department = models.ForeignKey(Department, related_name='minors')
+    requirement = models.ForeignKey(Requirement, related_name='minors', null=True)
+
+    def __unicode__(self):
+        return self.name
+        
+
 class Course(StampedModel):
     """Course as listed in the catalog."""
     SCHEDULE_YEAR_CHOICES = (('E', 'Even'), ('O', 'Odd'), ('B', 'Both'))
@@ -392,6 +415,7 @@ class CourseOffering(StampedModel):
     )
 
     course = models.ForeignKey(Course, related_name='offerings')
+    credit_hours = models.PositiveSmallIntegerField(default=3)
     semester = models.ForeignKey(Semester)
     instructor = models.ManyToManyField(FacultyMember, through='OfferingInstructor',
                                         blank=True, null=True,
