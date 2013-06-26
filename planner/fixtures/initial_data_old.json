@@ -1780,6 +1780,15 @@
     }
 },
 {
+    "pk": 18, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-06-26T18:32:41.239Z", 
+        "app_name": "planner", 
+        "migration": "0018_set_course_offering_credit_hour"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.person", 
     "fields": {

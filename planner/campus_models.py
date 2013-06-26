@@ -187,6 +187,7 @@ class CourseAttribute(StampedModel):
 
 
 AuditInfo = namedtuple("AuditInfo", "requirement, is_satisfied, courses_meeting_reqs")
+ReqCO = namedtuple("ReqCO", "required_course, course_offering")
 
 class Constraint(models.Model):
     name = models.CharField(max_length = 80)
@@ -203,17 +204,27 @@ class Constraint(models.Model):
             parameters[args[i]] = args[i + 1]
         return (name, parameters)
 
-    def satisfied(self, courses, requirement):
+    def satisfied(self, courseOfferings, requirement):
         name, arguments = self.parse_constraint_text()
-        return getattr(self, name)(courses, requirement, **arguments)
+        return getattr(self, name)(courseOfferings, requirement, **arguments)
 
-    def courses_meeting_requirement(self, courses, requirement):
+    def courses_meeting_requirement(self, courseOfferings, requirement):
         required_courses = requirement.required_courses()
-        return set([course for course in required_courses if course in courses])
+        co_meeting_reqs = [ReqCO(required_course=required_course, course_offering=co)
+                           for required_course in required_courses
+                           for co in courseOfferings
+                           if co.course == required_course]
 
-    def courses_meeting_all_requirements(self, courses, requirement):
-        required_courses = requirement.all_courses()
-        return set(required_courses).intersection(set(courses))
+        return co_meeting_reqs
+
+    def courses_meeting_all_requirements(self, courseOfferings, requirement):
+        required_course = requirement.all_courses()
+        co_meeting_reqs = [ReqCO(required_course=required_course, course_offering=co)
+                           for required_course in required_course
+                           for co in courseOfferings
+                           if co.course == required_course]
+
+        return co_meeting_reqs
 
     def any(self, courses, requirement, **kwargs):
         return len(self.courses_meeting_requirement(courses, requirement)) >= 1
@@ -240,7 +251,9 @@ class Constraint(models.Model):
     
     def different_departments(self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
-        unique_departments = set(course.subject.abbrev for course in self.courses_meeting_all_requirements(courses, requirement))
+        co_meeting_reqs = self.courses_meeting_all_requirements(courses, requirement)
+        courses_meeting_reqs = [reqCo.course_offering.course for reqCo in co_meeting_reqs]
+        unique_departments = set(course.subject.abbrev for course in courses_meeting_reqs)
         return len(unique_departments) >= at_least
 
 
@@ -421,7 +434,7 @@ class CourseOffering(StampedModel):
                                         blank=True, null=True,
                                         related_name='course_offerings')
     status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
-    
+
     def __unicode__(self):
         return "{0} ({1})".format(self.course, self.semester)
 
