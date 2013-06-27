@@ -1,7 +1,7 @@
 from common_models import *
 from django.db import models
+from django.contrib.auth.models import User
 import itertools
-from collections import namedtuple
 from grad_audit import MetCourse, GradAudit
 
 import logging
@@ -437,6 +437,7 @@ class Course(StampedModel):
 
 
 class Student(Person):
+    user = models.OneToOneField(User, null=True)
     university = models.ForeignKey(University, related_name='students')
     student_id = models.CharField(max_length=25)
     entering_year = models.ForeignKey(AcademicYear, related_name='+',

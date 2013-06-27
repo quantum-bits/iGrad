@@ -1640,6 +1640,32 @@
     }
 },
 {
+    "pk": 6, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T12:22:17.744Z", 
+        "object_repr": "All sub requirements need to be satisfied", 
+        "object_id": "5", 
+        "change_message": "Changed name and constraint_text.", 
+        "user": 1, 
+        "content_type": 25
+    }
+},
+{
+    "pk": 7, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T12:22:45.137Z", 
+        "object_repr": "Two sub requirements satisfied", 
+        "object_id": "6", 
+        "change_message": "Changed name and constraint_text.", 
+        "user": 1, 
+        "content_type": 25
+    }
+},
+{
     "pk": 1, 
     "model": "south.migrationhistory", 
     "fields": {
@@ -2831,16 +2857,16 @@
     "pk": 5, 
     "model": "planner.constraint", 
     "fields": {
-        "constraint_text": "all_sub_categories_satisfied", 
-        "name": "All sub_categories need to be satisfied"
+        "constraint_text": "all_sub_requirements_satisfied", 
+        "name": "All sub requirements need to be satisfied"
     }
 },
 {
     "pk": 6, 
     "model": "planner.constraint", 
     "fields": {
-        "constraint_text": "satisfy_some_sub_categories at_least 2", 
-        "name": "Two sub categories satisfied"
+        "constraint_text": "satisfy_some_sub_requirements at_least 2", 
+        "name": "Two sub requirements satisfied"
     }
 },
 {
