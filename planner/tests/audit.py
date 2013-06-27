@@ -52,17 +52,20 @@ class RequirementTest(TestCase):
         
                                               
     def test_multilevel_requirments(self):
-        """
         science_gen_ed = Requirement.objects.get(name='Science Gen Eds')
         geo_210 = Course.objects.get(subject__abbrev = 'GEO', number = 210)
+        geo_210_co = CourseOffering.objects.filter(course = geo_210)[0]
         bio_100 = Course.objects.get(subject__abbrev = 'BIO', number = 100)
+        bio_100_co = CourseOffering.objects.filter(course = bio_100)[0]
         
         che_120 = Course.objects.get(subject__abbrev = 'CHE', number = 120)
+        che_120_co, che_120_co1 = CourseOffering.objects.filter(course = che_120)[0:2]
 
-        self.assertTrue(science_gen_ed.satisfied(geo_210, bio_100))
-        self.assertFalse(science_gen_ed.satisfied(che_120))
-        self.assertTrue(science_gen_ed.satisfied(geo_210, che_120, bio_100))
-        """
+        self.assertTrue(science_gen_ed.satisfied([geo_210_co, bio_100_co]))
+        self.assertFalse(science_gen_ed.satisfied([che_120_co]), "One course can't count twice.")
+        self.assertFalse(science_gen_ed.satisfied([che_120_co, che_120_co1]), "Course offering courses should only count once.")
+        self.assertTrue(science_gen_ed.satisfied([geo_210_co, che_120_co, bio_100_co]))
+
 
     def test_courses_and_requirments_block(self):
         """Test requirements blocks that have both courses
@@ -90,5 +93,3 @@ class RequirementTest(TestCase):
 
         self.assertTrue(social_science_gen_eds.satisfied([eco_190_co, geo_230_co]))
         self.assertFalse(social_science_gen_eds.satisfied([eco_201_co, eco_201_co]))
-
-

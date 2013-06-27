@@ -238,7 +238,16 @@ class Constraint(models.Model):
     
     def min_required_credit_hours (self, courses, requirement, **kwargs):
         at_least = int(kwargs['at_least'])
-        return sum(course.credit_hours for course in self.courses_meeting_all_requirements(courses,requirement)) >= at_least
+
+        course_offerings = [] 
+        courses_considered = [] 
+        for reqCo in self.courses_meeting_all_requirements(courses, requirement):
+            if reqCo.course_offering.course not in courses_considered:
+                # if a person takes a course multiple times, it should only count once.
+                course_offerings.append(reqCo.course_offering)
+                courses_considered.append(reqCo.course_offering.course)
+
+        return sum(co.credit_hours for co in course_offerings) >= at_least
 
     def all_sub_categories_satisfied(self, courses, requirement, **kwargs):
         sub_categories = requirement.sub_categories()

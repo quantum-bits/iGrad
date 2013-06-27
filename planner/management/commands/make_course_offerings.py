@@ -10,7 +10,7 @@ class Command(BaseCommand):
         start_year, end_year = args
         start_year = int(start_year)
         end_year   = int(end_year)
-
+        
         try:
             academicYear = AcademicYear.objects.get(begin_on__year=start_year,
                                                     end_on__year  = end_year)
@@ -30,8 +30,10 @@ class Command(BaseCommand):
                 else:
                     year = academicYear.end_on.year
                 if course.offered_this_year(year):
-                    CourseOffering.objects.get_or_create(course = course,
-                                                         semester = semesterName_to_semester[semesterName])
+                    co,created = CourseOffering.objects.get_or_create(course = course,
+                                                              semester = semesterName_to_semester[semesterName])
+                    co.credit_hours = min(course.credit_hours.possible_credit_hours())
+                    co.save()
                 
 
 
