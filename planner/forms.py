@@ -81,5 +81,8 @@ class UpdateMajorForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        exclude = ('user', 'name', 'entering_year')
+        exclude = ('user', 'university', 'student_id', 'entering_year', 
+                   'catalog_year', 'minors', 'first_name', 'last_name',)
+
+
 

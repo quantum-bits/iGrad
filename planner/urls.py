@@ -8,7 +8,7 @@ urlpatterns = patterns(
     url(r'^register/$', 'student_registration', name='register'),
     url(r'^profile/$', 'profile', name='profile'),
 
-    url(r'^changemajor/(\d+)/$', 'update_major', name='update_major'),
+    url(r'^changemajor/$', 'update_major', name='update_major'),
     url(r'^updatesemester/(\d+)/$', 'update_student_semester', name='update_student_semester'),
     url(r'^fouryearplan/$', 'display_four_year_plan', name='four_year_plan'),
     url(r'^graduationaudit/$', 'display_grad_audit', name='grad_audit'),

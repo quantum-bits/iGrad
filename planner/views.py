@@ -66,8 +66,8 @@ def student_registration(request):
 @login_required
 def profile(request):
     user = request.user
-    courselist= Course.objects.all()
-
+    courses = Course.objects.all()
+    """
     if user.is_student():
         isProfessor = False
         professorname = ''
@@ -76,35 +76,31 @@ def profile(request):
         isProfessor = True
         professorname = user.professor.name
         advisee = user.professor.advisee
-
+    """
+    isProfessor = False
+    professorName = ''
+    advisee = None
     # Note: to access the email address in the view, you could set it to
     # email = student.user.email
     context = { 'isProfessor': isProfessor,
-                'professorname': professorname,
+                'professorName': professorName,
                 'advisee': advisee,
-		'courselist':courselist }
+		'course': courses }
     return render(request, 'profile.html', context)
 
 @login_required
-def update_major(request, id):
-    request_id = request.user.get_student_id()
-    incoming_id = int(id)
-
-    if request_id != incoming_id:
-        return redirect('profile')
-
-    instance = Student.objects.get(pk=id)
+def update_major(request):
+    student = request.user.student
 
     if request.method == 'POST':
-        form = UpdateMajorForm(request.POST, instance=instance)
+        form = UpdateMajorForm(request.POST, instance=student)
         if form.is_valid():
             form.save()
             return redirect('profile')
         else:
             return render(request, 'updatemajor.html', {'form': form})
     else:
-        # User is not submitting the form; show them the blank add major form.
-        form = UpdateMajorForm(instance=instance)
+        form = UpdateMajorForm(instance=student)
         context = {'form': form}
         return render(request, 'updatemajor.html', context)
 

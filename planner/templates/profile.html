@@ -7,7 +7,7 @@
       <tbody>
 	<tr>
 	  <th>Name</th>
-	  <td>{{ professorname }}</td>
+	  <td>{{ professorName }}</td>
 	</tr>
 	<tr>
 	  <th>E-mail</th>
@@ -42,10 +42,13 @@
     </form>
 
   {% else %}
-    <p>Name: {{ user.student.name }}</p>
+    <p>Name: {{ user.student.full_name }} </p>
     <p>Email: {{ user.email }}</p>
-    <p>Major: {{ user.student.major }}
-      (<a class="other" href="{% url 'update_major' user.student.id %}">Change</a>)
+    <p>Majors: </p>
+    {% for major in  user.student.majors.all %}
+    <p> {{ major }} </p>
+    {% endfor %}
+      (<a class="other" href="{% url 'update_major' %}">Change</a>)
     </p>
     <p>Entering Year: {{ user.student.entering_year }}</p>
 
