@@ -1494,12 +1494,30 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-06-25T20:46:27.570Z", 
+        "last_login": "2013-06-27T18:53:28.377Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$pFYyb1cgghTA$692VrSI8+Y75c6KCq3cLAFbd5xCK8VCEhDAbQFsKQj4=", 
         "email": "admin@example.com", 
         "date_joined": "2013-06-04T14:21:58.409Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "tom", 
+        "first_name": "Tom", 
+        "last_name": "Doe", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-06-28T11:14:06.113Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$IIkKfC4QdExy$1Sbx0BzuNTO5WRKw2OJkCDHW1rCVMXtCYtpSIHQ5x3Y=", 
+        "email": "tom_doe@taylor.edu", 
+        "date_joined": "2013-06-27T18:33:32Z"
     }
 },
 {
@@ -1515,14 +1533,6 @@
     "model": "sessions.session", 
     "fields": {
         "expire_date": "2013-06-24T17:13:02.962Z", 
-        "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
-    }
-},
-{
-    "pk": "37815dwpcpifwidx7ww5gt5zmn447i6d", 
-    "model": "sessions.session", 
-    "fields": {
-        "expire_date": "2013-07-09T20:46:27.592Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
     }
 },
@@ -1564,6 +1574,22 @@
     "fields": {
         "expire_date": "2013-06-26T19:59:16.247Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
+    "pk": "wl98z8vxo28hjtd0orksnluz3re2x0w9", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-11T18:54:52.668Z", 
+        "session_data": "ZjI5NDNjZWM5MTA4OWYxNGU4YWZkNmQ3NjYyMTUwYmNlZTA4NzhkMDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
+    "pk": "zv0xc4zeh6687w6bpsz65xsl40z12i54", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-12T11:14:06.131Z", 
+        "session_data": "ZjI5NDNjZWM5MTA4OWYxNGU4YWZkNmQ3NjYyMTUwYmNlZTA4NzhkMDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
     }
 },
 {
@@ -1663,6 +1689,71 @@
         "change_message": "Changed name and constraint_text.", 
         "user": 1, 
         "content_type": 25
+    }
+},
+{
+    "pk": 8, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-06-27T18:33:32.871Z", 
+        "object_repr": "tom", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T18:33:59.171Z", 
+        "object_repr": "tom", 
+        "object_id": "2", 
+        "change_message": "Changed password and first_name.", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T18:44:00.151Z", 
+        "object_repr": "@00555555,Tom", 
+        "object_id": "2", 
+        "change_message": "Changed first_name and user.", 
+        "user": 1, 
+        "content_type": 29
+    }
+},
+{
+    "pk": 11, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T18:44:11.520Z", 
+        "object_repr": "tom", 
+        "object_id": "2", 
+        "change_message": "Changed password and last_name.", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 12, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-06-27T18:54:08.038Z", 
+        "object_repr": "tom", 
+        "object_id": "2", 
+        "change_message": "Changed password and email.", 
+        "user": 1, 
+        "content_type": 3
     }
 },
 {
@@ -1828,6 +1919,15 @@
     }
 },
 {
+    "pk": 19, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-06-27T18:42:35.387Z", 
+        "app_name": "planner", 
+        "migration": "0019_auto__add_field_student_user"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.person", 
     "fields": {
@@ -1846,12 +1946,12 @@
     "pk": 2, 
     "model": "planner.person", 
     "fields": {
-        "first_name": "John", 
+        "first_name": "Tom", 
         "last_name": "Doe", 
         "work_phone": "", 
         "photo": "", 
         "created_at": "2013-06-05T17:02:52.054Z", 
-        "updated_at": "2013-06-05T17:02:52.054Z", 
+        "updated_at": "2013-06-27T19:34:48.806Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -6131,11 +6231,14 @@
     "pk": 2, 
     "model": "planner.student", 
     "fields": {
-        "majors": [], 
+        "majors": [
+            1
+        ], 
         "entering_year": 1, 
         "minors": [], 
         "student_id": "@00555555", 
         "university": 1, 
+        "user": 2, 
         "catalog_year": 1
     }
 },
@@ -20330,7 +20433,7 @@
         "status": 0, 
         "credit_hours": 1, 
         "created_at": "2013-06-25T22:37:07.906Z", 
-        "updated_at": "2013-06-26T23:15:59.000Z", 
+        "updated_at": "2013-06-26T23:15:59Z", 
         "course": 85, 
         "semester": 18
     }

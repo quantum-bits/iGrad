@@ -26,7 +26,7 @@ class CourseSubstitution(models.Model):
                                    blank=True, null=True)
     title = models.CharField(max_length=80)
     credit_hours = models.PositiveIntegerField(default=3)
-    semester = models.ForeignKey(Semester)
+    semester = models.ForeignKey(Semester, blank=True, null=True)
     equivalent_course = models.ForeignKey(Course, related_name='course_substitutions')
     student = models.ForeignKey(Student, related_name='course_substitutions')
 
@@ -71,3 +71,8 @@ class DegreeProgramCourse(StampedModel):
     course = models.ForeignKey(Course)
     class_standing = models.ForeignKey(ClassStanding)
     semester_name = models.ForeignKey(SemesterName)
+
+
+
+
+

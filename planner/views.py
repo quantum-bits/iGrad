@@ -263,7 +263,7 @@ def delete_advising_note(request, id):
 
 @login_required
 def display_four_year_plan(request):
-    print request.user.is_student()
+    """
     if request.user.is_student():
         isProfessor = False
         student_local = request.user.student
@@ -273,8 +273,13 @@ def display_four_year_plan(request):
         if student_local is None:
             # No advisee currently selected; go pick one first.
             return redirect('update_advisee', 1)
+    """
+    isProfessor = False
+    student = request.user.student
+    total_credit_hours_four_years = student.credit_hours_in_plan()
 
-    total_credit_hours_four_years = 0
+    # Student semester courses will now be planned courses 
+    # need to identify what data its asking for.
     temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
     temp_data2 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 

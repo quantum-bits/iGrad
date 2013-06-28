@@ -451,6 +451,23 @@ class Student(Person):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
 
+    def has_major(self):
+        return len(self.majors.all()) > 0
+
+    def credit_hours_this_semester(self, semester):
+        return sum(course.credit_hours 
+                   for course in self.planned_courses.filter(semester=semester))
+
+    def credit_hours_in_plan(self):
+        credit_hours = 0
+        for course in self.planned_courses.all():
+            credit_hours += course.credit_hours
+
+        for course_substitution in self.course_substitutions.all():
+            credit_hours += course_substitutions.credit_hours
+
+        return credit_hours
+
 class CourseOffering(StampedModel):
     """Course as listed in the course schedule (i.e., an offering of a course)."""
     WILL_BE_OFFERED = 0
@@ -470,6 +487,14 @@ class CourseOffering(StampedModel):
                                         related_name='course_offerings')
     status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
 
+    def other_offerings(self, courseOffering):
+        """Returns a list of other semesters this course is 
+        offered.
+        """
+        course = courseOffering.course
+        offerings = [offering.semester for offering in self.objects.filter(course=course).exclude(courseOffering)]
+        return offerings 
+
     def __unicode__(self):
         return "{0} ({1})".format(self.course, self.semester)
 
@@ -484,9 +509,15 @@ class PlannedCourse(StampedModel):
     """Course that a student is actually planning to take."""
     student = models.ForeignKey(Student, related_name='planned_courses')
     offering = models.ForeignKey(CourseOffering, related_name='+')
-    
+
+    @property
+    def credit_hours(self):
+        return self.offering.credit_hours
+
     def __unicode__(self):
         return "{} {}".format(self.student,self.offering.course)
+
+
 
 class Grade(models.Model):
     letter_grade = models.CharField(max_length=5)
