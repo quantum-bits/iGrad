@@ -263,17 +263,6 @@ def delete_advising_note(request, id):
 
 @login_required
 def display_four_year_plan(request):
-    """
-    if request.user.is_student():
-        isProfessor = False
-        student_local = request.user.student
-    else:
-        isProfessor = True
-        student_local = request.user.professor.advisee
-        if student_local is None:
-            # No advisee currently selected; go pick one first.
-            return redirect('update_advisee', 1)
-    """
     isProfessor = False
     student = request.user.student
     total_credit_hours = student.credit_hours_in_plan()
