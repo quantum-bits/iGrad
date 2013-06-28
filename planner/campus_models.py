@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from grad_audit import MetCourse, GradAudit
 import datetime
+from collections import defaultdict, OrderedDict
 import itertools
 
 import logging
@@ -364,6 +365,9 @@ class Requirement(models.Model):
     def __unicode__(self):
         return self.name
 
+    def satisfied(self, offerings):
+        return self.audit(offerings).is_satisfied
+        
     def satisfied_grad_audits(self, courses):
         satisfied_grad_audits = []
         for child_requirement in self.child_requirements():
@@ -474,6 +478,18 @@ class Course(StampedModel):
     schedule_semester = models.ManyToManyField(SemesterName, help_text='Semester(s) offered')
     schedule_year = models.CharField(max_length=1, choices=SCHEDULE_YEAR_CHOICES)
 
+    @property
+    def abbrev_name(self):
+        return "{} {}".format(self.subject.abbrev, self.number)
+    
+    @property
+    def is_sp(self):
+        return bool(self.attributes.filter(course=self, abbrev='SP'))
+    
+    @property
+    def is_cc(self):
+        return bool(self.attributes.filter(course=self, abbrev='CC'))
+
     def __unicode__(self):
         return "{0} {1} - {2}".format(self.subject, self.number, self.title)
 
@@ -486,7 +502,13 @@ class Course(StampedModel):
     def offered_this_year(self, year):
         return ((year % 2 == 0 and self.offered_even_years()) or
                 (year % 2 != 0 and self.offered_odd_years()))
-                 
+
+    def prereqs_satisfied(self, offerings):
+        return all([prereq.satisfied(offerings) for prereq in self.prereqs])
+    
+    def coreqs_satisfied(self, offerings):
+        return all([coreq.satisfied(offerings) for coreq in self.coreqs])
+
     @property
     def department(self):
         return self.subject.department
@@ -513,9 +535,13 @@ class Student(Person):
     def has_major(self):
         return len(self.majors.all()) > 0
 
+    def offerings_this_semester(self, semester):
+        offerings = [pc.offering for pc in self.planned_courses.all() if pc.offering.semester == semester]
+        return offerings
+
     def credit_hours_this_semester(self, semester):
         return sum(course.credit_hours 
-                   for course in self.planned_courses.filter(semester=semester))
+                   for course in self.offerings_this_semester(semester))
 
     def credit_hours_in_plan(self):
         credit_hours = 0
@@ -528,9 +554,36 @@ class Student(Person):
         return credit_hours
 
     def four_year_plan(self):
-        for year in entering_year.next_five_years():
+        plan = []
+        for year in self.entering_year.next_five_years():
+            year_plan = {}
+            credit_hours = []
+            year_semesters = OrderedDict()
             for semester in year.semesters.all():
-                pass
+                semester_courses = {}
+                offerings = self.offerings_this_semester(semester)
+                for offering in offerings:
+                    course = {}
+                    course['title'] = offering.course.title
+                    course['number'] = offering.course.abbrev
+                    course['credit_hours'] = offering.credit_hours
+                    course['sp'] = offering.course.is_sp
+                    course['cc'] = offering.course.is_cc
+                    course['other_semesters_offered'] = offering.other_offerings()
+                    other_semesters = [{'id' : semester.id, 
+                                        'credit_hours' : self.credit_hours_this_semester(semester)}
+                                       for semester in offering.other_offerings()]
+                    course['id'] = offering.course.id
+                    semester_courses.append(course)
+
+                year_semesters[semester] = semester_courses
+                credit_hours.append(self.credit_hours_this_semester(semester))
+
+            year_plan['semesters'] = year_semesters
+            year_plan['credit_hours'] = credit_hours
+            plan.append(year_plan)
+        return plan
+
 
 
 class CourseOffering(StampedModel):
@@ -552,11 +605,17 @@ class CourseOffering(StampedModel):
                                         related_name='course_offerings')
     status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
 
-    def other_offerings(self, courseOffering):
+    def prereqs(self):
+        return self.course.prereqs.all()
+    
+    def coreqs(self):
+        return self.course.coreqs.all()
+
+    def other_offerings(self):
         """Returns a list of other semesters this course is 
         offered.
         """
-        course = courseOffering.course
+        course = self.course
         offerings = [offering.semester for offering in self.objects.filter(course=course).exclude(courseOffering)]
         return offerings 
 
