@@ -277,16 +277,17 @@ def display_four_year_plan(request):
     isProfessor = False
     student = request.user.student
     total_credit_hours_four_years = student.credit_hours_in_plan()
-
+    
+    
     # Student semester courses will now be planned courses 
     # need to identify what data its asking for.
-    temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
-    temp_data2 = CreateYourOwnCourse.objects.all().filter(student=student_local)
+    #temp_data = StudentSemesterCourses.objects.all().filter(student=student_local)
+    #temp_data2 = CreateYourOwnCourse.objects.all().filter(student=student_local)
 
-    enteringyear = temp_data[0].student.entering_year
+    enteringyear = student.entering_year
 
-    studentid = temp_data[0].student.id
-    pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
+    studentid = student.id
+    #pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
     # ssclist is used for later on when we try to find other semesters that a given course
     # is offered.
@@ -342,6 +343,7 @@ def display_four_year_plan(request):
             if row[0] == act_year_temp and row[1] == termdictionaryalphabetize[semtemp]:
                 tempcyocarray.append(ii)
             ii=ii+1
+
         for indexii in reversed(tempcyocarray):
             temparray = cyocarray.pop(indexii)
             total_credit_hrs = total_credit_hrs+temparray[4]
@@ -533,15 +535,20 @@ def display_grad_audit(request):
     temp_data3 = CreateYourOwnCourse.objects.filter(student=student_local)
 
     studentid = temp_data[0].student.id
-    pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
+    # Returns a list of pre reqs and co reqs that are not met.
+    # We can look at major and planned courses to get this info.
+    # pre_not_met_list, co_not_met_list = pre_co_req_check(studentid)
 
-    if student_local.major is None:
+    # assumes a student has only one major. 
+    # Need to change in the future so that we can handle double majors
+    if student.has_major:
+        hasMajor = True
+        studentmajor = student_local.major
+    else:
         hasMajor = False
         context = {'student': student_local,'isProfessor': isProfessor,'hasMajor':hasMajor}
         return render(request, 'graduationaudit.html', context)
-    else:
-        hasMajor = True
-        studentmajor = student_local.major
+
 
     enteringyear = student_local.entering_year
 

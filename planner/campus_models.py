@@ -1,8 +1,11 @@
 from common_models import *
-from django.db import models
 from django.contrib.auth.models import User
-import itertools
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from grad_audit import MetCourse, GradAudit
+import datetime
+import itertools
 
 import logging
 logger = logging.getLogger(__name__)
@@ -69,9 +72,24 @@ class AcademicYear(models.Model):
     class Meta:
         ordering = [ 'begin_on' ]
 
+    def next_five_years(self):
+        """Returns the next five academic years.
+        starting with this one.
+        """
+        first_year = self.begin_on.year
+        yield self
+        for year in range(first_year + 1, first_year + 5):
+            yield AcademicYear.objects.get(begin_on__year = year)
+        
     def __unicode__(self):
         return '{0}-{1}'.format(self.begin_on.year, self.end_on.year)
-    
+
+    def actual_year(self, semesterName):
+        if semesterName.fall:
+            year = self.begin_on.year
+        else:
+            year = self.end_on.year
+        return year
 
 class SemesterName(models.Model):
     """Name for a semester. Using model here may be overkill, but it provides a nice way in
@@ -79,7 +97,7 @@ class SemesterName(models.Model):
     """
     seq = models.PositiveIntegerField(default=10)
     name = models.CharField(max_length=40)
-
+    
     class Meta:
         ordering = ['seq']
 
@@ -99,10 +117,40 @@ class SemesterName(models.Model):
     def summer(self):
         return self.name == 'Summer'
 
-
     def __unicode__(self):
         return self.name
 
+
+class SemesterDateDefault(models.Model):
+    """Model for representing default dates given an SemesterName
+    such as. August 1 for fall, and January 2 for J-Term. """
+    MONTH_CHOICES = ((1,  'January'),
+                     (2,  'February'),
+                     (3,  'March'),
+                     (4,  'April'),
+                     (5,  'May'),
+                     (6,  'June'),
+                     (7,  'July'),
+                     (8,  'August'),
+                     (9,  'September'),
+                     (10, 'October'),
+                     (11, 'November'),
+                     (12, 'December'))
+
+    name = models.OneToOneField(SemesterName)
+    begin_month = models.PositiveSmallIntegerField(choices=MONTH_CHOICES)
+    begin_day   = models.PositiveSmallIntegerField()
+    end_month   = models.PositiveSmallIntegerField(choices=MONTH_CHOICES)
+    end_day     = models.PositiveSmallIntegerField()
+
+
+    def begin_on(self, year):
+        return datetime.date(year.actual_year(self.name), self.begin_month, self.begin_day)
+    def end_on(self, year):
+        return datetime.date(year.actual_year(self.name), self.end_month, self.end_day)
+
+    def __unicode__(self):
+        return "{} Defaults".format(self.name)
 
 class Semester(models.Model):
     """Instance of a single semester in a given academic year."""
@@ -118,7 +166,19 @@ class Semester(models.Model):
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.year)
 
-
+@receiver(post_save, sender=AcademicYear)
+def create_semesters(sender, **kwargs):
+    """Creates semesters for an AcademicYear when a new academic year is created."""
+    instance = kwargs['instance']
+    created  = kwargs['created']
+    raw      = kwargs['raw']
+    if created and not raw:
+        for semesterName in SemesterName.objects.all():
+            begin_on = semesterName.semesterdatedefault.begin_on(instance)
+            end_on   = semesterName.semesterdatedefault.end_on(instance)
+            semester, created = Semester.objects.get_or_create(name=semesterName,year=instance,
+                                                               begin_on = begin_on, end_on=end_on)
+    
 class Holiday(models.Model):
     """Range of days off within a semester. Can be a single day (begin and end are the same
     date) or multiple consecutive days. A semester may have multiple holidays.
@@ -450,7 +510,6 @@ class Student(Person):
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
-
     def has_major(self):
         return len(self.majors.all()) > 0
 
@@ -467,6 +526,12 @@ class Student(Person):
             credit_hours += course_substitutions.credit_hours
 
         return credit_hours
+
+    def four_year_plan(self):
+        for year in entering_year.next_five_years():
+            for semester in year.semesters.all():
+                pass
+
 
 class CourseOffering(StampedModel):
     """Course as listed in the course schedule (i.e., an offering of a course)."""
