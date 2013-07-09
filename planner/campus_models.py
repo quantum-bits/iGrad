@@ -529,6 +529,8 @@ class Student(Person):
     majors = models.ManyToManyField(Major, related_name='students', blank=True, null=True)
     minors = models.ManyToManyField(Minor, related_name='students', blank=True, null=True)
 
+    planned_courses = models.ManyToManyField('CourseOffering', related_name='students', blank=True, null=True)
+
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
@@ -624,22 +626,6 @@ class CourseOffering(StampedModel):
 
     def department(self):
         return self.course.department
-
-    def students(self):
-        """Students enrolled in this course offering"""
-        return Student.objects.filter(courses_taken=self)
-
-class PlannedCourse(StampedModel):
-    """Course that a student is actually planning to take."""
-    student = models.ForeignKey(Student, related_name='planned_courses')
-    offering = models.ForeignKey(CourseOffering, related_name='+')
-
-    @property
-    def credit_hours(self):
-        return self.offering.credit_hours
-
-    def __unicode__(self):
-        return "{} {}".format(self.student,self.offering.course)
 
 
 
