@@ -1,6 +1,8 @@
 from common_models import *
+from collections import namedtuple
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Sum
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from grad_audit import MetCourse, GradAudit
@@ -479,16 +481,16 @@ class Course(StampedModel):
     schedule_year = models.CharField(max_length=1, choices=SCHEDULE_YEAR_CHOICES)
 
     @property
-    def abbrev_name(self):
+    def abbrev(self):
         return "{} {}".format(self.subject.abbrev, self.number)
     
     @property
     def is_sp(self):
-        return bool(self.attributes.filter(course=self, abbrev='SP'))
+        return bool(self.attributes.filter(abbrev='SP'))
     
     @property
     def is_cc(self):
-        return bool(self.attributes.filter(course=self, abbrev='CC'))
+        return bool(self.attributes.filter(abbrev='CC'))
 
     def __unicode__(self):
         return "{0} {1} - {2}".format(self.subject, self.number, self.title)
@@ -538,31 +540,34 @@ class Student(Person):
         return len(self.majors.all()) > 0
 
     def offerings_this_semester(self, semester):
-        offerings = [pc.offering for pc in self.planned_courses.all() if pc.offering.semester == semester]
-        return offerings
+        return self.planned_courses.filter(semester=semester)
 
     def credit_hours_this_semester(self, semester):
-        return sum(course.credit_hours 
-                   for course in self.offerings_this_semester(semester))
-
-    def credit_hours_in_plan(self):
-        credit_hours = 0
-        for course in self.planned_courses.all():
-            credit_hours += course.credit_hours
-
-        for course_substitution in self.course_substitutions.all():
-            credit_hours += course_substitutions.credit_hours
-
+        credit_hours = self.offerings_this_semester(semester).aggregate(Sum('credit_hours'))['credit_hours__sum']
+        if credit_hours is None: return 0
         return credit_hours
 
+
+    def credit_hours_in_plan(self):
+        planned_course_chs = self.planned_courses.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
+        if planned_course_chs is None: planned_course_chs = 0
+        
+        course_sub_chs = self.course_substitutions.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
+        if course_sub_chs is None: course_sub_chs = 0
+        
+        return planned_course_chs + course_sub_chs
+
+
+    
     def four_year_plan(self):
+        SemesterInfo = namedtuple('SemesterInfo','courses, semester')
         plan = []
         for year in self.entering_year.next_five_years():
             year_plan = {}
             credit_hours = []
-            year_semesters = OrderedDict()
+            year_semesters = []
             for semester in year.semesters.all():
-                semester_courses = {}
+                semester_courses = []
                 offerings = self.offerings_this_semester(semester)
                 for offering in offerings:
                     course = {}
@@ -571,14 +576,16 @@ class Student(Person):
                     course['credit_hours'] = offering.credit_hours
                     course['sp'] = offering.course.is_sp
                     course['cc'] = offering.course.is_cc
-                    course['other_semesters_offered'] = offering.other_offerings()
-                    other_semesters = [{'id' : semester.id, 
+             
+                    course['other_semesters_offered'] = CourseOffering.other_offerings(offering)
+                    other_semesters = [{'id' : alternate_semester.id, 
                                         'credit_hours' : self.credit_hours_this_semester(semester)}
-                                       for semester in offering.other_offerings()]
+                                       for alternate_semester in course['other_semesters_offered']]
+
                     course['id'] = offering.course.id
                     semester_courses.append(course)
 
-                year_semesters[semester] = semester_courses
+                year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))
                 credit_hours.append(self.credit_hours_this_semester(semester))
 
             year_plan['semesters'] = year_semesters
@@ -613,13 +620,15 @@ class CourseOffering(StampedModel):
     def coreqs(self):
         return self.course.coreqs.all()
 
-    def other_offerings(self):
+
+    @classmethod
+    def other_offerings(cls,offering):
         """Returns a list of other semesters this course is 
         offered.
         """
-        course = self.course
-        offerings = [offering.semester for offering in self.objects.filter(course=course).exclude(courseOffering)]
-        return offerings 
+        offerings = cls.objects.filter(course=offering.course)
+        offerings = offerings.exclude(semester=offering.semester)
+        return list(offerings)
 
     def __unicode__(self):
         return "{0} ({1})".format(self.course, self.semester)

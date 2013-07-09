@@ -110,7 +110,26 @@ def update_major(request):
 # --> maybe look here:
 #     http://stackoverflow.com/questions/9013697/django-how-to-pass-object-object-id-to-another-template
 @login_required
-def update_student_semester(request, id):
+def update_student_semester(request, semester_id):
+    semester = Semester.objects.get(id=semester_id)
+    student = request.user.student
+    
+    if request.method == 'POST':
+        form = AddCourseForm(request.POST, instance=student, semester=semester)
+        if form.is_valid():
+            form.save()
+            return redirect('four_year_plan')
+        else:
+            return render(request, 'updatestudentsemester.html', 
+                          {'form' : form})
+    else:
+        form = AddCourseForm(instance=student, semester=semester)
+        context = {'form' : form}
+        return render(request, 'updatesemester.html', context)
+
+
+@login_required
+def update_student_semester_old(request, id):
     instance = StudentSemesterCourses.objects.get(pk = id)
 
     # The following statement kicks the person out if he/she is trying to hack into
@@ -122,39 +141,7 @@ def update_student_semester(request, id):
     if request_id != incoming_id:
         return redirect('profile')
 
-    year = instance.actual_year
-    semester = instance.semester
-    student_local = request.user
-    student_created_courses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local) &
-                                                                       Q(semester=semester) &
-                                                                       Q(actual_year=year))
-    courselist= Course.objects.filter(Q(sospring=1) & Q(semester__actual_year=year) & Q(semester__semester_of_acad_year = semester))
-    current_course_list = Course.objects.filter(Q(semester__actual_year=year) & Q(semester__semester_of_acad_year = semester))
-
-    sccdatablock=[]
-    for scc in student_created_courses:
-        if scc.equivalentcourse:
-            eqnum = ", equiv to " + scc.equivalentcourse.number
-        else:
-            eqnum  =  ""
-        if scc.sp:
-            SPtemp = ", SP"
-        else:
-            SPtemp = ""
-        if scc.cc:
-            CCtemp = ", CC"
-        else:
-            CCtemp = ""
-        sccdatablock.append({'cname':scc.name,
-                             'cnumber':scc.number,
-                             'ccredithrs':scc.credit_hours,
-                             'csemester':scc.semester,
-                             'cyear':scc.actual_year,
-                             'equivalentcourse':eqnum,
-                             'sp':SPtemp,
-                             'cc':CCtemp,
-                             'courseid':scc.id})
-
+    
     if request.method == 'POST':
         my_kwargs = dict(instance=instance,
                          actual_year=year,
@@ -267,6 +254,7 @@ def display_four_year_plan(request):
     student = request.user.student
     total_credit_hours = student.credit_hours_in_plan()
 
+    
     context = {'student': student,
                'four_year_plan' : student.four_year_plan(),
                'totalhrsfouryears': total_credit_hours,

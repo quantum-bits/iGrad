@@ -41,9 +41,9 @@
 	<div class="accordion-inner">
 	  {% for semester in year.semesters %}
 	    <p>
-	      {{ semester }}
+	      {{ semester.semester }}
 	      {% if not isProfessor %}
-		(<a href="{% url 'update_student_semester' semester.id %}">Add Course</a>)
+		(<a href="{% url 'update_student_semester' semester.semester.id %}">Add Course</a>)
 	      {% endif %}
 	    </p>
 	    <table class="table table-striped table-bordered table-hover table-condensed">
@@ -59,7 +59,7 @@
 		</tr>
 	      </thead>
 	      <tbody>
-		{% for course in semester.semester %}
+		{% for course in semester.courses %}
 		  <tr>
 		    <td>{{ course.title }} <!--{% if course.iscyoc %}*{% endif %}--></td>
 		    <td>{{ course.number }}</td>
@@ -93,7 +93,7 @@
 				<a href="{% url 'delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
 			      {% else %}
 				-->
-			      <a href="{% url 'delete_course' 0 semester.id course.id %}">delete</a>
+			      <a href="{% url 'delete_course' 0 semester.semester.id course.id %}">delete</a>
 				<!-- 
 			      {% endif %}
 			      -->

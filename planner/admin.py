@@ -59,5 +59,3 @@ admin.site.register(SemesterDateDefault)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Subject)
 admin.site.register(University)
-admin.site.register(PlannedCourse)
-

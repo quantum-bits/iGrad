@@ -57,6 +57,16 @@ class AddStudentSemesterForm(forms.ModelForm):
         return courses
 """
 
+class AddCourseForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['planned_courses']
+
+    def __init__(self, *args, **kwargs):
+        semester = kwargs.pop('semester')
+        super(AddCourseOfferingsForm,self).__init__(*args, **kwargs)
+        self.fields['planned_courses'].queryset = CourseOffering.objects.filter(semester=semester)
+
 class AddAdvisingNoteForm(forms.ModelForm):
 
     class Meta:
