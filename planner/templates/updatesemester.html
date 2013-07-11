@@ -17,13 +17,13 @@
     {% endif %}
 
     <div class="updatesemester_div">
-      {% if form.courses.errors %}
-	<p class = "error">{{ form.courses.errors }}</p>
+      {% if form.planned_courses.errors %}
+	<p class = "error">{{ form.planned_courses.errors }}</p>
       {% endif %}
-      <p><label form="courses" {% if form.courses.errors %} class ="error"{% endif %}>Courses:</label></p>
+      <p><label form="courses" {% if form.planned_courses.errors %} class ="error"{% endif %}>Courses:</label></p>
 
       <p>Select a course to add to your four-year plan.</p>
-      <span>{{ form.courses }}</span>
+      <span>{{ form.planned_courses }}</span>
     </div>
     <div class="alert alert-student-info">  
   	<a class="close" data-dismiss="alert">×</a>  
@@ -34,7 +34,7 @@
     </p>
   </form>
   
-
+<!--
   <h1>Create Your Own Course</h1>
 
   <p>
@@ -74,6 +74,7 @@
   </p>
 
   </form>
+-->
   </div>
 
    <script src="{{ STATIC_URL }}js/chosen.jquery.js" type="text/javascript"></script>

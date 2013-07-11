@@ -64,7 +64,7 @@ class AddCourseForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         semester = kwargs.pop('semester')
-        super(AddCourseOfferingsForm,self).__init__(*args, **kwargs)
+        super(AddCourseForm,self).__init__(*args, **kwargs)
         self.fields['planned_courses'].queryset = CourseOffering.objects.filter(semester=semester)
 
 class AddAdvisingNoteForm(forms.ModelForm):

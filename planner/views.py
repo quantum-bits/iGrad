@@ -65,23 +65,19 @@ def student_registration(request):
 
 @login_required
 def profile(request):
+    # TODO: add search functionality. 
     user = request.user
-    courses = Course.objects.all()
-    """
+    courses = CourseOffering.objects.all()
+  
     if user.is_student():
         isProfessor = False
-        professorname = ''
+        professorName = ''
         advisee = None
     else:
         isProfessor = True
-        professorname = user.professor.name
+        professorName = user.professor.full_name
         advisee = user.professor.advisee
-    """
-    isProfessor = False
-    professorName = ''
-    advisee = None
-    # Note: to access the email address in the view, you could set it to
-    # email = student.user.email
+  
     context = { 'isProfessor': isProfessor,
                 'professorName': professorName,
                 'advisee': advisee,
@@ -171,39 +167,28 @@ def update_student_semester_old(request, id):
 @login_required
 def display_advising_notes(request):
     if request.user.is_student():
-        isProfessor = False
-        student_local = request.user.student
+        student = request.user.student
+        isProfessor = request.user.professor
     else:
-        isProfessor = True
-        student_local = request.user.professor.advisee
-        if student_local is None:
+        isProfessor = request.user.is_professor()
+        student = request.user.professor.advisee
+        if student is None:
             # No advisee currently selected; go pick one first
             return redirect('update_advisee', 3)
 
-    temp_data = AdvisingNote.objects.all().filter(student=student_local)
-
-    datablock = []
-    ii = 0
-    for adv_notes in temp_data:
-        ii = ii + 1
-        datablock.append([adv_notes.datestamp, adv_notes.note, adv_notes.id, ii])
-
-    context = {'student': student_local,
-               'datablock': datablock,
+    context = {'student': student,
+               'advisingNotes': AdvisingNote.objects.filter(student=student),
                'isProfessor': isProfessor}
     return render(request, 'advisingnotes.html', context)
 
-
 @login_required
 def add_new_advising_note(request):
-    # The following list should just have one element(!)...hence "listofstudents[0]" is
-    # used in the following....
-    listofstudents = Student.objects.all().filter(user=request.user)
+    student = request.user.student
 
     if request.method == 'POST':
         form = AddAdvisingNoteForm(request.POST)
         if form.is_valid():
-            p1 = AdvisingNote(student=listofstudents[0])
+            p1 = AdvisingNote(student=student)
             p1.note = form.cleaned_data['note']
             p1.save()
             return redirect('advising_notes')
@@ -217,15 +202,15 @@ def add_new_advising_note(request):
 
 
 @login_required
-def update_advising_note(request, id):
-    instance = AdvisingNote.objects.get(pk = id)
-    request_id = request.user.get_student_id()
-    incoming_id = instance.student.id
-    if request_id != incoming_id:
+def update_advising_note(request, advising_note_id):
+    advisingNote = AdvisingNote.objects.get(pk = advising_note_id)
+    student_id = request.user.get_student_id()
+    incoming_id = advisingNote.student.id
+    if student_id != incoming_id:
         return redirect('profile')
 
     if request.method == 'POST':
-        form = AddAdvisingNoteForm(request.POST, instance=instance)
+        form = AddAdvisingNoteForm(request.POST, instance=advisingNote)
         if form.is_valid():
             form.save()
             return redirect('advising_notes')
@@ -233,13 +218,15 @@ def update_advising_note(request, id):
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
         # user is not submitting the form; show them the blank add semester form
-        form = AddAdvisingNoteForm(instance=instance)
+        form = AddAdvisingNoteForm(instance=advisingNote)
         context = {'form': form}
         return render(request, 'addAdvisingNote.html', context)
 
 @login_required
 def delete_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
+    request_id = request.user
+    assert(isinstance(request.user, UserProxy))
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
@@ -250,6 +237,7 @@ def delete_advising_note(request, id):
 
 @login_required
 def display_four_year_plan(request):
+    # TODO: add professor functionality
     isProfessor = False
     student = request.user.student
     total_credit_hours = student.credit_hours_in_plan()

@@ -20,7 +20,7 @@
       <tbody>
 	<tr>
 	  <th>Advisee</th>
-	  <td>{{ advisee.name }}</td>
+	  <td>{{ advisee.full_name }}</td>
 	  <td>
 	    {% if advisee %}
 	      <a class="btn" href="{% url 'update_advisee' 0 %}">Change</a>

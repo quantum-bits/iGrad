@@ -1,5 +1,7 @@
-from common_models import *
+from collections import defaultdict, OrderedDict
 from collections import namedtuple
+from common_models import *
+from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
@@ -7,7 +9,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from grad_audit import MetCourse, GradAudit
 import datetime
-from collections import defaultdict, OrderedDict
 import itertools
 
 import logging
@@ -519,6 +520,43 @@ class Course(StampedModel):
         ordering = ['subject', 'number' , 'title']
         unique_together = ('subject', 'number')
 
+class UserProxy(User):
+    class Meta:
+        proxy = True
+
+    def __unicode__(self):
+        return self.get_full_name()
+
+    def is_student(self):
+        try:
+            if self.student:
+                return True
+        except Student.DoesNotExist:
+            return False
+
+    def is_professor(self):
+        try:
+            if self.professor:
+                return True
+        except Professor.DoesNotExist:
+            return False
+
+    def get_student_id(self):
+        assert(self.is_student)
+        return self.student.id
+
+    def get_professor_id(self):
+        assert(self.is_professor)
+        return self.professor.id
+
+
+class ProxiedModelBackend(ModelBackend):
+    def get_user(self, user_id):
+        try:
+            return UserProxy.objects.get(pk=user_id)
+        except UserProxy.DoesNotExist:
+            return None
+        
 
 class Student(Person):
     user = models.OneToOneField(User, null=True)
@@ -593,6 +631,12 @@ class Student(Person):
             plan.append(year_plan)
         return plan
 
+class Professor(Person):
+    user = models.OneToOneField(User, null=True)
+    advisee = models.OneToOneField(Student, null=True, blank=True)
+
+    def __unicode__(self):
+        return "{} {}".format(self.first_name, self.last_name)
 
 
 class CourseOffering(StampedModel):
