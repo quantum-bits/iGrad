@@ -60,7 +60,7 @@
 	   {{course.credit_hours}} hrs
 	   {{course.equivalent_course}})
 	  (<a class="other" href="{% url 'update_cyoc' semester_id course.id %}">Edit</a>,
-	   <a class="other" href="{% url 'delete_cyoc' 2 semester_id course.id %}">Delete</a>)
+	   <a class="other" href="{% url 'delete_course_sub' course.id %}?next={{ request.path|urlencode }}">Delete</a>)
 	</li>
       {% empty %}
 	<li>None</li>

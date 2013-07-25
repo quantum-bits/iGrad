@@ -365,31 +365,16 @@ def update_create_your_own_course(request,id,id2):
         return render(request, 'addcreateyourowncourse.html', context)
 
 
-# In the following, "where_from" is:
-#    0: fouryearplan
-#    1: gradaudit
-#    2: updatesemester
-# "id" is:
-#    0: coming from fouryearplan (doesn't matter; not used)
-#    0: coming from gradaudit (doesn't matter; not used)
-#    ssc id: coming from updatesemester
 @login_required
-def delete_create_your_own_course(request, where_from, id, id2):
-    instance = CreateYourOwnCourse.objects.get(pk = id2)
-
+def delete_course_substitution(request, course_sub_id ):
+    course_sub = CourseSubstitution.objects.get(id=course_sub_id)
     request_id = request.user.get_student_id()
-    incoming_id2 = instance.student.id
-    if request_id != incoming_id2:
+    incoming_id = course_sub.student.id
+    if request_id != incoming_id:
         return redirect('profile')
-
-    instance.delete()
-    if int(where_from) == 2:
-        return redirect('update_student_semester', id)
-    elif int(where_from) == 0:
-        return redirect('four_year_plan')
-    else:
-        return redirect('grad_audit')
-
+    course_sub.delete()
+    next = request.GET.get('next', 'profile')
+    return redirect(next)
 
 @login_required
 def remove_course_from_plan(request, offering_id):

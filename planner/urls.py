@@ -19,7 +19,7 @@ urlpatterns = patterns(
     url(r'^deleteNote/(\d+)/$', 'delete_advising_note', name='delete_note'),
 
     url(r'^add_course_substitute/(\d+)/$', 'add_course_substitute', name='add_sub'),
-    url(r'^deletecyoc/(\d+)/(\d+)/(\d+)/$', 'delete_create_your_own_course', name='delete_cyoc'),
+    url(r'^delete_course_sub/(\d+)/$', 'delete_course_substitution', name='delete_course_sub'),
     url(r'^updatecyoc/(\d+)/(\d+)/$', 'update_create_your_own_course', name='update_cyoc'),
 
     url(r'^remove_course_from_plan/(\d+)/$', 'remove_course_from_plan', name='remove_course_from_plan'),
