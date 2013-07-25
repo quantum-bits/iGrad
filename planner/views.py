@@ -184,8 +184,8 @@ def display_advising_notes(request):
 
 @login_required
 def add_new_advising_note(request):
+    print "Hello"
     student = request.user.student
-
     if request.method == 'POST':
         form = AddAdvisingNoteForm(request.POST)
         if form.is_valid():
@@ -196,11 +196,10 @@ def add_new_advising_note(request):
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
-        # user is not submitting the form; show them the blank add semester form
+        # User is not submitting the form; show them the blank add semester form
         form = AddAdvisingNoteForm()
         context = {'form': form}
         return render(request, 'addAdvisingNote.html', context)
-
 
 @login_required
 def update_advising_note(request, advising_note_id):
@@ -227,7 +226,6 @@ def update_advising_note(request, advising_note_id):
 def delete_advising_note(request, id):
     instance = AdvisingNote.objects.get(pk = id)
     request_id = request.user
-    assert(isinstance(request.user, UserProxy))
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
@@ -252,7 +250,6 @@ def display_four_year_plan(request):
 
 @login_required
 def display_grad_audit(request):
-
     if request.user.is_student():
         isProfessor = False
         student = request.user.student
@@ -286,23 +283,7 @@ def display_grad_audit(request):
     return render(request, 'graduationaudit.html', context)
 
 
-@login_required
-def add_new_advising_note(request):
-    student = request.user.student
-    if request.method == 'POST':
-        form = AddAdvisingNoteForm(request.POST)
-        if form.is_valid():
-            p1 = AdvisingNote(student=student)
-            p1.note = form.cleaned_data['note']
-            p1.save()
-            return redirect('advising_notes')
-        else:
-            return render(request, 'addAdvisingNote.html', {'form': form})
-    else:
-        # User is not submitting the form; show them the blank add semester form
-        form = AddAdvisingNoteForm()
-        context = {'form': form}
-        return render(request, 'addAdvisingNote.html', context)
+
 
 @login_required
 def add_create_your_own_course(request,id):
