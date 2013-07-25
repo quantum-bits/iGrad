@@ -7,9 +7,7 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from grad_audit import MetCourse, GradAudit
 import datetime
-import itertools
 
 import logging
 logger = logging.getLogger(__name__)
@@ -88,6 +86,7 @@ class AcademicYear(models.Model):
     def __unicode__(self):
         return '{0}-{1}'.format(self.begin_on.year, self.end_on.year)
 
+
     def actual_year(self, semesterName):
         if semesterName.fall:
             year = self.begin_on.year
@@ -152,7 +151,6 @@ class SemesterDateDefault(models.Model):
         return datetime.date(year.actual_year(self.name), self.begin_month, self.begin_day)
     def end_on(self, year):
         return datetime.date(year.actual_year(self.name), self.end_month, self.end_day)
-
     def __unicode__(self):
         return "{} Defaults".format(self.name)
 
@@ -167,6 +165,7 @@ class Semester(models.Model):
         ordering = ['year', 'name']
         unique_together = ['name', 'year']
 
+            
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.year)
 
@@ -245,174 +244,6 @@ class CourseAttribute(StampedModel):
         return self.name
 
 
-class Constraint(models.Model):
-    name = models.CharField(max_length = 80)
-    constraint_text = models.CharField(max_length = 100)
-
-    def __unicode__(self):
-        return self.name
-
-    def parse_constraint_text(self):
-        tokens = self.constraint_text.split()
-        name,args = tokens[0],tokens[1:]
-        parameters = {}
-        for i in range(0, len(args), 2):
-            parameters[args[i]] = args[i + 1]
-        return (name, parameters)
-
-    def audit(self, courseOfferings, requirement):
-        name, arguments = self.parse_constraint_text()
-        return getattr(self, name)(courseOfferings, requirement, **arguments)
-
-            
-    def met_courses(self, courseOfferings, requirement, getCourses):
-        required_courses = getCourses()
-        met_courses = [MetCourse(required_course=required_course, course_offering=co)
-                       for required_course in required_courses
-                       for co in courseOfferings
-                       if co.course == required_course]
-        return met_courses
-
-    def courses_meeting_requirement(self, courseOfferings, requirement):
-        required_courses = requirement.required_courses()
-        met_courses = [MetCourses(required_course=required_course, course_offering=co)
-                       for required_course in required_courses
-                       for co in courseOfferings
-                       if co.course == required_course]
-
-        return met_courses
-
-    def courses_meeting_all_requirements(self, courseOfferings, requirement):
-        required_course = requirement.all_courses()
-        co_meeting_reqs = [ReqCO(required_course=required_course, course_offering=co)
-                           for required_course in required_course
-                           for co in courseOfferings
-                           if co.course == required_course]
-
-        return co_meeting_reqs
-
-    def any(self, courses, requirement, **kwargs):
-        met_courses = self.met_courses(courses, requirement, requirement.required_courses)
-        is_satisfied = len(met_courses) >= 1
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
-
-
-    def all(self, courses, requirement, **kwargs):
-        met_courses = self.met_courses(courses, requirement, requirement.required_courses)
-        is_satisfied = len(met_courses) == len(requirement.required_courses())
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
-
-
-    def meet_some(self, courses, requirement, **kwargs):
-        at_least = int(kwargs['at_least'])
-        met_courses = self.met_courses(courses, requirement, requirement.required_courses)
-        is_satisfied = len(met_courses) >= at_least
-        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied)
-    
-    def min_required_credit_hours (self, courses, requirement, **kwargs):
-        at_least = int(kwargs['at_least'])
-
-        course_offerings = [] 
-        courses_considered = [] 
-        met_courses = self.met_courses(courses, requirement, requirement.all_courses)
-        for met_course in met_courses:
-            course_offering = met_course.course_offering
-            course = course_offering.course
-            if course_offering.course not in courses_considered:
-                # if a person takes a course multiple times, it should only count once.
-                course_offerings.append(course_offering)
-                courses_considered.append(course_offering.course)
-
-        is_satisfied = sum(co.credit_hours for co in course_offerings) >= at_least
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
-
-    def different_departments(self, courses, requirement, **kwargs):
-        at_least = int(kwargs['at_least'])
-        met_courses = self.met_courses(courses, requirement, requirement.all_courses)
-        courses = [met_course.required_course for met_course in met_courses]
-        unique_departments = set(course.subject.abbrev for course in courses)
-        is_satisfied = len(unique_departments) >= at_least
-        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied)
-
-    def all_sub_requirements_satisfied(self, courses, requirement, **kwargs):
-        grad_audits = [child.audit(courses) for child in requirement.child_requirements()]
-        is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
-        grad_audit = GradAudit(requirement=requirement, met_course=None, is_satisfied=is_satisfied)
-        grad_audit.addChildren(*grad_audits)
-        return grad_audit
-
-    def satisfy_some_sub_requirements(self, courses, requirement, **kwargs):
-        at_least = int(kwargs['at_least'])
-        grad_audits = [child.audit(courses) for child in requirement.child_requirements()]
-        satisfied_grad_audits = [grad_audit for grad_audit in grad_audits if grad_audit.is_satisfied]
-        is_satisfied = len(satisfied_grad_audits) >= at_least
-        grad_audit = GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_course=None)
-        grad_audit.addChildren(*grad_audits)
-        return grad_audit
-    
-
-class Requirement(models.Model):
-    name = models.CharField(max_length=50,
-                            help_text="e.g., PhysicsBS Technical Electives, or GenEd Literature;"
-                            "first part is helpful for searching (when creating a major).")
-    
-    display_name = models.CharField(max_length=50,
-                                    help_text="e.g., Technical Electives, or Literature;"
-                                    "this is the title that will show up when students"
-                                    "do a graduation audit.")
-
-    constraints = models.ManyToManyField(Constraint, related_name='constraints', blank=True)
-    requirements = models.ManyToManyField('self', symmetrical=False, blank=True, related_name = 'sub_requirements')
-    courses = models.ManyToManyField('Course', related_name = 'courses', blank=True)
-
-    def __unicode__(self):
-        return self.name
-
-    def satisfied(self, offerings):
-        return self.audit(offerings).is_satisfied
-        
-    def satisfied_grad_audits(self, courses):
-        satisfied_grad_audits = []
-        for child_requirement in self.child_requirements():
-            grad_audit = child_requirement.audit(courses)
-            print '\n'.join(str(ga) for ga in grad_audit)
-            if grad_audits_satisfied(grad_audit):
-                satisfied_grad_audits.append(grad_audit)
-            
-        return satisfied_grad_audits
-
-    def required_courses(self):
-        return list(self.courses.all())
-
-    def all_courses(self):
-        """
-        Returns a list of all courses. The courses from Requirement, 
-        as well as the courses from sub_requriements.
-        """
-        reqs = self.requirements.all()
-        req_courses = [list(req.all_courses()) for req in reqs]
-
-        return self.required_courses() + (list(itertools.chain(*req_courses)))
-
-    def audit(self, courses=None):
-        """Returns a list of AuditInfos for each constraint on this requirement.
-        """
-        courses = [] if courses is None else courses
-        return self._audit_helper(courses)
-
-    def _audit_helper(self, courses):
-        children =  [constraint.audit(courses, self) for constraint in self.constraints.all()]
-        is_satisfied = all([child.is_satisfied for child in children])
-        gradAudit = GradAudit(requirement=self, met_courses=None, is_satisfied=is_satisfied)
-        gradAudit.addChildren(*children)
-        return gradAudit
-
-    def child_requirements(self):
-        return [child_requirement for child_requirement in self.requirements.all()]
-
-    class Meta:
-        ordering = ['display_name', ]
-
 def possible_credit_hours(credit_hour):
     """
     Created for migration. Probably a better way.
@@ -436,6 +267,14 @@ class CreditHour(models.Model):
     def valid_credit_hour(self, credit_hour):
         return credit_hour in self.possible_credit_hours
 
+    @property
+    def max_credit_hour(self):
+        return max(self.possible_credit_hours())
+
+    @property
+    def min_credit_hour(self):
+        return min(self.possible_credit_hours())
+
     def possible_credit_hours(self):
         if '-' in self.value:
             start, end = self.value.split('-')
@@ -449,7 +288,7 @@ class Major(models.Model):
     """Academic major"""
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='majors')
-    requirement = models.ForeignKey(Requirement, related_name='majors', null=True)
+    requirement = models.OneToOneField('Requirement', related_name='major', null=True)
 
     def __unicode__(self):
         return self.name
@@ -459,7 +298,7 @@ class Minor(models.Model):
     """Academic minor"""
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='minors')
-    requirement = models.ForeignKey(Requirement, related_name='minors', null=True)
+    requirement = models.OneToOneField('Requirement', related_name='minor', null=True)
 
     def __unicode__(self):
         return self.name
@@ -492,6 +331,10 @@ class Course(StampedModel):
     @property
     def is_cc(self):
         return bool(self.attributes.filter(abbrev='CC'))
+
+    @property 
+    def possible_credit_hours(self):
+        return ",".join(str(i) for i in self.credit_hours.possible_credit_hours())
 
     def __unicode__(self):
         return "{0} {1} - {2}".format(self.subject, self.number, self.title)
@@ -556,7 +399,7 @@ class ProxiedModelBackend(ModelBackend):
             return UserProxy.objects.get(pk=user_id)
         except UserProxy.DoesNotExist:
             return None
-        
+
 
 class Student(Person):
     user = models.OneToOneField(User, null=True)
@@ -571,11 +414,25 @@ class Student(Person):
 
     planned_courses = models.ManyToManyField('CourseOffering', related_name='students', blank=True, null=True)
 
+
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
+    def yearName(self, semester):
+        year_index = 0
+        years = ["Freshman", "Sophomore", "Junior", "Senior", "Super Senior"]
+        for year in self.entering_year.next_five_years:
+            if semester.year == year:
+                return years[year_index]
+            year_index += 1
+
+        return "Super Senior"
+
     def has_major(self):
         return len(self.majors.all()) > 0
+
+    def planned_courses_before_semester(semester):
+        return self.planned_courses.filter(semester__end_on__lt=semester.begin_on)
 
     def offerings_this_semester(self, semester):
         return self.planned_courses.filter(semester=semester)
@@ -589,13 +446,9 @@ class Student(Person):
     def credit_hours_in_plan(self):
         planned_course_chs = self.planned_courses.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
         if planned_course_chs is None: planned_course_chs = 0
-        
         course_sub_chs = self.course_substitutions.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
         if course_sub_chs is None: course_sub_chs = 0
-        
         return planned_course_chs + course_sub_chs
-
-
     
     def four_year_plan(self):
         SemesterInfo = namedtuple('SemesterInfo','courses, semester')
@@ -614,22 +467,39 @@ class Student(Person):
                     course['credit_hours'] = offering.credit_hours
                     course['sp'] = offering.course.is_sp
                     course['cc'] = offering.course.is_cc
-             
                     course['other_semesters_offered'] = CourseOffering.other_offerings(offering)
                     other_semesters = [{'id' : alternate_semester.id, 
                                         'credit_hours' : self.credit_hours_this_semester(semester)}
                                        for alternate_semester in course['other_semesters_offered']]
-
                     course['id'] = offering.course.id
                     semester_courses.append(course)
-
                 year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))
                 credit_hours.append(self.credit_hours_this_semester(semester))
-
             year_plan['semesters'] = year_semesters
             year_plan['credit_hours'] = credit_hours
             plan.append(year_plan)
         return plan
+
+    def sp_cc_information(self):
+        all_courses = self.planned_courses.all()
+        sps = [courseOffering.course for course in all_courses if courseOffering.course.is_sp]
+        ccs = [courseOffering.course for course in all_courses if courseOffering.course.is_cc]
+        num_sps = len(sps)
+        num_ccs = len(ccs)
+        
+        return {'sps' : sps, 
+                'num_sps' : num_sps,
+                'sps_met' : num_sps >= 2,
+                'ccs' : ccs,
+                'num_ccs' : num_ccs,
+                'ccs_met' : num_ccs >=1}
+
+    def grad_audit(self):
+        # Right now it returns the first major,
+        # TODO: make it work when there is more than one major. 
+        # TODO: make it work for minors
+        for major in self.majors.all():
+            return major.requirement.audit()
 
 class Professor(Person):
     user = models.OneToOneField(User, null=True)
@@ -672,7 +542,7 @@ class CourseOffering(StampedModel):
         """
         offerings = cls.objects.filter(course=offering.course)
         offerings = offerings.exclude(semester=offering.semester)
-        return list(offerings)
+        return offerings
 
     def __unicode__(self):
         return "{0} ({1})".format(self.course, self.semester)

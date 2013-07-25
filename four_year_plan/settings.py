@@ -1,5 +1,5 @@
 # Django settings for iGrad project.
-
+from django.conf import global_settings
 from run_mode import RunMode
 run_mode = RunMode('dev', debug_toolbar=False)
 
@@ -97,6 +97,10 @@ STATICFILES_FINDERS = (
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '9pe)h6j=t@gizs%=!pm*duk(%@p#e&ci7$podfz&=mzd2ox3*-'
+
+# add request to every context
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.core.context_processors.request",)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

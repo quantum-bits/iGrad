@@ -22,7 +22,7 @@ urlpatterns = patterns(
     url(r'^deletecyoc/(\d+)/(\d+)/(\d+)/$', 'delete_create_your_own_course', name='delete_cyoc'),
     url(r'^updatecyoc/(\d+)/(\d+)/$', 'update_create_your_own_course', name='update_cyoc'),
 
-    url(r'^deletecourse/(\d+)/(\d+)/(\d+)/$', 'delete_course_inside_SSCObject', name='delete_course'),
+    url(r'^remove_course_from_plan/(\d+)/$', 'remove_course_from_plan', name='remove_course_from_plan'),
     url(r'^movecoursetonewsemester/(\d+)/(\d+)/(\d+)/$', 'move_course_to_new_SSCObject', name='move_course'),
 
     url(r'^changeadvisee/(\d+)/$', 'update_advisee', name='update_advisee'),

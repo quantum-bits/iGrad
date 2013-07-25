@@ -93,7 +93,7 @@
 				<a href="{% url 'delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
 			      {% else %}
 				-->
-			      <a href="{% url 'delete_course' 0 semester.semester.id course.id %}">delete</a>
+			      <a href="{% url 'remove_course_from_plan' course.id %}?next={{ request.path|urlencode }}">delete</a>
 				<!-- 
 			      {% endif %}
 			      -->

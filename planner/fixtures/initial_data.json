@@ -2376,6 +2376,384 @@
     }
 },
 {
+    "pk": 271, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_facultymember", 
+        "name": "Can add faculty member", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 272, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_facultymember", 
+        "name": "Can change faculty member", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 273, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_facultymember", 
+        "name": "Can delete faculty member", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 274, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_staffmember", 
+        "name": "Can add staff member", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 275, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_staffmember", 
+        "name": "Can change staff member", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 276, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_staffmember", 
+        "name": "Can delete staff member", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 277, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_academicyear", 
+        "name": "Can add academic year", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 278, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_academicyear", 
+        "name": "Can change academic year", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 279, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_academicyear", 
+        "name": "Can delete academic year", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 280, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semestername", 
+        "name": "Can add semester name", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 281, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semestername", 
+        "name": "Can change semester name", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 282, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semestername", 
+        "name": "Can delete semester name", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 283, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semesterdatedefault", 
+        "name": "Can add semester date default", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 284, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semesterdatedefault", 
+        "name": "Can change semester date default", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 285, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semesterdatedefault", 
+        "name": "Can delete semester date default", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 286, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_credithour", 
+        "name": "Can add credit hour", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 287, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_credithour", 
+        "name": "Can change credit hour", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 288, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_credithour", 
+        "name": "Can delete credit hour", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 289, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_major", 
+        "name": "Can add major", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 290, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_major", 
+        "name": "Can change major", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 291, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_major", 
+        "name": "Can delete major", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 292, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_minor", 
+        "name": "Can add minor", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 293, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_minor", 
+        "name": "Can change minor", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 294, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_minor", 
+        "name": "Can delete minor", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 295, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_course", 
+        "name": "Can add course", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 296, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_course", 
+        "name": "Can change course", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 297, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_course", 
+        "name": "Can delete course", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 298, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_userproxy", 
+        "name": "Can add user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 299, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_userproxy", 
+        "name": "Can change user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 300, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_userproxy", 
+        "name": "Can delete user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 301, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_student", 
+        "name": "Can add student", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 302, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_student", 
+        "name": "Can change student", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 303, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_student", 
+        "name": "Can delete student", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 304, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_professor", 
+        "name": "Can add professor", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 305, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_professor", 
+        "name": "Can change professor", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 306, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_professor", 
+        "name": "Can delete professor", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 307, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_courseoffering", 
+        "name": "Can add course offering", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 308, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_courseoffering", 
+        "name": "Can change course offering", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 309, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_courseoffering", 
+        "name": "Can delete course offering", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 310, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_migrationhistory", 
+        "name": "Can add migration history", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 311, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_migrationhistory", 
+        "name": "Can change migration history", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 312, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_migrationhistory", 
+        "name": "Can delete migration history", 
+        "content_type": 8
+    }
+},
+{
     "pk": 1, 
     "model": "auth.user", 
     "fields": {
@@ -2412,6 +2790,24 @@
     }
 },
 {
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "professor", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-07-11T18:26:48.953Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$Ki9ZOrOoi4kH$mfH2+nDbWg5p7ak0qBVFkcReeftDW1LkxYquA+ktF88=", 
+        "email": "", 
+        "date_joined": "2013-07-11T18:15:58.875Z"
+    }
+},
+{
     "pk": "1w3rcv3c5lgsbnfjhqtcwd3m5pbmrj0s", 
     "model": "sessions.session", 
     "fields": {
@@ -2428,11 +2824,35 @@
     }
 },
 {
+    "pk": "a9olm594utnwwp36f6na4mp0o7i2u7gt", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-23T18:59:48.484Z", 
+        "session_data": "ZjI5NDNjZWM5MTA4OWYxNGU4YWZkNmQ3NjYyMTUwYmNlZTA4NzhkMDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
     "pk": "cajr1xwjbqppyuaisnjcf5exzr0gf26w", 
     "model": "sessions.session", 
     "fields": {
         "expire_date": "2013-06-27T19:10:44.701Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
+    "pk": "gisyh86hehgec4oeiqqz0b1yfrmxxh7s", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-25T18:26:48.977Z", 
+        "session_data": "ZDgxNDI4ZTA5NzE2ZWIwZDIyMWFhZjRiOWY5Y2IxYTIwNTk1NTlkYzqAAn1xAShVDV9hdXRoX3VzZXJfaWRLA1USX2F1dGhfdXNlcl9iYWNrZW5kVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHECdS4="
+    }
+},
+{
+    "pk": "gqhv0il6iqctmyxsf044gvq8naouysjo", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-26T17:44:59.403Z", 
+        "session_data": "MDc3MzRjNGM5ZWE5YjkwYzZkNmEwNjM3NGIyNzFlOTMzNDE1MDZkZjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
     }
 },
 {
@@ -2481,6 +2901,22 @@
     "fields": {
         "expire_date": "2013-07-11T18:54:52.668Z", 
         "session_data": "ZjI5NDNjZWM5MTA4OWYxNGU4YWZkNmQ3NjYyMTUwYmNlZTA4NzhkMDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
+    "pk": "y8lad6f1ikwrdrq5anb2p8zhwke3jpqn", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-08-01T19:57:02.479Z", 
+        "session_data": "MDc3MzRjNGM5ZWE5YjkwYzZkNmEwNjM3NGIyNzFlOTMzNDE1MDZkZjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
+    "pk": "zuwx96a8cwyiijhbjqvye2kkt5hsssbs", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-07-25T20:22:34.028Z", 
+        "session_data": "ZDBjMWNiNGM1MTQwZDMwYTUwODM1OTQ1OTJkZDNmODEwMjQ3NzdlODqAAn1xAVgKAAAAdGVzdGNvb2tpZXECWAYAAAB3b3JrZWRxA3Mu"
     }
 },
 {
@@ -2721,6 +3157,71 @@
     }
 },
 {
+    "pk": 22, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-07-11T18:15:58.961Z", 
+        "object_repr": "professor", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 23, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-07-11T18:16:09.616Z", 
+        "object_repr": "Professor X", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 41
+    }
+},
+{
+    "pk": 24, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-07-12T17:45:20.340Z", 
+        "object_repr": "Need Seven Credit Hours", 
+        "object_id": "4", 
+        "change_message": "Changed comment.", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 25, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-07-12T17:45:37.607Z", 
+        "object_repr": "Courses Must be From Two Different Departments", 
+        "object_id": "7", 
+        "change_message": "Changed comment.", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 26, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-07-12T17:46:34.913Z", 
+        "object_repr": "All sub requirements need to be satisfied", 
+        "object_id": "5", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
     "pk": 1, 
     "model": "south.migrationhistory", 
     "fields": {
@@ -2937,6 +3438,60 @@
     }
 },
 {
+    "pk": 25, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-11T17:22:01.803Z", 
+        "app_name": "planner", 
+        "migration": "0025_auto__add_professor"
+    }
+},
+{
+    "pk": 26, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-11T18:22:56.456Z", 
+        "app_name": "planner", 
+        "migration": "0026_auto__chg_field_professor_advisee__add_unique_professor_advisee"
+    }
+},
+{
+    "pk": 27, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-11T20:37:24.833Z", 
+        "app_name": "planner", 
+        "migration": "0027_auto__del_field_major_requirement__add_field_major_requirements"
+    }
+},
+{
+    "pk": 28, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-12T17:33:57.642Z", 
+        "app_name": "planner", 
+        "migration": "0028_auto__add_field_constraint_comment"
+    }
+},
+{
+    "pk": 29, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-24T19:01:48.743Z", 
+        "app_name": "planner", 
+        "migration": "0029_auto__add_field_requirement_min_required_credit_hours"
+    }
+},
+{
+    "pk": 30, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-24T20:09:39.211Z", 
+        "app_name": "planner", 
+        "migration": "0030_auto__del_field_major_requirements__add_field_major_requirement__chg_f"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.person", 
     "fields": {
@@ -2961,6 +3516,21 @@
         "photo": "", 
         "created_at": "2013-06-05T17:02:52.054Z", 
         "updated_at": "2013-06-27T19:34:48.806Z", 
+        "home_phone": "", 
+        "cell_phone": "", 
+        "nickname": ""
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.person", 
+    "fields": {
+        "first_name": "Professor", 
+        "last_name": "X", 
+        "work_phone": "", 
+        "photo": "", 
+        "created_at": "2013-07-11T18:16:09.609Z", 
+        "updated_at": "2013-07-11T18:16:09.609Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -4108,484 +4678,6 @@
         "created_at": "2013-06-04T20:26:23.753Z", 
         "updated_at": "2013-06-04T20:26:23.753Z", 
         "name": "Writing"
-    }
-},
-{
-    "pk": 1, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "any", 
-        "name": "Any - When any of the courses will meet requirements"
-    }
-},
-{
-    "pk": 2, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "all", 
-        "name": "All - when all courses are requried"
-    }
-},
-{
-    "pk": 3, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "meet_some at_least 2", 
-        "name": "Two of the Following"
-    }
-},
-{
-    "pk": 4, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "min_required_credit_hours at_least 7", 
-        "name": "Need Seven Credit Hours"
-    }
-},
-{
-    "pk": 5, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "all_sub_requirements_satisfied", 
-        "name": "All sub requirements need to be satisfied"
-    }
-},
-{
-    "pk": 6, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "satisfy_some_sub_requirements at_least 2", 
-        "name": "Two sub requirements satisfied"
-    }
-},
-{
-    "pk": 7, 
-    "model": "planner.constraint", 
-    "fields": {
-        "constraint_text": "different_departments at_least 2", 
-        "name": "Courses Must be From Two Different Departments"
-    }
-},
-{
-    "pk": 1, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            4
-        ], 
-        "requirements": [], 
-        "display_name": "COS 120", 
-        "name": "COS 120 ", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 2, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            10, 
-            25, 
-            11, 
-            40, 
-            26, 
-            27, 
-            41, 
-            42, 
-            32, 
-            22, 
-            12, 
-            23, 
-            28, 
-            29, 
-            13, 
-            24, 
-            14, 
-            15, 
-            43, 
-            44, 
-            16
-        ], 
-        "requirements": [], 
-        "display_name": "Any COS 300 ", 
-        "name": "Any COS 300", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 3, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            6
-        ], 
-        "requirements": [], 
-        "display_name": "COS 143", 
-        "name": "COS 143", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 4, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            11, 
-            12, 
-            13
-        ], 
-        "requirements": [], 
-        "display_name": "CS Theory Courses", 
-        "name": "CS Theory Courses", 
-        "constraints": [
-            3
-        ]
-    }
-},
-{
-    "pk": 5, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            1, 
-            2, 
-            46, 
-            47, 
-            48, 
-            49, 
-            50, 
-            51, 
-            52, 
-            53, 
-            54
-        ], 
-        "requirements": [], 
-        "display_name": "Life Science Gen Eds", 
-        "name": "Life Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 6, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            55, 
-            52, 
-            56, 
-            57, 
-            58, 
-            59, 
-            60
-        ], 
-        "requirements": [], 
-        "display_name": "Physical Science Gen Eds", 
-        "name": "Physical Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 7, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            62, 
-            61, 
-            64, 
-            65, 
-            66
-        ], 
-        "requirements": [], 
-        "display_name": "Earth Science Gen Eds", 
-        "name": "Earth Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 8, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [], 
-        "requirements": [
-            7, 
-            5, 
-            6
-        ], 
-        "display_name": "Science Gen Eds", 
-        "name": "Science Gen Eds", 
-        "constraints": [
-            4, 
-            6
-        ]
-    }
-},
-{
-    "pk": 9, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            67
-        ], 
-        "requirements": [], 
-        "display_name": "Orientation Gen Eds", 
-        "name": "Orientation Gen Eds", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 10, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            69, 
-            70, 
-            68, 
-            73, 
-            72, 
-            71
-        ], 
-        "requirements": [], 
-        "display_name": "Spiritual Foundation Gen Eds", 
-        "name": "Spiritual Foundation Gen Eds", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 11, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            75, 
-            76, 
-            77, 
-            78, 
-            79, 
-            80, 
-            81, 
-            82
-        ], 
-        "requirements": [], 
-        "display_name": "Stewardship of the Body Gen Eds Sub", 
-        "name": "Stewardship of the Body Gen Eds Sub", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 12, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            74
-        ], 
-        "requirements": [
-            11
-        ], 
-        "display_name": "Stewardship of the Body Gen Eds", 
-        "name": "Stewardship of the Body Gen Eds", 
-        "constraints": [
-            2, 
-            5
-        ]
-    }
-},
-{
-    "pk": 13, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            90, 
-            91
-        ], 
-        "requirements": [], 
-        "display_name": "Speaking Gen Ed", 
-        "name": "Speaking Gen Ed", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 14, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            89
-        ], 
-        "requirements": [], 
-        "display_name": "Writing Gen Ed", 
-        "name": "Writing Gen Ed", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 15, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            92, 
-            93, 
-            94, 
-            95, 
-            17, 
-            96, 
-            97, 
-            98, 
-            99
-        ], 
-        "requirements": [], 
-        "display_name": "Mathematics Gen Ed", 
-        "name": "Mathematics Gen Ed", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 16, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            87, 
-            88
-        ], 
-        "requirements": [], 
-        "display_name": "Computer Science Gen Eds", 
-        "name": "Computer Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 17, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            103, 
-            100, 
-            101, 
-            102
-        ], 
-        "requirements": [], 
-        "display_name": "Literature Gen Eds", 
-        "name": "Literature Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 18, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            104, 
-            106, 
-            107, 
-            108, 
-            109, 
-            110, 
-            111, 
-            112, 
-            113, 
-            114, 
-            115, 
-            116, 
-            117, 
-            118, 
-            119, 
-            120, 
-            121
-        ], 
-        "requirements": [], 
-        "display_name": "Civic Engagement Gen Eds", 
-        "name": "Civic Engagement Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 19, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [
-            122, 
-            123, 
-            124, 
-            125, 
-            126, 
-            127, 
-            128, 
-            129, 
-            130, 
-            131, 
-            132, 
-            133, 
-            134, 
-            135, 
-            136, 
-            137, 
-            138, 
-            139, 
-            140
-        ], 
-        "requirements": [], 
-        "display_name": "General Social Science Gen Eds", 
-        "name": "General Social Science Gen Eds", 
-        "constraints": []
-    }
-},
-{
-    "pk": 20, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [], 
-        "requirements": [
-            18, 
-            19
-        ], 
-        "display_name": "Social Science Gen Eds", 
-        "name": "Social Science Gen Eds", 
-        "constraints": [
-            5, 
-            7
-        ]
-    }
-},
-{
-    "pk": 21, 
-    "model": "planner.requirement", 
-    "fields": {
-        "courses": [], 
-        "requirements": [
-            2
-        ], 
-        "display_name": "Computer Science BS Requirments", 
-        "name": "Computer Science BS Requirement", 
-        "constraints": [
-            5
-        ]
     }
 },
 {
@@ -7430,6 +7522,14 @@
         "university": 1, 
         "user": 2, 
         "catalog_year": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.professor", 
+    "fields": {
+        "user": 3, 
+        "advisee": 2
     }
 },
 {
@@ -29846,6 +29946,512 @@
         "updated_at": "2013-06-26T23:09:39.734Z", 
         "course": 34, 
         "semester": 27
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "any", 
+        "name": "Any - When any of the courses will meet requirements"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "all", 
+        "name": "All - when all courses are requried"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "meet_some at_least 2", 
+        "name": "Two of the Following"
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "min_required_credit_hours at_least 7", 
+        "name": "Need Seven Credit Hours"
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "all_sub_requirements_satisfied", 
+        "name": "All sub requirements need to be satisfied"
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "satisfy_some_sub_requirements at_least 2", 
+        "name": "Two sub requirements satisfied"
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": null, 
+        "constraint_text": "different_departments at_least 2", 
+        "name": "Courses Must be From Two Different Departments"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "COS 120 ", 
+        "courses": [
+            4
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "COS 120", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Any COS 300", 
+        "courses": [
+            10, 
+            25, 
+            11, 
+            40, 
+            26, 
+            27, 
+            41, 
+            42, 
+            32, 
+            22, 
+            12, 
+            23, 
+            28, 
+            29, 
+            13, 
+            24, 
+            14, 
+            15, 
+            43, 
+            44, 
+            16
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Any COS 300 ", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "COS 143", 
+        "courses": [
+            6
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "COS 143", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 4, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "CS Theory Courses", 
+        "courses": [
+            11, 
+            12, 
+            13
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "CS Theory Courses", 
+        "constraints": [
+            3
+        ]
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Life Science Gen Eds", 
+        "courses": [
+            1, 
+            2, 
+            46, 
+            47, 
+            48, 
+            49, 
+            50, 
+            51, 
+            52, 
+            53, 
+            54
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Life Science Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 6, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physical Science Gen Eds", 
+        "courses": [
+            55, 
+            52, 
+            56, 
+            57, 
+            58, 
+            59, 
+            60
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physical Science Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 7, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Earth Science Gen Eds", 
+        "courses": [
+            62, 
+            61, 
+            64, 
+            65, 
+            66
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Earth Science Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            7, 
+            5, 
+            6
+        ], 
+        "name": "Science Gen Eds", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Science Gen Eds", 
+        "constraints": [
+            4, 
+            6
+        ]
+    }
+},
+{
+    "pk": 9, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Orientation Gen Eds", 
+        "courses": [
+            67
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Orientation Gen Eds", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 10, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Spiritual Foundation Gen Eds", 
+        "courses": [
+            69, 
+            70, 
+            68, 
+            73, 
+            72, 
+            71
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Spiritual Foundation Gen Eds", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 11, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Stewardship of the Body Gen Eds Sub", 
+        "courses": [
+            75, 
+            76, 
+            77, 
+            78, 
+            79, 
+            80, 
+            81, 
+            82
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Stewardship of the Body Gen Eds Sub", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 12, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            11
+        ], 
+        "name": "Stewardship of the Body Gen Eds", 
+        "courses": [
+            74
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Stewardship of the Body Gen Eds", 
+        "constraints": [
+            2, 
+            5
+        ]
+    }
+},
+{
+    "pk": 13, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Speaking Gen Ed", 
+        "courses": [
+            90, 
+            91
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Speaking Gen Ed", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 14, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Writing Gen Ed", 
+        "courses": [
+            89
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Writing Gen Ed", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 15, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Mathematics Gen Ed", 
+        "courses": [
+            92, 
+            93, 
+            94, 
+            95, 
+            17, 
+            96, 
+            97, 
+            98, 
+            99
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Mathematics Gen Ed", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 16, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Computer Science Gen Eds", 
+        "courses": [
+            87, 
+            88
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 17, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Literature Gen Eds", 
+        "courses": [
+            103, 
+            100, 
+            101, 
+            102
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Literature Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 18, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Civic Engagement Gen Eds", 
+        "courses": [
+            104, 
+            106, 
+            107, 
+            108, 
+            109, 
+            110, 
+            111, 
+            112, 
+            113, 
+            114, 
+            115, 
+            116, 
+            117, 
+            118, 
+            119, 
+            120, 
+            121
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Civic Engagement Gen Eds", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 19, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "General Social Science Gen Eds", 
+        "courses": [
+            122, 
+            123, 
+            124, 
+            125, 
+            126, 
+            127, 
+            128, 
+            129, 
+            130, 
+            131, 
+            132, 
+            133, 
+            134, 
+            135, 
+            136, 
+            137, 
+            138, 
+            139, 
+            140
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "General Social Science Gen Eds", 
+        "constraints": []
+    }
+},
+{
+    "pk": 20, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            18, 
+            19
+        ], 
+        "name": "Social Science Gen Eds", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Social Science Gen Eds", 
+        "constraints": [
+            5, 
+            7
+        ]
+    }
+},
+{
+    "pk": 21, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            2
+        ], 
+        "name": "Computer Science BS Requirement", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science BS Requirments", 
+        "constraints": [
+            5
+        ]
     }
 },
 {

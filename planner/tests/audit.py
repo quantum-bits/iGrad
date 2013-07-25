@@ -1,10 +1,29 @@
 from django.test import TestCase
-from planner.campus_models import Course, Requirement, CourseOffering
+from planner.campus_models import Course, CourseOffering
+from planner.grad_audit_models import Requirement
 
 
 class RequirementTest(TestCase):
+
     def _get_course_offering(self, course):
         return CourseOffering.objects.filter(course=course)[0]
+
+    def test_met_courses(self):
+        cos_104 = Course.objects.get(subject__abbrev='COS', number=104)
+        cos_106 = Course.objects.get(subject__abbrev='COS', number=106)
+        cos_104_co = self._get_course_offering(cos_104)
+        cos_106_co = self._get_course_offering(cos_106)
+        
+        requirement = Requirement.objects.get(name='Computer Science Gen Eds')
+        met_courses = requirement.met_courses([cos_104_co, cos_106_co])
+        print met_courses.items()
+        self.assertEqual(len(met_courses), 2)
+        self.assertTrue(cos_106 in met_courses)
+        self.assertTrue(cos_104 in met_courses)
+        self.assertTrue(cos_106_co in met_courses.values())
+        self.assertTrue(cos_104_co in met_courses.values())
+        
+        
 
     def assertPrereqsSatisfied(self, prereqs, course_offerings, message = None):
         if message is None: message = 'Prereqs should be satisfied.'
@@ -19,6 +38,7 @@ class RequirementTest(TestCase):
             self.assertFalse(gradAudit.is_satisfied, message)
 
     def test_any_prereq(self):
+        
         cos310 = Course.objects.get(subject__abbrev = 'COS', number = 310)
         cos300_courses = Course.objects.filter(subject__abbrev = 'COS', number__gte = 300)
         cos300_courses = cos300_courses.exclude(subject__abbrev = 'COS', number = 310)

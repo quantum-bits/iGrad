@@ -35,15 +35,13 @@
   {% if hasMajor %}
     <h1>Requirements</h1>
 
-    {% for req in majordatablock %}
+    {% for req in major.requirements %}
 
-      <h2>{{ req.blockname }} ({{ req.mincredithours }} hrs)</h2>
+      <h2>{{ req.display_name }}</h2>
 
-      <p>{{ req.andorcomment }}</p>
-
-      {% if req.textforuser %}
-	<p><b>Note:</b>{{req.textforuser}}</p>
-      {% endif %}
+      {% for constraint in req.constraints.all %}
+        <p> {{ constraint.name }} </p>
+      {% endfor %}
 
       <table class="table table-striped table-bordered table-hover table-condensed">
 	<tr>
@@ -56,11 +54,11 @@
 	  {% if not isProfessor %}<th>Action</th>{% endif %}
 	</tr>
 
-	{% for course in req.courselist %}
+	{% for course in req.required_courses %}
 	  <tr>
-	    <td>{{ course.cname }}</td>
-	    <td>{{ course.cnumber }}</td>
-	    <td>{{course.ccredithrs}} {{ course.ccredithrs|pluralize:"hr,hrs" }}</td>
+	    <td>{{ course.title }}</td>
+	    <td>{{ course.abbrev }}</td>
+	    <td>{{ course.possible_credit_hours }}</td>
 	    <td>
 	      {% if course.numcrhrstaken %}
 		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
