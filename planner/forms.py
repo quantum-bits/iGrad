@@ -72,12 +72,10 @@ class AddAdvisingNoteForm(forms.ModelForm):
         model = AdvisingNote
         exclude = ('student', 'datestamp')
 
-class AddTransferCourse(forms.ModelForm):
-
+class AddCourseSubstitution(forms.ModelForm):
     class Meta:
         model = CourseSubstitution
-        exclude = ('semester', 'student',)
-
+        exclude = ('student', 'semester',)
 """
 class AddAdviseeForm(forms.ModelForm):
 

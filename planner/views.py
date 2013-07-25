@@ -109,7 +109,7 @@ def update_major(request):
 def update_student_semester(request, semester_id):
     semester = Semester.objects.get(id=semester_id)
     student = request.user.student
-    
+    course_subs = CourseSubstitution.objects.filter(student=student)
     if request.method == 'POST':
         form = AddCourseForm(request.POST, instance=student, semester=semester)
         if form.is_valid():
@@ -117,11 +117,12 @@ def update_student_semester(request, semester_id):
             return redirect('four_year_plan')
         else:
             return render(request, 'updatestudentsemester.html', 
-                          {'form' : form, 'semester_id' : semester_id})
+                          {'form' : form, 'semester_id' : semester_id, 'course_subs' : course_subs})
     else:
         form = AddCourseForm(instance=student, semester=semester)
         context = {'form' : form,
-                   'semester_id' : semester_id}
+                   'semester_id' : semester_id,
+                   'course_subs' : course_subs}
         return render(request, 'updatesemester.html', context)
 
 
@@ -184,7 +185,6 @@ def display_advising_notes(request):
 
 @login_required
 def add_new_advising_note(request):
-    print "Hello"
     student = request.user.student
     if request.method == 'POST':
         form = AddAdvisingNoteForm(request.POST)
@@ -284,20 +284,37 @@ def display_grad_audit(request):
 
 
 
-
 @login_required
-def add_create_your_own_course(request,id):
-    # The following list should just have one element(!)...hence "listofstudents[0]" is
-    # used in the following....
-    listofstudents = Student.objects.all().filter(user=request.user)
+def add_course_substitute(request, semester_id):
+    student = request.user.student
+    semester = Semester.objects.get(id=semester_id)
+    substitute = CourseSubstitution(student=student, semester=semester)
+    
+    if request.method == 'POST':
+        form = AddCourseSubstitution(request.POST,instance=substitute)
+        if form.is_valid():
+            form.save()
+            return redirect('update_student_semester', semester_id)
+        else:
+            return render(request, 'new_add_sub.html', {'form': form})
+    else:
+        form = AddCourseSubstitution(instance=substitute)
+        context = {'form': form}
+        return render(request, 'new_add_sub.html', context)
+
+    
+@login_required
+def old_add_create_your_own_course(request,id):
+    student = request.user.student
     ssc = StudentSemesterCourses.objects.get(pk = id)
     request_id = request.user.get_student_id()
     incoming_id = ssc.student.id
     if request_id != incoming_id:
         return redirect('profile')
+    
     year=ssc.actual_year
     semester=ssc.semester
-
+    
     if request.method == 'POST':
         form = AddCreateYourOwnCourseForm(request.POST)
         if form.is_valid():

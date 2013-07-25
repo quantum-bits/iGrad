@@ -34,8 +34,8 @@
     </p>
   </form>
   
-<!--
-  <h1>Create Your Own Course</h1>
+
+  <h1> Course Substitutions / Transfer Courses</h1>
 
   <p>
     If a standard course doesn't fit your graduation requirements,
@@ -52,16 +52,15 @@
     </ul>
   </p>
 
-  <p>List of "create your own" type courses for the present semester:
+  <p>List of Substitute/Transfer courses for the present semester:
     <ul>
-      {% for course in sccdatablock %}
+      {% for course in course_subs %}
 	<li>
-	  {{course.cname}}
-	  ({{course.cnumber}},
-	  {{course.ccredithrs}} hrs
-	  {{course.equivalentcourse}}{{course.sp}}{{course.cc}})
-	  (<a class="other" href="{% url 'update_cyoc' instanceid course.courseid %}">Edit</a>,
-	   <a class="other" href="{% url 'delete_cyoc' 2 instanceid course.courseid %}">Delete</a>)
+	  ({{course.title}}
+	   {{course.credit_hours}} hrs
+	   {{course.equivalent_course}})
+	  (<a class="other" href="{% url 'update_cyoc' semester_id course.id %}">Edit</a>,
+	   <a class="other" href="{% url 'delete_cyoc' 2 semester_id course.id %}">Delete</a>)
 	</li>
       {% empty %}
 	<li>None</li>
@@ -70,11 +69,11 @@
   </p>
 
   <p>To add a new "create your own" type course,
-    <a class="other" href="{% url 'add_cyoc' semester_id %}">click here</a>.
+    <a class="other" href="{% url 'add_sub' semester_id %}">click here</a>.
   </p>
 
+
   </form>
--->
   </div>
 
    <script src="{{ STATIC_URL }}js/chosen.jquery.js" type="text/javascript"></script>
