@@ -2,8 +2,6 @@
 from collections import deque, namedtuple
 from models import CourseOffering
 
-RequirementBlock = namedtuple('RequirementBlock', ('name', 'constraints', 
-                                                   'courses', 'min_required_credit_hours',))
 class GradAudit(object):
     def __init__(self, **kwargs):
         self.requirement = kwargs.get('requirement')
@@ -87,5 +85,10 @@ class GradAudit(object):
             block['courses'] = [self.requirement_block_course_info(student, course)
                                 for course in requirement.required_courses]
         block['unused_courses'] = self.unused_courses(student)
-            
+
+
+
+
+
+
 

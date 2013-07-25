@@ -259,33 +259,34 @@ def display_grad_audit(request):
         if student is None:
             # No advisee currently selected; go pick one first
             return redirect('update_advisee', 2)
-    
-    grad_audit = student.grad_audit()
-    
-    sp_cc_information = student.sp_cc_information()
-    credit_hours_in_plan = student.credit_hours_in_plan()
-    unused_courses = grad_audit.unused_courses(student)
-    context = {'student': student,
-               'hasMajor' : student.has_major(),
-               'isProfessor' : isProfessor,
-               'requirement_blocks' : grad_audit.requirment_blocks(),
-               'unusedcourses': unused_courses,
-               'unusedcredithours': sum(map(lambda courseOffering: courseOffering.credit_hours, unused_courses)),
-               'SPlist': sp_cc_information['sps'],
-               'CClist': sp_cc_information['ccs'],
-               'numSPs': sp_cc_information['num_sps'],
-               'numCCs': sp_cc_information['num_ccs'],
-               'SPreq' : sp_cc_information['sps_met'],
-               'CCreq' : sp_cc_information['ccs_met'],
-               'totalhrsfouryears': credit_hours_in_plan,
-               'credithrmaxreached': credit_hours_in_plan > 160 } # TODO: put 160 credit hour limit into a model
 
-    return render(request, 'graduationaudit.html', context)
+    if student.has_major:
+        grad_audit = student.grad_audit()
+    
+        sp_cc_information = student.sp_cc_information()
+        credit_hours_in_plan = student.credit_hours_in_plan()
+        unused_courses = grad_audit.unused_courses(student)
+        context = {'student': student,
+                   'hasMajor' : student.has_major(),
+                   'isProfessor' : isProfessor,
+                   'requirement_blocks' : grad_audit.requirement_blocks(student),
+                   'unusedcourses': unused_courses,
+                   'unusedcredithours': sum(map(lambda courseOffering: courseOffering.credit_hours, unused_courses)),
+                   'SPlist': sp_cc_information['sps'],
+                   'CClist': sp_cc_information['ccs'],
+                   'numSPs': sp_cc_information['num_sps'],
+                   'numCCs': sp_cc_information['num_ccs'],
+                   'SPreq' : sp_cc_information['sps_met'],
+                   'CCreq' : sp_cc_information['ccs_met'],
+                   'totalhrsfouryears': credit_hours_in_plan,
+                   'credithrmaxreached': credit_hours_in_plan > 160 } # TODO: put 160 credit hour limit into a model
+
+        return render(request, 'graduationaudit.html', context)
 
 
 
 @login_required
-def add_course_substitute(request, semester_id):
+def add_course_substitution(request, semester_id):
     student = request.user.student
     semester = Semester.objects.get(id=semester_id)
     substitute = CourseSubstitution(student=student, semester=semester)
@@ -294,75 +295,37 @@ def add_course_substitute(request, semester_id):
         form = AddCourseSubstitution(request.POST,instance=substitute)
         if form.is_valid():
             form.save()
-            return redirect('update_student_semester', semester_id)
+            next = request.GET.get('next', 'profile')
+            return redirect(next)
         else:
-            return render(request, 'new_add_sub.html', {'form': form})
+            return render(request, 'add_course_substitute.html', {'form': form})
     else:
         form = AddCourseSubstitution(instance=substitute)
         context = {'form': form}
-        return render(request, 'new_add_sub.html', context)
-
+        return render(request, 'add_course_substitute.html', context)
     
-@login_required
-def old_add_create_your_own_course(request,id):
-    student = request.user.student
-    ssc = StudentSemesterCourses.objects.get(pk = id)
-    request_id = request.user.get_student_id()
-    incoming_id = ssc.student.id
-    if request_id != incoming_id:
-        return redirect('profile')
-    
-    year=ssc.actual_year
-    semester=ssc.semester
-    
-    if request.method == 'POST':
-        form = AddCreateYourOwnCourseForm(request.POST)
-        if form.is_valid():
-            new_cyoc = CreateYourOwnCourse(student = listofstudents[0])
-            new_cyoc.name = form.cleaned_data['name']
-            new_cyoc.number = form.cleaned_data['number']
-            new_cyoc.credit_hours = form.cleaned_data['credit_hours']
-            new_cyoc.sp = form.cleaned_data['sp']
-            new_cyoc.cc = form.cleaned_data['cc']
-            new_cyoc.semester = semester
-            new_cyoc.actual_year = year
-            new_cyoc.equivalentcourse = form.cleaned_data['equivalentcourse']
-            new_cyoc.save()
-            return redirect('update_student_semester', id)
-        else:
-            return render(request, 'addcreateyourowncourse.html', {'form': form})
-    else:
-        # User is not submitting the form; show them the blank add create your own course
-        # form.
-        form = AddCreateYourOwnCourseForm()
-        context = {'form': form}
-        return render(request, 'addcreateyourowncourse.html', context)
-
 
 @login_required
-def update_create_your_own_course(request,id,id2):
-    instance = CreateYourOwnCourse.objects.get(pk = id2)
-    ssc = StudentSemesterCourses.objects.get(pk = id)
+def edit_course_substitution(request, course_sub_id):
+    course_sub = CourseSubstitution.objects.get(id=course_sub_id)
     request_id = request.user.get_student_id()
-    incoming_id = ssc.student.id
-    incoming_id2 = instance.student.id
+    incoming_id = course_sub.student.id
+
     if request_id != incoming_id:
-        return redirect('profile')
-    if request_id != incoming_id2:
         return redirect('profile')
 
     if request.method == 'POST':
-        form = AddCreateYourOwnCourseForm(request.POST, instance=instance)
+        form = AddCourseSubstitution(request.POST, instance=course_sub)
         if form.is_valid():
             form.save()
-            return redirect('update_student_semester', id)
+            next = request.GET.get('next', 'profile')
+            return redirect(next)
         else:
-            return render(request, 'addcreateyourowncourse.html', {'form': form})
+            return render(request, 'add_course_substitute.html', {'form': form})
     else:
-        # User is not submitting the form; show them the blank add create your own course form
-        form = AddCreateYourOwnCourseForm(instance=instance)
+        form = AddCourseSubstitution(instance=course_sub)
         context = {'form': form}
-        return render(request, 'addcreateyourowncourse.html', context)
+        return render(request, 'add_course_substitute.html', context)
 
 
 @login_required

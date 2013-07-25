@@ -18,9 +18,9 @@ urlpatterns = patterns(
     url(r'^updateNote/(\d+)/$', 'update_advising_note', name='update_note'),
     url(r'^deleteNote/(\d+)/$', 'delete_advising_note', name='delete_note'),
 
-    url(r'^add_course_substitute/(\d+)/$', 'add_course_substitute', name='add_sub'),
-    url(r'^delete_course_sub/(\d+)/$', 'delete_course_substitution', name='delete_course_sub'),
-    url(r'^updatecyoc/(\d+)/(\d+)/$', 'update_create_your_own_course', name='update_cyoc'),
+    url(r'^add_course_substitution/(\d+)/$', 'add_course_substitution', name='add_sub'),
+    url(r'^delete_course_substition/(\d+)/$', 'delete_course_substitution', name='delete_course_sub'),
+    url(r'^edit_course_substitution/(\d+)/$', 'edit_course_substitution', name='edit_course_sub'),
 
     url(r'^remove_course_from_plan/(\d+)/$', 'remove_course_from_plan', name='remove_course_from_plan'),
     url(r'^move_course_to_new_semester/(\d+)/(\d+)/$', 'move_course_to_new_semester', name='move_course'),

@@ -484,8 +484,8 @@ class Student(Person):
 
     def sp_cc_information(self):
         all_courses = self.planned_courses.all()
-        sps = [courseOffering.course for course in all_courses if courseOffering.course.is_sp]
-        ccs = [courseOffering.course for course in all_courses if courseOffering.course.is_cc]
+        sps = [course for course in all_courses if course.course.is_sp]
+        ccs = [course for course in all_courses if course.course.is_cc]
         num_sps = len(sps)
         num_ccs = len(ccs)
         

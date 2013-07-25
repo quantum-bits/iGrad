@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 from django.db import models
 import itertools
 from collections import deque, namedtuple
@@ -34,9 +33,9 @@ class GradAudit(object):
         info['course_id'] = required_course.id
         info['title'] = required_course.title
         info['abbrev'] = required_course.abbrev
-        info['credit_hours'] = required_course.possible_credit_hours()
-        info['sp'] = required_course.sp
-        info['cc'] = required_course.cc
+        info['credit_hours'] = required_course.possible_credit_hours
+        info['sp'] = required_course.is_sp
+        info['cc'] = required_course.is_cc
         if required_course in self.met_courses:
             courseOffering = self.met_courses[required_course]
             yearName = student.yearName(courseOffering.semester)
@@ -48,7 +47,7 @@ class GradAudit(object):
             info['comment'] = self.semester_description(student,courseOffering)
         else:
             info['comment'] = None
-
+        return info
 
     def requirement_block_course_info(self, student, required_course):
         offering_info = lambda offering: {'course_id' : offering.id, 
@@ -73,7 +72,7 @@ class GradAudit(object):
                 self._courses_in_plan[courseOffering.course] = True
         return self._courses_in_plan
 
-    def met_course(self, student, course):
+    def is_met_course(self, student, course):
         return self.courses_in_plan(student)[course]
 
     def unused_courses(self, student):
@@ -94,28 +93,30 @@ class GradAudit(object):
             child.grad_audits()
 
     def requirement_blocks(self, student):
+        print 'Hello'
         def make_requirement_comment_fn(req_name):
             def fn(course, req):
                 return "{req} is a {req_name} for {course}; the requirment is currently not being met.".format(
                     req=req, course=course, req_name=req_name)
             return fn
 
-        prereq_comment = make_requirment_comment_fn('prereq')
+        prereq_comment = make_requirement_comment_fn('prereq')
         coreq_comment  = make_requirement_comment_fn('coreq')
                 
         block = {}
         for grad_audit in self.grad_audits():
-            block['name'] = grad_audit.requirement.name
-            block['min_required_credit_hours'] = grad_audit.requirement.min_required_credit_hours
+            requirement = grad_audit.requirement
+            block['name'] = requirement.name
+            block['min_required_credit_hours'] = requirement.min_required_credit_hours
             block['constraint_comments'] = [constraint.name for constraint in requirement.constraints.all()]
             block['courses'] = []
             block['comments'] = []
-            for course in requirement.required_courses:
+            for course in requirement.required_courses():
                 block['courses'].append(self.requirement_block_course_info(student, course))
                 unmet_prereqs = [prereq for prereq in course.prereqs.all() 
-                                 if not self.met_course(student, prereq)]
+                                 if not self.is_met_course(student, prereq)]
                 unmet_coreqs   = [coreq for coreq in course.coreqs.all()
-                                 if not self.met_course(student, coreq)]
+                                 if not self.is_met_course(student, coreq)]
 
                 for prereq in unmet_prereqs:
                     block['comments'].append(prereq_comment(course, prereq))
@@ -265,7 +266,7 @@ class Requirement(models.Model):
     def _audit_helper(self, courses):
         children =  [constraint.audit(courses, self) for constraint in self.constraints.all()]
         is_satisfied = all([child.is_satisfied for child in children])
-        gradAudit = GradAudit(requirement=self, met_courses=None, is_satisfied=is_satisfied)
+        gradAudit = GradAudit(requirement=self, met_courses={}, is_satisfied=is_satisfied)
         gradAudit.addChildren(*children)
         return gradAudit
 
