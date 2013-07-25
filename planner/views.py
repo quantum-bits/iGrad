@@ -407,55 +407,20 @@ def remove_course_from_plan(request, offering_id):
     # if request_id != incoming_id:
     #    return redirect('profile')
 
-    co = CourseOffering.objects.get(id=offering_id)
-    all_courses = student.planned_courses.all()
-    print co
-    print offering_id
-    print "Valid Id: {}".format(",".join(str(offering.id) for offering in all_courses))
-    print "Course: {}".format(Course.objects.get(id=offering_id))
-    student.planned_courses.remove(co)
-
+    student.planned_courses.remove(CourseOffering.objects.get(id=offering_id))
     next = request.GET.get('next', 'home')
     return redirect(next)
 
-# In the following, where_from is:
-#    0: fouryearplan
-#    1: gradaudit
-#
-# src_ssc_id is id of the current ssc object (from which the course needs to be deleted); set to
-# "-1" if course is not currently being taken (which can happen if request comes from the
-# grad audit page)
-#
-# dest_ssc_id is the id of the new ssc object (to which the course needs to be added)
-#
-# course_id is the id of the course itself
-#
-# This routine failed once and I don't know why!!! Said columns for course_id and ssc_id
-# were not unique, or something, and gave an integrity error.
+
 @login_required
-def move_course_to_new_SSCObject(request, where_from, src_ssc_id, dest_ssc_id, course_id):
-    src_ssc_id_int = int(src_ssc_id)
-
-    # Using dest_ssc_id here instead of src_ssc_id, since sometimes we are only creating a
-    # new course, and not deleting an old one.
-    dest_ssc = StudentSemesterCourses.objects.get(pk=dest_ssc_id)
-    request_id = request.user.get_student_id()
-    incoming_id = dest_ssc.student.id
-    if request_id != incoming_id:
-        return redirect('profile')
-
-    if src_ssc_id_int != -1:
-        # If src_ssc_id == -1, the course is not being taken, so there is nothing to remove
-        instance_old = StudentSemesterCourses.objects.get(pk=src_ssc_id_int)
-        incoming_id_old = instance_old.student.id
-        if request_id != incoming_id_old:
-            return redirect('profile')
-        StudentSemesterCourses.objects.get(pk=src_ssc_id).courses.remove(course_id)
-    StudentSemesterCourses.objects.get(pk=dest_ssc_id).courses.add(course_id)
-    if int(where_from) == 0:
-        return redirect('four_year_plan')
-    else:
-        return redirect('grad_audit')
+def move_course_to_new_semester(request, old_offering_id, new_offering_id):
+    student = request.user.student
+    old_offering = CourseOffering.objects.get(id=old_offering_id)
+    new_offering = CourseOffering.objects.get(id=new_offering_id)
+    student.planned_courses.add(new_offering)
+    student.planned_courses.remove(old_offering)
+    next = request.GET.get('next', 'profile')
+    return redirect(next)
 
 
 # list is assumed to be of the form:

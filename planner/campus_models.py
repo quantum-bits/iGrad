@@ -442,7 +442,6 @@ class Student(Person):
         if credit_hours is None: return 0
         return credit_hours
 
-
     def credit_hours_in_plan(self):
         planned_course_chs = self.planned_courses.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
         if planned_course_chs is None: planned_course_chs = 0
@@ -467,10 +466,13 @@ class Student(Person):
                     course['credit_hours'] = offering.credit_hours
                     course['sp'] = offering.course.is_sp
                     course['cc'] = offering.course.is_cc
-                    course['other_semesters_offered'] = CourseOffering.other_offerings(offering)
-                    other_semesters = [{'id' : alternate_semester.id, 
-                                        'credit_hours' : self.credit_hours_this_semester(semester)}
-                                       for alternate_semester in course['other_semesters_offered']]
+                    course['other_semesters_offered'] = []
+                    for other_offering in CourseOffering.other_offerings(offering):
+                        course['other_semesters_offered'].append({'id' : other_offering.id, 
+                                                                  'semester' : other_offering.semester, 
+                                                                  'credit_hours' : self.credit_hours_this_semester(other_offering.semester)})
+
+                    
                     course['id'] = offering.id
                     semester_courses.append(course)
                 year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))

@@ -99,9 +99,9 @@
 			      -->
 			    </li>
 			    <li class="divider"></li>
-			    {% for semester in course.other_semesters_offered %}
+			    {% for offering in course.other_semesters_offered %}
 			      <li>
-				<a href="{% url 'move_course' 0 semester.id course.id %}">{{semester}}; {{semester.credit_hours}} hrs</a>
+				<a href="{% url 'move_course' course.id offering.id %}?next={{ request.path|urlencode }}">{{offering.semester}}; {{offering.credit_hours}} hrs</a>
 			      </li>
 			    {% endfor %} {# other semesters #}
 			  </ul>
