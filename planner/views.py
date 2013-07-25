@@ -408,7 +408,13 @@ def remove_course_from_plan(request, offering_id):
     #    return redirect('profile')
 
     co = CourseOffering.objects.get(id=offering_id)
+    all_courses = student.planned_courses.all()
+    print co
+    print offering_id
+    print "Valid Id: {}".format(",".join(str(offering.id) for offering in all_courses))
+    print "Course: {}".format(Course.objects.get(id=offering_id))
     student.planned_courses.remove(co)
+
     next = request.GET.get('next', 'home')
     return redirect(next)
 

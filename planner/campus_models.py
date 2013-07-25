@@ -471,7 +471,7 @@ class Student(Person):
                     other_semesters = [{'id' : alternate_semester.id, 
                                         'credit_hours' : self.credit_hours_this_semester(semester)}
                                        for alternate_semester in course['other_semesters_offered']]
-                    course['id'] = offering.course.id
+                    course['id'] = offering.id
                     semester_courses.append(course)
                 year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))
                 credit_hours.append(self.credit_hours_this_semester(semester))
