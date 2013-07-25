@@ -399,14 +399,6 @@ def delete_create_your_own_course(request, where_from, id, id2):
 @login_required
 def remove_course_from_plan(request, offering_id):
     student = request.user.student
-    # This logic was neccessary when an ssc course had a student.
-    # Now the semester and the courseoffering and the student have been decoupled.
-    # Meaning there is not a single id that connects a student to a courseoffering
-    # The following is no longer necessary. But I'm leaving it commented just in case.
-    # incoming_id = instance.student.id
-    # if request_id != incoming_id:
-    #    return redirect('profile')
-
     student.planned_courses.remove(CourseOffering.objects.get(id=offering_id))
     next = request.GET.get('next', 'home')
     return redirect(next)
