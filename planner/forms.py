@@ -68,7 +68,6 @@ class AddCourseForm(forms.ModelForm):
         self.fields['planned_courses'].queryset = CourseOffering.objects.filter(semester=semester)
 
 class AddAdvisingNoteForm(forms.ModelForm):
-
     class Meta:
         model = AdvisingNote
         exclude = ('student', 'datestamp')

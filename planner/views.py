@@ -169,7 +169,7 @@ def update_student_semester_old(request, id):
 def display_advising_notes(request):
     if request.user.is_student():
         student = request.user.student
-        isProfessor = request.user.professor
+        isProfessor = request.user.is_professor
     else:
         isProfessor = request.user.is_professor()
         student = request.user.professor.advisee
@@ -288,14 +288,11 @@ def display_grad_audit(request):
 
 @login_required
 def add_new_advising_note(request):
-    # The following list should just have one element(!)...hence "listofstudents[0]" is
-    # used in the following....
-    listofstudents = Student.objects.all().filter(user=request.user)
-
+    student = request.user.student
     if request.method == 'POST':
         form = AddAdvisingNoteForm(request.POST)
         if form.is_valid():
-            p1 = AdvisingNote(student=listofstudents[0])
+            p1 = AdvisingNote(student=student)
             p1.note = form.cleaned_data['note']
             p1.save()
             return redirect('advising_notes')
