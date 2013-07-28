@@ -8,6 +8,7 @@ class RequirementTest(TestCase):
     def _get_course_offering(self, course):
         return CourseOffering.objects.filter(course=course)[0]
 
+    
     def test_met_courses(self):
         cos_104 = Course.objects.get(subject__abbrev='COS', number=104)
         cos_106 = Course.objects.get(subject__abbrev='COS', number=106)
@@ -16,25 +17,28 @@ class RequirementTest(TestCase):
         
         requirement = Requirement.objects.get(name='Computer Science Gen Eds')
         met_courses = requirement.met_courses([cos_104_co, cos_106_co])
-        print met_courses.items()
         self.assertEqual(len(met_courses), 2)
-        self.assertTrue(cos_106 in met_courses)
-        self.assertTrue(cos_104 in met_courses)
-        self.assertTrue(cos_106_co in met_courses.values())
-        self.assertTrue(cos_104_co in met_courses.values())
-        
+
         
 
     def assertPrereqsSatisfied(self, prereqs, course_offerings, message = None):
-        if message is None: message = 'Prereqs should be satisfied.'
+        def unmet_requirement_explanation(gradAudit):
+            requirement_info = "Requirement '{}' not satisfied".format(gradAudit.requirement)
+            constraint_info = "Constrainsts:\n{}".format('\n'.join(gradAudit.constraint_messages))
+            met_courses_info = "Met courses:\n{}".format('\n'.join("{} => {}".format(course_offering, course)
+                                                                   for course,course_offering in gradAudit.met_courses.items()))
+            courseOfferings_info = "Course Offerings:\n{}".format('\n'.join(str(co) for co in course_offerings))
+
+            return '\n'.join([requirement_info, constraint_info, met_courses_info, courseOfferings_info])
+                                                        
         for prereq in prereqs:
-            gradAudit = prereq.audit(course_offerings)
-            self.assertTrue(gradAudit.is_satisfied, message)
+            gradAudit, unused_courses = prereq.audit(course_offerings)
+            self.assertTrue(gradAudit.is_satisfied, unmet_requirement_explanation(gradAudit))
 
     def assertPrereqsUnsatisfied(self, prereqs, course_offerings, message = None):
         if message is None: message = 'Prereqs should not be satisfied.'
         for prereq in prereqs:
-            gradAudit = prereq.audit(course_offerings)
+            gradAudit, unused_courses = prereq.audit(course_offerings)
             self.assertFalse(gradAudit.is_satisfied, message)
 
     def test_any_prereq(self):
@@ -51,11 +55,11 @@ class RequirementTest(TestCase):
         
         for prereq in cos310_prereqs:
             for co in cos300_course_offerings:
-                gradAudit = prereq.audit([co])
+                gradAudit, unused_courses = prereq.audit([co])
                 self.assertTrue(gradAudit.is_satisfied, "300-level course should meet requirement.")
                 
 
-            gradAudit = prereq.audit([cos310_co])
+            gradAudit, unused_courses = prereq.audit([cos310_co])
             self.assertFalse(gradAudit.is_satisfied, "COS 310 should not satisfy requirement for COS 310")
 
                 

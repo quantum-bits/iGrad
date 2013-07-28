@@ -161,14 +161,14 @@
       <tbody>
 	{% for course in unusedcourses %}
 	  <tr>
-	    <td>{{ course.cname }}</td>
-	    <td>{{ course.cnumber }}</td>
-	    <td>{{ course.ccredithrs }} hrs</td>
+	    <td>{{ course.course.title }}</td>
+	    <td>{{ course.course.abbrev }}</td>
+	    <td>{{ course.credit_hours }} hrs</td>
 	    <td>
-	      {% if course.sp %}
+	      {% if course.course.is_sp%}
 		<span class="badge badge-success">SP</span>
 	      {% endif %}
-	      {% if course.cc %}
+	      {% if course.course.is_cc %}
 		<span class="badge badge-success">CC</span>
 	      {% endif %}
 	    </td>

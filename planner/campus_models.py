@@ -496,6 +496,17 @@ class Student(Person):
                 'num_ccs' : num_ccs,
                 'ccs_met' : num_ccs >=1}
 
+    def courses_covered(self):
+        """
+        Returns a dictionary where the key is the course that is being met, 
+        and the value is the course offering/ substitute/ transfer that meets it.
+        """
+        # TODO add suport for substitution courses
+        result = {}
+        for course_offering in self.planned_courses.all():
+            result[course_offering.course] = course_offering
+        return result
+        
     def grad_audit(self):
         # Right now it returns the first major,
         # TODO: make it work when there is more than one major. 

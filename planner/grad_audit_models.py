@@ -4,15 +4,15 @@ import itertools
 from collections import deque, namedtuple
 from models import CourseOffering
 
-RequirementBlock = namedtuple('RequirementBlock', ('name', 'constraints', 
-                                                   'courses', 'min_required_credit_hours',))
 class GradAudit(object):
     def __init__(self, **kwargs):
         self.requirement = kwargs.get('requirement')
         self.met_courses = kwargs.get('met_courses')
         self.is_satisfied = kwargs.get('is_satisfied')
+        self.constraint_messages = kwargs.get('constraint_messages', [])
         self.children = []
-
+        self.unused_courses = kwargs.get('unused_courses', None)
+    
     def addChildren(self, *children):
         for child in children:
             self.children.append(child)
@@ -74,14 +74,7 @@ class GradAudit(object):
 
     def is_met_course(self, student, course):
         return self.courses_in_plan(student)[course]
-
-    def unused_courses(self, student):
-        """
-        Returns a list of unused_course_infos, 
-        and unused credit hours.
-        """
-        return [] # TODO: make unused courses actually return unused courses.
-
+                
 
     def grad_audits(self):
         """
@@ -93,15 +86,8 @@ class GradAudit(object):
             child.grad_audits()
 
     def requirement_blocks(self, student):
-        print 'Hello'
-        def make_requirement_comment_fn(req_name):
-            def fn(course, req):
-                return "{req} is a {req_name} for {course}; the requirment is currently not being met.".format(
-                    req=req, course=course, req_name=req_name)
-            return fn
-
-        prereq_comment = make_requirement_comment_fn('prereq')
-        coreq_comment  = make_requirement_comment_fn('coreq')
+        make_prereq_comment = lambda course, req: "{} is a prereq for {}; the requirement is currently not being met.".format(req, course)
+        make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
                 
         block = {}
         for grad_audit in self.grad_audits():
@@ -124,7 +110,6 @@ class GradAudit(object):
                     block['comments'].append(coreq_comment(course, coreq))
 
 
-
 class Constraint(models.Model):
     name = models.CharField(max_length = 80)
     constraint_text = models.CharField(max_length = 100)
@@ -141,41 +126,46 @@ class Constraint(models.Model):
             parameters[args[i]] = args[i + 1]
         return (name, parameters)
 
-    def audit(self, courseOfferings, requirement):
+    def remove_met_courses_from_unused_courses(self, met_courses, unused_courses):
+        met_courses = met_courses.values()
+        return unused_courses - set(met_courses)
+
+    def audit(self, courseOfferings, requirement, unused_courses):
         name, arguments = self.parse_constraint_text()
-        return getattr(self, name)(courseOfferings, requirement, **arguments)
+        return getattr(self, name)(courseOfferings, requirement, unused_courses,**arguments)
 
-    def any(self, courses, requirement, **kwargs):
-        met_courses = requirement.met_courses(courses, requirement)
+    def any(self, courses, requirement, unused_courses, **kwargs):
+        met_courses = requirement.met_courses(courses)
+        unused_courses = self.remove_met_courses_from_unused_courses(met_courses, unused_courses)
         is_satisfied = len(met_courses) >= 1
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
+        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses), unused_courses
 
 
-    def all(self, courses, requirement, **kwargs):
-        met_courses = requirement.met_courses(courses, requirement)
+    def all(self, courses, requirement, unused_courses, **kwargs):
+        met_courses = requirement.met_courses(courses)
+        unused_courses = self.remove_met_courses_from_unused_courses(met_courses, unused_courses)
         is_satisfied = len(met_courses) == len(requirement.required_courses())
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
+        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses), unused_courses
 
 
-    def meet_some(self, courses, requirement, **kwargs):
+    def meet_some(self, courses, requirement, unused_courses, **kwargs):
         at_least = int(kwargs['at_least'])
-        met_courses = requirement.met_courses(courses, requirement)
+        met_courses = requirement.met_courses(courses)
+        unused_courses = self.remove_met_courses_from_unused_courses(met_courses, unused_courses)        
         is_satisfied = len(met_courses) >= at_least
-        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied)
+        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied), unused_courses
     
 
-    def min_required_credit_hours (self, courses, requirement, **kwargs):
+    def min_required_credit_hours (self, courses, requirement, unused_courses, **kwargs):
         at_least = int(kwargs['at_least'])
         course_offerings = [] 
         courses_considered = [] 
-        met_courses = requirement.met_courses(courses, requirement)
-
+        met_courses = requirement.met_courses(courses, True)
+        unused_courses = self.remove_met_courses_from_unused_courses(met_courses, unused_courses)
         def course_has_been_considered(course):
-            print("Courses Considered: {}".format("\n".join(str(co) for co in courses_considered)))
             return course in courses_considered
 
         for met_course in met_courses:
-            print("Met course: {}".format(str(met_course)))
             course_offering = met_courses[met_course]
             course = course_offering.course
             if not course_has_been_considered(course):
@@ -184,33 +174,42 @@ class Constraint(models.Model):
         
         print ("\n".join(str(co) for co in course_offerings))
         is_satisfied = sum(co.credit_hours for co in course_offerings) >= at_least
-        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses)
+        return GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_courses=met_courses), unused_courses
 
-    def different_departments(self, courses, requirement, **kwargs):
+    def different_departments(self, courses, requirement, unused_courses, **kwargs):
         at_least = int(kwargs['at_least'])
-        met_courses = requirement.met_courses(courses, requirement)
+        met_courses = requirement.met_courses(courses, True)
+        unused_courses = self.remove_met_courses_from_unused_courses(met_courses, unused_courses)
         courses = [met_course for met_course in met_courses]
         # TODO: Change this. The heuristic is that if a course has different abbreviations
         # it is from different departments. This is not always the case.
         unique_departments = set(course.subject.abbrev for course in courses)
         is_satisfied = len(unique_departments) >= at_least
-        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied)
+        return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied), unused_courses
 
-    def all_sub_requirements_satisfied(self, courses, requirement, **kwargs):
-        grad_audits = [child.audit(courses) for child in requirement.child_requirements()]
+    def sub_requirements_grad_audits(self, courses, requirement, unused_courses):
+        """Returns a list of grad audits and the set of unused_courses."""
+        grad_audits = []
+        for child in requirement.child_requirements():
+            grad_audit, unused_courses = child.audit(courses, unused_courses)
+            grad_audits.append(grad_audit)
+        return grad_audits, unused_courses 
+
+    def all_sub_requirements_satisfied(self, courses, requirement, unused_courses, **kwargs):
+        grad_audits, unused_courses = self.sub_requirements_grad_audits(courses, requirement, unused_courses)
         is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
         grad_audit = GradAudit(requirement=requirement, met_course=None, is_satisfied=is_satisfied)
         grad_audit.addChildren(*grad_audits)
-        return grad_audit
+        return grad_audit, unused_courses
 
-    def satisfy_some_sub_requirements(self, courses, requirement, **kwargs):
+    def satisfy_some_sub_requirements(self, courses, requirement, unused_courses, **kwargs):
         at_least = int(kwargs['at_least'])
-        grad_audits = [child.audit(courses) for child in requirement.child_requirements()]
+        grad_audits, unused_courses = self.sub_requirements_grad_audits(courses, requirement, unused_courses)
         satisfied_grad_audits = [grad_audit for grad_audit in grad_audits if grad_audit.is_satisfied]
         is_satisfied = len(satisfied_grad_audits) >= at_least
         grad_audit = GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_course=None)
         grad_audit.addChildren(*grad_audits)
-        return grad_audit
+        return grad_audit, unused_courses
     
 
 class Requirement(models.Model):
@@ -233,54 +232,50 @@ class Requirement(models.Model):
 
     def satisfied(self, offerings):
         return self.audit(offerings).is_satisfied
-        
-    def satisfied_grad_audits(self, courses):
-        satisfied_grad_audits = []
-        for child_requirement in self.child_requirements():
-            grad_audit = child_requirement.audit(courses)
-            print '\n'.join(str(ga) for ga in grad_audit)
-            if grad_audits_satisfied(grad_audit):
-                satisfied_grad_audits.append(grad_audit)
-            
-        return satisfied_grad_audits
 
     def required_courses(self):
         return list(self.courses.all())
 
     def all_courses(self):
-        """
-        Returns a list of all courses. The courses from Requirement, 
-        as well as the courses from sub_requriements.
-        """
+        """ Returns the required from this requirement and any sub requirements."""
         reqs = self.requirements.all()
         req_courses = [list(req.all_courses()) for req in reqs]
-
         return self.required_courses() + (list(itertools.chain(*req_courses)))
 
-    def audit(self, courses=None):
+    def audit(self, courses, unused_courses = None):
         """Returns a GradAudit.
         """
-        courses = [] if courses is None else courses
-        return self._audit_helper(courses)
+        if unused_courses is None:
+            unused_courses = set(courses)
+        return self._audit_helper(courses, set(courses))
 
-    def _audit_helper(self, courses):
-        children =  [constraint.audit(courses, self) for constraint in self.constraints.all()]
-        is_satisfied = all([child.is_satisfied for child in children])
-        gradAudit = GradAudit(requirement=self, met_courses={}, is_satisfied=is_satisfied)
-        gradAudit.addChildren(*children)
-        return gradAudit
+    def _audit_helper(self, courses,unused_courses):
+        grad_audits =  []
+        constraint_messages = []
+        for constraint in self.constraints.all():
+            grad_audit, unused_courses = constraint.audit(courses, self, unused_courses)
+            if grad_audit.is_satisfied: 
+                constraint_messages.append("Constraint: '{}' satisfied".format(constraint))
+            else:
+                constraint_messages.append("Constraint: '{}' not satisfied".format(constraint))
+            grad_audits.append(grad_audit)
+
+        is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
+        gradAudit = GradAudit(requirement=self, met_courses={}, is_satisfied=is_satisfied, constraint_messages=constraint_messages)
+        gradAudit.addChildren(*grad_audits)
+        return gradAudit, unused_courses
 
     def child_requirements(self):
-        return [child_requirement for child_requirement in self.requirements.all()]
+        return self.requirements.all()
 
-    def met_courses(self, courseOfferings, all=False):
+    def met_courses(self, courseOfferings, consider_all_courses=False):
+        """ Returns a dictionary that maps a required_course to the course_offering/ substitute 
+        that fulfills it. If all is true examines the courses from this requirement and sub_requirements.
+        Otherwise only considers courses for this requirement.
         """
-        Returns a a dictionary where the key is the required course, 
-        and the value is the offering that meets it. 
-        If all is false it only considers courses that meet this requirement.
-        otherwise it consideres courses that meet sub requirements.
-        """
-        if all:
+        offering_meets_course = lambda offering, course: offering.course == course
+
+        if consider_all_courses:
             courses = self.all_courses()
         else:
             courses = self.required_courses()
@@ -288,7 +283,7 @@ class Requirement(models.Model):
         met_courses = {}
         for course in courses:
             for co in courseOfferings:
-                if co.course in courses:
+                if offering_meets_course(co, course):
                     met_courses[course] = co
         return met_courses
             

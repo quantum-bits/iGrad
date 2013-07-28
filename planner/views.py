@@ -261,11 +261,10 @@ def display_grad_audit(request):
             return redirect('update_advisee', 2)
 
     if student.has_major:
-        grad_audit = student.grad_audit()
+        grad_audit,unused_courses = student.grad_audit()
     
         sp_cc_information = student.sp_cc_information()
         credit_hours_in_plan = student.credit_hours_in_plan()
-        unused_courses = grad_audit.unused_courses(student)
         context = {'student': student,
                    'hasMajor' : student.has_major(),
                    'isProfessor' : isProfessor,
