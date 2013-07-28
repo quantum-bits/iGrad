@@ -421,7 +421,7 @@ class Student(Person):
     def yearName(self, semester):
         year_index = 0
         years = ["Freshman", "Sophomore", "Junior", "Senior", "Super Senior"]
-        for year in self.entering_year.next_five_years:
+        for year in self.entering_year.next_five_years():
             if semester.year == year:
                 return years[year_index]
             year_index += 1

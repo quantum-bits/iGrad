@@ -23,10 +23,10 @@ class GradAudit(object):
     
     def semester_description(self, student, courseOffering):
         yearName = student.yearName(courseOffering.semester)
-        semester_name = courseOffering.semester.semester_name
+        semester_name = courseOffering.semester.name
         year = courseOffering.semester.begin_on.year
         return "{yearName} {semester_name} ({year})".format(yearName = yearName,
-                                                            semester_name = semster_name, 
+                                                            semester_name = semester_name, 
                                                             year = year)
     def make_course_info(self,student,required_course):
         info = {}
@@ -41,24 +41,29 @@ class GradAudit(object):
             yearName = student.yearName(courseOffering.semester)
             semester_name = courseOffering.semester.semester_name
             year = courseOffering.semester.begin_on.year
+            info['met'] = True
             info['offering_id'] = courseOffering.id
             info['taken_for'] = courseOffering.credit_hours
             info['hours_match'] = courseOffering.credit_hours == required_course.credit_hours.min_credit_hour
             info['comment'] = self.semester_description(student,courseOffering)
         else:
             info['comment'] = None
+            info['met'] = False
         return info
 
     def requirement_block_course_info(self, student, required_course):
         offering_info = lambda offering: {'course_id' : offering.id, 
                                           'semester'  : self.semester_description(student, offering),
-                                          'hours_this_semester' : student.hours_this_semester(offering.semester)}
+                                          'hours_this_semester' : student.credit_hours_this_semester(offering.semester)}
         info = self.make_course_info(student, required_course)
         if info['comment'] is not None:
             info['is_substitute'] = False # TODO: add check that if it is a  substitute
             courseOffering = self.met_courses[required_course]
             info['other_semesters'] = [offering_info(offering)
                                        for offering in CourseOffering.other_offerings(courseOffering)]
+        else:
+            info['other_semesters'] = [offering_info(offering)
+                                       for offering in CourseOffering.objects.filter(course=required_course)]
         return info
 
     def courses_in_plan(self, student):
@@ -88,13 +93,13 @@ class GradAudit(object):
     def requirement_blocks(self, student):
         make_prereq_comment = lambda course, req: "{} is a prereq for {}; the requirement is currently not being met.".format(req, course)
         make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
-                
+        blocks = []
         block = {}
         for grad_audit in self.grad_audits():
             requirement = grad_audit.requirement
             block['name'] = requirement.name
             block['min_required_credit_hours'] = requirement.min_required_credit_hours
-            block['constraint_comments'] = [constraint.name for constraint in requirement.constraints.all()]
+            block['constraint_comments'] = grad_audit.constraint_messages
             block['courses'] = []
             block['comments'] = []
             for course in requirement.required_courses():
@@ -109,6 +114,8 @@ class GradAudit(object):
                 for coreq in  unmet_coreqs:
                     block['comments'].append(coreq_comment(course, coreq))
 
+            blocks.append(block)
+        return blocks
 
 class Constraint(models.Model):
     name = models.CharField(max_length = 80)

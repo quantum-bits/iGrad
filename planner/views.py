@@ -265,6 +265,7 @@ def display_grad_audit(request):
     
         sp_cc_information = student.sp_cc_information()
         credit_hours_in_plan = student.credit_hours_in_plan()
+        
         context = {'student': student,
                    'hasMajor' : student.has_major(),
                    'isProfessor' : isProfessor,

@@ -35,12 +35,12 @@
   {% if hasMajor %}
     <h1>Requirements</h1>
 
-    {% for req in major.requirements %}
+    {% for req in requirement_blocks %}
 
-      <h2>{{ req.display_name }}</h2>
-
-      {% for constraint in req.constraints.all %}
-        <p> {{ constraint.name }} </p>
+      <h2>{{ req.name }}</h2>
+      
+      {% for comment in req.constraints_comments %}
+        <p> {{ comment }} </p>
       {% endfor %}
 
       <table class="table table-striped table-bordered table-hover table-condensed">
@@ -54,19 +54,19 @@
 	  {% if not isProfessor %}<th>Action</th>{% endif %}
 	</tr>
 
-	{% for course in req.required_courses %}
+	{% for course in req.courses %}
 	  <tr>
 	    <td>{{ course.title }}</td>
 	    <td>{{ course.abbrev }}</td>
-	    <td>{{ course.possible_credit_hours }}</td>
+	    <td>{{ course.credit_hours }}</td>
 	    <td>
-	      {% if course.numcrhrstaken %}
-		{% ifnotequal course.numcrhrstaken course.ccredithrs %}
+	      {% if course.met %}
+		{% ifnotequal course.taken_for course.credit_hours %}
 		  <div class="alert alert-requirements">
-		    {{ course.numcrhrstaken }} hrs
+		    {{ course.taken_for }} hrs
 		  </div>
 		{% else %}
-		  {{ course.numcrhrstaken }} hrs
+		  {{ course.taken_for }} hrs
 		{% endifnotequal %}
               {% endif %}
 	    </td>
@@ -113,10 +113,10 @@
 		      {% endif %} {# comment #}
 		    </li>
 		    <li class="divider"></li>
-		    {% for alternatesemesters in course.othersemesters %}
+		    {% for offering_info in course.other_semesters %}
 		      <li>
-			<a href="{% url 'move_course' 1 course.sscid alternatesemesters.courseid course.courseid %}#{{course.cnumber}}">
-	      {{alternatesemesters.semester}}; {{alternatesemesters.numhrsthissem}} hrs</a>
+			<a href="{% url 'move_course' course.course_id offering_info.course_id %}?next={{ request.path|urlencode }}">
+			  {{offering_info.semester}}; {{offering_info.hours_this_semester}} hrs</a>
 		      </li>
 		    {% endfor %} {# other semesters #}
 		  </ul>
