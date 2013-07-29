@@ -3483,6 +3483,15 @@
     }
 },
 {
+    "pk": 30, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-07-24T20:09:39.211Z", 
+        "app_name": "planner", 
+        "migration": "0030_auto__del_field_major_requirements__add_field_major_requirement__chg_f"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.person", 
     "fields": {

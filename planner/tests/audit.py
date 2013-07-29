@@ -14,7 +14,6 @@ class RequirementTest(TestCase):
         cos_106 = Course.objects.get(subject__abbrev='COS', number=106)
         cos_104_co = self._get_course_offering(cos_104)
         cos_106_co = self._get_course_offering(cos_106)
-        
         requirement = Requirement.objects.get(name='Computer Science Gen Eds')
         met_courses = requirement.met_courses([cos_104_co, cos_106_co])
         self.assertEqual(len(met_courses), 2)
@@ -28,7 +27,6 @@ class RequirementTest(TestCase):
             met_courses_info = "Met courses:\n{}".format('\n'.join("{} => {}".format(course_offering, course)
                                                                    for course,course_offering in gradAudit.met_courses.items()))
             courseOfferings_info = "Course Offerings:\n{}".format('\n'.join(str(co) for co in course_offerings))
-
             return '\n'.join([requirement_info, constraint_info, met_courses_info, courseOfferings_info])
                                                         
         for prereq in prereqs:
@@ -80,7 +78,6 @@ class RequirementTest(TestCase):
         cos382_co = self._get_course_offering(cos382)
         cos435 = Course.objects.get(subject__abbrev = 'COS', number = 435)
         cos435_co = self._get_course_offering(cos435)
-
         self.assertPrereqsSatisfied([requirement], [cos320_co, cos382_co, cos435_co])
         self.assertPrereqsUnsatisfied([requirement], [cos320_co])
         
@@ -96,10 +93,8 @@ class RequirementTest(TestCase):
         geo210_co = self._get_course_offering(geo210)
         bio100 = Course.objects.get(subject__abbrev = 'BIO', number = 100)
         bio100_co = self._get_course_offering(bio100)
-        
         che120 = Course.objects.get(subject__abbrev = 'CHE', number = 120)
         che120_co, che120_co1 = CourseOffering.objects.filter(course = che120)[0:2]
-
         self.assertPrereqsSatisfied([science_gen_ed], [geo210_co, bio100_co])
         self.assertPrereqsUnsatisfied([science_gen_ed], [che120_co], "One course can't count twice.")
         self.assertPrereqsUnsatisfied([science_gen_ed], [che120_co, che120_co1], "Course offering courses should only count once.")
@@ -111,13 +106,10 @@ class RequirementTest(TestCase):
            and sub requirement blocks.
         """
         stewardship_req = Requirement.objects.get(name='Stewardship of the Body Gen Eds')
-        
         php100    = Course.objects.get(subject__abbrev = 'PHP', number = 100)
         php100_co = self._get_course_offering(php100)
-        
         php200    = Course.objects.get(subject__abbrev = 'PHP', number = 200)
         php200_co = self._get_course_offering(php200)
-
         self.assertPrereqsSatisfied([stewardship_req],[php100_co, php200_co])
 
     
@@ -129,8 +121,5 @@ class RequirementTest(TestCase):
         eco201_co = self._get_course_offering(eco201)
         geo230 = Course.objects.get(subject__abbrev = 'GEO', number = 230)
         geo230_co = self._get_course_offering(geo230)
-
-
         self.assertPrereqsSatisfied([social_science_gen_eds], [eco190_co, geo230_co])
         self.assertPrereqsUnsatisfied([social_science_gen_eds], [eco201_co, eco190_co])
-

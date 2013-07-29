@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from django.db import models
 import itertools
-from collections import deque, namedtuple
+from collections import namedtuple, defaultdict
 from models import CourseOffering
 
 
@@ -112,9 +112,9 @@ class GradAudit(object):
                                  if not grad_audit.is_met_course(student, coreq)]
 
                 for prereq in unmet_prereqs:
-                    block['comments'].append(prereq_comment(course, prereq))
+                    block['comments'].append(make_prereq_comment(course, prereq))
                 for coreq in  unmet_coreqs:
-                    block['comments'].append(coreq_comment(course, coreq))
+                    block['comments'].append(make_coreq_comment(course, coreq))
 
             blocks.append(block)
         return blocks
