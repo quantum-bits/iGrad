@@ -22,6 +22,7 @@ urlpatterns = patterns(
     url(r'^delete_course_substition/(\d+)/$', 'delete_course_substitution', name='delete_course_sub'),
     url(r'^edit_course_substitution/(\d+)/$', 'edit_course_substitution', name='edit_course_sub'),
 
+    url(r'^add_course_to_plan/(\d+)/$', 'add_course_to_plan', name='add_course_to_plan'),
     url(r'^remove_course_from_plan/(\d+)/$', 'remove_course_from_plan', name='remove_course_from_plan'),
     url(r'^move_course_to_new_semester/(\d+)/(\d+)/$', 'move_course_to_new_semester', name='move_course'),
 

@@ -104,7 +104,7 @@
 		  </a>
 		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 		    <li>
-		      {% if course.comment %} {# Course is currently scheduled #}
+		      {% if course.met %} {# Course is currently scheduled #}
 			{% if course.iscyoc %} {# A cyoc #}
 			  <a href="{% url 'delete_cyoc' 1 0 course.sscid %}#{{course.cnumber}}">Delete</a>
 			{% else %}
@@ -115,8 +115,13 @@
 		    <li class="divider"></li>
 		    {% for offering_info in course.other_semesters %}
 		      <li>
-			<a href="{% url 'move_course' course.course_id offering_info.course_id %}?next={{ request.path|urlencode }}">
-			  {{offering_info.semester}}; {{offering_info.hours_this_semester}} hrs</a>
+			{% if course.met %}
+			<a href="{% url 'move_course' course.offering_id offering_info.course_id %}?next={{ request.path|urlencode }}">
+			{% else %}
+			<a href="{% url 'add_course_to_plan' offering_info.course_id %}?next={{ request.path|urlencode }}">
+			{% endif %}
+			{{offering_info.semester}}; {{offering_info.hours_this_semester}} hrs</a>
+
 		      </li>
 		    {% endfor %} {# other semesters #}
 		  </ul>

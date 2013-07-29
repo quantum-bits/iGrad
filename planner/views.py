@@ -340,10 +340,17 @@ def delete_course_substitution(request, course_sub_id ):
     return redirect(next)
 
 @login_required
+def add_course_to_plan(request, offering_id):
+    student = request.user.student
+    student.planned_courses.add(CourseOffering.objects.get(id=offering_id))
+    next = request.GET.get('next', 'profile')
+    return redirect(next)
+                               
+@login_required
 def remove_course_from_plan(request, offering_id):
     student = request.user.student
     student.planned_courses.remove(CourseOffering.objects.get(id=offering_id))
-    next = request.GET.get('next', 'home')
+    next = request.GET.get('next', 'profile')
     return redirect(next)
 
 

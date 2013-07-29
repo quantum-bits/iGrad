@@ -81,7 +81,6 @@ class GradAudit(object):
     def is_met_course(self, student, course):
         return self.courses_in_plan(student)[course]
                 
-
     def grad_audits(self):
         """
         Yields all grad audits so that the parent requirments grad audit 
