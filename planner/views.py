@@ -262,14 +262,13 @@ def display_grad_audit(request):
 
     if student.has_major:
         grad_audit,unused_courses = student.grad_audit()
-    
         sp_cc_information = student.sp_cc_information()
         credit_hours_in_plan = student.credit_hours_in_plan()
-        
+
         context = {'student': student,
                    'hasMajor' : student.has_major(),
                    'isProfessor' : isProfessor,
-                   'requirement_blocks' : grad_audit.requirement_blocks(student),
+
                    'unusedcourses': unused_courses,
                    'unusedcredithours': sum(map(lambda courseOffering: courseOffering.credit_hours, unused_courses)),
                    'SPlist': sp_cc_information['sps'],
@@ -281,6 +280,7 @@ def display_grad_audit(request):
                    'totalhrsfouryears': credit_hours_in_plan,
                    'credithrmaxreached': credit_hours_in_plan > 160 } # TODO: put 160 credit hour limit into a model
 
+        context['requirement_blocks'] =  grad_audit.requirement_blocks(student)
         return render(request, 'graduationaudit.html', context)
 
 

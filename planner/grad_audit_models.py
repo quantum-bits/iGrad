@@ -4,6 +4,7 @@ import itertools
 from collections import deque, namedtuple
 from models import CourseOffering
 
+
 class GradAudit(object):
     def __init__(self, **kwargs):
         self.requirement = kwargs.get('requirement')
@@ -39,7 +40,7 @@ class GradAudit(object):
         if required_course in self.met_courses:
             courseOffering = self.met_courses[required_course]
             yearName = student.yearName(courseOffering.semester)
-            semester_name = courseOffering.semester.semester_name
+            semester_name = courseOffering.semester.name
             year = courseOffering.semester.begin_on.year
             info['met'] = True
             info['offering_id'] = courseOffering.id
@@ -95,19 +96,21 @@ class GradAudit(object):
         make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
         blocks = []
         block = {}
+
         for grad_audit in self.grad_audits():
             requirement = grad_audit.requirement
+            
             block['name'] = requirement.name
             block['min_required_credit_hours'] = requirement.min_required_credit_hours
             block['constraint_comments'] = grad_audit.constraint_messages
             block['courses'] = []
             block['comments'] = []
             for course in requirement.required_courses():
-                block['courses'].append(self.requirement_block_course_info(student, course))
+                block['courses'].append(grad_audit.requirement_block_course_info(student, course))
                 unmet_prereqs = [prereq for prereq in course.prereqs.all() 
-                                 if not self.is_met_course(student, prereq)]
+                                 if not grad_audit.is_met_course(student, prereq)]
                 unmet_coreqs   = [coreq for coreq in course.coreqs.all()
-                                 if not self.is_met_course(student, coreq)]
+                                 if not grad_audit.is_met_course(student, coreq)]
 
                 for prereq in unmet_prereqs:
                     block['comments'].append(prereq_comment(course, prereq))
@@ -257,8 +260,13 @@ class Requirement(models.Model):
         return self._audit_helper(courses, set(courses))
 
     def _audit_helper(self, courses,unused_courses):
+        def add_met_courses(met_courses, grad_audit):
+            for required_course in grad_audit.met_courses:
+                if required_course not in met_courses:
+                    met_courses[required_course] = grad_audit.met_courses[required_course]
         grad_audits =  []
         constraint_messages = []
+        met_courses = {}
         for constraint in self.constraints.all():
             grad_audit, unused_courses = constraint.audit(courses, self, unused_courses)
             if grad_audit.is_satisfied: 
@@ -266,9 +274,9 @@ class Requirement(models.Model):
             else:
                 constraint_messages.append("Constraint: '{}' not satisfied".format(constraint))
             grad_audits.append(grad_audit)
-
+            add_met_courses(met_courses, grad_audit)
         is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
-        gradAudit = GradAudit(requirement=self, met_courses={}, is_satisfied=is_satisfied, constraint_messages=constraint_messages)
+        gradAudit = GradAudit(requirement=self, met_courses=met_courses , is_satisfied=is_satisfied, constraint_messages=constraint_messages)
         gradAudit.addChildren(*grad_audits)
         return gradAudit, unused_courses
 
