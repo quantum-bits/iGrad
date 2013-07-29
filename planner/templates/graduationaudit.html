@@ -61,13 +61,13 @@
 	    <td>{{ course.credit_hours }}</td>
 	    <td>
 	      {% if course.met %}
-		{% ifnotequal course.taken_for course.credit_hours %}
-		  <div class="alert alert-requirements">
+		{% if course.hours_match %}
 		    {{ course.taken_for }} hrs
-		  </div>
 		{% else %}
-		  {{ course.taken_for }} hrs
-		{% endifnotequal %}
+	           <div class="alert alert-requirements">
+		     {{ course.taken_for }} hrs
+		   </div>
+		{% endif %}
               {% endif %}
 	    </td>
 	    {# TODO: Eliminate redundant markup for SP/CC #}
