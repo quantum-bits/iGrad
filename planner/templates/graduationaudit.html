@@ -42,7 +42,7 @@
       {% for comment in req.constraints_comments %}
         <p> {{ comment }} </p>
       {% endfor %}
-
+	{% if req.courses %}
       <table class="table table-striped table-bordered table-hover table-condensed">
 	<tr>
 	  <th class="name">Course Name</th>
@@ -142,7 +142,7 @@
 	  <td class="blank"></td>
 	</tr>
       </table>
-
+         {% endif %}
       {% for comment in req.precocommentlist %}
 	<p>
 	  <span class="label label-warning">Warning</span>

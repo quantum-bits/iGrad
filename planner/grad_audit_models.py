@@ -1,19 +1,28 @@
 #!/usr/bin/python
 from django.db import models
 import itertools
-from collections import namedtuple, defaultdict
+from collections import namedtuple, defaultdict, deque
 from models import CourseOffering
-
 
 class GradAudit(object):
     def __init__(self, **kwargs):
         self.requirement = kwargs.get('requirement')
-        self.met_courses = kwargs.get('met_courses')
+        self.met_courses = kwargs.get('met_courses', [])
         self.is_satisfied = kwargs.get('is_satisfied')
         self.constraint_messages = kwargs.get('constraint_messages', [])
-        self.children = []
+        self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
     
+
+    def addMetCourses(self, *met_courses):
+        for course in met_courses:
+            self.met_courses.append(course)
+
+    def removeMetCourses(self, *met_courses):
+        for course in met_courses:
+            if course in self.met_courses:
+                self.met_courses.remove(course)
+
     def addChildren(self, *children):
         for child in children:
             self.children.append(child)
@@ -86,19 +95,27 @@ class GradAudit(object):
         Yields all grad audits so that the parent requirments grad audit 
         directly precede the children grad audits. 
         """
-        yield self
-        for child in self.children:
-            child.grad_audits()
+        stack = deque([])
+        stack.append(self)
+        yielded_requirements = []
+        while stack:
+            grad_audit = stack.pop()
+            if grad_audit.requirement not in yielded_requirements:
+                yield grad_audit
+                yielded_requirements.append(grad_audit.requirement)
+
+            for child in grad_audit.children:
+                stack.append(child)
+
+        print "\n".join(req.display_name for req in yielded_requirements)
 
     def requirement_blocks(self, student):
         make_prereq_comment = lambda course, req: "{} is a prereq for {}; the requirement is currently not being met.".format(req, course)
         make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
         blocks = []
-        block = {}
-
         for grad_audit in self.grad_audits():
             requirement = grad_audit.requirement
-            
+            block = {}
             block['name'] = requirement.name
             block['min_required_credit_hours'] = requirement.min_required_credit_hours
             block['constraint_comments'] = grad_audit.constraint_messages
@@ -110,7 +127,6 @@ class GradAudit(object):
                                  if not grad_audit.is_met_course(student, prereq)]
                 unmet_coreqs   = [coreq for coreq in course.coreqs.all()
                                  if not grad_audit.is_met_course(student, coreq)]
-
                 for prereq in unmet_prereqs:
                     block['comments'].append(make_prereq_comment(course, prereq))
                 for coreq in  unmet_coreqs:
@@ -127,7 +143,7 @@ class Constraint(models.Model):
     def __unicode__(self):
         return self.name
 
-    def parse_constraint_text(self):
+    def execute_constraint_text(self):
         tokens = self.constraint_text.split()
         name,args = tokens[0],tokens[1:]
         parameters = {}
@@ -140,7 +156,7 @@ class Constraint(models.Model):
         return unused_courses - set(met_courses)
 
     def audit(self, courseOfferings, requirement, unused_courses):
-        name, arguments = self.parse_constraint_text()
+        name, arguments = self.execute_constraint_text()
         return getattr(self, name)(courseOfferings, requirement, unused_courses,**arguments)
 
     def any(self, courses, requirement, unused_courses, **kwargs):
@@ -207,8 +223,7 @@ class Constraint(models.Model):
     def all_sub_requirements_satisfied(self, courses, requirement, unused_courses, **kwargs):
         grad_audits, unused_courses = self.sub_requirements_grad_audits(courses, requirement, unused_courses)
         is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
-        grad_audit = GradAudit(requirement=requirement, met_course=None, is_satisfied=is_satisfied)
-        grad_audit.addChildren(*grad_audits)
+        grad_audit = GradAudit(requirement=requirement, is_satisfied=is_satisfied, children=grad_audits)
         return grad_audit, unused_courses
 
     def satisfy_some_sub_requirements(self, courses, requirement, unused_courses, **kwargs):
@@ -216,8 +231,7 @@ class Constraint(models.Model):
         grad_audits, unused_courses = self.sub_requirements_grad_audits(courses, requirement, unused_courses)
         satisfied_grad_audits = [grad_audit for grad_audit in grad_audits if grad_audit.is_satisfied]
         is_satisfied = len(satisfied_grad_audits) >= at_least
-        grad_audit = GradAudit(requirement=requirement, is_satisfied=is_satisfied, met_course=None)
-        grad_audit.addChildren(*grad_audits)
+        grad_audit = GradAudit(requirement=requirement, is_satisfied=is_satisfied, children=grad_audits)
         return grad_audit, unused_courses
     
 
@@ -252,7 +266,8 @@ class Requirement(models.Model):
         return self.required_courses() + (list(itertools.chain(*req_courses)))
 
     def audit(self, courses, unused_courses = None):
-        """Returns a GradAudit.
+        """
+        Returns a GradAudit.
         """
         if unused_courses is None:
             unused_courses = set(courses)
@@ -263,7 +278,9 @@ class Requirement(models.Model):
             for required_course in grad_audit.met_courses:
                 if required_course not in met_courses:
                     met_courses[required_course] = grad_audit.met_courses[required_course]
-        grad_audits =  []
+        
+
+        grad_audits = []
         constraint_messages = []
         met_courses = {}
         for constraint in self.constraints.all():
@@ -274,9 +291,10 @@ class Requirement(models.Model):
                 constraint_messages.append("Constraint: '{}' not satisfied".format(constraint))
             grad_audits.append(grad_audit)
             add_met_courses(met_courses, grad_audit)
+
         is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
-        gradAudit = GradAudit(requirement=self, met_courses=met_courses , is_satisfied=is_satisfied, constraint_messages=constraint_messages)
-        gradAudit.addChildren(*grad_audits)
+        gradAudit = GradAudit(requirement=self, met_courses=met_courses , is_satisfied=is_satisfied, constraint_messages=constraint_messages, children=grad_audits)
+
         return gradAudit, unused_courses
 
     def child_requirements(self):
