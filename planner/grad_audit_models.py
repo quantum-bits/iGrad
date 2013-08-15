@@ -100,6 +100,12 @@ class GradAudit(object):
         yielded_requirements = []
         while stack:
             grad_audit = stack.pop()
+            # When it builds the tree it repeats nested requirements. 
+            # So everything ends up in the tree twice. 
+            # TODO: fix this bug. 
+            # The following makes sure it only reports a grad audit once. 
+            # It works because a requirement has a one-to-one correspondence to a 
+            # grad audit. 
             if grad_audit.requirement not in yielded_requirements:
                 yield grad_audit
                 yielded_requirements.append(grad_audit.requirement)
