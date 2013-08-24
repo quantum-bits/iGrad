@@ -527,7 +527,7 @@ class Student(Person):
          # TODO: make it work when there is more than one major. 
          # TODO: make it work for minors
          for major in self.majors.all():
-             return major.requirement.audit(self.planned_courses.all())
+             return major.requirement.audit(list(self.planned_courses.all()) + list(self.course_substitutions.all()))
 
 class Professor(Person):
      user = models.OneToOneField(User, null=True)
@@ -594,19 +594,20 @@ class CourseTaken(StampedModel):
      final_grade = models.ForeignKey(Grade, blank=True)
 
 
-class CourseSubType(models.Model):
-     """Model for determining what type of substitution. Transfer, Sub, Etc."""
-     name = models.CharField(max_length=80, unique=True)
 
-     def __unicode__(self):
+class CourseSubType(models.Model):
+    """Model for determining what type of substitution. Transfer, Sub, Etc."""
+    name = models.CharField(max_length=80, unique=True)
+
+    def __unicode__(self):
          return self.name
 
-     @property
-     def is_transfer(self):
+    @property
+    def is_transfer(self):
          return self.name == 'Transfer'
 
-     @property
-     def is_sub(self):
+    @property
+    def is_sub(self):
          return self.name == 'Subsitution'
 
 
@@ -620,6 +621,10 @@ class CourseSubstitution(models.Model):
     equivalent_course = models.ForeignKey(Course, related_name='course_substitutions')
     student = models.ForeignKey(Student, related_name='course_substitutions')
     sub_type = models.ForeignKey(CourseSubType, related_name='course_substitutions', null=True, blank=True)
+
+    @property
+    def course(self):
+        return self.equivalent_course 
 
     def is_transfer(self):
         self.sub_type.is_transfer

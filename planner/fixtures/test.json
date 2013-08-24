@@ -3411,7 +3411,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-07-29T15:12:15.839Z", 
+        "last_login": "2013-08-13T18:05:08.911Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$pFYyb1cgghTA$692VrSI8+Y75c6KCq3cLAFbd5xCK8VCEhDAbQFsKQj4=", 
@@ -3429,7 +3429,7 @@
         "is_active": true, 
         "is_superuser": false, 
         "is_staff": false, 
-        "last_login": "2013-07-29T15:15:18.943Z", 
+        "last_login": "2013-08-24T17:26:07.045Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$IIkKfC4QdExy$1Sbx0BzuNTO5WRKw2OJkCDHW1rCVMXtCYtpSIHQ5x3Y=", 
@@ -3488,22 +3488,6 @@
     }
 },
 {
-    "pk": "68fjk5grk6pzeknhqp0pah3jycmcvr6k", 
-    "model": "sessions.session", 
-    "fields": {
-        "expire_date": "2013-09-07T02:14:45.759Z", 
-        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
-    }
-},
-{
-    "pk": "6yva22jkbg7aohicjsorqf5qch0n5zey", 
-    "model": "sessions.session", 
-    "fields": {
-        "expire_date": "2013-08-12T15:15:18.965Z", 
-        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
-    }
-},
-{
     "pk": "a9olm594utnwwp36f6na4mp0o7i2u7gt", 
     "model": "sessions.session", 
     "fields": {
@@ -3517,14 +3501,6 @@
     "fields": {
         "expire_date": "2013-06-27T19:10:44.701Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
-    }
-},
-{
-    "pk": "cnivpo2lcztdx80o0p41by0d51oz2b69", 
-    "model": "sessions.session", 
-    "fields": {
-        "expire_date": "2013-09-07T04:25:38.548Z", 
-        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
     }
 },
 {
@@ -3605,6 +3581,14 @@
     "fields": {
         "expire_date": "2013-06-26T19:59:16.247Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
+    "pk": "v07olp8pu2xcuxhzyo832xc8jkn32jnu", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-09-07T17:26:07.157Z", 
+        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
     }
 },
 {
@@ -4558,7 +4542,7 @@
     "pk": 31, 
     "model": "south.migrationhistory", 
     "fields": {
-        "applied": "2013-08-24T04:55:30.056Z", 
+        "applied": "2013-08-24T17:31:13.128Z", 
         "app_name": "planner", 
         "migration": "0031_auto__add_coursesubtype__add_field_coursesubstitution_sub_type"
     }
@@ -5853,7 +5837,7 @@
     "model": "planner.major", 
     "fields": {
         "department": 1, 
-        "requirement": 4, 
+        "requirement": 26, 
         "name": "Computer Science (BS)"
     }
 },
@@ -8642,10 +8626,12 @@
             1
         ], 
         "planned_courses": [
-            7, 
-            10, 
-            320, 
-            592
+            63, 
+            66, 
+            273, 
+            276, 
+            592, 
+            850
         ], 
         "entering_year": 1, 
         "minors": [], 
@@ -34804,22 +34790,6 @@
         "constraints": [
             5, 
             7
-        ]
-    }
-},
-{
-    "pk": 21, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            2
-        ], 
-        "name": "Computer Science BS Requirement", 
-        "courses": [], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Computer Science BS Requirments", 
-        "constraints": [
-            5
         ]
     }
 },

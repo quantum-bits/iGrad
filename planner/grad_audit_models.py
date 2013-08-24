@@ -273,14 +273,18 @@ class Requirement(models.Model):
 
     def audit(self, courses, unused_courses = None):
         """
-        Returns a GradAudit.
+        Returns a grad_audit, unused_courses
         """
         if unused_courses is None:
             unused_courses = set(courses)
         return self._audit_helper(courses, set(courses))
 
     def _audit_helper(self, courses,unused_courses):
+        """Examines a requirements constraints to create a grad_audit. 
+        If all constraints are met, gradAudit is_satisfied. """
+        
         def add_met_courses(met_courses, grad_audit):
+            "Adds met courses in grad_audit to met_courses."
             for required_course in grad_audit.met_courses:
                 if required_course not in met_courses:
                     met_courses[required_course] = grad_audit.met_courses[required_course]

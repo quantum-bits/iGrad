@@ -2763,7 +2763,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2013-07-29T15:12:15.839Z", 
+        "last_login": "2013-08-13T18:05:08.911Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$pFYyb1cgghTA$692VrSI8+Y75c6KCq3cLAFbd5xCK8VCEhDAbQFsKQj4=", 
@@ -2781,7 +2781,7 @@
         "is_active": true, 
         "is_superuser": false, 
         "is_staff": false, 
-        "last_login": "2013-07-29T15:15:18.943Z", 
+        "last_login": "2013-08-24T17:26:07.045Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$IIkKfC4QdExy$1Sbx0BzuNTO5WRKw2OJkCDHW1rCVMXtCYtpSIHQ5x3Y=", 
@@ -2840,14 +2840,6 @@
     }
 },
 {
-    "pk": "6yva22jkbg7aohicjsorqf5qch0n5zey", 
-    "model": "sessions.session", 
-    "fields": {
-        "expire_date": "2013-08-12T15:15:18.965Z", 
-        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
-    }
-},
-{
     "pk": "a9olm594utnwwp36f6na4mp0o7i2u7gt", 
     "model": "sessions.session", 
     "fields": {
@@ -2880,6 +2872,14 @@
     }
 },
 {
+    "pk": "jn7lfb567g0cmtyblkoamarzulwvkn3c", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-08-12T16:46:58.885Z", 
+        "session_data": "MDc3MzRjNGM5ZWE5YjkwYzZkNmEwNjM3NGIyNzFlOTMzNDE1MDZkZjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
     "pk": "ln8ui11inf51ih8fxlx85oa243pbf1bd", 
     "model": "sessions.session", 
     "fields": {
@@ -2896,11 +2896,27 @@
     }
 },
 {
+    "pk": "nnr4p2qtnda9jt4hpbzb0o26ec6y8rqw", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-08-27T00:45:50.662Z", 
+        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
     "pk": "s8b8upq7jzkmd9ioju8kf63g3bxxrtj8", 
     "model": "sessions.session", 
     "fields": {
         "expire_date": "2013-07-15T15:30:22.527Z", 
         "session_data": "ZjI5NDNjZWM5MTA4OWYxNGU4YWZkNmQ3NjYyMTUwYmNlZTA4NzhkMDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
+    "pk": "sfrh6kb7qq4ga8446wz2vgmja4gqaq4t", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-08-28T16:01:55.842Z", 
+        "session_data": "ZjkwOGViMDQwNzNlNTU2YTYyNjUwOTgxY2FhMWEyMGExNmY1NzUwYzqAAn1xAShYCgAAAHRlc3Rjb29raWVxAlgGAAAAd29ya2VkcQNVDV9hdXRoX3VzZXJfaWRLAlUSX2F1dGhfdXNlcl9iYWNrZW5kVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHUu"
     }
 },
 {
@@ -2917,6 +2933,14 @@
     "fields": {
         "expire_date": "2013-06-26T19:59:16.247Z", 
         "session_data": "OGI1NGExOGE0NjI3MWNlNzAzMDc1ODNjMWE0MDg1NzgwOWIwMjRmYTqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu"
+    }
+},
+{
+    "pk": "v07olp8pu2xcuxhzyo832xc8jkn32jnu", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-09-07T17:26:07.157Z", 
+        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
     }
 },
 {
@@ -3334,6 +3358,266 @@
         "change_message": "Changed prereqs.", 
         "user": 1, 
         "content_type": 29
+    }
+},
+{
+    "pk": 34, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-07-29T16:47:57.502Z", 
+        "object_repr": "SYS 390 - Information System Analysis (Spring 2021-2022)", 
+        "object_id": "2136", 
+        "change_message": "Changed semester.", 
+        "user": 1, 
+        "content_type": 32
+    }
+},
+{
+    "pk": 35, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:34:12.554Z", 
+        "object_repr": "Computer Science Core Requirements (BS)", 
+        "object_id": "23", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 36, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:35:07.731Z", 
+        "object_repr": "Computer Science BS Math Requirements", 
+        "object_id": "24", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 37, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:36:21.175Z", 
+        "object_repr": "Computer Science (BS) Advanced Computing", 
+        "object_id": "25", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 38, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:37:47.485Z", 
+        "object_repr": "Computer Science (BS)", 
+        "object_id": "26", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 39, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T00:38:03.744Z", 
+        "object_repr": "Computer Science (BS) Math Requirements", 
+        "object_id": "24", 
+        "change_message": "Changed name and display_name.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 40, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T00:38:18.426Z", 
+        "object_repr": "Computer Science BS Requirement", 
+        "object_id": "21", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 41, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T00:38:31.142Z", 
+        "object_repr": "Computer Science (BS)", 
+        "object_id": "1", 
+        "change_message": "Changed requirement.", 
+        "user": 1, 
+        "content_type": 27
+    }
+},
+{
+    "pk": 42, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 3, 
+        "action_time": "2013-08-13T00:38:54.366Z", 
+        "object_repr": "Computer Science BS Requirement", 
+        "object_id": "21", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 43, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T00:39:01.174Z", 
+        "object_repr": "Computer Science (BS)", 
+        "object_id": "26", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 44, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:40:19.620Z", 
+        "object_repr": "COS Concentrations", 
+        "object_id": "27", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 45, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:41:39.176Z", 
+        "object_repr": "CS Graphics Concentration", 
+        "object_id": "28", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 46, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:43:07.253Z", 
+        "object_repr": "CS Intelligent Systems Concentration", 
+        "object_id": "29", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 47, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:43:51.358Z", 
+        "object_repr": "CS Scientific Computing", 
+        "object_id": "30", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 48, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T00:44:50.690Z", 
+        "object_repr": "CS Software Studio Concentration", 
+        "object_id": "31", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 49, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T00:45:15.054Z", 
+        "object_repr": "CS Scientific Computing Concentration", 
+        "object_id": "30", 
+        "change_message": "Changed name and display_name.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 50, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T18:01:18.154Z", 
+        "object_repr": "Computer Science (BS)", 
+        "object_id": "26", 
+        "change_message": "Changed requirements.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 51, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-08-13T18:03:53.387Z", 
+        "object_repr": "One of the following must be satisfied", 
+        "object_id": "8", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 52, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T18:04:28.847Z", 
+        "object_repr": "COS Concentrations", 
+        "object_id": "27", 
+        "change_message": "Changed constraints and requirements.", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 53, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2013-08-13T18:05:38.108Z", 
+        "object_repr": "One of the following must be satisfied", 
+        "object_id": "8", 
+        "change_message": "Changed constraint_text.", 
+        "user": 1, 
+        "content_type": 10
     }
 },
 {
@@ -4004,6 +4288,14 @@
     }
 },
 {
+    "pk": 13, 
+    "model": "planner.academicyear", 
+    "fields": {
+        "end_on": "2021-07-31", 
+        "begin_on": "2020-08-01"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.semestername", 
     "fields": {
@@ -4480,6 +4772,46 @@
     }
 },
 {
+    "pk": 41, 
+    "model": "planner.semester", 
+    "fields": {
+        "begin_on": "2020-08-10", 
+        "end_on": "2020-12-15", 
+        "name": 1, 
+        "year": 13
+    }
+},
+{
+    "pk": 42, 
+    "model": "planner.semester", 
+    "fields": {
+        "begin_on": "2021-01-02", 
+        "end_on": "2021-01-31", 
+        "name": 2, 
+        "year": 13
+    }
+},
+{
+    "pk": 43, 
+    "model": "planner.semester", 
+    "fields": {
+        "begin_on": "2021-02-01", 
+        "end_on": "2021-05-18", 
+        "name": 3, 
+        "year": 13
+    }
+},
+{
+    "pk": 44, 
+    "model": "planner.semester", 
+    "fields": {
+        "begin_on": "2021-05-25", 
+        "end_on": "2021-07-31", 
+        "name": 4, 
+        "year": 13
+    }
+},
+{
     "pk": 1, 
     "model": "planner.subject", 
     "fields": {
@@ -4848,7 +5180,7 @@
     "model": "planner.major", 
     "fields": {
         "department": 1, 
-        "requirement": 4, 
+        "requirement": 26, 
         "name": "Computer Science (BS)"
     }
 },
@@ -7637,10 +7969,12 @@
             1
         ], 
         "planned_courses": [
-            7, 
-            10, 
-            320, 
-            592
+            63, 
+            66, 
+            273, 
+            276, 
+            592, 
+            850
         ], 
         "entering_year": 1, 
         "minors": [], 
@@ -30075,6 +30409,3234 @@
     }
 },
 {
+    "pk": 1869, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.612Z", 
+        "updated_at": "2013-07-29T16:46:13.645Z", 
+        "course": 69, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1870, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.704Z", 
+        "updated_at": "2013-07-29T16:46:13.729Z", 
+        "course": 69, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1871, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.763Z", 
+        "updated_at": "2013-07-29T16:46:13.789Z", 
+        "course": 69, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1872, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.825Z", 
+        "updated_at": "2013-07-29T16:46:13.854Z", 
+        "course": 70, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1873, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.880Z", 
+        "updated_at": "2013-07-29T16:46:13.902Z", 
+        "course": 70, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1874, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:13.927Z", 
+        "updated_at": "2013-07-29T16:46:13.950Z", 
+        "course": 70, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1875, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:13.986Z", 
+        "updated_at": "2013-07-29T16:46:14.015Z", 
+        "course": 1, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1876, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.042Z", 
+        "updated_at": "2013-07-29T16:46:14.067Z", 
+        "course": 1, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1877, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.103Z", 
+        "updated_at": "2013-07-29T16:46:14.133Z", 
+        "course": 2, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1878, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.160Z", 
+        "updated_at": "2013-07-29T16:46:14.184Z", 
+        "course": 2, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1879, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:14.226Z", 
+        "updated_at": "2013-07-29T16:46:14.255Z", 
+        "course": 46, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1880, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:14.281Z", 
+        "updated_at": "2013-07-29T16:46:14.306Z", 
+        "course": 46, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1881, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:14.341Z", 
+        "updated_at": "2013-07-29T16:46:14.371Z", 
+        "course": 47, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1882, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:14.397Z", 
+        "updated_at": "2013-07-29T16:46:14.421Z", 
+        "course": 47, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1883, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.456Z", 
+        "updated_at": "2013-07-29T16:46:14.485Z", 
+        "course": 48, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1884, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.513Z", 
+        "updated_at": "2013-07-29T16:46:14.539Z", 
+        "course": 48, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1885, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.575Z", 
+        "updated_at": "2013-07-29T16:46:14.604Z", 
+        "course": 49, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1886, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.631Z", 
+        "updated_at": "2013-07-29T16:46:14.656Z", 
+        "course": 49, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1887, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 5, 
+        "created_at": "2013-07-29T16:46:14.691Z", 
+        "updated_at": "2013-07-29T16:46:14.720Z", 
+        "course": 50, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1888, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 5, 
+        "created_at": "2013-07-29T16:46:14.769Z", 
+        "updated_at": "2013-07-29T16:46:14.794Z", 
+        "course": 50, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1889, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.828Z", 
+        "updated_at": "2013-07-29T16:46:14.854Z", 
+        "course": 51, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1890, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:14.879Z", 
+        "updated_at": "2013-07-29T16:46:14.902Z", 
+        "course": 51, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1891, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:14.937Z", 
+        "updated_at": "2013-07-29T16:46:14.985Z", 
+        "course": 90, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1892, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:15.014Z", 
+        "updated_at": "2013-07-29T16:46:15.039Z", 
+        "course": 90, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1893, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:15.074Z", 
+        "updated_at": "2013-07-29T16:46:15.103Z", 
+        "course": 91, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1894, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:15.129Z", 
+        "updated_at": "2013-07-29T16:46:15.155Z", 
+        "course": 91, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1895, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:15.191Z", 
+        "updated_at": "2013-07-29T16:46:15.220Z", 
+        "course": 103, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1896, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:15.248Z", 
+        "updated_at": "2013-07-29T16:46:15.272Z", 
+        "course": 103, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1897, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.306Z", 
+        "updated_at": "2013-07-29T16:46:15.333Z", 
+        "course": 55, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1898, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.358Z", 
+        "updated_at": "2013-07-29T16:46:15.382Z", 
+        "course": 55, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1899, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.418Z", 
+        "updated_at": "2013-07-29T16:46:15.447Z", 
+        "course": 52, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1900, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.475Z", 
+        "updated_at": "2013-07-29T16:46:15.500Z", 
+        "course": 52, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1901, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.538Z", 
+        "updated_at": "2013-07-29T16:46:15.567Z", 
+        "course": 56, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1902, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.593Z", 
+        "updated_at": "2013-07-29T16:46:15.619Z", 
+        "course": 56, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1903, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.655Z", 
+        "updated_at": "2013-07-29T16:46:15.684Z", 
+        "course": 57, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1904, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:15.712Z", 
+        "updated_at": "2013-07-29T16:46:15.735Z", 
+        "course": 57, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1905, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:15.770Z", 
+        "updated_at": "2013-07-29T16:46:15.801Z", 
+        "course": 87, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1906, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:15.829Z", 
+        "updated_at": "2013-07-29T16:46:15.859Z", 
+        "course": 87, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1907, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:15.895Z", 
+        "updated_at": "2013-07-29T16:46:15.924Z", 
+        "course": 88, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1908, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:15.951Z", 
+        "updated_at": "2013-07-29T16:46:15.978Z", 
+        "course": 88, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1909, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:16.013Z", 
+        "updated_at": "2013-07-29T16:46:16.042Z", 
+        "course": 4, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1910, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:16.069Z", 
+        "updated_at": "2013-07-29T16:46:16.092Z", 
+        "course": 4, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1911, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:16.127Z", 
+        "updated_at": "2013-07-29T16:46:16.155Z", 
+        "course": 5, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1912, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:16.182Z", 
+        "updated_at": "2013-07-29T16:46:16.207Z", 
+        "course": 5, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1913, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.241Z", 
+        "updated_at": "2013-07-29T16:46:16.269Z", 
+        "course": 6, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1914, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.305Z", 
+        "updated_at": "2013-07-29T16:46:16.332Z", 
+        "course": 7, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1915, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.366Z", 
+        "updated_at": "2013-07-29T16:46:16.396Z", 
+        "course": 8, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1916, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.433Z", 
+        "updated_at": "2013-07-29T16:46:16.474Z", 
+        "course": 31, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1917, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.508Z", 
+        "updated_at": "2013-07-29T16:46:16.538Z", 
+        "course": 9, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1918, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.574Z", 
+        "updated_at": "2013-07-29T16:46:16.603Z", 
+        "course": 3, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1919, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:16.638Z", 
+        "updated_at": "2013-07-29T16:46:16.667Z", 
+        "course": 10, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1920, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:16.693Z", 
+        "updated_at": "2013-07-29T16:46:16.717Z", 
+        "course": 10, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1921, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.752Z", 
+        "updated_at": "2013-07-29T16:46:16.781Z", 
+        "course": 25, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1922, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.818Z", 
+        "updated_at": "2013-07-29T16:46:16.846Z", 
+        "course": 40, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1923, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:16.882Z", 
+        "updated_at": "2013-07-29T16:46:16.910Z", 
+        "course": 26, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1924, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:16.949Z", 
+        "updated_at": "2013-07-29T16:46:16.978Z", 
+        "course": 41, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1925, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:17.004Z", 
+        "updated_at": "2013-07-29T16:46:17.025Z", 
+        "course": 41, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1926, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:17.060Z", 
+        "updated_at": "2013-07-29T16:46:17.087Z", 
+        "course": 42, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1927, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:17.113Z", 
+        "updated_at": "2013-07-29T16:46:17.139Z", 
+        "course": 42, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1928, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.175Z", 
+        "updated_at": "2013-07-29T16:46:17.204Z", 
+        "course": 32, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1929, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.239Z", 
+        "updated_at": "2013-07-29T16:46:17.268Z", 
+        "course": 22, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1930, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.308Z", 
+        "updated_at": "2013-07-29T16:46:17.338Z", 
+        "course": 12, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1931, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.375Z", 
+        "updated_at": "2013-07-29T16:46:17.404Z", 
+        "course": 23, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1932, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.437Z", 
+        "updated_at": "2013-07-29T16:46:17.466Z", 
+        "course": 28, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1933, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.501Z", 
+        "updated_at": "2013-07-29T16:46:17.532Z", 
+        "course": 29, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1934, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.569Z", 
+        "updated_at": "2013-07-29T16:46:17.599Z", 
+        "course": 13, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1935, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.634Z", 
+        "updated_at": "2013-07-29T16:46:17.664Z", 
+        "course": 24, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1936, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.691Z", 
+        "updated_at": "2013-07-29T16:46:17.718Z", 
+        "course": 24, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1937, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.753Z", 
+        "updated_at": "2013-07-29T16:46:17.780Z", 
+        "course": 14, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1938, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.806Z", 
+        "updated_at": "2013-07-29T16:46:17.831Z", 
+        "course": 14, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1939, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.859Z", 
+        "updated_at": "2013-07-29T16:46:17.885Z", 
+        "course": 14, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1940, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.921Z", 
+        "updated_at": "2013-07-29T16:46:17.949Z", 
+        "course": 15, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1941, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:17.976Z", 
+        "updated_at": "2013-07-29T16:46:18.002Z", 
+        "course": 15, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1942, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.026Z", 
+        "updated_at": "2013-07-29T16:46:18.054Z", 
+        "course": 15, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1943, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.089Z", 
+        "updated_at": "2013-07-29T16:46:18.119Z", 
+        "course": 43, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1944, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.152Z", 
+        "updated_at": "2013-07-29T16:46:18.177Z", 
+        "course": 43, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1945, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.210Z", 
+        "updated_at": "2013-07-29T16:46:18.236Z", 
+        "course": 44, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1946, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.260Z", 
+        "updated_at": "2013-07-29T16:46:18.285Z", 
+        "course": 44, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1947, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:18.328Z", 
+        "updated_at": "2013-07-29T16:46:18.358Z", 
+        "course": 16, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1948, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.391Z", 
+        "updated_at": "2013-07-29T16:46:18.419Z", 
+        "course": 104, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1949, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.444Z", 
+        "updated_at": "2013-07-29T16:46:18.468Z", 
+        "course": 104, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1950, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.502Z", 
+        "updated_at": "2013-07-29T16:46:18.530Z", 
+        "course": 106, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1951, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:18.556Z", 
+        "updated_at": "2013-07-29T16:46:18.579Z", 
+        "course": 106, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1952, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.614Z", 
+        "updated_at": "2013-07-29T16:46:18.643Z", 
+        "course": 107, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1953, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.670Z", 
+        "updated_at": "2013-07-29T16:46:18.694Z", 
+        "course": 107, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1954, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.729Z", 
+        "updated_at": "2013-07-29T16:46:18.757Z", 
+        "course": 89, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1955, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.783Z", 
+        "updated_at": "2013-07-29T16:46:18.807Z", 
+        "course": 89, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1956, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.841Z", 
+        "updated_at": "2013-07-29T16:46:18.870Z", 
+        "course": 100, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1957, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.897Z", 
+        "updated_at": "2013-07-29T16:46:18.919Z", 
+        "course": 100, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1958, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:18.945Z", 
+        "updated_at": "2013-07-29T16:46:18.967Z", 
+        "course": 100, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1959, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.002Z", 
+        "updated_at": "2013-07-29T16:46:19.032Z", 
+        "course": 101, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1960, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.059Z", 
+        "updated_at": "2013-07-29T16:46:19.084Z", 
+        "course": 101, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1961, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.120Z", 
+        "updated_at": "2013-07-29T16:46:19.149Z", 
+        "course": 102, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1962, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.176Z", 
+        "updated_at": "2013-07-29T16:46:19.209Z", 
+        "course": 102, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1963, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.249Z", 
+        "updated_at": "2013-07-29T16:46:19.277Z", 
+        "course": 62, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1964, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.306Z", 
+        "updated_at": "2013-07-29T16:46:19.331Z", 
+        "course": 62, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1965, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.371Z", 
+        "updated_at": "2013-07-29T16:46:19.401Z", 
+        "course": 61, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1966, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.428Z", 
+        "updated_at": "2013-07-29T16:46:19.453Z", 
+        "course": 61, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1967, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.487Z", 
+        "updated_at": "2013-07-29T16:46:19.514Z", 
+        "course": 53, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1968, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:19.540Z", 
+        "updated_at": "2013-07-29T16:46:19.565Z", 
+        "course": 53, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1969, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.600Z", 
+        "updated_at": "2013-07-29T16:46:19.630Z", 
+        "course": 54, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1970, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.657Z", 
+        "updated_at": "2013-07-29T16:46:19.682Z", 
+        "course": 54, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1971, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.716Z", 
+        "updated_at": "2013-07-29T16:46:19.746Z", 
+        "course": 63, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1972, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.774Z", 
+        "updated_at": "2013-07-29T16:46:19.800Z", 
+        "course": 63, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1973, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.836Z", 
+        "updated_at": "2013-07-29T16:46:19.865Z", 
+        "course": 64, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1974, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.892Z", 
+        "updated_at": "2013-07-29T16:46:19.917Z", 
+        "course": 64, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1975, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:19.953Z", 
+        "updated_at": "2013-07-29T16:46:19.981Z", 
+        "course": 122, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1976, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.008Z", 
+        "updated_at": "2013-07-29T16:46:20.035Z", 
+        "course": 122, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1977, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.073Z", 
+        "updated_at": "2013-07-29T16:46:20.162Z", 
+        "course": 108, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1978, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.259Z", 
+        "updated_at": "2013-07-29T16:46:20.337Z", 
+        "course": 108, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1979, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.384Z", 
+        "updated_at": "2013-07-29T16:46:20.412Z", 
+        "course": 65, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1980, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.438Z", 
+        "updated_at": "2013-07-29T16:46:20.462Z", 
+        "course": 65, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1981, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.497Z", 
+        "updated_at": "2013-07-29T16:46:20.525Z", 
+        "course": 123, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1982, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.551Z", 
+        "updated_at": "2013-07-29T16:46:20.576Z", 
+        "course": 123, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1983, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.615Z", 
+        "updated_at": "2013-07-29T16:46:20.644Z", 
+        "course": 124, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1984, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.671Z", 
+        "updated_at": "2013-07-29T16:46:20.696Z", 
+        "course": 124, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1985, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.731Z", 
+        "updated_at": "2013-07-29T16:46:20.759Z", 
+        "course": 125, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1986, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:20.832Z", 
+        "updated_at": "2013-07-29T16:46:20.857Z", 
+        "course": 125, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1987, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.891Z", 
+        "updated_at": "2013-07-29T16:46:20.942Z", 
+        "course": 126, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1988, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:20.969Z", 
+        "updated_at": "2013-07-29T16:46:20.994Z", 
+        "course": 126, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1989, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.030Z", 
+        "updated_at": "2013-07-29T16:46:21.060Z", 
+        "course": 83, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1990, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.084Z", 
+        "updated_at": "2013-07-29T16:46:21.107Z", 
+        "course": 83, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1991, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.131Z", 
+        "updated_at": "2013-07-29T16:46:21.152Z", 
+        "course": 83, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1992, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.185Z", 
+        "updated_at": "2013-07-29T16:46:21.212Z", 
+        "course": 85, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1993, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.237Z", 
+        "updated_at": "2013-07-29T16:46:21.261Z", 
+        "course": 85, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1994, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.288Z", 
+        "updated_at": "2013-07-29T16:46:21.313Z", 
+        "course": 85, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1995, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.348Z", 
+        "updated_at": "2013-07-29T16:46:21.375Z", 
+        "course": 84, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1996, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.404Z", 
+        "updated_at": "2013-07-29T16:46:21.429Z", 
+        "course": 84, 
+        "semester": 42
+    }
+},
+{
+    "pk": 1997, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:21.461Z", 
+        "updated_at": "2013-07-29T16:46:21.491Z", 
+        "course": 84, 
+        "semester": 43
+    }
+},
+{
+    "pk": 1998, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.526Z", 
+        "updated_at": "2013-07-29T16:46:21.555Z", 
+        "course": 67, 
+        "semester": 41
+    }
+},
+{
+    "pk": 1999, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.586Z", 
+        "updated_at": "2013-07-29T16:46:21.611Z", 
+        "course": 67, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2000, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.637Z", 
+        "updated_at": "2013-07-29T16:46:21.662Z", 
+        "course": 67, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2001, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:21.698Z", 
+        "updated_at": "2013-07-29T16:46:21.727Z", 
+        "course": 68, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2002, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:21.762Z", 
+        "updated_at": "2013-07-29T16:46:21.791Z", 
+        "course": 127, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2003, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:21.817Z", 
+        "updated_at": "2013-07-29T16:46:21.843Z", 
+        "course": 127, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2004, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.879Z", 
+        "updated_at": "2013-07-29T16:46:21.907Z", 
+        "course": 73, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2005, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.934Z", 
+        "updated_at": "2013-07-29T16:46:21.957Z", 
+        "course": 73, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2006, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:21.983Z", 
+        "updated_at": "2013-07-29T16:46:22.009Z", 
+        "course": 73, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2007, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.044Z", 
+        "updated_at": "2013-07-29T16:46:22.073Z", 
+        "course": 92, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2008, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.099Z", 
+        "updated_at": "2013-07-29T16:46:22.131Z", 
+        "course": 92, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2009, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.166Z", 
+        "updated_at": "2013-07-29T16:46:22.195Z", 
+        "course": 93, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2010, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.222Z", 
+        "updated_at": "2013-07-29T16:46:22.243Z", 
+        "course": 93, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2011, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.278Z", 
+        "updated_at": "2013-07-29T16:46:22.305Z", 
+        "course": 94, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2012, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.328Z", 
+        "updated_at": "2013-07-29T16:46:22.350Z", 
+        "course": 94, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2013, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.386Z", 
+        "updated_at": "2013-07-29T16:46:22.414Z", 
+        "course": 95, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2014, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.439Z", 
+        "updated_at": "2013-07-29T16:46:22.473Z", 
+        "course": 95, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2015, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.508Z", 
+        "updated_at": "2013-07-29T16:46:22.537Z", 
+        "course": 17, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2016, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.566Z", 
+        "updated_at": "2013-07-29T16:46:22.593Z", 
+        "course": 17, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2017, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.629Z", 
+        "updated_at": "2013-07-29T16:46:22.659Z", 
+        "course": 96, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2018, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.686Z", 
+        "updated_at": "2013-07-29T16:46:22.711Z", 
+        "course": 96, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2019, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.746Z", 
+        "updated_at": "2013-07-29T16:46:22.774Z", 
+        "course": 97, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2020, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.801Z", 
+        "updated_at": "2013-07-29T16:46:22.825Z", 
+        "course": 97, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2021, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:22.861Z", 
+        "updated_at": "2013-07-29T16:46:22.888Z", 
+        "course": 18, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2022, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.926Z", 
+        "updated_at": "2013-07-29T16:46:22.955Z", 
+        "course": 98, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2023, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:22.982Z", 
+        "updated_at": "2013-07-29T16:46:23.007Z", 
+        "course": 98, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2024, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.043Z", 
+        "updated_at": "2013-07-29T16:46:23.071Z", 
+        "course": 35, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2025, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.098Z", 
+        "updated_at": "2013-07-29T16:46:23.124Z", 
+        "course": 35, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2026, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.161Z", 
+        "updated_at": "2013-07-29T16:46:23.189Z", 
+        "course": 36, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2027, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.216Z", 
+        "updated_at": "2013-07-29T16:46:23.241Z", 
+        "course": 36, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2028, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.281Z", 
+        "updated_at": "2013-07-29T16:46:23.306Z", 
+        "course": 37, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2029, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.333Z", 
+        "updated_at": "2013-07-29T16:46:23.357Z", 
+        "course": 37, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2030, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.394Z", 
+        "updated_at": "2013-07-29T16:46:23.423Z", 
+        "course": 38, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2031, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.449Z", 
+        "updated_at": "2013-07-29T16:46:23.476Z", 
+        "course": 38, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2032, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.512Z", 
+        "updated_at": "2013-07-29T16:46:23.540Z", 
+        "course": 39, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2033, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.568Z", 
+        "updated_at": "2013-07-29T16:46:23.594Z", 
+        "course": 39, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2034, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:23.630Z", 
+        "updated_at": "2013-07-29T16:46:23.659Z", 
+        "course": 21, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2035, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.695Z", 
+        "updated_at": "2013-07-29T16:46:23.727Z", 
+        "course": 86, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2036, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.754Z", 
+        "updated_at": "2013-07-29T16:46:23.780Z", 
+        "course": 86, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2037, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.808Z", 
+        "updated_at": "2013-07-29T16:46:23.833Z", 
+        "course": 86, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2038, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.871Z", 
+        "updated_at": "2013-07-29T16:46:23.899Z", 
+        "course": 72, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2039, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.925Z", 
+        "updated_at": "2013-07-29T16:46:23.950Z", 
+        "course": 72, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2040, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:23.977Z", 
+        "updated_at": "2013-07-29T16:46:24.001Z", 
+        "course": 72, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2041, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.037Z", 
+        "updated_at": "2013-07-29T16:46:24.065Z", 
+        "course": 74, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2042, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.091Z", 
+        "updated_at": "2013-07-29T16:46:24.116Z", 
+        "course": 74, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2043, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.152Z", 
+        "updated_at": "2013-07-29T16:46:24.181Z", 
+        "course": 75, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2044, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.207Z", 
+        "updated_at": "2013-07-29T16:46:24.232Z", 
+        "course": 75, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2045, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.260Z", 
+        "updated_at": "2013-07-29T16:46:24.286Z", 
+        "course": 75, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2046, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.322Z", 
+        "updated_at": "2013-07-29T16:46:24.352Z", 
+        "course": 76, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2047, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.379Z", 
+        "updated_at": "2013-07-29T16:46:24.403Z", 
+        "course": 76, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2048, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.429Z", 
+        "updated_at": "2013-07-29T16:46:24.454Z", 
+        "course": 76, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2049, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.490Z", 
+        "updated_at": "2013-07-29T16:46:24.519Z", 
+        "course": 77, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2050, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.546Z", 
+        "updated_at": "2013-07-29T16:46:24.572Z", 
+        "course": 77, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2051, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.599Z", 
+        "updated_at": "2013-07-29T16:46:24.624Z", 
+        "course": 77, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2052, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.660Z", 
+        "updated_at": "2013-07-29T16:46:24.690Z", 
+        "course": 78, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2053, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.717Z", 
+        "updated_at": "2013-07-29T16:46:24.741Z", 
+        "course": 78, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2054, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:24.767Z", 
+        "updated_at": "2013-07-29T16:46:24.793Z", 
+        "course": 78, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2055, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.830Z", 
+        "updated_at": "2013-07-29T16:46:24.859Z", 
+        "course": 79, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2056, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.886Z", 
+        "updated_at": "2013-07-29T16:46:24.910Z", 
+        "course": 79, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2057, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.937Z", 
+        "updated_at": "2013-07-29T16:46:24.961Z", 
+        "course": 79, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2058, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:24.996Z", 
+        "updated_at": "2013-07-29T16:46:25.025Z", 
+        "course": 80, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2059, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:25.052Z", 
+        "updated_at": "2013-07-29T16:46:25.078Z", 
+        "course": 80, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2060, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 2, 
+        "created_at": "2013-07-29T16:46:25.105Z", 
+        "updated_at": "2013-07-29T16:46:25.133Z", 
+        "course": 80, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2061, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:25.168Z", 
+        "updated_at": "2013-07-29T16:46:25.197Z", 
+        "course": 81, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2062, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:25.223Z", 
+        "updated_at": "2013-07-29T16:46:25.247Z", 
+        "course": 81, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2063, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 1, 
+        "created_at": "2013-07-29T16:46:25.273Z", 
+        "updated_at": "2013-07-29T16:46:25.297Z", 
+        "course": 81, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2064, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.333Z", 
+        "updated_at": "2013-07-29T16:46:25.362Z", 
+        "course": 82, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2065, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.390Z", 
+        "updated_at": "2013-07-29T16:46:25.413Z", 
+        "course": 82, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2066, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.439Z", 
+        "updated_at": "2013-07-29T16:46:25.464Z", 
+        "course": 82, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2067, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.501Z", 
+        "updated_at": "2013-07-29T16:46:25.531Z", 
+        "course": 109, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2068, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.557Z", 
+        "updated_at": "2013-07-29T16:46:25.583Z", 
+        "course": 109, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2069, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:25.618Z", 
+        "updated_at": "2013-07-29T16:46:25.647Z", 
+        "course": 58, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2070, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:25.675Z", 
+        "updated_at": "2013-07-29T16:46:25.700Z", 
+        "course": 58, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2071, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.733Z", 
+        "updated_at": "2013-07-29T16:46:25.761Z", 
+        "course": 66, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2072, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:25.787Z", 
+        "updated_at": "2013-07-29T16:46:25.810Z", 
+        "course": 66, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2073, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:25.855Z", 
+        "updated_at": "2013-07-29T16:46:25.890Z", 
+        "course": 59, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2074, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:25.919Z", 
+        "updated_at": "2013-07-29T16:46:25.944Z", 
+        "course": 59, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2075, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:25.980Z", 
+        "updated_at": "2013-07-29T16:46:26.009Z", 
+        "course": 60, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2076, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 4, 
+        "created_at": "2013-07-29T16:46:26.039Z", 
+        "updated_at": "2013-07-29T16:46:26.077Z", 
+        "course": 60, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2077, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.111Z", 
+        "updated_at": "2013-07-29T16:46:26.140Z", 
+        "course": 110, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2078, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.169Z", 
+        "updated_at": "2013-07-29T16:46:26.194Z", 
+        "course": 110, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2079, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.230Z", 
+        "updated_at": "2013-07-29T16:46:26.258Z", 
+        "course": 111, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2080, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.286Z", 
+        "updated_at": "2013-07-29T16:46:26.311Z", 
+        "course": 111, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2081, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.346Z", 
+        "updated_at": "2013-07-29T16:46:26.375Z", 
+        "course": 112, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2082, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.402Z", 
+        "updated_at": "2013-07-29T16:46:26.427Z", 
+        "course": 112, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2083, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.464Z", 
+        "updated_at": "2013-07-29T16:46:26.497Z", 
+        "course": 128, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2084, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.524Z", 
+        "updated_at": "2013-07-29T16:46:26.548Z", 
+        "course": 128, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2085, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.587Z", 
+        "updated_at": "2013-07-29T16:46:26.621Z", 
+        "course": 129, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2086, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.649Z", 
+        "updated_at": "2013-07-29T16:46:26.673Z", 
+        "course": 129, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2087, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.709Z", 
+        "updated_at": "2013-07-29T16:46:26.736Z", 
+        "course": 130, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2088, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.762Z", 
+        "updated_at": "2013-07-29T16:46:26.786Z", 
+        "course": 130, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2089, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.821Z", 
+        "updated_at": "2013-07-29T16:46:26.850Z", 
+        "course": 113, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2090, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.877Z", 
+        "updated_at": "2013-07-29T16:46:26.902Z", 
+        "course": 113, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2091, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.938Z", 
+        "updated_at": "2013-07-29T16:46:26.967Z", 
+        "course": 131, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2092, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:26.994Z", 
+        "updated_at": "2013-07-29T16:46:27.017Z", 
+        "course": 131, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2093, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.053Z", 
+        "updated_at": "2013-07-29T16:46:27.080Z", 
+        "course": 132, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2094, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.105Z", 
+        "updated_at": "2013-07-29T16:46:27.131Z", 
+        "course": 132, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2095, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.166Z", 
+        "updated_at": "2013-07-29T16:46:27.193Z", 
+        "course": 133, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2096, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.220Z", 
+        "updated_at": "2013-07-29T16:46:27.246Z", 
+        "course": 133, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2097, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.282Z", 
+        "updated_at": "2013-07-29T16:46:27.311Z", 
+        "course": 134, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2098, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.338Z", 
+        "updated_at": "2013-07-29T16:46:27.366Z", 
+        "course": 134, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2099, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.406Z", 
+        "updated_at": "2013-07-29T16:46:27.435Z", 
+        "course": 135, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2100, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.461Z", 
+        "updated_at": "2013-07-29T16:46:27.487Z", 
+        "course": 135, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2101, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.522Z", 
+        "updated_at": "2013-07-29T16:46:27.551Z", 
+        "course": 136, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2102, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.580Z", 
+        "updated_at": "2013-07-29T16:46:27.607Z", 
+        "course": 136, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2103, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.644Z", 
+        "updated_at": "2013-07-29T16:46:27.673Z", 
+        "course": 71, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2104, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.699Z", 
+        "updated_at": "2013-07-29T16:46:27.725Z", 
+        "course": 71, 
+        "semester": 42
+    }
+},
+{
+    "pk": 2105, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.752Z", 
+        "updated_at": "2013-07-29T16:46:27.776Z", 
+        "course": 71, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2106, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.811Z", 
+        "updated_at": "2013-07-29T16:46:27.838Z", 
+        "course": 114, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2107, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.862Z", 
+        "updated_at": "2013-07-29T16:46:27.887Z", 
+        "course": 114, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2108, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.926Z", 
+        "updated_at": "2013-07-29T16:46:27.954Z", 
+        "course": 115, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2109, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:27.982Z", 
+        "updated_at": "2013-07-29T16:46:28.004Z", 
+        "course": 115, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2110, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.037Z", 
+        "updated_at": "2013-07-29T16:46:28.063Z", 
+        "course": 116, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2111, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.088Z", 
+        "updated_at": "2013-07-29T16:46:28.112Z", 
+        "course": 116, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2112, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.149Z", 
+        "updated_at": "2013-07-29T16:46:28.179Z", 
+        "course": 117, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2113, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.209Z", 
+        "updated_at": "2013-07-29T16:46:28.233Z", 
+        "course": 117, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2114, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.268Z", 
+        "updated_at": "2013-07-29T16:46:28.295Z", 
+        "course": 118, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2115, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.321Z", 
+        "updated_at": "2013-07-29T16:46:28.346Z", 
+        "course": 118, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2116, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.380Z", 
+        "updated_at": "2013-07-29T16:46:28.408Z", 
+        "course": 137, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2117, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.435Z", 
+        "updated_at": "2013-07-29T16:46:28.458Z", 
+        "course": 137, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2118, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.493Z", 
+        "updated_at": "2013-07-29T16:46:28.522Z", 
+        "course": 138, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2119, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.547Z", 
+        "updated_at": "2013-07-29T16:46:28.571Z", 
+        "course": 138, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2120, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.605Z", 
+        "updated_at": "2013-07-29T16:46:28.633Z", 
+        "course": 99, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2121, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.669Z", 
+        "updated_at": "2013-07-29T16:46:28.693Z", 
+        "course": 99, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2122, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.729Z", 
+        "updated_at": "2013-07-29T16:46:28.757Z", 
+        "course": 139, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2123, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.784Z", 
+        "updated_at": "2013-07-29T16:46:28.808Z", 
+        "course": 139, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2124, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.843Z", 
+        "updated_at": "2013-07-29T16:46:28.872Z", 
+        "course": 140, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2125, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.899Z", 
+        "updated_at": "2013-07-29T16:46:28.924Z", 
+        "course": 140, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2126, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:28.959Z", 
+        "updated_at": "2013-07-29T16:46:28.987Z", 
+        "course": 119, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2127, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.016Z", 
+        "updated_at": "2013-07-29T16:46:29.039Z", 
+        "course": 119, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2128, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.074Z", 
+        "updated_at": "2013-07-29T16:46:29.113Z", 
+        "course": 120, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2129, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.138Z", 
+        "updated_at": "2013-07-29T16:46:29.162Z", 
+        "course": 120, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2130, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.197Z", 
+        "updated_at": "2013-07-29T16:46:29.225Z", 
+        "course": 121, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2131, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.258Z", 
+        "updated_at": "2013-07-29T16:46:29.284Z", 
+        "course": 121, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2132, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.320Z", 
+        "updated_at": "2013-07-29T16:46:29.349Z", 
+        "course": 19, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2133, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.375Z", 
+        "updated_at": "2013-07-29T16:46:29.399Z", 
+        "course": 19, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2134, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.435Z", 
+        "updated_at": "2013-07-29T16:46:29.463Z", 
+        "course": 30, 
+        "semester": 41
+    }
+},
+{
+    "pk": 2135, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.489Z", 
+        "updated_at": "2013-07-29T16:46:29.513Z", 
+        "course": 30, 
+        "semester": 43
+    }
+},
+{
+    "pk": 2136, 
+    "model": "planner.courseoffering", 
+    "fields": {
+        "status": 0, 
+        "credit_hours": 3, 
+        "created_at": "2013-07-29T16:46:29.552Z", 
+        "updated_at": "2013-07-29T16:47:57.490Z", 
+        "course": 45, 
+        "semester": 35
+    }
+},
+{
+    "pk": 3, 
+    "model": "planner.coursesubstitution", 
+    "fields": {
+        "credit_hours": 3, 
+        "title": "Computational Problem Solving", 
+        "university": 1, 
+        "equivalent_course": 4, 
+        "semester": 1, 
+        "student": 2
+    }
+},
+{
     "pk": 1, 
     "model": "planner.constraint", 
     "fields": {
@@ -30135,6 +33697,15 @@
         "comment": null, 
         "constraint_text": "different_departments at_least 2", 
         "name": "Courses Must be From Two Different Departments"
+    }
+},
+{
+    "pk": 8, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": "", 
+        "constraint_text": "satisfy_some_sub_requirements at_least 1", 
+        "name": "One of the following must be satisfied"
     }
 },
 {
@@ -30565,22 +34136,6 @@
     }
 },
 {
-    "pk": 21, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            2
-        ], 
-        "name": "Computer Science BS Requirement", 
-        "courses": [], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Computer Science BS Requirments", 
-        "constraints": [
-            5
-        ]
-    }
-},
-{
     "pk": 22, 
     "model": "planner.requirement", 
     "fields": {
@@ -30597,15 +34152,189 @@
     }
 },
 {
-    "pk": 3, 
-    "model": "planner.coursesubstitution", 
+    "pk": 23, 
+    "model": "planner.requirement", 
     "fields": {
-        "credit_hours": 3, 
-        "title": "Computational Problem Solving", 
-        "university": 1, 
-        "equivalent_course": 4, 
-        "semester": 1, 
-        "student": 2
+        "requirements": [], 
+        "name": "Computer Science Core Requirements (BS)", 
+        "courses": [
+            4, 
+            5, 
+            6, 
+            7, 
+            8, 
+            9, 
+            3, 
+            10, 
+            11, 
+            12, 
+            13, 
+            14, 
+            15, 
+            16, 
+            17, 
+            18, 
+            19
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science Core Requirements (BS)", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 24, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Computer Science (BS) Math Requirements", 
+        "courses": [
+            97, 
+            21
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science (BS) Math Requirements", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 25, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Computer Science (BS) Advanced Computing", 
+        "courses": [
+            22, 
+            23, 
+            24
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science (BS) Advanced Computing", 
+        "constraints": [
+            3
+        ]
+    }
+},
+{
+    "pk": 26, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            27, 
+            25, 
+            24, 
+            23
+        ], 
+        "name": "Computer Science (BS)", 
+        "courses": [], 
+        "min_required_credit_hours": 86, 
+        "display_name": "Computer Science (BS)", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 27, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            28, 
+            29, 
+            30, 
+            31
+        ], 
+        "name": "COS Concentrations", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "COS Concentrations", 
+        "constraints": [
+            8
+        ]
+    }
+},
+{
+    "pk": 28, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "CS Graphics Concentration", 
+        "courses": [
+            25, 
+            26, 
+            27, 
+            28, 
+            29, 
+            30
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "CS Graphics Concentration", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 29, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "CS Intelligent Systems Concentration", 
+        "courses": [
+            31, 
+            27, 
+            32, 
+            33, 
+            34
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "CS Intelligent Systems Concentration", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 30, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "CS Scientific Computing Concentration", 
+        "courses": [
+            35, 
+            36, 
+            37, 
+            38, 
+            39
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "CS Scientific Computing Concentration", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 31, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "CS Software Studio Concentration", 
+        "courses": [
+            40, 
+            41, 
+            42, 
+            43, 
+            44
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "CS Software Studio Concentration", 
+        "constraints": [
+            2
+        ]
     }
 },
 {
