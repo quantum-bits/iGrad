@@ -19,18 +19,7 @@ logger = logging.getLogger(__name__)
 #
 # This class has been replaced by the more sensibly-named TransferCourse.
 
-class CourseSubstitution(models.Model):
-    """Course transferred from another institution."""
-    university = models.ForeignKey(University, related_name='course_substitutions',
-                                   blank=True, null=True)
-    title = models.CharField(max_length=80)
-    credit_hours = models.PositiveIntegerField(default=3)
-    semester = models.ForeignKey(Semester, blank=True, null=True)
-    equivalent_course = models.ForeignKey(Course, related_name='course_substitutions')
-    student = models.ForeignKey(Student, related_name='course_substitutions')
 
-    def __unicode__(self):
-        return self.title
 
 
 class AdvisingNote(StampedModel):

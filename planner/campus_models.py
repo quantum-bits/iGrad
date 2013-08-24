@@ -434,6 +434,9 @@ class Student(Person):
     def planned_courses_before_semester(semester):
         return self.planned_courses.filter(semester__end_on__lt=semester.begin_on)
 
+    def substitutions_this_semester(self, semester):
+        return self.course_substitutions.filter(semester=semester)
+
     def offerings_this_semester(self, semester):
         return self.planned_courses.filter(semester=semester)
 
@@ -475,6 +478,18 @@ class Student(Person):
                     
                     course['id'] = offering.id
                     semester_courses.append(course)
+
+                for sub in self.substitutions_this_semester(semester):
+                    course = {}
+                    course['title'] = sub.title
+                    course['number'] = sub.equivalent_course.abbrev
+                    course['credit_hours'] = sub.credit_hours
+                    course['sp'] = sub.equivalent_course.is_sp
+                    course['cc'] = sub.equivalent_course.is_cc
+                    course['other_semesters_offered'] = None
+                    course['id'] = sub.id
+                    semester_courses.append(course)
+
                 year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))
                 credit_hours.append(self.credit_hours_this_semester(semester))
             year_plan['semesters'] = year_semesters
@@ -483,101 +498,137 @@ class Student(Person):
         return plan
 
     def sp_cc_information(self):
-        all_courses = self.planned_courses.all()
-        sps = [course for course in all_courses if course.course.is_sp]
-        ccs = [course for course in all_courses if course.course.is_cc]
-        num_sps = len(sps)
-        num_ccs = len(ccs)
-        
-        return {'sps' : sps, 
-                'num_sps' : num_sps,
-                'sps_met' : num_sps >= 2,
-                'ccs' : ccs,
-                'num_ccs' : num_ccs,
-                'ccs_met' : num_ccs >=1}
+         all_courses = self.planned_courses.all()
+         sps = [course for course in all_courses if course.course.is_sp]
+         ccs = [course for course in all_courses if course.course.is_cc]
+         num_sps = len(sps)
+         num_ccs = len(ccs)
+
+         return {'sps' : sps, 
+                 'num_sps' : num_sps,
+                 'sps_met' : num_sps >= 2,
+                 'ccs' : ccs,
+                 'num_ccs' : num_ccs,
+                 'ccs_met' : num_ccs >=1}
 
     def courses_covered(self):
-        """
-        Returns a dictionary where the key is the course that is being met, 
-        and the value is the course offering/ substitute/ transfer that meets it.
-        """
-        # TODO add suport for substitution courses
-        result = {}
-        for course_offering in self.planned_courses.all():
-            result[course_offering.course] = course_offering
-        return result
-        
+         """
+         Returns a dictionary where the key is the course that is being met, 
+         and the value is the course offering/ substitute/ transfer that meets it.
+         """
+         # TODO add suport for substitution courses
+         result = {}
+         for course_offering in self.planned_courses.all():
+             result[course_offering.course] = course_offering
+         return result
+
     def grad_audit(self):
-        # Right now it returns the first major,
-        # TODO: make it work when there is more than one major. 
-        # TODO: make it work for minors
-        for major in self.majors.all():
-            return major.requirement.audit(self.planned_courses.all())
+         # Right now it returns the first major,
+         # TODO: make it work when there is more than one major. 
+         # TODO: make it work for minors
+         for major in self.majors.all():
+             return major.requirement.audit(self.planned_courses.all())
 
 class Professor(Person):
-    user = models.OneToOneField(User, null=True)
-    advisee = models.OneToOneField(Student, null=True, blank=True)
+     user = models.OneToOneField(User, null=True)
+     advisee = models.OneToOneField(Student, null=True, blank=True)
 
-    def __unicode__(self):
-        return "{} {}".format(self.first_name, self.last_name)
+     def __unicode__(self):
+         return "{} {}".format(self.first_name, self.last_name)
 
 
 class CourseOffering(StampedModel):
-    """Course as listed in the course schedule (i.e., an offering of a course)."""
-    WILL_BE_OFFERED = 0
-    NORMALLY_OFFERED_BUT_NOT = 1
-    NOT_NORMALLY_OFFERED_BUT_IS = 2
-    STATUS_CHOICES = (
-        (WILL_BE_OFFERED, 'Will be offered'),
-        (NORMALLY_OFFERED_BUT_NOT, 'Normally offered but will not be offered this semester'),
-        (NOT_NORMALLY_OFFERED_BUT_IS, 'Not normally offered but will be offered this semester'),
-    )
+     """Course as listed in the course schedule (i.e., an offering of a course)."""
+     WILL_BE_OFFERED = 0
+     NORMALLY_OFFERED_BUT_NOT = 1
+     NOT_NORMALLY_OFFERED_BUT_IS = 2
+     STATUS_CHOICES = (
+         (WILL_BE_OFFERED, 'Will be offered'),
+         (NORMALLY_OFFERED_BUT_NOT, 'Normally offered but will not be offered this semester'),
+         (NOT_NORMALLY_OFFERED_BUT_IS, 'Not normally offered but will be offered this semester'),
+     )
 
-    course = models.ForeignKey(Course, related_name='offerings')
-    credit_hours = models.PositiveSmallIntegerField(default=3)
-    semester = models.ForeignKey(Semester)
-    instructor = models.ManyToManyField(FacultyMember, through='OfferingInstructor',
-                                        blank=True, null=True,
-                                        related_name='course_offerings')
-    status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
+     course = models.ForeignKey(Course, related_name='offerings')
+     credit_hours = models.PositiveSmallIntegerField(default=3)
+     semester = models.ForeignKey(Semester)
+     instructor = models.ManyToManyField(FacultyMember, through='OfferingInstructor',
+                                         blank=True, null=True,
+                                         related_name='course_offerings')
+     status = models.PositiveSmallIntegerField(choices = STATUS_CHOICES, default = WILL_BE_OFFERED)
 
-    def prereqs(self):
-        return self.course.prereqs.all()
-    
-    def coreqs(self):
-        return self.course.coreqs.all()
+     def prereqs(self):
+         return self.course.prereqs.all()
+
+     def coreqs(self):
+         return self.course.coreqs.all()
 
 
-    @classmethod
-    def other_offerings(cls,offering):
-        """Returns a list of other semesters this course is 
-        offered.
-        """
-        offerings = cls.objects.filter(course=offering.course)
-        offerings = offerings.exclude(semester=offering.semester)
-        return offerings
+     @classmethod
+     def other_offerings(cls,offering):
+         """Returns a list of other semesters this course is 
+         offered.
+         """
+         offerings = cls.objects.filter(course=offering.course)
+         offerings = offerings.exclude(semester=offering.semester)
+         return offerings
 
-    def __unicode__(self):
-        return "{0} ({1})".format(self.course, self.semester)
+     def __unicode__(self):
+         return "{0} ({1})".format(self.course, self.semester)
 
-    def department(self):
-        return self.course.department
+     def department(self):
+         return self.course.department
 
 
 
 class Grade(models.Model):
-    letter_grade = models.CharField(max_length=5)
-    grade_points = models.FloatField()
+     letter_grade = models.CharField(max_length=5)
+     grade_points = models.FloatField()
 
-    def __unicode__(self):
-        return self.letter_grade
+     def __unicode__(self):
+         return self.letter_grade
 
 
 class CourseTaken(StampedModel):
-    student = models.ForeignKey(Student, related_name='courses_taken')
-    course_offering = models.ForeignKey(CourseOffering)
-    final_grade = models.ForeignKey(Grade, blank=True)
+     student = models.ForeignKey(Student, related_name='courses_taken')
+     course_offering = models.ForeignKey(CourseOffering)
+     final_grade = models.ForeignKey(Grade, blank=True)
 
+
+class CourseSubType(models.Model):
+     """Model for determining what type of substitution. Transfer, Sub, Etc."""
+     name = models.CharField(max_length=80, unique=True)
+
+     def __unicode__(self):
+         return self.name
+
+     @property
+     def is_transfer(self):
+         return self.name == 'Transfer'
+
+     @property
+     def is_sub(self):
+         return self.name == 'Subsitution'
+
+
+class CourseSubstitution(models.Model):
+    """Course transferred from another institution."""
+    university = models.ForeignKey(University, related_name='course_substitutions',
+                                   blank=True, null=True)
+    title = models.CharField(max_length=80)
+    credit_hours = models.PositiveIntegerField(default=3)
+    semester = models.ForeignKey(Semester, blank=True, null=True)
+    equivalent_course = models.ForeignKey(Course, related_name='course_substitutions')
+    student = models.ForeignKey(Student, related_name='course_substitutions')
+    sub_type = models.ForeignKey(CourseSubType, related_name='course_substitutions', null=True, blank=True)
+
+    def is_transfer(self):
+        self.sub_type.is_transfer
+
+    def is_sub(self):
+        self.sub_type.is_sub
+
+    def __unicode__(self):
+        return self.title
 
 class OfferingInstructor(StampedModel):
     """Relate a course offering to one (of the possibly many) instructors teaching the
