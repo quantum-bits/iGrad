@@ -5,7 +5,7 @@
   {% if isProfessor %}
     <p>
       Advisee Name: {{ student.full_name }}
-      (<a href="{% url 'update_advisee' 2 %}">Choose a different advisee</a>)
+      (<a href="{% url 'update_advisee' %}?next={{request.path|urlencode}}">Choose a different advisee</a>)
     </p>
   {% else %}
     <p>Name: {{ student.full_name }}</p>

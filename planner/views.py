@@ -165,22 +165,30 @@ def update_student_semester_old(request, id):
 		   'semester': semester}
         return render(request, 'updatesemester.html', context)
 
+def advisee_required(fn):
+    """Makes sure that if user is a professor, they have an
+    advisee. If they don't redirect to update advisee."""
+    def _f(request, *args, **kwargs):
+        if request.user.is_professor():
+            student = request.user.professor.advisee
+            if student is None:
+                url = reverse('update_advisee') 
+                return redirect(url + '?next={}'.format(request.path))
+            else:
+                return fn(request, *args, **kwargs)
+    return _f
 
 @login_required
+@advisee_required
 def display_advising_notes(request):
     if request.user.is_student():
         student = request.user.student
-        isProfessor = request.user.is_professor
     else:
-        isProfessor = request.user.is_professor()
         student = request.user.professor.advisee
-        if student is None:
-            # No advisee currently selected; go pick one first
-            return redirect('update_advisee', 3)
 
     context = {'student': student,
                'advisingNotes': AdvisingNote.objects.filter(student=student),
-               'isProfessor': isProfessor}
+               'isProfessor': request.user.is_professor()}
     return render(request, 'advisingnotes.html', context)
 
 @login_required
@@ -235,21 +243,10 @@ def delete_advising_note(request, id):
     return redirect('advising_notes')
 
 
-def advisee_check(fn):
-    """Makes sure that if user is a professor, they have an
-    advisee. If they don't redirect to update advisee."""
-    def _f(request, *args, **kwargs):
-        if request.user.is_professor():
-            student = request.user.professor.advisee
-            if student is None:
-                url = reverse('update_advisee') 
-                return redirect(url + '?next={}'.format(request.path))
-            else:
-                return fn(request, *args, **kwargs)
-    return _f
+
 
 @login_required
-@advisee_check
+@advisee_required
 def display_four_year_plan(request):
     if request.user.is_professor:
         student = request.user.professor.advisee
@@ -265,16 +262,12 @@ def display_four_year_plan(request):
     return render(request, 'fouryearplan.html', context)
 
 @login_required
+@advisee_required
 def display_grad_audit(request):
     if request.user.is_student():
-        isProfessor = False
         student = request.user.student
     else:
-        isProfessor = True
         student = request.user.professor.advisee
-        if student is None:
-            # No advisee currently selected; go pick one first
-            return redirect('update_advisee', 2)
 
     if student.has_major:
         grad_audit,unused_courses = student.grad_audit()
@@ -283,7 +276,7 @@ def display_grad_audit(request):
 
         context = {'student': student,
                    'hasMajor' : student.has_major(),
-                   'isProfessor' : isProfessor,
+                   'isProfessor' : request.user.is_professor(),
 
                    'unusedcourses': unused_courses,
                    'unusedcredithours': sum(map(lambda courseOffering: courseOffering.credit_hours, unused_courses)),
@@ -381,26 +374,6 @@ def move_course_to_new_semester(request, old_offering_id, new_offering_id):
     return redirect(next)
 
 
-# list is assumed to be of the form:
-#     - [[year, sem, id],[year, sem, id],...]; or
-#     - [[year, sem, id, numcrhrssem],[year, sem, id, numcrhrssem],...]
-def reorder_list(listin):
-    alphdict={2:'a', 3:'b', 4:'c', 1:'d'}
-    revalphdict={'a':2, 'b':3, 'c':4, 'd':1}
-    new_list=[]
-    for row in listin:
-        if len(row) == 4:
-            new_list.append([row[0],alphdict[row[1]],row[2], row[3]])
-        else:
-            new_list.append([row[0],alphdict[row[1]],row[2]])
-    new_list2=sorted(new_list, key=lambda rrow: (rrow[0], rrow[1]))
-    new_list3=[]
-    for row in new_list2:
-        if len(row) == 4:
-            new_list3.append([row[0],revalphdict[row[1]],row[2], row[3]])
-        else:
-            new_list3.append([row[0],revalphdict[row[1]],row[2]])
-    return new_list3
 
 def prepopulate_student_semesters(studentid):
     student = Student.objects.all().get(pk = studentid)
