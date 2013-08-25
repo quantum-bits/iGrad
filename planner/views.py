@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
+from collections import namedtuple
 from django.contrib.auth import authenticate, login, logout
-from models import *
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db.models import Q
+from django.shortcuts import render, redirect
 from django.template import RequestContext
 from forms import *
-
-from django.contrib.auth.decorators import login_required
-from collections import namedtuple
+from models import *
 
 
 def home(request):
@@ -234,18 +234,34 @@ def delete_advising_note(request, id):
     instance.delete()
     return redirect('advising_notes')
 
-@login_required
-def display_four_year_plan(request):
-    # TODO: add professor functionality
-    isProfessor = False
-    student = request.user.student
-    total_credit_hours = student.credit_hours_in_plan()
 
+def advisee_check(fn):
+    """Makes sure that if user is a professor, they have an
+    advisee. If they don't redirect to update advisee."""
+    def _f(request, *args, **kwargs):
+        if request.user.is_professor():
+            student = request.user.professor.advisee
+            if student is None:
+                url = reverse('update_advisee') 
+                return redirect(url + '?next={}'.format(request.path))
+            else:
+                return fn(request, *args, **kwargs)
+    return _f
+
+@login_required
+@advisee_check
+def display_four_year_plan(request):
+    if request.user.is_professor:
+        student = request.user.professor.advisee
+    else:
+        student = request.user.student
+
+    total_credit_hours = student.credit_hours_in_plan()
     context = {'student': student,
                'four_year_plan' : student.four_year_plan(),
                'totalhrsfouryears': total_credit_hours,
                'credithrmaxreached': total_credit_hours > 159,
-               'isProfessor': isProfessor}
+               'isProfessor': request.user.is_professor()}
     return render(request, 'fouryearplan.html', context)
 
 @login_required
@@ -439,37 +455,22 @@ def prepopulate_student_semesters(studentid):
 
     return True
 
-# In the following, "where_from" is:
-# 0: profile
-# 1: fouryearplan
-# 2: graduaudit
-# 3: advising note
+
 @login_required
-def update_advisee(request, where_from):
+def update_advisee(request):
     if request.user.is_student():
         return redirect('profile')
 
     professor = request.user.professor
-
     if request.method == 'POST':
         form = AddAdviseeForm(request.POST, instance=professor)
         if form.is_valid():
             form.save()
-            if int(where_from) == 0:
-                return redirect('profile')
-            elif int(where_from) == 1:
-                return redirect('four_year_plan')
-            elif int(where_from) == 2:
-                return redirect('grad_audit')
-            elif int(where_from) == 3:
-                return redirect('advising_notes')
-            else:
-                return redirect('profile')
+            return redirect(request.GET.get('next', 'profile'))
         else:
             return render(request, 'addadvisee.html', {'form': form})
     else:
-        # User is not submitting the form; show them the blank add advisee form
-        form = AddAdviseeForm()
+        form = AddAdviseeForm(instance=professor)
         context = {'form': form}
         return render(request, 'addadvisee.html', context)
 

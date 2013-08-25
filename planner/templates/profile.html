@@ -23,9 +23,9 @@
 	  <td>{{ advisee.full_name }}</td>
 	  <td>
 	    {% if advisee %}
-	      <a class="btn" href="{% url 'update_advisee' 0 %}">Change</a>
+	      <a class="btn" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Change</a>
 	    {% else %}
-	      <a class="btn" href="{% url 'update_advisee' 0 %}">Choose</a>
+	      <a class="btn" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Choose</a>
 	    {% endif %}
 	  </td>
 	</tr>

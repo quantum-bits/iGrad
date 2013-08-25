@@ -76,13 +76,12 @@ class AddCourseSubstitution(forms.ModelForm):
     class Meta:
         model = CourseSubstitution
         exclude = ('student', 'semester',)
-"""
+
 class AddAdviseeForm(forms.ModelForm):
 
     class Meta:
         model = Professor
-        exclude = ('user', 'name')
-"""
+        fields = ('advisee', )
 
 class UpdateMajorForm(forms.ModelForm):
 

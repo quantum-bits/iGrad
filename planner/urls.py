@@ -26,7 +26,7 @@ urlpatterns = patterns(
     url(r'^remove_course_from_plan/(\d+)/$', 'remove_course_from_plan', name='remove_course_from_plan'),
     url(r'^move_course_to_new_semester/(\d+)/(\d+)/$', 'move_course_to_new_semester', name='move_course'),
 
-    url(r'^changeadvisee/(\d+)/$', 'update_advisee', name='update_advisee'),
+    url(r'^changeadvisee/$', 'update_advisee', name='update_advisee'),
     url(r'^search/$', 'search', name='search'),
     url(r'^viewstudents/(\d+)/$', 'view_enrolled_students', name='view_students'),
 
