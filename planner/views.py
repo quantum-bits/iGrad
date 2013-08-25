@@ -485,59 +485,37 @@ def search(request):
 
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        courses = Course.objects.filter(number__icontains=q)
-        semesterdict = {1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
-        datablock = []
+            
+        courses = filter(lambda c: q.upper() in c.abbrev.replace(' ',''), Course.objects.all())
+        course_infos = []
+        print courses
         for course in courses:
-            semlist = []
-
-            # This approach is only going to capture non-pre-TU courses...which is good.
-            for availablesemester in course.semester.all():
-                actual_sem = availablesemester.semester_of_acad_year
-                actual_year = availablesemester.actual_year
-
-                # Now need to find all the ssc records for each of these courses....
-                sscdata = StudentSemesterCourses.objects.filter(semester=actual_sem)
-                numberstudents=0
-                studentlist=[]
-                for ssc in sscdata:
-                    if ssc.actual_year == actual_year:
-                        for courseinssc in ssc.courses.all():
-                            if courseinssc.id == course.id:
-                                numberstudents=numberstudents + 1
-                                studentlist.append(ssc.student.name)
-                semlist.append([actual_year, actual_sem, numberstudents,availablesemester.id])
-            semlist2 = reorder_list(semlist)
-            semlistfinal = []
-            for row in semlist2:
-                semlistfinal.append([semesterdict[row[1]] + ", " + str(row[0]),row[2], row[3]])
-            datablock.append([course.id, course.name, course.number, semlistfinal])
-        context={'courses':courses,'query':q, 'datablock':datablock}
+            offering_data = []
+            for offering in CourseOffering.objects.filter(course=course):
+                offering_info = {'id' : offering.id,
+                                 'semester' : offering.semester,
+                                 'num_students' : len(offering.students.all())}
+                offering_data.append(offering_info)
+            course = {'name' : course.title, 'abbrev' : course.abbrev, 'offerings' : offering_data}
+            course_infos.append(course)
+        
+        context={'courses':course_infos,'query':q, 'datablock':course_infos}
         return render(request, 'course_enrollment_results.html',context)
     else:
         return redirect('profile')
 
 
 @login_required
-def view_enrolled_students(request,course_id,semesterid):
-    """Display students enrolled in a given course and semester"""
+def view_enrolled_students(request,offering_id):
+    """Display students enrolled in a given course offering"""
 
     if request.user.is_student():
         return redirect('profile')
 
-    actual_sem = Semester.objects.get(pk=semesterid).semester_of_acad_year
-    actual_year = Semester.objects.get(pk=semesterid).actual_year
-    sscdata = StudentSemesterCourses.objects.filter(semester=actual_sem)
-    course = Course.objects.get(pk=course_id)
-    course_name = course.name + ' (' + course.number + ')'
-    semesterdict = {1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
-    semester_name = semesterdict[actual_sem] + ' of ' + str(actual_year)
-    studentlist=[]
-    for ssc in sscdata:
-        if ssc.actual_year == actual_year:
-            for courseinssc in ssc.courses.all():
-                if courseinssc.id == int(course_id):
-                    studentlist.append(ssc.student.name)
-    temp = request.META.items()
-    context={'coursename':course_name,'semestername':semester_name,'studentlist':studentlist}
+    courseOffering = CourseOffering.objects.get(id=offering_id)
+    course_name = "{} {}".format(courseOffering.course.title, courseOffering.course.abbrev)
+    semester = courseOffering.semester
+    semester_name = "{} of {}".format(semester.name, semester.year.actual_year(semester.name))
+    students = courseOffering.students.all()
+    context={'coursename':course_name,'semestername':semester_name,'studentlist':students}
     return render(request, 'student_enrollment_results.html', context)
