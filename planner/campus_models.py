@@ -442,8 +442,10 @@ class Student(Person):
 
     def credit_hours_this_semester(self, semester):
         credit_hours = self.offerings_this_semester(semester).aggregate(Sum('credit_hours'))['credit_hours__sum']
-        if credit_hours is None: return 0
-        return credit_hours
+        transfer_credits = self.course_substitutions.filter(semester=semester).aggregate(Sum('credit_hours'))['credit_hours__sum']
+        if credit_hours is None: credit_hours = 0
+        if transfer_credits is None: transfer_credits = 0
+        return credit_hours + transfer_credits
 
     def credit_hours_in_plan(self):
         planned_course_chs = self.planned_courses.all().aggregate(Sum('credit_hours'))['credit_hours__sum']

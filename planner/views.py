@@ -176,6 +176,8 @@ def advisee_required(fn):
                 return redirect(url + '?next={}'.format(request.path))
             else:
                 return fn(request, *args, **kwargs)
+        else:
+            return fn(request, *args, **kwargs)
     return _f
 
 @login_required
@@ -248,7 +250,7 @@ def delete_advising_note(request, id):
 @login_required
 @advisee_required
 def display_four_year_plan(request):
-    if request.user.is_professor:
+    if request.user.is_professor():
         student = request.user.professor.advisee
     else:
         student = request.user.student
