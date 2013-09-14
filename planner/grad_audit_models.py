@@ -7,18 +7,16 @@ from models import CourseOffering
 class GradAudit(object):
     def __init__(self, **kwargs):
         self.requirement = kwargs.get('requirement')
-        self.met_courses = kwargs.get('met_courses', [])
+        self.met_courses = kwargs.get('met_courses', {})
         self.is_satisfied = kwargs.get('is_satisfied')
         self.constraint_messages = kwargs.get('constraint_messages', [])
         self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
-    
-    def has_children(self): return bool(self.children)
 
     def addChild(self, child):
         self.children.append(child)
         for met_course in child.met_courses:
-            self.met_courses.append(child.met_courses[met_course])
+            self.met_courses[met_course] = child.met_courses[met_course]
             
     def semester_description(self, student, courseOffering):
         yearName = student.yearName(courseOffering.semester)

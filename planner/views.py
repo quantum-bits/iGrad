@@ -265,7 +265,6 @@ def display_four_year_plan(request):
 
 @login_required
 @advisee_required
-@profile_fn('grad_audit.prof')
 def display_grad_audit(request):
     if request.user.is_student():
         student = request.user.student
