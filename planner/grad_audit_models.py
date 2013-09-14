@@ -13,6 +13,9 @@ class GradAudit(object):
         self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
 
+    def addMessage(self, msg):
+        self.constraint_messages.append(msg)
+
     def addChild(self, child):
         self.children.append(child)
         for met_course in child.met_courses:
@@ -245,9 +248,6 @@ class Requirement(models.Model):
     def __unicode__(self):
         return self.name
 
-    def satisfied(self, offerings):
-        return self.audit(offerings).is_satisfied
-
     def required_courses(self):
         return list(self.courses.all())
 
@@ -271,6 +271,7 @@ class Requirement(models.Model):
             for constraint in self.constraints.all():
                 child_audit, unused_courses = constraint.audit(courses, self, unused_courses)
                 is_satisfied = is_satisfied and child_audit.is_satisfied
+                grad_audit.addMessage(constraint.name)
                 grad_audit.addChild(child_audit)
 
             return grad_audit, unused_courses
