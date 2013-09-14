@@ -185,3 +185,5 @@ LOGGING = {
         },
     }
 }
+
+PROFILE_LOG_BASE = run_mode.path_to('profile_data/')

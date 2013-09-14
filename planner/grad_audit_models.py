@@ -101,7 +101,7 @@ class GradAudit(object):
         while stack:
             grad_audit = stack.pop()
             # When it builds the tree it repeats nested requirements. 
-            # So everything ends up in the tree twice. 
+            # So nested require ends up in the tree twice. 
             # TODO: fix this bug. 
             # The following makes sure it only reports a grad audit once. 
             # It works because a requirement has a one-to-one correspondence to a 
@@ -149,7 +149,7 @@ class Constraint(models.Model):
     def __unicode__(self):
         return self.name
 
-    def execute_constraint_text(self):
+    def parse_constraint_text(self):
         tokens = self.constraint_text.split()
         name,args = tokens[0],tokens[1:]
         parameters = {}
@@ -162,7 +162,7 @@ class Constraint(models.Model):
         return unused_courses - set(met_courses)
 
     def audit(self, courseOfferings, requirement, unused_courses):
-        name, arguments = self.execute_constraint_text()
+        name, arguments = self.parse_constraint_text()
         return getattr(self, name)(courseOfferings, requirement, unused_courses,**arguments)
 
     def any(self, courses, requirement, unused_courses, **kwargs):
@@ -219,7 +219,7 @@ class Constraint(models.Model):
         return GradAudit(requirement=requirement, met_courses=met_courses, is_satisfied=is_satisfied), unused_courses
 
     def sub_requirements_grad_audits(self, courses, requirement, unused_courses):
-        """Returns a list of grad audits and the set of unused_courses."""
+        """Returns a collection of grad audits, unused_courses."""
         grad_audits = []
         for child in requirement.child_requirements():
             grad_audit, unused_courses = child.audit(courses, unused_courses)
@@ -288,7 +288,6 @@ class Requirement(models.Model):
             for required_course in grad_audit.met_courses:
                 if required_course not in met_courses:
                     met_courses[required_course] = grad_audit.met_courses[required_course]
-        
 
         grad_audits = []
         constraint_messages = []
