@@ -13,31 +13,19 @@ class GradAudit(object):
         self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
     
+    def has_children(self): return bool(self.children)
 
-    def addMetCourses(self, *met_courses):
-        for course in met_courses:
-            self.met_courses.append(course)
-
-    def removeMetCourses(self, *met_courses):
-        for course in met_courses:
-            if course in self.met_courses:
-                self.met_courses.remove(course)
-
-    def addChildren(self, *children):
-        for child in children:
-            self.children.append(child)
-
-    def removeChildren(self, *children):
-        for child in children:
-            self.children.remove(child)
-    
+    def addChild(self, child):
+        self.children.append(child)
+        for met_course in child.met_courses:
+            self.met_courses.append(child.met_courses[met_course])
+            
     def semester_description(self, student, courseOffering):
         yearName = student.yearName(courseOffering.semester)
         semester_name = courseOffering.semester.name
         year = courseOffering.semester.begin_on.year
-        return "{yearName} {semester_name} ({year})".format(yearName = yearName,
-                                                            semester_name = semester_name, 
-                                                            year = year)
+        return ' '.join(map(str,[yearName, semester_name, year]))
+
     def make_course_info(self,student,required_course):
         info = {}
         info['course_id'] = required_course.id
@@ -275,36 +263,23 @@ class Requirement(models.Model):
         """
         Returns a grad_audit, unused_courses
         """
-        if unused_courses is None:
-            unused_courses = set(courses)
-        return self._audit_helper(courses, set(courses))
+        def _inner(self, courses,unused_courses):
+            """Examines a requirements constraints to create a grad_audit. 
+            If all constraints are met, gradAudit is_satisfied. """
+            
+            grad_audit = GradAudit(requirement=self)
 
-    def _audit_helper(self, courses,unused_courses):
-        """Examines a requirements constraints to create a grad_audit. 
-        If all constraints are met, gradAudit is_satisfied. """
-        
-        def add_met_courses(met_courses, grad_audit):
-            "Adds met courses in grad_audit to met_courses."
-            for required_course in grad_audit.met_courses:
-                if required_course not in met_courses:
-                    met_courses[required_course] = grad_audit.met_courses[required_course]
+            is_satisfied = True
+            for constraint in self.constraints.all():
+                child_audit, unused_courses = constraint.audit(courses, self, unused_courses)
+                is_satisfied = is_satisfied and child_audit.is_satisfied
+                grad_audit.addChild(child_audit)
 
-        grad_audits = []
-        constraint_messages = []
-        met_courses = {}
-        for constraint in self.constraints.all():
-            grad_audit, unused_courses = constraint.audit(courses, self, unused_courses)
-            if grad_audit.is_satisfied: 
-                constraint_messages.append("Constraint: '{}' satisfied".format(constraint))
-            else:
-                constraint_messages.append("Constraint: '{}' not satisfied".format(constraint))
-            grad_audits.append(grad_audit)
-            add_met_courses(met_courses, grad_audit)
+            return grad_audit, unused_courses
 
-        is_satisfied = all([grad_audit.is_satisfied for grad_audit in grad_audits])
-        gradAudit = GradAudit(requirement=self, met_courses=met_courses , is_satisfied=is_satisfied, constraint_messages=constraint_messages, children=grad_audits)
+        if unused_courses is None: unused_courses = set(courses)
+        return _inner(self, courses, unused_courses)
 
-        return gradAudit, unused_courses
 
     def child_requirements(self):
         return self.requirements.all()
