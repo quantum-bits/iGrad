@@ -28,46 +28,6 @@ class GradAudit(object):
         for child in children:
             self.addChild(child)
 
-
-    def make_course_info(self,student,required_course):
-        info = {}
-        info['course_id'] = required_course.id
-        ninfo['title'] = required_course.title
-        info['abbrev'] = required_course.abbrev
-        info['credit_hours'] = required_course.possible_credit_hours
-        info['sp'] = required_course.is_sp
-        info['cc'] = required_course.is_cc
-        if required_course in self.met_courses:
-            courseOffering = self.met_courses[required_course]
-            yearName = student.yearName(courseOffering.semester)
-            semester_name = courseOffering.semester.name
-            year = courseOffering.semester.begin_on.year
-            info['met'] = True
-            info['offering_id'] = courseOffering.id
-            info['taken_for'] = courseOffering.credit_hours
-            info['hours_match'] = courseOffering.credit_hours == required_course.credit_hours.min_credit_hour
-            info['comment'] = self.semester_description(student,courseOffering)
-        else:
-            info['comment'] = None
-            info['met'] = False
-        return info
-
-    def requirement_block_course_info(self, student, required_course):
-        offering_info = lambda offering: {'course_id' : offering.id, 
-                                          'semester'  : self.semester_description(student, offering),
-                                          'hours_this_semester' : student.credit_hours_this_semester(offering.semester)}
-        info = self.make_course_info(student, required_course)
-        if info['comment'] is not None:
-            info['is_substitute'] = False # TODO: add check that if it is a  substitute
-            courseOffering = self.met_courses[required_course]
-            info['other_semesters'] = [offering_info(offering)
-                                       for offering in CourseOffering.other_offerings(courseOffering)]
-        else:
-            info['other_semesters'] = [offering_info(offering)
-                                       for offering in CourseOffering.objects.filter(course=required_course)]
-        return info
-
-
     def __iter__(self):
         self._stack = deque([])
         self._stack.append(self)
@@ -134,11 +94,12 @@ class GradAuditTemplate(object):
 
         for prereq in audit.unmet_prereqs: pass
         for coreq in audit.unmet_coreqs: pass
+        
         return block
 
     def requirementBlocks(self):
-        """Yields requirement_blocks produced from each grad_audit."""
-        return (self.requirementBlock(grad_audit) for grad_audit in self.audit)
+        """Returns requirementBlocks produced from each grad_audit."""
+        return [self.requirementBlock(grad_audit) for grad_audit in self.audit]
 
 
 

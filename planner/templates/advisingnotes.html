@@ -4,10 +4,10 @@
   <div class="alert alert-student-info">
   {% if isProfessor %}
     <p>
-      Advisee Name: {{ student.name }} (<a href="{% url 'update_advisee' 3 %}">Change</a>)
+      Advisee Name: {{ student.full_name }} (<a href="{% url 'update_advisee' %}">Change</a>)
     </p>
   {% else %}
-    <p>Name: {{ student.name }}</p>
+    <p>Name: {{ student.full_name }}</p>
   {% endif %}
 
   <p>Email: {{ student.user.email }}</p>
