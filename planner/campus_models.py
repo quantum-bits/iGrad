@@ -529,7 +529,7 @@ class Student(Person):
          # TODO: make it work when there is more than one major. 
          # TODO: make it work for minors
          for major in self.majors.all():
-             return major.requirement.audit(list(self.planned_courses.all()) + list(self.course_substitutions.all()))
+             return major.requirement.audit(list(self.planned_courses.all()) + list(self.course_substitutions.all()), student = self)
 
 class Professor(Person):
      user = models.OneToOneField(User, null=True)

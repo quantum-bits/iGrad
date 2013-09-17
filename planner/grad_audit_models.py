@@ -12,6 +12,9 @@ class GradAudit(object):
         self.constraint_messages = kwargs.get('constraint_messages', [])
         self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
+        self.unmet_prereqs = []
+        self.unmet_coreqs = []
+        self.student = kwargs.get('student', None)
 
     def addMessage(self, msg):
         self.constraint_messages.append(msg)
@@ -25,16 +28,11 @@ class GradAudit(object):
         for child in children:
             self.addChild(child)
 
-    def semester_description(self, student, courseOffering):
-        yearName = student.yearName(courseOffering.semester)
-        semester_name = courseOffering.semester.name
-        year = courseOffering.semester.begin_on.year
-        return ' '.join(map(str,[yearName, semester_name, year]))
 
     def make_course_info(self,student,required_course):
         info = {}
         info['course_id'] = required_course.id
-        info['title'] = required_course.title
+        ninfo['title'] = required_course.title
         info['abbrev'] = required_course.abbrev
         info['credit_hours'] = required_course.possible_credit_hours
         info['sp'] = required_course.is_sp
@@ -85,23 +83,64 @@ class GradAudit(object):
         return audit
 
 
-    def requirement_blocks(self, student):
-        make_prereq_comment = lambda course, req: "{} is a prereq for {}; the requirement is currently not being met.".format(req, course)
-        make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
-        blocks = []
-        for grad_audit in self:
-            requirement = grad_audit.requirement
-            block = {}
-            block['name'] = requirement.name
-            block['min_required_credit_hours'] = requirement.min_required_credit_hours
-            block['constraint_comments'] = grad_audit.constraint_messages
-            block['courses'] = []
-            block['comments'] = []
-            for course in requirement.required_courses():
-                block['courses'].append(grad_audit.requirement_block_course_info(student, course))
 
-            blocks.append(block)
-        return blocks
+class GradAuditTemplate(object):
+    def __init__(self, audit):
+        self.audit = audit
+
+    def semesterDescription(self, semester):
+        yearName = self.audit.student.yearName(semester)
+        semester_name = semester.name
+        year = semester.begin_on.year
+        return '{} {} ({})'.format(yearName, semester_name, year)
+
+    def courseInfo(self, required_course):
+        info = {}
+        info['course_id'] = required_course.id
+        info['title'] = required_course.title
+        info['abbrev'] = required_course.abbrev
+        info['credit_hours'] = required_course.possible_credit_hours
+        info['sp'] = required_course.is_sp
+        info['cc'] = required_course.is_cc
+        if required_course in self.audit.met_courses:
+            courseOffering = self.audit.met_courses[required_course]
+            yearName = student.yearName(courseOffering.semester)
+            semester_name = courseOffering.semester.name
+            year = courseOffering.semester.begin_on.year
+            info['met'] = True
+            info['offering_id'] = courseOffering.id
+            info['taken_for'] = courseOffering.credit_hours
+            info['hours_match'] = courseOffering.credit_hours == required_course.credit_hours.min_credit_hour
+            info['comment'] = self.semester_description(semester)
+        else:
+            info['comment'] = None
+            info['met'] = False
+        return info
+
+    def requirementBlock(self, audit):
+        """Creates requirement block information to be used directly
+        in gradaudit.html template."""
+        
+        requirement = audit.requirement
+        block = {}
+        block['name'] = requirement.name
+        block['min_required_credit_hours'] = requirement.min_required_credit_hours
+        block['constraint_comments'] = audit.constraint_messages
+        block['courses'] = []
+        block['comments'] = []
+        
+        for course in requirement.required_courses():
+            block['courses'].append(self.courseInfo(course))
+
+        for prereq in audit.unmet_prereqs: pass
+        for coreq in audit.unmet_coreqs: pass
+        return block
+
+    def requirementBlocks(self):
+        """Yields requirement_blocks produced from each grad_audit."""
+        return (self.requirementBlock(grad_audit) for grad_audit in self.audit)
+
+
 
 class Constraint(models.Model):
     name = models.CharField(max_length = 80)
@@ -230,15 +269,16 @@ class Requirement(models.Model):
         req_courses = [list(req.all_courses()) for req in reqs]
         return self.required_courses() + (list(itertools.chain(*req_courses)))
 
-    def audit(self, courses, unused_courses = None):
+    def audit(self, courses, unused_courses = None, **kwargs):
         """
         Returns a grad_audit, unused_courses
         """
+        student = kwargs.get('student', None)
         def _inner(self, courses,unused_courses):
             """Examines a requirements constraints to create a grad_audit. 
             If all constraints are met, gradAudit is_satisfied. """
             
-            grad_audit = GradAudit(requirement=self)
+            grad_audit = GradAudit(requirement=self, student=student)
 
             is_satisfied = True
             for constraint in self.constraints.all():
@@ -249,7 +289,6 @@ class Requirement(models.Model):
                     grad_audit.addChildren(*child_audit.children)
                 else:
                     grad_audit.addChild(child_audit)
-
             return grad_audit, unused_courses
 
         if unused_courses is None: unused_courses = set(courses)
