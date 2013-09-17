@@ -20,7 +20,11 @@ class GradAudit(object):
         self.children.append(child)
         for met_course in child.met_courses:
             self.met_courses[met_course] = child.met_courses[met_course]
-            
+
+    def addChildren(self, *children):
+        for child in children:
+            self.addChild(child)
+
     def semester_description(self, student, courseOffering):
         yearName = student.yearName(courseOffering.semester)
         semester_name = courseOffering.semester.name
@@ -65,50 +69,27 @@ class GradAudit(object):
                                        for offering in CourseOffering.objects.filter(course=required_course)]
         return info
 
-    def courses_in_plan(self, student):
-        """
-        Creates a default dict of all courses in plan.
-        If a course is not in plan defaults to false.
-        """
-        if not hasattr(self, '_courses_in_plan'):
-            self._courses_in_plan = defaultdict(bool)
-            for courseOffering in student.planned_courses.all():
-                self._courses_in_plan[courseOffering.course] = True
-        return self._courses_in_plan
 
-    def is_met_course(self, student, course):
-        return self.courses_in_plan(student)[course]
-                
-    def grad_audits(self):
-        """
-        Yields all grad audits so that the parent requirments grad audit 
-        directly precede the children grad audits. 
-        """
-        stack = deque([])
-        stack.append(self)
-        yielded_requirements = []
-        while stack:
-            grad_audit = stack.pop()
-            # When it builds the tree it repeats nested requirements. 
-            # So nested require ends up in the tree twice. 
-            # TODO: fix this bug. 
-            # The following makes sure it only reports a grad audit once. 
-            # It works because a requirement has a one-to-one correspondence to a 
-            # grad audit. 
-            if grad_audit.requirement not in yielded_requirements:
-                yield grad_audit
-                yielded_requirements.append(grad_audit.requirement)
+    def __iter__(self):
+        self._stack = deque([])
+        self._stack.append(self)
+        return self
+    
+    def next(self):
+        if not self._stack:
+            raise StopIteration
 
-            for child in grad_audit.children:
-                stack.append(child)
+        audit = self._stack.pop()
+        for child in audit.children:
+            self._stack.append(child)
+        return audit
 
-        print "\n".join(req.display_name for req in yielded_requirements)
 
     def requirement_blocks(self, student):
         make_prereq_comment = lambda course, req: "{} is a prereq for {}; the requirement is currently not being met.".format(req, course)
         make_coreq_comment  = lambda course, req: "{} is a coreq for {}; the requirement is currently not being met.".format(req, course)
         blocks = []
-        for grad_audit in self.grad_audits():
+        for grad_audit in self:
             requirement = grad_audit.requirement
             block = {}
             block['name'] = requirement.name
@@ -118,14 +99,6 @@ class GradAudit(object):
             block['comments'] = []
             for course in requirement.required_courses():
                 block['courses'].append(grad_audit.requirement_block_course_info(student, course))
-                unmet_prereqs = [prereq for prereq in course.prereqs.all() 
-                                 if not grad_audit.is_met_course(student, prereq)]
-                unmet_coreqs   = [coreq for coreq in course.coreqs.all()
-                                 if not grad_audit.is_met_course(student, coreq)]
-                for prereq in unmet_prereqs:
-                    block['comments'].append(make_prereq_comment(course, prereq))
-                for coreq in  unmet_coreqs:
-                    block['comments'].append(make_coreq_comment(course, coreq))
 
             blocks.append(block)
         return blocks
@@ -272,7 +245,10 @@ class Requirement(models.Model):
                 child_audit, unused_courses = constraint.audit(courses, self, unused_courses)
                 is_satisfied = is_satisfied and child_audit.is_satisfied
                 grad_audit.addMessage(constraint.name)
-                grad_audit.addChild(child_audit)
+                if child_audit.requirement == self:
+                    grad_audit.addChildren(*child_audit.children)
+                else:
+                    grad_audit.addChild(child_audit)
 
             return grad_audit, unused_courses
 
