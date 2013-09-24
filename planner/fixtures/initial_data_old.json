@@ -2754,6 +2754,654 @@
     }
 },
 {
+    "pk": 313, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_university", 
+        "name": "Can add university", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 314, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_university", 
+        "name": "Can change university", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 315, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_university", 
+        "name": "Can delete university", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 316, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_school", 
+        "name": "Can add school", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 317, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_school", 
+        "name": "Can change school", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 318, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_school", 
+        "name": "Can delete school", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 319, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_department", 
+        "name": "Can add department", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 320, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_department", 
+        "name": "Can change department", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 321, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_department", 
+        "name": "Can delete department", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 322, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semesterdatedefault", 
+        "name": "Can add semester date default", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 323, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semesterdatedefault", 
+        "name": "Can change semester date default", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 324, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semesterdatedefault", 
+        "name": "Can delete semester date default", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 325, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semester", 
+        "name": "Can add semester", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 326, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semester", 
+        "name": "Can change semester", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 327, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semester", 
+        "name": "Can delete semester", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 328, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_holiday", 
+        "name": "Can add holiday", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 329, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_holiday", 
+        "name": "Can change holiday", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 330, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_holiday", 
+        "name": "Can delete holiday", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 331, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_building", 
+        "name": "Can add building", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 332, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_building", 
+        "name": "Can change building", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 333, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_building", 
+        "name": "Can delete building", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 334, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_room", 
+        "name": "Can add room", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 335, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_room", 
+        "name": "Can change room", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 336, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_room", 
+        "name": "Can delete room", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 337, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_subject", 
+        "name": "Can add subject", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 338, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_subject", 
+        "name": "Can change subject", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 339, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_subject", 
+        "name": "Can delete subject", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 340, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_courseattribute", 
+        "name": "Can add course attribute", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 341, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_courseattribute", 
+        "name": "Can change course attribute", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 342, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_courseattribute", 
+        "name": "Can delete course attribute", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 343, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_professor", 
+        "name": "Can add professor", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 344, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_professor", 
+        "name": "Can change professor", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 345, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_professor", 
+        "name": "Can delete professor", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 346, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_courseoffering", 
+        "name": "Can add course offering", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 347, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_courseoffering", 
+        "name": "Can change course offering", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 348, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_courseoffering", 
+        "name": "Can delete course offering", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 349, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_grade", 
+        "name": "Can add grade", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 350, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_grade", 
+        "name": "Can change grade", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 351, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_grade", 
+        "name": "Can delete grade", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 352, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursetaken", 
+        "name": "Can add course taken", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 353, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursetaken", 
+        "name": "Can change course taken", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 354, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursetaken", 
+        "name": "Can delete course taken", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 355, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursesubtype", 
+        "name": "Can add course sub type", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 356, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursesubtype", 
+        "name": "Can change course sub type", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 357, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursesubtype", 
+        "name": "Can delete course sub type", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 358, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursesubstitution", 
+        "name": "Can add course substitution", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 359, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursesubstitution", 
+        "name": "Can change course substitution", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 360, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursesubstitution", 
+        "name": "Can delete course substitution", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 361, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_offeringinstructor", 
+        "name": "Can add offering instructor", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 362, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_offeringinstructor", 
+        "name": "Can change offering instructor", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 363, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_offeringinstructor", 
+        "name": "Can delete offering instructor", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 364, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_classmeeting", 
+        "name": "Can add class meeting", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 365, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_classmeeting", 
+        "name": "Can change class meeting", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 366, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_classmeeting", 
+        "name": "Can delete class meeting", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 367, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_constraint", 
+        "name": "Can add constraint", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 368, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_constraint", 
+        "name": "Can change constraint", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 369, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_constraint", 
+        "name": "Can delete constraint", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 370, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_requirement", 
+        "name": "Can add requirement", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 371, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_requirement", 
+        "name": "Can change requirement", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 372, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_requirement", 
+        "name": "Can delete requirement", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 373, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_advisingnote", 
+        "name": "Can add advising note", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 374, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_advisingnote", 
+        "name": "Can change advising note", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 375, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_advisingnote", 
+        "name": "Can delete advising note", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 376, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_classstanding", 
+        "name": "Can add class standing", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 377, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_classstanding", 
+        "name": "Can change class standing", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 378, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_classstanding", 
+        "name": "Can delete class standing", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 379, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_degreeprogram", 
+        "name": "Can add degree program", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 380, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_degreeprogram", 
+        "name": "Can change degree program", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 381, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_degreeprogram", 
+        "name": "Can delete degree program", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 382, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_degreeprogramcourse", 
+        "name": "Can add degree program course", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 383, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_degreeprogramcourse", 
+        "name": "Can change degree program course", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 384, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_degreeprogramcourse", 
+        "name": "Can delete degree program course", 
+        "content_type": 41
+    }
+},
+{
     "pk": 1, 
     "model": "auth.user", 
     "fields": {
@@ -3888,6 +4536,15 @@
         "applied": "2013-07-24T20:09:39.211Z", 
         "app_name": "planner", 
         "migration": "0030_auto__del_field_major_requirements__add_field_major_requirement__chg_f"
+    }
+},
+{
+    "pk": 31, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-08-24T17:31:13.128Z", 
+        "app_name": "planner", 
+        "migration": "0031_auto__add_coursesubtype__add_field_coursesubstitution_sub_type"
     }
 },
 {
@@ -33633,7 +34290,8 @@
         "university": 1, 
         "equivalent_course": 4, 
         "semester": 1, 
-        "student": 2
+        "student": 2, 
+        "sub_type": null
     }
 },
 {

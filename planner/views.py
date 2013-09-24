@@ -113,7 +113,9 @@ def update_student_semester(request, semester_id):
     if request.method == 'POST':
         form = AddCourseForm(request.POST, instance=student, semester=semester)
         if form.is_valid():
-            form.save()
+            planned_courses = form.cleaned_data['planned_courses']
+            for co in planned_courses:
+                student.planned_courses.add(co)
             return redirect('four_year_plan')
         else:
             return render(request, 'updatestudentsemester.html', 
@@ -125,45 +127,6 @@ def update_student_semester(request, semester_id):
                    'course_subs' : course_subs}
         return render(request, 'updatesemester.html', context)
 
-
-@login_required
-def update_student_semester_old(request, id):
-    instance = StudentSemesterCourses.objects.get(pk = id)
-
-    # The following statement kicks the person out if he/she is trying to hack into
-    # someone else's "update student semester" function...if the name of the requester and
-    # the person who "belongs" to the id are different, the requester gets sent back to
-    # his/her profile as punishment :)
-    request_id = request.user.get_student_id()
-    incoming_id = instance.student.id
-    if request_id != incoming_id:
-        return redirect('profile')
-
-    
-    if request.method == 'POST':
-        my_kwargs = dict(instance=instance,
-                         actual_year=year,
-                         semester=semester)
-        form = AddStudentSemesterForm(request.POST, **my_kwargs)
-        if form.is_valid():
-            form.save()
-            return redirect('four_year_plan')
-        else:
-            return render(request, 'updatesemester.html',
-                          {'form': form, 'sccdatablock':sccdatablock})
-    else:
-        # User is not submitting the form; show them the blank add semester form.
-        my_kwargs = dict(instance=instance,
-                         actual_year=year,
-                         semester=semester)
-        form = AddStudentSemesterForm(**my_kwargs)
-        context = {'form': form,
-                   'sccdatablock':sccdatablock,
-                   'instanceid':id,
-		   'courselist': courselist,
-		   'current_course_list': current_course_list,
-		   'semester': semester}
-        return render(request, 'updatesemester.html', context)
 
 def advisee_required(fn):
     """Makes sure that if user is a professor, they have an

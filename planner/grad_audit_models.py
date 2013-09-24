@@ -1,8 +1,8 @@
 #!/usr/bin/python
+from collections import deque
 from django.db import models
-import itertools
-from collections import namedtuple, defaultdict, deque
 from models import CourseOffering
+import itertools
 
 class GradAudit(object):
     def __init__(self, **kwargs):
@@ -41,7 +41,6 @@ class GradAudit(object):
         for child in audit.children:
             self._stack.append(child)
         return audit
-
 
 
 class GradAuditTemplate(object):
