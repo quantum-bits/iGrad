@@ -21,12 +21,18 @@ class GradAudit(object):
 
     def addChild(self, child):
         self.children.append(child)
-        for met_course in child.met_courses:
-            self.met_courses[met_course] = child.met_courses[met_course]
+        self.addMetCourses(child.met_courses)
 
     def addChildren(self, *children):
         for child in children:
             self.addChild(child)
+    
+    def addMetCourse(self, met_course, course_offering):
+        self.met_courses[met_course] = course_offering
+    
+    def addMetCourses(self, met_courses):
+        for met_course, course_offering in met_courses.items():
+            self.addMetCourse(met_course, course_offering)
 
     def __iter__(self):
         self._stack = deque([])
@@ -63,14 +69,14 @@ class GradAuditTemplate(object):
         info['cc'] = required_course.is_cc
         if required_course in self.audit.met_courses:
             courseOffering = self.audit.met_courses[required_course]
-            yearName = student.yearName(courseOffering.semester)
+            yearName = self.audit.student.yearName(courseOffering.semester)
             semester_name = courseOffering.semester.name
             year = courseOffering.semester.begin_on.year
             info['met'] = True
             info['offering_id'] = courseOffering.id
             info['taken_for'] = courseOffering.credit_hours
             info['hours_match'] = courseOffering.credit_hours == required_course.credit_hours.min_credit_hour
-            info['comment'] = self.semester_description(semester)
+            info['comment'] = self.semesterDescription(courseOffering.semester)
         else:
             info['comment'] = None
             info['met'] = False
@@ -245,10 +251,10 @@ class Requirement(models.Model):
                 child_audit, unused_courses = constraint.audit(courses, self, unused_courses)
                 is_satisfied = is_satisfied and child_audit.is_satisfied
                 grad_audit.addMessage(constraint.name)
-                if child_audit.requirement == self:
-                    grad_audit.addChildren(*child_audit.children)
-                else:
-                    grad_audit.addChild(child_audit)
+                grad_audit.addMetCourses(child_audit.met_courses)
+                if child_audit.requirement == self: grad_audit.addChildren(*child_audit.children)
+            
+            grad_audit.is_satisfied = is_satisfied
             return grad_audit, unused_courses
 
         if unused_courses is None: unused_courses = set(courses)
