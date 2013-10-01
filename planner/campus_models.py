@@ -310,6 +310,7 @@ class Major(models.Model):
     name = models.CharField(max_length=80)
     department = models.ForeignKey(Department, related_name='majors')
     requirement = models.OneToOneField('Requirement', related_name='major', null=True)
+    catalog_year = models.ForeignKey(AcademicYear, related_name='majors', null=True)
 
     def __unicode__(self):
         return self.name
