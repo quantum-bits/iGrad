@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
+import itertools
 
 import logging
 logger = logging.getLogger(__name__)
@@ -104,6 +105,18 @@ class SemesterName(models.Model):
     class Meta:
         ordering = ['seq']
 
+    def __cmp__(self, other):
+        NAMES = ['Fall', 'J-Term', 'Spring', 'Summer']
+        self_pos =  NAMES.index(self.name)
+        other_pos = NAMES.index(other.name)
+        
+        assert self_pos > 0
+        assert other_pos > 0
+        
+        if self_pos < other_pos: return -1
+        if self_pos > other_pos: return 1
+        if self_pos == other_pos: return 0
+
     @property
     def fall(self):
         return self.name == 'Fall'
@@ -160,6 +173,14 @@ class Semester(models.Model):
     year = models.ForeignKey(AcademicYear, related_name='semesters')
     begin_on = models.DateField()
     end_on = models.DateField()
+
+    def __cmp__(self, other):
+        if self.year.begin_on < other.year.end_on:
+            return -1
+        if self.year.begin_on > other.year.end_on:
+            return 1
+        return self.name.__cmp__(other.name)
+
 
     class Meta:
         ordering = ['year', 'name']
@@ -431,8 +452,29 @@ class Student(Person):
     def has_major(self):
         return len(self.majors.all()) > 0
 
-    def planned_courses_before_semester(semester):
-        return self.planned_courses.filter(semester__end_on__lt=semester.begin_on)
+    def candidate_courses(self, **kwargs):
+        """
+        Returns an iterable containing courseOfferings and courseSubstitutions
+        that a student plans to take, that may meet course requirement.
+        kwargs: before, during, after. 
+        Each argument can be used to filter the list with a semester. 
+        """
+        result = list(itertools.chain(self.planned_courses.all(), self.course_substitutions.all()))
+
+        before =  kwargs.get('before', None)
+        if before is not None:
+            result = filter(lambda semester: semester < before)
+
+        during = kwargs.get('during', None)
+        if during is not None:
+            result = filter(lambda semester: semester == during)
+        
+        after = kwargs.get('after', None)
+        if after is not None:
+            result = filter(lambda semester: semester > after)
+        
+        return result
+
 
     def substitutions_this_semester(self, semester):
         return self.course_substitutions.filter(semester=semester)
@@ -452,6 +494,7 @@ class Student(Person):
         if planned_course_chs is None: planned_course_chs = 0
         course_sub_chs = self.course_substitutions.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
         if course_sub_chs is None: course_sub_chs = 0
+        return sum([c.credit_hours for c in self.candidate_courses()])
         return planned_course_chs + course_sub_chs
     
     def four_year_plan(self):
@@ -472,12 +515,10 @@ class Student(Person):
                     course['sp'] = offering.course.is_sp
                     course['cc'] = offering.course.is_cc
                     course['other_semesters_offered'] = []
-                    for other_offering in CourseOffering.other_offerings(offering):
+                    for other_offering in offering.other_offerings():
                         course['other_semesters_offered'].append({'id' : other_offering.id, 
                                                                   'semester' : other_offering.semester, 
                                                                   'credit_hours' : self.credit_hours_this_semester(other_offering.semester)})
-
-                    
                     course['id'] = offering.id
                     semester_courses.append(course)
 
@@ -486,8 +527,8 @@ class Student(Person):
                     course['title'] = sub.title
                     course['number'] = sub.equivalent_course.abbrev
                     course['credit_hours'] = sub.credit_hours
-                    course['sp'] = sub.equivalent_course.is_sp
-                    course['cc'] = sub.equivalent_course.is_cc
+                    course['sp'] = sub.is_sp
+                    course['cc'] = sub.is_cc
                     course['other_semesters_offered'] = None
                     course['id'] = sub.id
                     semester_courses.append(course)
@@ -513,23 +554,12 @@ class Student(Person):
                  'num_ccs' : num_ccs,
                  'ccs_met' : num_ccs >=1}
 
-    def courses_covered(self):
-         """
-         Returns a dictionary where the key is the course that is being met, 
-         and the value is the course offering/ substitute/ transfer that meets it.
-         """
-         # TODO add suport for substitution courses
-         result = {}
-         for course_offering in self.planned_courses.all():
-             result[course_offering.course] = course_offering
-         return result
-
     def grad_audit(self):
          # Right now it returns the first major,
          # TODO: make it work when there is more than one major. 
          # TODO: make it work for minors
-         for major in self.majors.all():
-             return major.requirement.audit(list(self.planned_courses.all()) + list(self.course_substitutions.all()), student = self)
+        for major in self.majors.all():
+            return major.requirement.audit(self.candidate_courses(), student=self)
 
 class Professor(Person):
      user = models.OneToOneField(User, null=True)
@@ -564,14 +594,9 @@ class CourseOffering(StampedModel):
      def coreqs(self):
          return self.course.coreqs.all()
 
-
-     @classmethod
-     def other_offerings(cls,offering):
-         """Returns a list of other semesters this course is 
-         offered.
-         """
-         offerings = cls.objects.filter(course=offering.course)
-         offerings = offerings.exclude(semester=offering.semester)
+     def other_offerings(self):
+         offerings = CourseOffering.objects.filter(course=self.course)
+         offerings = offerings.exclude(semester=self.semester)
          return offerings
 
      def __unicode__(self):
@@ -594,7 +619,6 @@ class CourseTaken(StampedModel):
      student = models.ForeignKey(Student, related_name='courses_taken')
      course_offering = models.ForeignKey(CourseOffering)
      final_grade = models.ForeignKey(Grade, blank=True)
-
 
 
 class CourseSubType(models.Model):
@@ -625,8 +649,15 @@ class CourseSubstitution(models.Model):
     sub_type = models.ForeignKey(CourseSubType, related_name='course_substitutions', null=True, blank=True)
 
     @property
+    def is_sp(self): return self.equivalent_course.is_sp
+    @property
+    def is_cc(self): return self.equivalent_course.is_cc
+    
+    @property
     def course(self):
         return self.equivalent_course 
+
+    def other_offerings(self): return []
 
     def is_transfer(self):
         self.sub_type.is_transfer

@@ -243,7 +243,7 @@ def display_grad_audit(request):
                    'hasMajor' : student.has_major(),
                    'isProfessor' : request.user.is_professor(),
                    'unusedcourses': unused_courses,
-                   'unusedcredithours': sum(map(lambda courseOffering: courseOffering.credit_hours, unused_courses)),
+                   'unusedcredithours': sum([courseOffering.credit_hours for courseOffering in unused_courses]),
                    'SPlist': sp_cc_information['sps'],
                    'CClist': sp_cc_information['ccs'],
                    'numSPs': sp_cc_information['num_sps'],

@@ -1,8 +1,14 @@
 #!/usr/bin/python
 from collections import deque
 from django.db import models
-from models import CourseOffering
+from models import CourseOffering, CourseSubstitution
 import itertools
+
+def is_offering(course):
+    return type(course) == CourseOffering
+
+def is_substitution(course):
+    return type(course) == CourseSubstitution
 
 class GradAudit(object):
     def __init__(self, **kwargs):
@@ -52,6 +58,7 @@ class GradAudit(object):
 class GradAuditTemplate(object):
     def __init__(self, audit):
         self.audit = audit
+        self.student = audit.student
 
     def semesterDescription(self, semester):
         yearName = self.audit.student.yearName(semester)
@@ -69,6 +76,7 @@ class GradAuditTemplate(object):
         info['cc'] = required_course.is_cc
         if required_course in self.audit.met_courses:
             courseOffering = self.audit.met_courses[required_course]
+            info['is_sub'] = is_substitution(courseOffering)
             yearName = self.audit.student.yearName(courseOffering.semester)
             semester_name = courseOffering.semester.name
             year = courseOffering.semester.begin_on.year
@@ -77,9 +85,21 @@ class GradAuditTemplate(object):
             info['taken_for'] = courseOffering.credit_hours
             info['hours_match'] = courseOffering.credit_hours == required_course.credit_hours.min_credit_hour
             info['comment'] = self.semesterDescription(courseOffering.semester)
+
+            info['other_semesters'] = []
+            for offering in courseOffering.other_offerings():
+                info['other_semesters'].append({'course_id' : offering.id,
+                                                'semester'  : offering.semester, 
+                                                'hours_this_semester' : self.student.credit_hours_this_semester(offering.semester)})
+
         else:
             info['comment'] = None
             info['met'] = False
+            info['other_semesters'] = []
+            for offering in CourseOffering.objects.filter(course=required_course):
+                info['other_semesters'].append({'course_id' : offering.id,
+                                                'semester'  : offering.semester, 
+                                                'hours_this_semester' : self.student.credit_hours_this_semester(offering.semester)})
         return info
 
     def requirementBlock(self, audit):
@@ -235,11 +255,10 @@ class Requirement(models.Model):
         req_courses = [list(req.all_courses()) for req in reqs]
         return self.required_courses() + (list(itertools.chain(*req_courses)))
 
-    def audit(self, courses, unused_courses = None, **kwargs):
+    def audit(self, courses, unused_courses = None, student = None):
         """
-        Returns a grad_audit, unused_courses
+        Returns a grad_audit, unused_coursesp
         """
-        student = kwargs.get('student', None)
         def _inner(self, courses,unused_courses):
             """Examines a requirements constraints to create a grad_audit. 
             If all constraints are met, gradAudit is_satisfied. """
