@@ -8,7 +8,6 @@ from django.shortcuts import render, redirect
 from django.template import RequestContext
 from forms import *
 from models import *
-from profile import profile_fn
 
 def home(request):
     return render(request, 'home.html')
