@@ -106,16 +106,9 @@ class SemesterName(models.Model):
         ordering = ['seq']
 
     def __cmp__(self, other):
-        NAMES = ['Fall', 'J-Term', 'Spring', 'Summer']
-        self_pos =  NAMES.index(self.name)
-        other_pos = NAMES.index(other.name)
-        
-        assert self_pos > 0
-        assert other_pos > 0
-        
-        if self_pos < other_pos: return -1
-        if self_pos > other_pos: return 1
-        if self_pos == other_pos: return 0
+        if self.seq < other.seq: return -1
+        if self.seq > other.seq: return 1
+        if self.seq == other.seq: return 0
 
     @property
     def fall(self):
@@ -175,10 +168,8 @@ class Semester(models.Model):
     end_on = models.DateField()
 
     def __cmp__(self, other):
-        if self.year.begin_on < other.year.end_on:
-            return -1
-        if self.year.begin_on > other.year.end_on:
-            return 1
+        if self.year < other.year: return -1
+        if self.year > other.year: return 1
         return self.name.__cmp__(other.name)
 
 
@@ -313,7 +304,7 @@ class Major(models.Model):
     catalog_year = models.ForeignKey(AcademicYear, related_name='majors', null=True)
 
     def __unicode__(self):
-        return self.name
+        return "{} {}".format(self.name, self.catalog_year)
      
 
 class Minor(models.Model):
@@ -464,31 +455,21 @@ class Student(Person):
 
         before =  kwargs.get('before', None)
         if before is not None:
-            result = filter(lambda semester: semester < before)
+            result = filter(lambda c: c.semester < before, result)
 
         during = kwargs.get('during', None)
         if during is not None:
-            result = filter(lambda semester: semester == during)
+            result = filter(lambda c: c.semester == during, result)
         
         after = kwargs.get('after', None)
         if after is not None:
-            result = filter(lambda semester: semester > after)
+            result = filter(lambda c: c.semester > after, result)
         
         return result
 
 
-    def substitutions_this_semester(self, semester):
-        return self.course_substitutions.filter(semester=semester)
-
-    def offerings_this_semester(self, semester):
-        return self.planned_courses.filter(semester=semester)
-
     def credit_hours_this_semester(self, semester):
-        credit_hours = self.offerings_this_semester(semester).aggregate(Sum('credit_hours'))['credit_hours__sum']
-        transfer_credits = self.course_substitutions.filter(semester=semester).aggregate(Sum('credit_hours'))['credit_hours__sum']
-        if credit_hours is None: credit_hours = 0
-        if transfer_credits is None: transfer_credits = 0
-        return credit_hours + transfer_credits
+        return sum([c.credit_hours for c in self.candidate_courses(during=semester)])
 
     def credit_hours_in_plan(self):
         planned_course_chs = self.planned_courses.all().aggregate(Sum('credit_hours'))['credit_hours__sum']
@@ -507,7 +488,7 @@ class Student(Person):
             year_semesters = []
             for semester in year.semesters.all():
                 semester_courses = []
-                offerings = self.offerings_this_semester(semester)
+                offerings = self.candidate_courses(during=semester)
                 for offering in offerings:
                     course = {}
                     course['title'] = offering.course.title
@@ -522,18 +503,6 @@ class Student(Person):
                                                                   'credit_hours' : self.credit_hours_this_semester(other_offering.semester)})
                     course['id'] = offering.id
                     semester_courses.append(course)
-
-                for sub in self.substitutions_this_semester(semester):
-                    course = {}
-                    course['title'] = sub.title
-                    course['number'] = sub.equivalent_course.abbrev
-                    course['credit_hours'] = sub.credit_hours
-                    course['sp'] = sub.is_sp
-                    course['cc'] = sub.is_cc
-                    course['other_semesters_offered'] = None
-                    course['id'] = sub.id
-                    semester_courses.append(course)
-
                 year_semesters.append(SemesterInfo(courses=semester_courses, semester=semester))
                 credit_hours.append(self.credit_hours_this_semester(semester))
             year_plan['semesters'] = year_semesters
@@ -554,6 +523,7 @@ class Student(Person):
                  'ccs' : ccs,
                  'num_ccs' : num_ccs,
                  'ccs_met' : num_ccs >=1}
+
 
     def grad_audit(self):
          # Right now it returns the first major,
@@ -694,16 +664,3 @@ class ClassMeeting(StampedModel):
 
     def __unicode__(self):
         return '{0} ({1} {2})'.format(self.course_offering, self.held_on, self.begin_at)
-
-
-
-
-
-
-
-
-
-
-
-
-

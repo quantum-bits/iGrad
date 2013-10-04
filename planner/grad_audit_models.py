@@ -18,8 +18,6 @@ class GradAudit(object):
         self.constraint_messages = kwargs.get('constraint_messages', [])
         self.children = kwargs.get('children', [])
         self.unused_courses = kwargs.get('unused_courses', None)
-        self.unmet_prereqs = []
-        self.unmet_coreqs = []
         self.student = kwargs.get('student', None)
 
     def addMessage(self, msg):
@@ -92,6 +90,7 @@ class GradAuditTemplate(object):
                                                 'semester'  : offering.semester, 
                                                 'hours_this_semester' : self.student.credit_hours_this_semester(offering.semester)})
 
+
         else:
             info['comment'] = None
             info['met'] = False
@@ -117,8 +116,6 @@ class GradAuditTemplate(object):
         for course in requirement.required_courses():
             block['courses'].append(self.courseInfo(course))
 
-        for prereq in audit.unmet_prereqs: pass
-        for coreq in audit.unmet_coreqs: pass
         
         return block
 
