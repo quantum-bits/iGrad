@@ -3514,6 +3514,14 @@
     }
 },
 {
+    "pk": "9tx9mun4vvbnqy748avdiz7qwg6xnwwz", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-10-15T03:51:20.139Z", 
+        "session_data": "OTY0OTA2ZWJkMWY1OWIyN2ZhNDAyMWM0ZmYyYzdjYjk2MDllMTg1MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlwbGFubmVyLmNhbXB1c19tb2RlbHMuUHJveGllZE1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu"
+    }
+},
+{
     "pk": "a9olm594utnwwp36f6na4mp0o7i2u7gt", 
     "model": "sessions.session", 
     "fields": {
@@ -4454,6 +4462,32 @@
     }
 },
 {
+    "pk": 65, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-10-01T03:50:54.453Z", 
+        "object_repr": "Transfer", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 43
+    }
+},
+{
+    "pk": 66, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-10-01T03:51:02.833Z", 
+        "object_repr": "Substitution", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 43
+    }
+},
+{
     "pk": 1, 
     "model": "south.migrationhistory", 
     "fields": {
@@ -4730,6 +4764,15 @@
         "applied": "2013-08-24T17:31:13.128Z", 
         "app_name": "planner", 
         "migration": "0031_auto__add_coursesubtype__add_field_coursesubstitution_sub_type"
+    }
+},
+{
+    "pk": 32, 
+    "model": "south.migrationhistory", 
+    "fields": {
+        "applied": "2013-10-01T16:05:46.055Z", 
+        "app_name": "planner", 
+        "migration": "0032_auto__add_field_major_catalog_year"
     }
 },
 {
@@ -6038,7 +6081,8 @@
     "fields": {
         "department": 1, 
         "requirement": 26, 
-        "name": "Computer Science (BS)"
+        "name": "Computer Science (BS)", 
+        "catalog_year": null
     }
 },
 {
@@ -34493,6 +34537,33 @@
         "updated_at": "2013-07-29T16:47:57.490Z", 
         "course": 45, 
         "semester": 35
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.coursesubtype", 
+    "fields": {
+        "name": "Transfer"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.coursesubtype", 
+    "fields": {
+        "name": "Substitution"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planner.coursesubstitution", 
+    "fields": {
+        "credit_hours": 3, 
+        "title": "Foundations of Programming", 
+        "university": null, 
+        "equivalent_course": 4, 
+        "semester": 1, 
+        "student": 2, 
+        "sub_type": 1
     }
 },
 {
