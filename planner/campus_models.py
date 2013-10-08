@@ -1,4 +1,4 @@
-from collections import defaultdict, OrderedDict
+from collections import defaultdict
 from collections import namedtuple
 from common_models import *
 from django.contrib.auth.backends import ModelBackend
