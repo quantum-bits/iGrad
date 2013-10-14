@@ -1,8 +1,5 @@
 #!/usr/bin/python
-
-NAME = 'Name'
-COURSES = 'Course'
-SUB_REQ = 'SubRequirements'
+from keys import NAME, COURSES, SUB_REQ
 
 MAJOR_COURSES = (
     'PHY 211',

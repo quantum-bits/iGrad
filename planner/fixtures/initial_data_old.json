@@ -62304,22 +62304,6 @@
     }
 },
 {
-    "pk": 21, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            2
-        ], 
-        "name": "Computer Science BS Requirement", 
-        "courses": [], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Computer Science BS Requirments", 
-        "constraints": [
-            5
-        ]
-    }
-},
-{
     "pk": 22, 
     "model": "planner.requirement", 
     "fields": {
@@ -62571,6 +62555,116 @@
         "constraints": [
             1
         ]
+    }
+},
+{
+    "pk": 35, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Major Requirements Sub", 
+        "courses": [
+            141, 
+            142
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Major Requirements Sub", 
+        "constraints": []
+    }
+},
+{
+    "pk": 36, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Major Requirements", 
+        "courses": [
+            60, 
+            1673, 
+            1675, 
+            1677, 
+            1678, 
+            1679, 
+            1680, 
+            1681, 
+            1682, 
+            1685, 
+            1686, 
+            1687, 
+            1690, 
+            1691
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Major Requirements", 
+        "constraints": []
+    }
+},
+{
+    "pk": 37, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Technical Electives", 
+        "courses": [
+            1554, 
+            1555, 
+            39, 
+            1646, 
+            66
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Technical Electives", 
+        "constraints": []
+    }
+},
+{
+    "pk": 38, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Additional Major Requirements Sub", 
+        "courses": [
+            543, 
+            1666
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Additional Major Requirements Sub", 
+        "constraints": []
+    }
+},
+{
+    "pk": 39, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Additional Major Requirements", 
+        "courses": [
+            57, 
+            1538, 
+            4, 
+            1578, 
+            1579, 
+            17, 
+            35, 
+            36, 
+            37, 
+            38
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Additional Major Requirements", 
+        "constraints": []
+    }
+},
+{
+    "pk": 40, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS)", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS)", 
+        "constraints": []
     }
 },
 {

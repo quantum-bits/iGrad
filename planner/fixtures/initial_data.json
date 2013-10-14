@@ -23,7 +23,7 @@
         "work_phone": "", 
         "photo": "", 
         "created_at": "2013-06-05T17:02:52.054Z", 
-        "updated_at": "2013-08-27T16:11:12.901Z", 
+        "updated_at": "2013-10-14T01:38:08.483Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -2007,6 +2007,16 @@
         "department": 1, 
         "requirement": 26, 
         "name": "Computer Science (BS)", 
+        "catalog_year": 3
+    }
+},
+{
+    "pk": 2, 
+    "model": "planner.major", 
+    "fields": {
+        "department": 19, 
+        "requirement": 40, 
+        "name": "Physics (BS) 2013-2014", 
         "catalog_year": 3
     }
 },
@@ -36097,11 +36107,9 @@
     "model": "planner.student", 
     "fields": {
         "majors": [
-            1
+            2
         ], 
-        "planned_courses": [
-            46
-        ], 
+        "planned_courses": [], 
         "entering_year": 1, 
         "minors": [], 
         "student_id": "@00555555", 
@@ -61877,6 +61885,15 @@
     }
 },
 {
+    "pk": 9, 
+    "model": "planner.constraint", 
+    "fields": {
+        "comment": "", 
+        "constraint_text": "min_required_credit_hours at_least 11", 
+        "name": "At least 11 hours from the following"
+    }
+},
+{
     "pk": 1, 
     "model": "planner.requirement", 
     "fields": {
@@ -61959,347 +61976,6 @@
         "display_name": "CS Theory Courses", 
         "constraints": [
             1
-        ]
-    }
-},
-{
-    "pk": 5, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Life Science Gen Eds", 
-        "courses": [
-            1, 
-            2, 
-            46, 
-            47, 
-            48, 
-            49, 
-            50, 
-            51, 
-            52, 
-            53, 
-            54
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Life Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 6, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Physical Science Gen Eds", 
-        "courses": [
-            55, 
-            52, 
-            56, 
-            57, 
-            58, 
-            59, 
-            60
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Physical Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 7, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Earth Science Gen Eds", 
-        "courses": [
-            62, 
-            61, 
-            64, 
-            65, 
-            66
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Earth Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 8, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            7, 
-            5, 
-            6
-        ], 
-        "name": "Science Gen Eds", 
-        "courses": [], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Science Gen Eds", 
-        "constraints": [
-            4, 
-            6
-        ]
-    }
-},
-{
-    "pk": 9, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Orientation Gen Eds", 
-        "courses": [
-            67
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Orientation Gen Eds", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 10, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Spiritual Foundation Gen Eds", 
-        "courses": [
-            69, 
-            70, 
-            68, 
-            73, 
-            72, 
-            71
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Spiritual Foundation Gen Eds", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 11, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Stewardship of the Body Gen Eds Sub", 
-        "courses": [
-            75, 
-            76, 
-            77, 
-            78, 
-            79, 
-            80, 
-            81, 
-            82
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Stewardship of the Body Gen Eds Sub", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 12, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            11
-        ], 
-        "name": "Stewardship of the Body Gen Eds", 
-        "courses": [
-            74
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Stewardship of the Body Gen Eds", 
-        "constraints": [
-            2, 
-            5
-        ]
-    }
-},
-{
-    "pk": 13, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Speaking Gen Ed", 
-        "courses": [
-            90, 
-            91
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Speaking Gen Ed", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 14, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Writing Gen Ed", 
-        "courses": [
-            89
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Writing Gen Ed", 
-        "constraints": [
-            2
-        ]
-    }
-},
-{
-    "pk": 15, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Mathematics Gen Ed", 
-        "courses": [
-            92, 
-            93, 
-            94, 
-            95, 
-            17, 
-            96, 
-            97, 
-            98, 
-            99
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Mathematics Gen Ed", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 16, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Computer Science Gen Eds", 
-        "courses": [
-            87, 
-            88
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Computer Science Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 17, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Literature Gen Eds", 
-        "courses": [
-            103, 
-            100, 
-            101, 
-            102
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Literature Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 18, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Civic Engagement Gen Eds", 
-        "courses": [
-            104, 
-            106, 
-            107, 
-            108, 
-            109, 
-            110, 
-            111, 
-            112, 
-            113, 
-            114, 
-            115, 
-            116, 
-            117, 
-            118, 
-            119, 
-            120, 
-            121
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Civic Engagement Gen Eds", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
-    "pk": 19, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "General Social Science Gen Eds", 
-        "courses": [
-            122, 
-            123, 
-            124, 
-            125, 
-            126, 
-            127, 
-            128, 
-            129, 
-            130, 
-            131, 
-            132, 
-            133, 
-            134, 
-            135, 
-            136, 
-            137, 
-            138, 
-            139, 
-            140
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "General Social Science Gen Eds", 
-        "constraints": []
-    }
-},
-{
-    "pk": 20, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            18, 
-            19
-        ], 
-        "name": "Social Science Gen Eds", 
-        "courses": [], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Social Science Gen Eds", 
-        "constraints": [
-            5, 
-            7
         ]
     }
 },
@@ -62522,42 +62198,6 @@
     }
 },
 {
-    "pk": 33, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [
-            34
-        ], 
-        "name": "Physics (BS) Major Requirement", 
-        "courses": [
-            60
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Physics (BS) Major Requirement", 
-        "constraints": [
-            2, 
-            5
-        ]
-    }
-},
-{
-    "pk": 34, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Physics (BS) Practicuum or Research", 
-        "courses": [
-            141, 
-            142
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Physics (BS) Practicuum or Research", 
-        "constraints": [
-            1
-        ]
-    }
-},
-{
     "pk": 35, 
     "model": "planner.requirement", 
     "fields": {
@@ -62569,14 +62209,18 @@
         ], 
         "min_required_credit_hours": 0, 
         "display_name": "Physics (BS) Major Requirements Sub", 
-        "constraints": []
+        "constraints": [
+            1
+        ]
     }
 },
 {
     "pk": 36, 
     "model": "planner.requirement", 
     "fields": {
-        "requirements": [], 
+        "requirements": [
+            35
+        ], 
         "name": "Physics (BS) Major Requirements", 
         "courses": [
             60, 
@@ -62596,7 +62240,10 @@
         ], 
         "min_required_credit_hours": 0, 
         "display_name": "Physics (BS) Major Requirements", 
-        "constraints": []
+        "constraints": [
+            2, 
+            5
+        ]
     }
 },
 {
@@ -62614,29 +62261,18 @@
         ], 
         "min_required_credit_hours": 0, 
         "display_name": "Physics (BS) Technical Electives", 
-        "constraints": []
-    }
-},
-{
-    "pk": 38, 
-    "model": "planner.requirement", 
-    "fields": {
-        "requirements": [], 
-        "name": "Physics (BS) Additional Major Requirements Sub", 
-        "courses": [
-            543, 
-            1666
-        ], 
-        "min_required_credit_hours": 0, 
-        "display_name": "Physics (BS) Additional Major Requirements Sub", 
-        "constraints": []
+        "constraints": [
+            9
+        ]
     }
 },
 {
     "pk": 39, 
     "model": "planner.requirement", 
     "fields": {
-        "requirements": [], 
+        "requirements": [
+            41
+        ], 
         "name": "Physics (BS) Additional Major Requirements", 
         "courses": [
             57, 
@@ -62652,19 +62288,507 @@
         ], 
         "min_required_credit_hours": 0, 
         "display_name": "Physics (BS) Additional Major Requirements", 
-        "constraints": []
+        "constraints": [
+            2, 
+            5
+        ]
     }
 },
 {
     "pk": 40, 
     "model": "planner.requirement", 
     "fields": {
-        "requirements": [], 
+        "requirements": [
+            39, 
+            36, 
+            37
+        ], 
         "name": "Physics (BS)", 
         "courses": [], 
-        "min_required_credit_hours": 0, 
+        "min_required_credit_hours": 92, 
         "display_name": "Physics (BS)", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 41, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physics (BS) Add Major Requirements Sub", 
+        "courses": [
+            543, 
+            1666
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physics (BS) Add Major Requirements Sub", 
         "constraints": []
+    }
+},
+{
+    "pk": 42, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Orientation Foundation", 
+        "courses": [
+            67
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Orientation Foundation", 
+        "constraints": []
+    }
+},
+{
+    "pk": 43, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Spiritual Foundation", 
+        "courses": [
+            69, 
+            70, 
+            68, 
+            73, 
+            72, 
+            71
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Spiritual Foundation", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 44, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Stewardship Options Foundation", 
+        "courses": [
+            75, 
+            76, 
+            77, 
+            78, 
+            79, 
+            80, 
+            81, 
+            82
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Stewardship Options Foundation", 
+        "constraints": []
+    }
+},
+{
+    "pk": 45, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            44
+        ], 
+        "name": "Stewardship of the Body", 
+        "courses": [
+            74
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Stewardship of the Body", 
+        "constraints": [
+            2, 
+            5
+        ]
+    }
+},
+{
+    "pk": 46, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Fine Arts Options Foundation", 
+        "courses": [
+            85, 
+            86
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Fine Arts Options Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 47, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            46
+        ], 
+        "name": "Fine Arts Foundation", 
+        "courses": [
+            83, 
+            84
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Fine Arts Foundation", 
+        "constraints": [
+            1, 
+            5
+        ]
+    }
+},
+{
+    "pk": 48, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Speaking Foundation", 
+        "courses": [
+            90, 
+            91
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Speaking Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 49, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Writing Foundation", 
+        "courses": [
+            89
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Writing Foundation", 
+        "constraints": [
+            2
+        ]
+    }
+},
+{
+    "pk": 50, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "History Foundation", 
+        "courses": [
+            480, 
+            481, 
+            482, 
+            483, 
+            484, 
+            485, 
+            487, 
+            488, 
+            489, 
+            123, 
+            124, 
+            125, 
+            126, 
+            490, 
+            491, 
+            492, 
+            493, 
+            494, 
+            495, 
+            497, 
+            498, 
+            499, 
+            500, 
+            501, 
+            502, 
+            503, 
+            504, 
+            505, 
+            506, 
+            507, 
+            508, 
+            509, 
+            510, 
+            512, 
+            513, 
+            514, 
+            515, 
+            516, 
+            517, 
+            518, 
+            519, 
+            520, 
+            522, 
+            523
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "History Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 51, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Computer Science Foundation", 
+        "courses": [
+            87, 
+            1560, 
+            88
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Computer Science Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 52, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Mathematics Foundation", 
+        "courses": [
+            1627, 
+            93, 
+            94, 
+            95, 
+            17, 
+            96, 
+            97, 
+            98, 
+            99
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Mathematics Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 53, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Literature Foundation", 
+        "courses": [
+            103, 
+            100, 
+            101, 
+            102, 
+            899, 
+            900, 
+            905, 
+            906
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Literature Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 54, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Physical Science Foundation", 
+        "courses": [
+            55, 
+            52, 
+            56, 
+            57, 
+            58, 
+            59, 
+            60
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Physical Science Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 55, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Life Science Foundation", 
+        "courses": [
+            1, 
+            2, 
+            46, 
+            47, 
+            48, 
+            49, 
+            50, 
+            51, 
+            52, 
+            53, 
+            54
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Life Science Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 56, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Earth Science Foundation", 
+        "courses": [
+            61, 
+            63, 
+            1608, 
+            64, 
+            65, 
+            66
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Earth Science Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 57, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            56, 
+            55, 
+            54
+        ], 
+        "name": "Science Foundation", 
+        "courses": [], 
+        "min_required_credit_hours": 7, 
+        "display_name": "Science Foundation", 
+        "constraints": [
+            4, 
+            6
+        ]
+    }
+},
+{
+    "pk": 58, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Civic Engagment Foundation", 
+        "courses": [
+            104, 
+            106, 
+            107, 
+            108, 
+            1668, 
+            109, 
+            110, 
+            111, 
+            112, 
+            113, 
+            114, 
+            115, 
+            117, 
+            118, 
+            119, 
+            120, 
+            121
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Civic Engagment Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 59, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "General Social Science Foundation", 
+        "courses": [
+            122, 
+            123, 
+            124, 
+            500, 
+            501, 
+            127, 
+            128, 
+            129, 
+            130, 
+            131, 
+            132, 
+            133, 
+            134, 
+            135, 
+            136, 
+            116, 
+            137, 
+            138, 
+            139, 
+            140
+        ], 
+        "min_required_credit_hours": 0, 
+        "display_name": "General Social Science Foundation", 
+        "constraints": [
+            1
+        ]
+    }
+},
+{
+    "pk": 60, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "Social Science Foundation", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Social Science Foundation", 
+        "constraints": [
+            7
+        ]
+    }
+},
+{
+    "pk": 61, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            51, 
+            47, 
+            50, 
+            53, 
+            52, 
+            42, 
+            57, 
+            60, 
+            48, 
+            43, 
+            49
+        ], 
+        "name": "Foundational Core", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Foundational Core", 
+        "constraints": [
+            5
+        ]
     }
 },
 {
