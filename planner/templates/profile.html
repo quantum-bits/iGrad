@@ -23,9 +23,9 @@
 	  <td>{{ advisee.full_name }}</td>
 	  <td>
 	    {% if advisee %}
-	      <a class="btn" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Change</a>
+	      <a class="submitButton" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Change</a>
 	    {% else %}
-	      <a class="btn" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Choose</a>
+	      <a class="submitButton" href="{% url 'update_advisee'%}?next={{request.path|urlencode}}">Choose</a>
 	    {% endif %}
 	  </td>
 	</tr>
@@ -37,8 +37,8 @@
       To do so, first type in a full or partial course number (e.g., phy211 or mat15):
     </p>
     <form action="{% url 'search' %}" method="get">
-      <input type="text" name="q">
-      <input type="submit" value="Search">
+      <input type="text" name="q" style="vertical-align:top">
+      <input type="submit" value="Search" class="submitButton">
     </form>
 
   {% else %}

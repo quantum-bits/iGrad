@@ -7,7 +7,7 @@
   </p>
   <form action="{% url 'search' %}" method="get">
       <input type="text" name="q" placeholder="Search Again"><br>
-      <input type="submit" value="Search" >
+      <input type="submit" value="Search" class="submitButton">
   </form>
   {% if courses %}
    <table class="table table-striped table-bordered table-hover">
@@ -32,7 +32,7 @@
             {% for offering in course.offerings %}
 		
 	       <tr>
-		<td><a class="btn" href="{% url 'view_students' offering.id %}">{{ offering.semester }}</a></td>
+		<td><a class="submitButton" href="{% url 'view_students' offering.id %}">{{ offering.semester }}</a></td>
 		<td>{{ offering.num_students }} student{{offering.num_students|pluralize}}</td>
 	       </tr>
 		

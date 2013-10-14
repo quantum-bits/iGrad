@@ -13,17 +13,17 @@
       {% endif %}
 
       <p>
-	<label form="username" {% if form.username.errors %} class ="error"{% endif %}>Student ID (e.g., @00551111):</label></p>
+	<label form="username" {% if form.username.errors %} class ="error"{% endif %}>Taylor Username</label></p>
       <p>{{ form.username }}</p>
     </div>
 
     <div class="register_div">
       {% if form.password.errors %}<p class = "error">{{ form.password.errors }}</p>{% endif %}
-      <p><label form="password" {% if form.password.errors %} class ="error"{% endif %}>Password:</label></p>
+      <p><label form="password" {% if form.password.errors %} class ="error"{% endif %}>Password</label></p>
       <p>{{ form.password }}</p>
     </div>
 
-    <p><input type="submit" alt="register" /></p>
+    <p><input type="submit" alt="register" class="submitButton"/></p>
   </form>
 <p>Forgot your password? <a href="/resetpassword/">Reset it!</a></p>
 

@@ -1,49 +1,67 @@
 {% extends "base.html" %}
 {% block extrahead %}
+    <link href="{{ STATIC_URL }}css/square/square.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}js/jquery.icheck.js"></script>
 {% endblock %}
 {% block content %}
 <div class="content-center">
-<form action="" method="post">
-{% csrf_token %}
-{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
-<div class="register_div">
-  {% if form.username.errors %}<p class = "error">{{ form.username.errors }}</p>{% endif %}
-  <p><label form="username" {% if form.username.errors %} class ="error"{% endif %}>Student ID (e.g., @00551111; this will be your login):</label></p>
-  <p>{{ form.username }}</p>
-</div>
-<div class="register_div">
-  {% if form.email.errors %}<p class = "error">{{ form.email.errors }}</p>{% endif %}
-  <p><label form="email" {% if form.email.errors %} class ="error"{% endif %}>Email:</label></p>
-  <p>{{ form.email }}</p>
-</div>
-<div class="register_div">
-  {% if form.password.errors %}<p class = "error">{{ form.password.errors }}</p>{% endif %}
-  <p><label form="password" {% if form.password.errors %} class ="error"{% endif %}>Password:</label></p>
-  <p>{{ form.password }}</p>
-</div>
-<div class="register_div">
-  {% if form.password1.errors %}<p class = "error">{{ form.password1.errors }}</p>{% endif %}
-  <p><label form="password1" {% if form.password1.errors %} class ="error"{% endif %}>Verify Password:</label></p>
-  <p>{{ form.password1 }}</p>
-</div>
-<div class="register_div">
-  {% if form.name.errors %}<p class = "error">{{ form.name.errors }}</p>{% endif %}
-  <p><label form="name" {% if form.name.errors %} class ="error"{% endif %}>Name (e.g., John Lennon):</label></p>
-  <p>{{ form.name }}</p>
-</div>
-<div class="register_div">
-  {% if form.entering_year.errors %}<p class = "error">{{ form.entering_year.errors }}</p>{% endif %}
-  <p><label form="entering_year" {% if form.entering_year.errors %} class ="error"{% endif %}>Entering Year:</label></p>
-  <p>{{ form.entering_year }}</p>
-</div>
-<div class="register_div">
-  {% if form.major.errors %}<p class = "error">{{ form.major.errors }}</p>{% endif %}
-  <p><label form="major" {% if form.major.errors %} class ="error"{% endif %}>Major:</label></p>
-  <p>{{ form.major }}</p>
-</div>
-<p><input type="submit" alt="register" /></p>
-</form>
-</div>
+    <div class="register-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if form.errors %}<p class="text-error">Please correct the following fields:</p>{% endif %}
+            <div class="register-left">
+                <div {% if form.username.errors %} class="control-group error"{% endif %}>
+                  <p><label form="username">Taylor Username</label></p>
+                  <p {% if form.username.errors %}class="control-group error"{% endif %}>{{ form.username }}</p>
+                </div>
+                <div class="register_div">
+                  <!--{% if form.name.errors %}<p class = "error">{{ form.name.errors }}</p>{% endif %}-->
+                    <p><label form="name">Name</label></p>
+                    <p {% if form.name.errors %}class="control-group error"{% endif %}>{{ form.name }}</p>
+                </div>
+                <div class="register_div">
+                  <p><label form="password">Password</label></p>
+                  <p {% if form.password.errors %}class="control-group error"{% endif %}>{{ form.password }}</p>
+                </div>
+                <div class="register_div">
+                  <p><label form="password1">Verify Password</label></p>
+                  <p {% if form.password1.errors %}class="control-group error"{% endif %}>{{ form.password1 }}</p>
+                </div>
+            </div>
+            <div class="register-right">
+                <div class="register_div">
+                  <p><label form="email">Email</label></p>
+                  <p {% if form.email.errors %}class="control-group error"{% endif %}>{{ form.email }}</p>
+                </div>
+                <div class="register_div">
+                  <p><label form="entering_year">Entering Year:</label></p>
+                  <p {% if form.entering_year.errors %}class="control-group error"{% endif %}>{{ form.entering_year }}</p>
+                </div>
+                <div class="register_div">
+                  <p><label form="major">Major</label></p>
+                  <p {% if form.major.errors %}class="control-group error"{% endif %}>{{ form.major }}</p>
+                </div>
+                <div class="register_div">
+                  <label form="classification">Classification</label>
+	              <div id="iCheck-radio">
+	                <label style="float:left"><input type="radio" name="iCheck" value="Student" checked >Student</label>
+	                <label style="float:right"><input type="radio" name="iCheck" value="Faculty">Faculty</label>
+	               </div>
+                </div>
+            </div>
+            <p><input type="submit" alt="register" class="submitButton"/></p>
+        </form>
+      </div>
+      
+<script>
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square',
+    radioClass: 'iradio_square',
+    increaseArea: '20%' // optional
+  });
+});
+</script>
 <script>
 $(window).load(function(){
 $('.page-name').find('h1').replaceWith('<h1>Register</h1>');

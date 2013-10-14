@@ -6,6 +6,7 @@ from models import *
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label=(u'User Name'))
+    name = forms.CharField(label=(u'Name'))
     email = forms.EmailField(label=(u'Email Address'))
     password = forms.CharField(label=(u'Password'),
                                widget=forms.PasswordInput(render_value=False))
