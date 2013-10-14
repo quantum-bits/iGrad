@@ -57,7 +57,7 @@ ADDITIONAL_MAJOR_REQ_COURSES = (
     'MAT 251',
 )
 
-r_ADDITIONAL_MAJOR_REQUIREMENTS_SUB = {NAME : 'Physics (BS) Additional Major Requirements Sub', 
+r_ADDITIONAL_MAJOR_REQUIREMENTS_SUB = {NAME : 'Physics (BS) Add Major Requirements Sub', 
                                        COURSES : ('IAS 231', 'NAS 480',)}
 
 r_ADDITIONAL_MAJOR_REQUIREMENTS = {NAME : 'Physics (BS) Additional Major Requirements',
