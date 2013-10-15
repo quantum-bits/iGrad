@@ -426,8 +426,8 @@ class Student(Person):
                                      help_text='Catalog year for graduation plan')
     majors = models.ManyToManyField(Major, related_name='students', blank=True, null=True)
     minors = models.ManyToManyField(Minor, related_name='students', blank=True, null=True)
-
     planned_courses = models.ManyToManyField('CourseOffering', related_name='students', blank=True, null=True)
+    graduationRequirement = models.OneToOneField('Requirement', blank=True, null=True)
 
 
     def __unicode__(self):
@@ -526,13 +526,18 @@ class Student(Person):
                  'num_ccs' : num_ccs,
                  'ccs_met' : num_ccs >=1}
 
-
     def grad_audit(self):
-         # Right now it returns the first major,
-         # TODO: make it work when there is more than one major. 
-         # TODO: make it work for minors
-        for major in self.majors.all():
-            return major.requirement.audit(self.candidate_courses(), student=self)
+        req = Requirement.make_graduation_requirement(self)
+        return req.audit(self.candidate_courses(), student=self)
+
+@receiver(post_save, sender=Student)
+def setUp_graduationPlan(sender, **kwargs):
+    instance = kwargs['instance']
+    created = kwargs['created']
+    raw = kwargs['raw']
+    if created and not raw:
+        Requirement.make_graduation_requirement(instance)
+        
 
 class Professor(Person):
      user = models.OneToOneField(User, null=True)
@@ -905,7 +910,11 @@ class Requirement(models.Model):
     courses = models.ManyToManyField('Course', related_name = 'courses', blank=True)
 
     def __unicode__(self):
-        return self.name
+        try:
+            student = self.student
+            return '{} {} {}'.format(student, student.entering_year, self.name)
+        except Student.DoesNotExist:
+            return self.name
 
     def required_courses(self):
         return list(self.courses.all())
@@ -918,7 +927,7 @@ class Requirement(models.Model):
 
     def audit(self, courses, unused_courses = None, student = None):
         """
-        Returns a grad_audit, unused_coursesp
+        Returns a grad_audit, unused_courses
         """
         def _inner(self, courses,unused_courses):
             """Examines a requirements constraints to create a grad_audit. 
@@ -965,3 +974,41 @@ class Requirement(models.Model):
             
     class Meta:
         ordering = ['display_name', ]
+
+    @classmethod
+    def make_graduation_requirement(cls, student):
+        """Creates a students graduation requirement if they do not have one.
+        Modifies an existing one making sure that it always has the correct 
+        majors, minors, etc. Should be called whenever you need to setup a 
+        students graduation requirements, or even access them."""
+
+        foundational_core = cls.objects.get(name='Foundational Core')
+        if student.graduationRequirement is None:
+            req = cls(name='Graduation Requirements',
+                      display_name='Graduation Requirements')
+            req.save()
+            req.requirements.add(foundational_core)
+            
+            req.requirements.add(*[m.requirement for m in student.majors.all()])
+            req.requirements.add(*[m.requirement for m in student.minors.all()])
+
+            student.graduationRequirement = req
+            student.save()
+
+        else: 
+            req = student.graduationRequirement
+
+            valid_requirements = [foundational_core]
+            valid_requirements.extend([m.requirement for m in student.majors.all()])
+            valid_requirements.extend([m.requirement for m in student.minors.all()])
+            
+            requirements =  req.requirements.all()
+
+            invalid_requirements = set(requirements) - set(valid_requirements)
+            req.requirements.remove(*invalid_requirements)
+
+            missing_requirements = set(valid_requirements) - set(requirements)
+            req.requirements.add(*missing_requirements)
+        
+        req.constraints.add(Constraint.objects.get(name='All sub requirements need to be satisfied'))
+        return req

@@ -23,7 +23,7 @@
         "work_phone": "", 
         "photo": "", 
         "created_at": "2013-06-05T17:02:52.054Z", 
-        "updated_at": "2013-10-14T01:38:08.483Z", 
+        "updated_at": "2013-10-15T01:21:00.023Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -38,7 +38,7 @@
         "work_phone": "", 
         "photo": "", 
         "created_at": "2013-07-11T18:16:09.609Z", 
-        "updated_at": "2013-08-25T20:09:53.146Z", 
+        "updated_at": "2013-10-15T01:21:52.531Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -53,7 +53,7 @@
         "work_phone": "", 
         "photo": "", 
         "created_at": "2013-08-29T19:43:40.274Z", 
-        "updated_at": "2013-08-29T19:51:01.315Z", 
+        "updated_at": "2013-10-15T00:38:06.281Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -36114,7 +36114,8 @@
         "minors": [], 
         "student_id": "@00555555", 
         "university": 1, 
-        "user": 2, 
+        "user": 3, 
+        "graduationRequirement": 73, 
         "catalog_year": 1
     }
 },
@@ -36129,6 +36130,7 @@
         "student_id": "@00422577", 
         "university": 1, 
         "user": 4, 
+        "graduationRequirement": 74, 
         "catalog_year": 3
     }
 },
@@ -36136,7 +36138,7 @@
     "pk": 3, 
     "model": "planner.professor", 
     "fields": {
-        "user": 3, 
+        "user": 4, 
         "advisee": 2
     }
 },
@@ -62789,6 +62791,37 @@
         "constraints": [
             5
         ]
+    }
+},
+{
+    "pk": 73, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            61, 
+            40
+        ], 
+        "name": "Graduation Requirements", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Graduation Requirements", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 74, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            61
+        ], 
+        "name": "Graduation Requirements", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Graduation Requirements", 
+        "constraints": []
     }
 },
 {

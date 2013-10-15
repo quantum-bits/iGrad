@@ -2,7 +2,6 @@ from django.db import models
 
 from common_models import *
 from campus_models import *
-from grad_audit_models import *
 
 import logging
 logger = logging.getLogger(__name__)
