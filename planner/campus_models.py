@@ -418,12 +418,12 @@ class ProxiedModelBackend(ModelBackend):
 
 class Student(Person):
     user = models.OneToOneField(User, null=True)
-    university = models.ForeignKey(University, related_name='students')
+    university = models.ForeignKey(University, related_name='students', blank=True, null=True)
     student_id = models.CharField(max_length=25)
     entering_year = models.ForeignKey(AcademicYear, related_name='+',
                                       help_text='Year student entered university')
     catalog_year = models.ForeignKey(AcademicYear, related_name='+',
-                                     help_text='Catalog year for graduation plan')
+                                     help_text='Catalog year for graduation plan',blank=True, null=True)
     majors = models.ManyToManyField(Major, related_name='students', blank=True, null=True)
     minors = models.ManyToManyField(Minor, related_name='students', blank=True, null=True)
     planned_courses = models.ManyToManyField('CourseOffering', related_name='students', blank=True, null=True)

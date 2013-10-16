@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block extrahead %}
+  <link href="{{ STATIC_URL }}css/chosen.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
 {% endblock %}
 {% block content %}
 
@@ -8,16 +11,32 @@
       {% csrf_token %}
 
       <div class="addMajor_div">
-        <p><label form="advisee">Choose major:</label></p>
+        <p><label form="advisee">Choose major(s):</label></p>
 
         <p>{{ form.majors }}</p>
+
+      </div>
+      <div class="addMinor_div">
+        <p><label form="advisee">Choose minor(s):</label></p>
+
+        <p>{{ form.minors }}</p>
 
       </div>
 
       <p><input type="submit" alt="register" value="Change major" class="submitButton"/></p>
     </form>
   </div>
-
+   <script src="{{ STATIC_URL }}js/chosen.jquery.js" type="text/javascript"></script>
+  <script type="text/javascript"> 
+  $("#id_majors").chosen();
+  $("#id_minors").chosen();
+  $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
+  </script>
+  <script type="text/javascript">
+              $(document).ready(function () {
+                $(".alert").alert()
+                });
+  </script>
   <script>
     $(window).load(function(){
     $("#nav-profile").addClass("current");
