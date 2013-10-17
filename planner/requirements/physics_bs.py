@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from keys import NAME, COURSES, SUB_REQ
+from keys import *
 
 MAJOR_COURSES = (
     'PHY 211',
