@@ -17,39 +17,29 @@ def student_registration(request):
         return redirect('profile')
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+        print form.fields
         if form.is_valid():
             user = User.objects.create_user(username = form.cleaned_data['username'],
                                             email = form.cleaned_data['email'],
                                             password = form.cleaned_data['password'])
             user.save()
-
-            student = Student(user=user,
-                              name=form.cleaned_data['name'],
-                              entering_year=form.cleaned_data['entering_year'],
-                              major = form.cleaned_data['major'])
-            student.save()
-
-            yearlist = [0, 1, 2, 3, 4, 5]
-            semesterlist = [1, 2, 3, 4]
-            for year_temp in yearlist:
-                if year_temp == 0:
-                    semester_temp = 0
-                    p1 = StudentSemesterCourses(student=student,
-                                                year=year_temp,
-                                                semester=semester_temp)
-                    p1.save()
-                else:
-                    for semester_temp in semesterlist:
-                        p1 = StudentSemesterCourses(student=student,
-                                                    year=year_temp,
-                                                    semester=semester_temp)
-                        p1.save()
-
-            if student.major is not None:
-                courses_added = prepopulate_student_semesters(student.id)
+            print form.cleaned_data['classification']
+            if form.cleaned_data['classification']=="1":
+                student = Student(user=user,
+                                  first_name=form.cleaned_data['first_name'],
+                                  last_name=form.cleaned_data['last_name'],
+                                  entering_year=form.cleaned_data['entering_year'],
+                                  )
+                student.save()
+                student.majors = form.cleaned_data['majors']
+                student.save()
             else:
-                courses_added = False
-
+                professor = Professor(user=user,
+                                      first_name=form.cleaned_data['first_name'],
+                                      last_name=form.cleaned_data['last_name'])
+                professor.save()
+            current_user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            login(request,current_user)
             return redirect('profile')
         else:
             return render(request, 'register.html', {'form': form})

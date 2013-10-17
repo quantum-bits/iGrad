@@ -48,6 +48,11 @@
     {% for major in  user.student.majors.all %}
     <p> {{ major }} </p>
     {% endfor %}
+    </p>
+    <p>Minors: </p>
+    {% for minor in  user.student.minors.all %}
+    <p> {{ minor }} </p>
+    {% endfor %}
       (<a class="other" href="{% url 'update_major' %}">Change</a>)
     </p>
     <p>Entering Year: {{ user.student.entering_year }}</p>
