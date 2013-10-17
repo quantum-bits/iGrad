@@ -5,7 +5,6 @@ from models import *
 
 
 class RegistrationForm(forms.ModelForm):
-    university = forms.CharField(label=(u'University'))
     username = forms.CharField(label=(u'User Name'))
     first_name = forms.CharField(label=(u'First Name'))
     last_name = forms.CharField(label=(u'Last Name'))
