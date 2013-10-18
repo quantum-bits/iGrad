@@ -998,10 +998,10 @@ class Requirement(models.Model):
         else: 
             req = student.graduationRequirement
 
-            valid_requirements = [foundational_core]
+            valid_requirements = []
             valid_requirements.extend([m.requirement for m in student.majors.all()])
             valid_requirements.extend([m.requirement for m in student.minors.all()])
-            
+            valid_requirements.append(foundational_core)
             requirements =  req.requirements.all()
 
             invalid_requirements = set(requirements) - set(valid_requirements)
