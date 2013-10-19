@@ -5,7 +5,6 @@ run_mode = RunMode('dev', debug_toolbar=False)
 
 DEBUG = run_mode.dev
 TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     ('Tom Nurkkala', 'tnurkkala@cse.taylor.edu'),
 )

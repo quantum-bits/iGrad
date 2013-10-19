@@ -6,18 +6,20 @@ from models import *
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label=(u'User Name'))
-    name = forms.CharField(label=(u'Name'))
+    first_name = forms.CharField(label=(u'First Name'))
+    last_name = forms.CharField(label=(u'Last Name'))
     email = forms.EmailField(label=(u'Email Address'))
     password = forms.CharField(label=(u'Password'),
                                widget=forms.PasswordInput(render_value=False))
     
     password1 = forms.CharField(label=(u'Verify Password'),
                                 widget=forms.PasswordInput(render_value=False))
-
+    CHOICES = (('1', 'Student',), ('2', 'Faculty',))
+    classification = forms.ChoiceField(label=(u'Classification'), widget=forms.RadioSelect, choices=CHOICES)
     class Meta:
         model = Student
-        exclude = ('user',)
-
+        exclude = ('user','student_id','university','catalog_year','name')
+            
     def clean_username(self):
         username = self.cleaned_data['username']
         try:
@@ -89,7 +91,7 @@ class UpdateMajorForm(forms.ModelForm):
     class Meta:
         model = Student
         exclude = ('user', 'university', 'student_id', 'entering_year', 
-                   'catalog_year', 'minors', 'first_name', 'last_name',)
+                   'catalog_year', 'first_name', 'last_name',)
 
 
 

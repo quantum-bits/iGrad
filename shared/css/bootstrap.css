@@ -6273,25 +6273,6 @@ margin-left: -4px;
   position: fixed;
 }
 
-.register-form {
-	margin: 0 0 0 19%;
-	max-width: 840px;
-	min-width: 840px;
-}
-
-.register-left {
-	width:420px;
-	float:left;
-	height:470px;
-}
-
-.register-right {
-	width:420px;
-	float:left;
-	height:470px;
-}
-
-
 .submitButton 
 {
 
@@ -6337,6 +6318,7 @@ margin-left: -4px;
 	margin: 0 auto;
 	width:220px;
 }
+
 h1,h2, .banner-head p { font-family: 'Proxima-Nova', Arial, sans-serif; }
 @font-face {
     font-family: 'Proxima-Nova';

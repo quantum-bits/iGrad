@@ -15,36 +15,6 @@
     }
 },
 {
-    "pk": 2, 
-    "model": "planner.person", 
-    "fields": {
-        "first_name": "Tom", 
-        "last_name": "Doe", 
-        "work_phone": "", 
-        "photo": "", 
-        "created_at": "2013-06-05T17:02:52.054Z", 
-        "updated_at": "2013-10-15T01:21:00.023Z", 
-        "home_phone": "", 
-        "cell_phone": "", 
-        "nickname": ""
-    }
-},
-{
-    "pk": 3, 
-    "model": "planner.person", 
-    "fields": {
-        "first_name": "Professor", 
-        "last_name": "X", 
-        "work_phone": "", 
-        "photo": "", 
-        "created_at": "2013-07-11T18:16:09.609Z", 
-        "updated_at": "2013-10-15T01:21:52.531Z", 
-        "home_phone": "", 
-        "cell_phone": "", 
-        "nickname": ""
-    }
-},
-{
     "pk": 4, 
     "model": "planner.person", 
     "fields": {
@@ -54,6 +24,21 @@
         "photo": "", 
         "created_at": "2013-08-29T19:43:40.274Z", 
         "updated_at": "2013-10-15T00:38:06.281Z", 
+        "home_phone": "", 
+        "cell_phone": "", 
+        "nickname": ""
+    }
+},
+{
+    "pk": 5, 
+    "model": "planner.person", 
+    "fields": {
+        "first_name": "Tom", 
+        "last_name": "Doe", 
+        "work_phone": "", 
+        "photo": "", 
+        "created_at": "2013-10-17T19:17:42.174Z", 
+        "updated_at": "2013-10-17T19:39:19.729Z", 
         "home_phone": "", 
         "cell_phone": "", 
         "nickname": ""
@@ -2098,7 +2083,7 @@
         "title": "Introduction to Computational Problem Solving", 
         "created_at": "2013-06-10T19:01:22.908Z", 
         "number": "120", 
-        "updated_at": "2013-06-21T20:37:16.839Z", 
+        "updated_at": "2013-10-17T20:13:46.691Z", 
         "schedule_semester": [
             1, 
             3
@@ -2363,7 +2348,7 @@
         "title": "Calculus I", 
         "created_at": "2013-06-10T19:09:33.450Z", 
         "number": "151", 
-        "updated_at": "2013-06-21T20:37:16.944Z", 
+        "updated_at": "2013-10-17T20:15:15.323Z", 
         "schedule_semester": [
             1, 
             3
@@ -2422,9 +2407,9 @@
         "title": "Mathematical Statistics", 
         "created_at": "2013-06-10T19:11:47.499Z", 
         "number": "352", 
-        "updated_at": "2013-06-21T20:37:16.962Z", 
+        "updated_at": "2013-10-17T20:12:08.250Z", 
         "schedule_semester": [
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -2690,7 +2675,7 @@
         "title": "Calculus II", 
         "created_at": "2013-06-10T19:18:56.169Z", 
         "number": "230", 
-        "updated_at": "2013-06-21T20:37:16.953Z", 
+        "updated_at": "2013-10-17T20:15:31.322Z", 
         "schedule_semester": [
             1, 
             3
@@ -2710,7 +2695,7 @@
         "title": "Calculus III", 
         "created_at": "2013-06-10T19:19:22.482Z", 
         "number": "240", 
-        "updated_at": "2013-06-21T20:37:16.955Z", 
+        "updated_at": "2013-10-17T20:15:49.498Z", 
         "schedule_semester": [
             1, 
             3
@@ -2730,13 +2715,12 @@
         "title": "Linear Algebra", 
         "created_at": "2013-06-10T19:19:49.793Z", 
         "number": "245", 
-        "updated_at": "2013-06-21T20:37:16.957Z", 
+        "updated_at": "2013-10-17T20:16:32.695Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 3
@@ -2750,9 +2734,8 @@
         "title": "Differential Equations ", 
         "created_at": "2013-06-10T19:20:18.168Z", 
         "number": "251", 
-        "updated_at": "2013-06-21T20:37:16.958Z", 
+        "updated_at": "2013-10-17T20:16:01.976Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -2770,13 +2753,12 @@
         "title": "Mathematical Modeling with Numerical Analysis", 
         "created_at": "2013-06-10T19:20:50.387Z", 
         "number": "310", 
-        "updated_at": "2013-06-21T20:37:16.960Z", 
+        "updated_at": "2013-10-17T20:11:18.405Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 3
@@ -3130,10 +3112,9 @@
         "title": "College Chemistry I", 
         "created_at": "2013-06-11T20:26:36.521Z", 
         "number": "211", 
-        "updated_at": "2013-06-21T20:37:16.834Z", 
+        "updated_at": "2013-10-17T20:12:56.841Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -3187,18 +3168,19 @@
     "model": "planner.course", 
     "fields": {
         "credit_hours": 2, 
-        "title": "University Physics I", 
+        "title": "University Physics I & Lab", 
         "created_at": "2013-06-11T20:28:48.901Z", 
         "number": "211", 
-        "updated_at": "2013-06-21T20:37:16.992Z", 
+        "updated_at": "2013-10-17T19:55:35.821Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
         "attributes": [], 
-        "coreqs": [], 
+        "coreqs": [
+            78
+        ], 
         "subject": 7
     }
 },
@@ -3210,13 +3192,12 @@
         "title": "Fundamentals of Space Systems", 
         "created_at": "2013-06-11T20:29:40.737Z", 
         "number": "345", 
-        "updated_at": "2013-06-21T20:37:16.904Z", 
+        "updated_at": "2013-10-17T20:35:07.106Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -3330,11 +3311,9 @@
         "title": "New Student Orientation", 
         "created_at": "2013-06-12T22:32:40.885Z", 
         "number": "101", 
-        "updated_at": "2013-06-21T20:37:16.931Z", 
+        "updated_at": "2013-10-17T20:21:29.655Z", 
         "schedule_semester": [
-            1, 
-            2, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -3454,10 +3433,9 @@
         "title": "Senior Seminar", 
         "created_at": "2013-06-12T22:36:23.807Z", 
         "number": "495", 
-        "updated_at": "2013-06-21T20:37:16.936Z", 
+        "updated_at": "2013-10-17T20:22:20.035Z", 
         "schedule_semester": [
             1, 
-            2, 
             3
         ], 
         "prereqs": [], 
@@ -3684,10 +3662,9 @@
         "title": "Arts and Ideas", 
         "created_at": "2013-06-13T19:19:57.121Z", 
         "number": "330", 
-        "updated_at": "2013-06-21T20:37:16.929Z", 
+        "updated_at": "2013-10-17T20:24:38.141Z", 
         "schedule_semester": [
             1, 
-            2, 
             3
         ], 
         "prereqs": [], 
@@ -4810,7 +4787,7 @@
         "title": "Practicuum", 
         "created_at": "2013-10-03T19:35:30.031Z", 
         "number": "393", 
-        "updated_at": "2013-10-03T19:35:30.031Z", 
+        "updated_at": "2013-10-17T20:04:50.408Z", 
         "schedule_semester": [
             4
         ], 
@@ -4829,10 +4806,9 @@
         "title": "Directed Research", 
         "created_at": "2013-10-03T19:38:23.596Z", 
         "number": "450", 
-        "updated_at": "2013-10-03T19:38:23.596Z", 
+        "updated_at": "2013-10-17T20:05:17.556Z", 
         "schedule_semester": [
             1, 
-            2, 
             3
         ], 
         "prereqs": [], 
@@ -12846,13 +12822,12 @@
     "pk": 543, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Issues in Science & Religion", 
         "created_at": "2013-10-04T20:30:23.908Z", 
         "number": "231", 
-        "updated_at": "2013-10-04T20:30:23.908Z", 
+        "updated_at": "2013-10-17T20:18:39.249Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -32746,13 +32721,12 @@
     "pk": 1538, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 2, 
         "title": "College Chemistry II", 
         "created_at": "2013-10-04T20:31:55.627Z", 
         "number": "212", 
-        "updated_at": "2013-10-04T20:31:55.627Z", 
+        "updated_at": "2013-10-17T20:13:14.101Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -33066,17 +33040,16 @@
     "pk": 1554, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Physical Chemistry", 
+        "credit_hours": 2, 
+        "title": "Physical Chemistry I & Lab", 
         "created_at": "2013-10-04T20:31:57.008Z", 
         "number": "431", 
-        "updated_at": "2013-10-04T20:31:57.008Z", 
+        "updated_at": "2013-10-17T20:06:13.387Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 5
@@ -33086,17 +33059,16 @@
     "pk": 1555, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Physical Chemistry II", 
+        "credit_hours": 2, 
+        "title": "Physical Chemistry II & Lab", 
         "created_at": "2013-10-04T20:31:57.094Z", 
         "number": "432", 
-        "updated_at": "2013-10-04T20:31:57.094Z", 
+        "updated_at": "2013-10-17T20:06:47.795Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 5
@@ -33230,10 +33202,9 @@
         "title": "Missions Technology", 
         "created_at": "2013-10-04T20:31:57.740Z", 
         "number": "230", 
-        "updated_at": "2013-10-04T20:31:57.740Z", 
+        "updated_at": "2013-10-17T20:31:42.340Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33290,13 +33261,12 @@
         "title": "Data Communications", 
         "created_at": "2013-10-04T20:31:58.073Z", 
         "number": "331", 
-        "updated_at": "2013-10-04T20:31:58.073Z", 
+        "updated_at": "2013-10-17T20:32:13.191Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 1
@@ -33546,14 +33516,13 @@
     "pk": 1578, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Intro Engineering/Software Tls", 
         "created_at": "2013-10-04T20:31:59.374Z", 
         "number": "104", 
-        "updated_at": "2013-10-04T20:31:59.374Z", 
+        "updated_at": "2013-10-17T20:14:33.190Z", 
         "schedule_semester": [
-            1, 
-            3
+            2
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33566,14 +33535,13 @@
     "pk": 1579, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 5, 
         "title": "Intro to Engineering Ethics", 
         "created_at": "2013-10-04T20:31:59.452Z", 
         "number": "105", 
-        "updated_at": "2013-10-04T20:31:59.452Z", 
+        "updated_at": "2013-10-17T20:14:55.406Z", 
         "schedule_semester": [
-            1, 
-            3
+            2
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33606,14 +33574,13 @@
     "pk": 1581, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Intro to Electric Circuits", 
+        "credit_hours": 2, 
+        "title": "Intro to Electric Circuits & Lab", 
         "created_at": "2013-10-04T20:31:59.619Z", 
         "number": "231", 
-        "updated_at": "2013-10-04T20:31:59.619Z", 
+        "updated_at": "2013-10-17T20:09:24.398Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33626,13 +33593,12 @@
     "pk": 1582, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Principles of Engineering", 
+        "credit_hours": 2, 
+        "title": "Principles of Engineering & Lab", 
         "created_at": "2013-10-04T20:31:59.699Z", 
         "number": "252", 
-        "updated_at": "2013-10-04T20:31:59.699Z", 
+        "updated_at": "2013-10-17T20:07:25.901Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -33670,10 +33636,9 @@
         "title": "Statics", 
         "created_at": "2013-10-04T20:31:59.890Z", 
         "number": "301", 
-        "updated_at": "2013-10-04T20:31:59.890Z", 
+        "updated_at": "2013-10-17T20:07:46.367Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33690,13 +33655,12 @@
         "title": "Strength/Materials&Machine Des", 
         "created_at": "2013-10-04T20:31:59.976Z", 
         "number": "302", 
-        "updated_at": "2013-10-04T20:31:59.976Z", 
+        "updated_at": "2013-10-17T20:08:22.945Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33706,17 +33670,16 @@
     "pk": 1586, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Applied Electromagnetics", 
         "created_at": "2013-10-04T20:32:00.063Z", 
         "number": "321", 
-        "updated_at": "2013-10-04T20:32:00.063Z", 
+        "updated_at": "2013-10-17T20:08:47.147Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33746,17 +33709,16 @@
     "pk": 1588, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 2, 
         "title": "Control Systems", 
         "created_at": "2013-10-04T20:32:00.247Z", 
         "number": "332", 
-        "updated_at": "2013-10-04T20:32:00.247Z", 
+        "updated_at": "2013-10-17T20:27:48.719Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33786,17 +33748,16 @@
     "pk": 1590, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Microcomputer Interfacing", 
+        "credit_hours": 2, 
+        "title": "Microcomputer Interfacing & Lab", 
         "created_at": "2013-10-04T20:32:00.429Z", 
         "number": "341", 
-        "updated_at": "2013-10-04T20:32:00.429Z", 
+        "updated_at": "2013-10-17T20:10:10.617Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33810,13 +33771,12 @@
         "title": "Thermodynamics", 
         "created_at": "2013-10-04T20:32:00.527Z", 
         "number": "351", 
-        "updated_at": "2013-10-04T20:32:00.527Z", 
+        "updated_at": "2013-10-17T20:28:17.415Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33830,13 +33790,12 @@
         "title": "Materials Sci & Solid State Ph", 
         "created_at": "2013-10-04T20:32:00.621Z", 
         "number": "352", 
-        "updated_at": "2013-10-04T20:32:00.621Z", 
+        "updated_at": "2013-10-17T20:28:44.648Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33850,13 +33809,12 @@
         "title": "Fluid Mechanics & Water Flow", 
         "created_at": "2013-10-04T20:32:00.708Z", 
         "number": "355", 
-        "updated_at": "2013-10-04T20:32:00.708Z", 
+        "updated_at": "2013-10-17T20:32:54.506Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33870,13 +33828,12 @@
         "title": "Heat Transfer", 
         "created_at": "2013-10-04T20:32:00.796Z", 
         "number": "357", 
-        "updated_at": "2013-10-04T20:32:00.797Z", 
+        "updated_at": "2013-10-17T20:33:21.878Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -33926,13 +33883,12 @@
     "pk": 1597, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Junior Engineering Project", 
         "created_at": "2013-10-04T20:32:01.087Z", 
         "number": "392", 
-        "updated_at": "2013-10-04T20:32:01.087Z", 
+        "updated_at": "2013-10-17T20:10:31.247Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -33946,14 +33902,13 @@
     "pk": 1598, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Practicum", 
         "created_at": "2013-10-04T20:32:01.186Z", 
         "number": "393", 
-        "updated_at": "2013-10-04T20:32:01.186Z", 
+        "updated_at": "2013-10-17T20:29:20.753Z", 
         "schedule_semester": [
-            1, 
-            3
+            4
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -33970,9 +33925,10 @@
         "title": "Advanced Engineering Project", 
         "created_at": "2013-10-04T20:32:01.278Z", 
         "number": "394", 
-        "updated_at": "2013-10-04T20:32:01.278Z", 
+        "updated_at": "2013-10-17T20:33:53.650Z", 
         "schedule_semester": [
             1, 
+            2, 
             3
         ], 
         "prereqs": [], 
@@ -33986,17 +33942,16 @@
     "pk": 1600, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Adv Electronics &Microcircuits", 
+        "credit_hours": 2, 
+        "title": "Adv Electronics & Microcircuits", 
         "created_at": "2013-10-04T20:32:01.374Z", 
         "number": "431", 
-        "updated_at": "2013-10-04T20:32:01.374Z", 
+        "updated_at": "2013-10-17T20:34:26.130Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 8
@@ -34006,13 +33961,12 @@
     "pk": 1601, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 5, 
         "title": "Review of Fund of Engineering", 
         "created_at": "2013-10-04T20:32:01.465Z", 
         "number": "491", 
-        "updated_at": "2013-10-04T20:32:01.465Z", 
+        "updated_at": "2013-10-17T20:29:45.090Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -34026,14 +33980,13 @@
     "pk": 1602, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Engineering Senior Capstone I", 
         "created_at": "2013-10-04T20:32:01.734Z", 
         "number": "492", 
-        "updated_at": "2013-10-04T20:32:01.734Z", 
+        "updated_at": "2013-10-17T20:30:04.820Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -34050,10 +34003,9 @@
         "title": "Engineering Senior Capstone II", 
         "created_at": "2013-10-04T20:32:01.845Z", 
         "number": "493", 
-        "updated_at": "2013-10-04T20:32:01.845Z", 
+        "updated_at": "2013-10-17T20:30:27.387Z", 
         "schedule_semester": [
-            1, 
-            3
+            2
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -34066,13 +34018,12 @@
     "pk": 1604, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Engineering Senior Capstone II", 
+        "credit_hours": 5, 
+        "title": "Engineering Senior Capstone III", 
         "created_at": "2013-10-04T20:32:01.940Z", 
         "number": "494", 
-        "updated_at": "2013-10-04T20:32:01.940Z", 
+        "updated_at": "2013-10-17T20:30:51.697Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -34910,10 +34861,9 @@
         "title": "Advanced Statistical Methods", 
         "created_at": "2013-10-04T20:32:05.905Z", 
         "number": "382", 
-        "updated_at": "2013-10-04T20:32:05.905Z", 
+        "updated_at": "2013-10-17T20:12:34.176Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -35446,13 +35396,12 @@
     "pk": 1673, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "University Physics II", 
+        "credit_hours": 3, 
+        "title": "University Physics II & Lab", 
         "created_at": "2013-10-04T20:32:08.604Z", 
         "number": "212", 
-        "updated_at": "2013-10-04T20:32:08.604Z", 
+        "updated_at": "2013-10-17T19:55:25.174Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -35486,14 +35435,13 @@
     "pk": 1675, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
-        "title": "Modern Physics", 
+        "credit_hours": 2, 
+        "title": "Modern Physics & Lab", 
         "created_at": "2013-10-04T20:32:08.785Z", 
         "number": "311", 
-        "updated_at": "2013-10-04T20:32:08.785Z", 
+        "updated_at": "2013-10-17T19:55:47.183Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -35530,13 +35478,12 @@
         "title": "Electricity and Magnetism", 
         "created_at": "2013-10-04T20:32:08.960Z", 
         "number": "321", 
-        "updated_at": "2013-10-04T20:32:08.960Z", 
+        "updated_at": "2013-10-17T19:56:29.172Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35550,13 +35497,12 @@
         "title": "Waves and Physical Optics", 
         "created_at": "2013-10-04T20:32:09.041Z", 
         "number": "322", 
-        "updated_at": "2013-10-04T20:32:09.041Z", 
+        "updated_at": "2013-10-17T19:56:55.879Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35566,11 +35512,11 @@
     "pk": 1679, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Advanced Laboratory", 
         "created_at": "2013-10-04T20:32:09.129Z", 
         "number": "330", 
-        "updated_at": "2013-10-04T20:32:09.129Z", 
+        "updated_at": "2013-10-17T19:59:34.956Z", 
         "schedule_semester": [
             1, 
             3
@@ -35590,9 +35536,8 @@
         "title": "Math Meth in Phy & Engineering", 
         "created_at": "2013-10-04T20:32:09.217Z", 
         "number": "341", 
-        "updated_at": "2013-10-04T20:32:09.217Z", 
+        "updated_at": "2013-10-17T20:00:09.109Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
@@ -35610,13 +35555,12 @@
         "title": "Analytical Mechanics", 
         "created_at": "2013-10-04T20:32:09.308Z", 
         "number": "342", 
-        "updated_at": "2013-10-04T20:32:09.308Z", 
+        "updated_at": "2013-10-17T20:00:46.450Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35626,17 +35570,16 @@
     "pk": 1682, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 2, 
         "title": "Thermodynamics/Statistical Mec", 
         "created_at": "2013-10-04T20:32:09.395Z", 
         "number": "350", 
-        "updated_at": "2013-10-04T20:32:09.396Z", 
+        "updated_at": "2013-10-17T20:01:22.888Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35690,13 +35633,12 @@
         "title": "Quantum Mechanics I", 
         "created_at": "2013-10-04T20:32:10.061Z", 
         "number": "412", 
-        "updated_at": "2013-10-04T20:32:10.061Z", 
+        "updated_at": "2013-10-17T20:01:59.001Z", 
         "schedule_semester": [
-            1, 
             3
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35706,17 +35648,16 @@
     "pk": 1686, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 4, 
         "title": "Quantum Mechanics II", 
         "created_at": "2013-10-04T20:32:10.151Z", 
         "number": "413", 
-        "updated_at": "2013-10-04T20:32:10.151Z", 
+        "updated_at": "2013-10-17T20:02:21.001Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "O", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35730,13 +35671,12 @@
         "title": "Adv Math Methods in Physics", 
         "created_at": "2013-10-04T20:32:10.233Z", 
         "number": "441", 
-        "updated_at": "2013-10-04T20:32:10.233Z", 
+        "updated_at": "2013-10-17T20:03:20.084Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -35786,14 +35726,13 @@
     "pk": 1690, 
     "model": "planner.course", 
     "fields": {
-        "credit_hours": 1, 
+        "credit_hours": 5, 
         "title": "Preparation for Physics GRE", 
         "created_at": "2013-10-04T20:32:10.491Z", 
         "number": "491", 
-        "updated_at": "2013-10-04T20:32:10.491Z", 
+        "updated_at": "2013-10-17T20:03:39.154Z", 
         "schedule_semester": [
-            1, 
-            3
+            1
         ], 
         "prereqs": [], 
         "schedule_year": "B", 
@@ -35810,13 +35749,12 @@
         "title": "Physics Senior Capstone", 
         "created_at": "2013-10-04T20:32:10.600Z", 
         "number": "493", 
-        "updated_at": "2013-10-04T20:32:10.600Z", 
+        "updated_at": "2013-10-17T20:04:16.822Z", 
         "schedule_semester": [
-            1, 
-            3
+            2
         ], 
         "prereqs": [], 
-        "schedule_year": "B", 
+        "schedule_year": "E", 
         "attributes": [], 
         "coreqs": [], 
         "subject": 7
@@ -36103,23 +36041,6 @@
     }
 },
 {
-    "pk": 2, 
-    "model": "planner.student", 
-    "fields": {
-        "majors": [
-            2
-        ], 
-        "planned_courses": [], 
-        "entering_year": 1, 
-        "minors": [], 
-        "student_id": "@00555555", 
-        "university": 1, 
-        "user": 3, 
-        "graduationRequirement": 73, 
-        "catalog_year": 1
-    }
-},
-{
     "pk": 4, 
     "model": "planner.student", 
     "fields": {
@@ -36135,11 +36056,21 @@
     }
 },
 {
-    "pk": 3, 
-    "model": "planner.professor", 
+    "pk": 5, 
+    "model": "planner.student", 
     "fields": {
-        "user": 4, 
-        "advisee": 2
+        "majors": [
+            1, 
+            2
+        ], 
+        "planned_courses": [], 
+        "entering_year": 2, 
+        "minors": [], 
+        "student_id": "@0001", 
+        "university": null, 
+        "user": 3, 
+        "graduationRequirement": 77, 
+        "catalog_year": null
     }
 },
 {
@@ -61790,32 +61721,6 @@
 },
 {
     "pk": 1, 
-    "model": "planner.coursesubstitution", 
-    "fields": {
-        "credit_hours": 3, 
-        "title": "Foundations of Programming", 
-        "university": null, 
-        "equivalent_course": 4, 
-        "semester": 1, 
-        "student": 2, 
-        "sub_type": 1
-    }
-},
-{
-    "pk": 3, 
-    "model": "planner.coursesubstitution", 
-    "fields": {
-        "credit_hours": 3, 
-        "title": "Computational Problem Solving", 
-        "university": 1, 
-        "equivalent_course": 4, 
-        "semester": 1, 
-        "student": 2, 
-        "sub_type": null
-    }
-},
-{
-    "pk": 1, 
     "model": "planner.constraint", 
     "fields": {
         "comment": "", 
@@ -62822,6 +62727,73 @@
         "min_required_credit_hours": 0, 
         "display_name": "Graduation Requirements", 
         "constraints": []
+    }
+},
+{
+    "pk": 75, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            61, 
+            40
+        ], 
+        "name": "Graduation Requirements", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Graduation Requirements", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 76, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            61
+        ], 
+        "name": "Graduation Requirements", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Graduation Requirements", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 77, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [
+            26, 
+            61, 
+            40
+        ], 
+        "name": "Graduation Requirements", 
+        "courses": [], 
+        "min_required_credit_hours": 0, 
+        "display_name": "Graduation Requirements", 
+        "constraints": [
+            5
+        ]
+    }
+},
+{
+    "pk": 78, 
+    "model": "planner.requirement", 
+    "fields": {
+        "requirements": [], 
+        "name": "MAT 151", 
+        "courses": [
+            17
+        ], 
+        "min_required_credit_hours": 4, 
+        "display_name": "MAT 151", 
+        "constraints": [
+            2
+        ]
     }
 },
 {
