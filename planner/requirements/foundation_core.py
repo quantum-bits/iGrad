@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from keys import NAME, COURSES, SUB_REQ, EXCEPT
+from keys import *
 
 ORIENTATION = {NAME : 'Orientation Foundation', COURSES : ('IAS 101',)}
 SPIRITUAL_FOUNDATION = {NAME : 'Spiritual Foundation' , 

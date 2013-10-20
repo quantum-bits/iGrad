@@ -6,14 +6,24 @@ import os
 import sys
 import itertools
 
-def addCourse(subject, number, req):
-    try:
-        c = Course.objects.get(subject__abbrev=subject, number=number)
-        req.courses.add(c)
-        print 'Successfully added {} {} to {}'.format(subject, number, req)
-    except Course.DoesNotExist:
-        print 'Tried adding {} {} to {}. Course not found.'.format(subject, number, req)
 
+
+
+def addCourseToReq(fn):
+    def inner(self, req, spec, match):
+        courses = fn(self, req, spec, match)
+        
+        for subject, number, req in courses:
+            self.courses.append('{} {}'.format(subject, number))
+            try:
+                c = Course.objects.get(subject__abbrev=subject, number=number)
+                req.courses.add(c)
+                print 'Successfully added {} {} to {}'.format(subject, number, req)
+            except Course.DoesNotExist:
+                print 'Tried adding {} {} to {}. Course not found.'.format(subject, number, req)
+    return inner
+            
+        
 def addConstraint(fn):
     """Decorator that takes the constraint_text returned by a fn 
     and tries to add the corresponding constraint to the requirement.
@@ -35,13 +45,20 @@ class Command(BaseCommand):
         sys.path.insert(0, 'planner/requirements')
         req_file = args[0]
         req = importlib.import_module(req_file)
+        self.courses = []
+
         self.NAME = req.NAME 
         self.COURSES = req.COURSES
         self.EXCEPT = req.EXCEPT 
         self.CONSTRAINTS = req.CONSTRAINTS
         self.REQS = req.REQS
         self.handle_requirements(req.requirements)
-        
+
+        self.courses = sorted(list(set(self.courses)))
+        with open('courses.txt', 'a') as courses_f:
+            for c in self.courses:
+                courses_f.write('{}\n'.format(c))
+
     def handle_requirements(self, requirements, parent=None):
         for spec in requirements:
             name = spec[self.NAME]
@@ -57,18 +74,20 @@ class Command(BaseCommand):
             self.handle_constraints(requirement, spec, self.CONSTRAINTS)
             self.handle_requirements(spec.get(self.REQS, []), requirement)
 
-                
+    @addCourseToReq
     def addCourse(self, req, spec, match):
         item = match.group()
         subject, number = item.split()
-        addCourse(subject, int(number), req)
-        
+        return [(subject, int(number), req)]
+
+    @addCourseToReq
     def addCourseList(self, req, spec, match):
         item = match.group()
         "Add comma separated course list to req."
         subject, numbers = item.split()
-        for n in numbers.split(','): addCourse(subject, n, req)
+        return [(subject, n, req) for n in numbers.split(',')]
         
+    @addCourseToReq
     def addCourseRange(self, req, spec, match):
         item = match.group()
         subject, number_range = item.split()
@@ -76,15 +95,15 @@ class Command(BaseCommand):
         courses = Course.objects.filter(subject__abbrev=subject)
         courses = courses.filter(number__gte=min_number)
         courses = courses.filter(number__lte=max_number)
-        req.courses.add(*courses)
-        print 'Added: {}'.format('\n'.join(str(c) for c in courses))
-
-
+        return [(c.subject.abbrev, c.number, req) for c in courses]
+    
+    @addCourseToReq
     def addCourseAlternative(self, req, spec, match):
         item = match.group()
         subject, alternatives = item.split()
-        for number in alternatives.split('/'): addCourse(subject, number, req)
+        return [(subject, n, req) for n in alternatives.split('/')]
 
+    @addCourseToReq
     def addCoursePattern(self, req,spec,match):
         item = match.group()
         exceptions = spec.get(self.EXCEPT, [])
@@ -98,7 +117,7 @@ class Command(BaseCommand):
         exception_numbers = [e.split()[1] for e in exceptions]
         numbers = (c.number for c in Course.objects.filter(subject__abbrev=subject)
                    if c.number not in exception_numbers)
-        for n in numbers: addCourse(subject, n, req)
+        return [(subject, n, req) for n in numbers]
     
     @addConstraint
     def addAllConstraint(self, req, spec, match):
