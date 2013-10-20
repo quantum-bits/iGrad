@@ -19,7 +19,7 @@ def addConstraint(fn):
     and tries to add the corresponding constraint to the requirement.
     If it can't find it, creates one and adds to the requirement."""
     def inner(self, req, spec, match):
-        constraint_text  = fn(req, spec, match)
+        constraint_text  = fn(self, req, spec, match)
         try:
             constraint = Constraint.objects.get(constraint_text=constraint_text)
         except Constraint.DoesNotExist:
@@ -39,14 +39,25 @@ class Command(BaseCommand):
         self.COURSES = req.COURSES
         self.EXCEPT = req.EXCEPT 
         self.CONSTRAINTS = req.CONSTRAINTS
-        for spec in req.requirements:
+        self.REQS = req.REQS
+        self.handle_requirements(req.requirements)
+        
+    def handle_requirements(self, requirements, parent=None):
+        for spec in requirements:
             name = spec[self.NAME]
             requirement,created = Requirement.objects.get_or_create(name = name, display_name = name)
-            if created: print 'Created new requirement: ' + name
-            else: print name + ': Requirement already created.'
+            if created:
+                print 'Created new requirement: ' + name
+            else:
+                print name + ': Requirement already created.'
+            if parent is not None:
+                parent.requirements.add(requirement)
+                print 'Added {} to {} requirements.'.format(requirement, parent)
             self.handle_courses(requirement, spec, self.COURSES)
             self.handle_constraints(requirement, spec, self.CONSTRAINTS)
-            
+            self.handle_requirements(spec.get(self.REQS, []), requirement)
+
+                
     def addCourse(self, req, spec, match):
         item = match.group()
         subject, number = item.split()
@@ -138,11 +149,11 @@ class Command(BaseCommand):
 
     handle_constraints = spec_handler({
             re.compile(r'^course_all$')                   :addAllConstraint,
-            re.compile(r'^courses_n(?P<n>\(\d+\))$')      :addNCourseConstraint,
-            re.compile(r'^course_credits(?P<n>\(\d+\))$') :addCourseCreditsConstraint,
+            re.compile(r'^courses_n\((?P<n>\d+)\)$')      :addNCourseConstraint,
+            re.compile(r'^course_credits\((?P<n>\d+)\)$') :addCourseCreditsConstraint,
             re.compile(r'^req_all$')                      :addAllReqConstraint,
-            re.compile(r'^req_n(?P<n>\(\d+\))$')          :addReqNConstraint,
-            re.compile(r'^req_credits(?P<n>\(\d+\))$')    :addReqCreditsConstraint,
+            re.compile(r'^req_n\((?P<n>\d+)\)$')          :addReqNConstraint,
+            re.compile(r'^req_credits\((?P<n>\d+)\)$')    :addReqCreditsConstraint,
             }
     )
 

@@ -842,7 +842,7 @@ class Constraint(models.Model):
 
     def min_required_credit_hours (self, courses, requirement, unused_courses, **kwargs):
         at_least = int(kwargs['at_least'])
-        all_courses = int(kwargs['all'])
+        all_courses = (kwargs.get('all', 'False')) == 'True'
         course_offerings = [] 
         courses_considered = [] 
         met_courses = requirement.met_courses(courses, all_courses)
