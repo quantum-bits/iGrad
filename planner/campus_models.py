@@ -453,21 +453,26 @@ class Student(Person):
         kwargs: before, during, after. 
         Each argument can be used to filter the list with a semester. 
         """
-        result = list(itertools.chain(self.planned_courses.all(), self.course_substitutions.all()))
+        
+        planned_courses = self.planned_courses.all()
+        course_subs = self.course_substitutions.all()
 
         before =  kwargs.get('before', None)
         if before is not None:
-            result = filter(lambda c: c.semester < before, result)
+            planned_courses.filter(semester__lt=before)
+            course_subs.filter(semester__lt=before)
 
         during = kwargs.get('during', None)
         if during is not None:
-            result = filter(lambda c: c.semester == during, result)
+            planned_courses.filter(semester=during)
+            course_subs.filter(semester=during)
         
         after = kwargs.get('after', None)
         if after is not None:
-            result = filter(lambda c: c.semester > after, result)
+            planned_courses.filter(semester__gt=after)
+            course_subs.filter(semester__gt=after)
         
-        return result
+        return list(itertools.chain(planned_courses, course_subs))
 
 
     def credit_hours_this_semester(self, semester):
