@@ -54,10 +54,10 @@ def student_registration(request):
 
 @login_required
 def profile(request):
-    # TODO: add search functionality. 
+    # TODO: add search functionality.
     user = request.user
     courses = CourseOffering.objects.all()
-  
+
     if user.is_student():
         isProfessor = False
         professorName = ''
@@ -66,7 +66,7 @@ def profile(request):
         isProfessor = True
         professorName = user.professor.full_name
         advisee = user.professor.advisee
-  
+
     context = { 'isProfessor': isProfessor,
                 'professorName': professorName,
                 'advisee': advisee,
@@ -90,7 +90,7 @@ def update_major(request):
         return render(request, 'updatemajor.html', context)
 
 
-# problems: 
+# problems:
 # --> I think the way that I have passed the object's id is not the best way to do it....
 # --> maybe look here:
 #     http://stackoverflow.com/questions/9013697/django-how-to-pass-object-object-id-to-another-template
@@ -107,7 +107,7 @@ def update_student_semester(request, semester_id):
                 student.planned_courses.add(co)
             return redirect('four_year_plan')
         else:
-            return render(request, 'updatestudentsemester.html', 
+            return render(request, 'updatestudentsemester.html',
                           {'form' : form, 'semester_id' : semester_id, 'course_subs' : course_subs})
     else:
         form = AddCourseForm(instance=student, semester=semester)
@@ -124,7 +124,7 @@ def advisee_required(fn):
         if request.user.is_professor():
             student = request.user.professor.advisee
             if student is None:
-                url = reverse('update_advisee') 
+                url = reverse('update_advisee')
                 return redirect(url + '?next={}'.format(request.path))
             else:
                 return fn(request, *args, **kwargs)
@@ -232,7 +232,8 @@ def display_grad_audit(request):
                    'hasMajor' : student.has_major(),
                    'isProfessor' : request.user.is_professor(),
                    'unusedcourses': unused_courses,
-                   'unusedcredithours': sum([courseOffering.credit_hours for courseOffering in unused_courses]),
+                   'unusedcredithours': sum([courseOffering.credit_hours
+                                             for courseOffering in unused_courses]),
                    'SPlist': sp_cc_information['sps'],
                    'CClist': sp_cc_information['ccs'],
                    'numSPs': sp_cc_information['num_sps'],
@@ -252,7 +253,7 @@ def add_course_substitution(request, semester_id):
     student = request.user.student
     semester = Semester.objects.get(id=semester_id)
     substitute = CourseSubstitution(student=student, semester=semester)
-    
+
     if request.method == 'POST':
         form = AddCourseSubstitution(request.POST,instance=substitute)
         if form.is_valid():
@@ -265,7 +266,7 @@ def add_course_substitution(request, semester_id):
         form = AddCourseSubstitution(instance=substitute)
         context = {'form': form}
         return render(request, 'add_course_substitute.html', context)
-    
+
 
 @login_required
 def edit_course_substitution(request, course_sub_id):
@@ -307,7 +308,7 @@ def add_course_to_plan(request, offering_id):
     student.planned_courses.add(CourseOffering.objects.get(id=offering_id))
     next = request.GET.get('next', 'profile')
     return redirect(next)
-                               
+
 @login_required
 def remove_course_from_plan(request, offering_id):
     student = request.user.student
@@ -412,7 +413,7 @@ def search(request):
 
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-            
+
         courses = filter(lambda c: q.upper() in c.abbrev.replace(' ',''), Course.objects.all())
         course_infos = []
         print courses
@@ -425,7 +426,7 @@ def search(request):
                 offering_data.append(offering_info)
             course = {'name' : course.title, 'abbrev' : course.abbrev, 'offerings' : offering_data}
             course_infos.append(course)
-        
+
         context={'courses':course_infos,'query':q, 'datablock':course_infos}
         return render(request, 'course_enrollment_results.html',context)
     else:
