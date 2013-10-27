@@ -457,10 +457,15 @@ class Student(Person):
 
     def __init__(self, *args, **kwargs):
         super(Student, self).__init__(*args, **kwargs)
-
-        self._planned_courses = list(self.planned_courses.all())
-        self._course_substitutions = list(self.course_substitutions.all())
-        self._all_courses = self._planned_courses + self._course_substitutions
+        # This code caches the relationships information. 
+        # But it break when creating a new Student because these
+        # relationships won't exist at time of creation.
+        try:
+            self._planned_courses = list(self.planned_courses.all())
+            self._course_substitutions = list(self.course_substitutions.all())
+            self._all_courses = self._planned_courses + self._course_substitutions
+        except ValueError: 
+            pass
 
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
