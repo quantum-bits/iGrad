@@ -10,6 +10,9 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ('title', 'number')
     filter_horizontal = ('schedule_semester','prereqs','coreqs',)
 
+class CourseOfferingAdmin(admin.ModelAdmin):
+    search_fields = ('course__title', 'course__number', 'course__subject__abbrev',)
+
 class RequirementAdmin(admin.ModelAdmin):
     filter_horizontal = ('constraints', 'requirements', 'courses',)
 
@@ -42,7 +45,7 @@ admin.site.register(AdvisingNote)
 admin.site.register(Constraint)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseAttribute)
-admin.site.register(CourseOffering)
+admin.site.register(CourseOffering, CourseOfferingAdmin)
 admin.site.register(CourseSubType)
 admin.site.register(CourseSubstitution, CourseSubstitutionAdmin)
 admin.site.register(CreditHour)

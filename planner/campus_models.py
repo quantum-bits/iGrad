@@ -10,7 +10,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime
 import itertools
-import time
+import utils
 
 import logging
 logger = logging.getLogger(__name__)
@@ -415,31 +415,6 @@ class ProxiedModelBackend(ModelBackend):
             return None
 
 
-def memoize(fn):
-    cache = {}
-
-    def inner(*args):
-        try:
-            return cache[args]
-        except KeyError:
-            result = cache[args] = fn(*args)
-            return result
-        except TypeError:
-            print 'Can not hash: {}.'.format(','.join([str(a) for a in args]))
-            return fn(*args)
-    return inner
-
-def timeit(fn):
-    name = fn.__name__
-    def timed(*args, **kwargs):
-        ts = time.time()
-        result = fn(*args, **kwargs)
-        te = time.time()
-        print 'func: %r took: %2.4f sec' % (name, te-ts)
-        return result
-    return timed
-
-
 class Student(Person):
     user = models.OneToOneField(User, null=True)
     university = models.ForeignKey(University, related_name='students', blank=True, null=True)
@@ -500,11 +475,11 @@ class Student(Person):
             rtn = filter(lambda c: c.semester > kwargs['after'], rtn)
         return rtn
 
-    @memoize
+    @utils.memoize
     def credit_hours_this_semester(self, semester):
         return sum([c.credit_hours for c in self.candidate_courses(during=semester)])
 
-    @memoize
+    @utils.memoize
     def credit_hours_in_plan(self):
         # planned_course_chs = self._planned_courses.aggregate(Sum('credit_hours'))['credit_hours__sum']
         # if planned_course_chs is None: planned_course_chs = 0
