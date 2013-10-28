@@ -588,6 +588,15 @@ class CourseOffering(StampedModel):
      def coreqs(self):
          return self.course.coreqs.all()
 
+     @classmethod 
+     def offering_options(cls, course, start=None, end=None):
+         offerings = cls.objects.filter(course=course)
+         if start is not None:
+             offerings = offerings.filter(semester__year__gte=start)
+         if end is not None:
+             offerings = offerings.filter(semester__year__lte=end)
+         return offerings
+
      def other_offerings(self, start=None, end=None):
          offerings = CourseOffering.objects.filter(course=self.course)
          offerings = offerings.exclude(semester=self.semester)
@@ -775,7 +784,8 @@ class GradAuditTemplate(object):
             info['comment'] = self.semesterDescription(courseOffering.semester)
 
             info['other_semesters'] = []
-            for offering in courseOffering.other_offerings():
+            for offering in courseOffering.other_offerings(start=self.student.entering_year,
+                                                           end=self.student.entering_year+5):
                 info['other_semesters'].append({'course_id' : offering.id,
                                                 'semester'  : offering.semester,
                                                 'hours_this_semester' : self.student.credit_hours_this_semester(offering.semester)})
@@ -784,7 +794,9 @@ class GradAuditTemplate(object):
             info['comment'] = None
             info['met'] = False
             info['other_semesters'] = []
-            for offering in CourseOffering.objects.filter(course=required_course).select_related():
+            for offering in CourseOffering.offering_options(required_course,
+                                                            start=self.student.entering_year,
+                                                            end=self.student.entering_year+5):
                 info['other_semesters'].append({'course_id' : offering.id,
                                                 'semester'  : offering.semester,
                                                 'hours_this_semester' : self.student.credit_hours_this_semester(offering.semester)})
