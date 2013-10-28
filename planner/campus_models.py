@@ -89,6 +89,13 @@ class AcademicYear(models.Model):
     def __unicode__(self):
         return '{0}-{1}'.format(self.begin_on.year, self.end_on.year)
 
+    def __cmp__(self, other):
+        if self.begin_on < other.begin_on: return -1
+        if self.begin_on > other.begin_on: return 1
+        return 0
+
+    def __add__(self, n):
+        return AcademicYear.objects.get(begin_on__year=self.begin_on.year + n)
 
     def actual_year(self, semesterName):
         if semesterName.fall:
@@ -180,6 +187,13 @@ class Semester(models.Model):
 
     def __unicode__(self):
         return '{0} {1}'.format(self.name, self.year)
+
+def get_semester(name, year):
+    return Semester.objects.get(name__name=name, 
+                                year__begin_on__year=year)
+
+def get_year(begin_on):
+    return AcademicYear.objects.get(begin_on__year=begin_on)
 
 @receiver(post_save, sender=AcademicYear)
 def create_semesters(sender, **kwargs):
@@ -491,6 +505,8 @@ class Student(Person):
     def four_year_plan(self):
         SemesterInfo = namedtuple('SemesterInfo','courses, semester')
         plan = []
+        freshman_year = self.entering_year
+        super_senior_year = freshman_year + 5
         for year in self.entering_year.next_five_years():
             year_plan = {}
             credit_hours = []
@@ -506,7 +522,8 @@ class Student(Person):
                     course['sp'] = offering.course.is_sp
                     course['cc'] = offering.course.is_cc
                     course['other_semesters_offered'] = []
-                    for other_offering in offering.other_offerings():
+                    for other_offering in offering.other_offerings(start=freshman_year, 
+                                                                   end=super_senior_year):
                         course['other_semesters_offered'].append({'id' : other_offering.id,
                                                                   'semester' : other_offering.semester,
                                                                   'credit_hours' : self.credit_hours_this_semester(other_offering.semester)})
@@ -578,9 +595,15 @@ class CourseOffering(StampedModel):
      def coreqs(self):
          return self.course.coreqs.all()
 
-     def other_offerings(self):
+     def other_offerings(self, start=None, end=None):
          offerings = CourseOffering.objects.filter(course=self.course)
          offerings = offerings.exclude(semester=self.semester)
+         
+         if start is not None:
+             offerings = offerings.filter(semester__year__gte=start)
+         if end is not None:
+             offerings = offerings.filter(semester__year__lte=end)
+
          return offerings
 
      def __unicode__(self):
@@ -588,7 +611,6 @@ class CourseOffering(StampedModel):
 
      def department(self):
          return self.course.department
-
 
 
 class Grade(models.Model):
