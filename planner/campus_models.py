@@ -450,15 +450,12 @@ class Student(Person):
         # But it break when creating a new Student because these
         # relationships won't exist at time of creation.
         try:
-            self.create_cache()
+            self._planned_courses = list(self.planned_courses.all())
+            self._course_substitutions = list(self.course_substitutions.all())
+            self._all_courses = self._planned_courses + self._course_substitutions
         except ValueError: 
             pass
 
-    def cache_courses(self):
-        self._planned_courses = list(self.planned_courses.all())
-        self._course_substitutions = list(self.course_substitutions.all())
-        self._all_courses = self._planned_courses + self._course_substitutions
-        
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
