@@ -450,12 +450,15 @@ class Student(Person):
         # But it break when creating a new Student because these
         # relationships won't exist at time of creation.
         try:
-            self._planned_courses = list(self.planned_courses.all())
-            self._course_substitutions = list(self.course_substitutions.all())
-            self._all_courses = self._planned_courses + self._course_substitutions
+            self.create_cache()
         except ValueError: 
             pass
 
+    def cache_courses(self):
+        self._planned_courses = list(self.planned_courses.all())
+        self._course_substitutions = list(self.course_substitutions.all())
+        self._all_courses = self._planned_courses + self._course_substitutions
+        
     def __unicode__(self):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
@@ -489,18 +492,11 @@ class Student(Person):
             rtn = filter(lambda c: c.semester > kwargs['after'], rtn)
         return rtn
 
-    @utils.memoize
     def credit_hours_this_semester(self, semester):
         return sum([c.credit_hours for c in self.candidate_courses(during=semester)])
 
-    @utils.memoize
     def credit_hours_in_plan(self):
-        # planned_course_chs = self._planned_courses.aggregate(Sum('credit_hours'))['credit_hours__sum']
-        # if planned_course_chs is None: planned_course_chs = 0
-        # course_sub_chs = self._course_substitutions.aggregate(Sum('credit_hours'))['credit_hours__sum']
-        # if course_sub_chs is None: course_sub_chs = 0
         return sum([c.credit_hours for c in self.candidate_courses()])
-        # return planned_course_chs + course_sub_chs
 
     def four_year_plan(self):
         SemesterInfo = namedtuple('SemesterInfo','courses, semester')
