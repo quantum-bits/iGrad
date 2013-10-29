@@ -212,7 +212,9 @@ def display_four_year_plan(request):
                'four_year_plan' : student.four_year_plan(),
                'totalhrsfouryears': total_credit_hours,
                'credithrmaxreached': total_credit_hours > 159,
-               'isProfessor': request.user.is_professor()}
+               'isProfessor': request.user.is_professor(),
+               'pretu' : student.pre_tu_courses}
+    
     return render(request, 'fouryearplan.html', context)
 
 @login_required

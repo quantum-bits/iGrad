@@ -495,6 +495,28 @@ class Student(Person):
     def credit_hours_in_plan(self):
         return sum([c.credit_hours for c in self.candidate_courses()])
 
+    def pre_tu_courses(self):
+        pre_courses = filter(lambda c: c.semester.year < self.entering_year, self._course_substitutions)
+        credit_hours = sum([c.credit_hours for c in pre_courses])
+        
+        courses = []
+        for c in pre_courses:
+            info = {}
+            info['id'] = c.id
+            info['title'] = c.course.title
+            info['number'] = c.course.abbrev
+            info['credit_hours'] = c.credit_hours
+            info['sp'] = c.course.is_sp
+            info['cc'] = c.course.is_cc
+            courses.append(info)
+
+        plan = {}
+        plan['credit_hours'] = credit_hours
+        plan['courses'] = courses
+        return plan
+        
+
+
     def four_year_plan(self):
         SemesterInfo = namedtuple('SemesterInfo','courses, semester')
         plan = []
