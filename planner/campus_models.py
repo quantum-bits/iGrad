@@ -289,7 +289,6 @@ class CreditHour(models.Model):
     def __unicode__(self):
         return self.name
 
-
     def valid_credit_hour(self, credit_hour):
         return credit_hour in self.possible_credit_hours
 

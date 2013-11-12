@@ -1,0 +1,679 @@
+BIB 110,3,u,u
+
+BIB 210,3,u,u
+
+BIO 100,4,u,u
+
+BIO 101,4,u,u
+
+BIO 103,3,u,u
+
+BIO 104,3,u,u
+
+BIO 170,1-4,u,u
+
+BIO 200,4,u,u
+
+BIO 203,4,u,u
+
+BIO 205,4,u,u
+
+BIO 243,5,m,u
+
+BIO 244,4,f,u
+
+BIO 245,4,s,u
+
+BIO 270,1-4,u,u
+
+BIO 300,4,u,u
+
+BIO 301,4,f,u
+
+BIO 302,4,m,u
+
+BIO 304,4,m,u
+
+BIO 305,4,m,u
+
+BIO 307,4,s,u
+
+BIO 312,4,u,u
+
+BIO 313,4,m,u
+
+BIO 322,4,m,u
+
+BIO 323,4,m,u
+
+BIO 331,4,fm,u
+
+BIO 342,4,m,u
+
+BIO 360,1-4,u,u
+
+BIO 370,1-4,u,u
+
+BIO 393,1-4,m,u
+
+BIO 410,3,u,u
+
+BIO 432,4,f,u
+
+BIO 441,4,s,o
+
+BIO 450,1-4,u,u
+
+BIO 452,4,s,u
+
+BIO 462,4,f,u
+
+BIO 471,4,s,u
+
+BIO 472,4,s,u
+
+BIO 480,1-4,u,u
+
+BIO 490,1-2,u,u
+
+BIO 493,4,j,u
+
+CAS 110,3,u,u
+
+CAS 120,3,u,u
+
+CAT 200,3,f,u
+
+CHE 100,4,fs,u
+
+CHE 120,4,s,u
+
+CHE 201,4,f,u
+
+CHE 211,4,f,u
+
+CHE 212,4,s,u
+
+CHE 301,4,f,u
+
+CHE 302,4,s,e
+
+CHE 311,4,f,u
+
+CHE 312,4,s,e
+
+CHE 320,4,s,o
+
+CHE 330,3,j,b
+
+CHE 340,4,u,u
+
+CHE 360,1-4,u,u
+
+CHE 370,1-4,u,u
+
+CHE 393,1-4,m,u
+
+CHE 410,2,j,u
+
+CHE 411,3,f,u
+
+CHE 412,3,s,u
+
+CHE 420,1,u,u
+
+CHE 431,4,f,e
+
+CHE 432,4,s,o
+
+CHE 450,1-4,u,u
+
+CHE 480,1-4,u,u
+
+CHE 490,1-2,u,u
+
+COS 104,2,u,u
+
+COS 105,1,u,u
+
+COS 106,1,u,u
+
+COS 120,4,u,u
+
+COS 121,4,u,u
+
+COS 143,3,u,u
+
+COS 230,3,u,u
+
+COS 243,3,u,u
+
+COS 265,3,u,u
+
+COS 280,3,u,u
+
+COS 284,3,u,u
+
+COS 310,1,u,u
+
+COS 311,2,u,u
+
+COS 314,3,u,u
+
+COS 320,3,u,u
+
+COS 321,3,u,u
+
+COS 331,3,u,u
+
+COS 340,3,u,u
+
+COS 342,3,u,u
+
+COS 343,3,u,u
+
+COS 350,3,u,u
+
+COS 351,3,s,e
+
+COS 360,1-4,u,u
+
+COS 370,1-4,u,u
+
+COS 371,4,u,u
+
+COS 372,4,u,u
+
+COS 380,3,s,o
+
+COS 381,3,u,u
+
+COS 382,3,u,u
+
+COS 393,3,m,u
+
+COS 421,3,u,u
+
+COS 424,3,u,u
+
+COS 425,3,u,u
+
+COS 435,3,u,u
+
+COS 436,3,u,u
+
+COS 450,1-4,u,u
+
+COS 452,3,u,u
+
+COS 453,3,u,u
+
+COS 471,4,u,u
+
+COS 472,4,u,u
+
+COS 480,1-4,u,u
+
+COS 490,1-2,u,u
+
+COS 491,2,f,u
+
+COS 492,3,u,u
+
+COS 493,1,u,u
+
+COS 494,3,j,u
+
+COS 495,1,s,u
+
+ECO 190,3,f,u
+
+ECO 201,4,fs,u
+
+ECO 202,4,fs,u
+
+ENG 110,3,u,u
+
+ENG 230,3,u,u
+
+ENG 240,3,u,u
+
+ENG 250,3,u,u
+
+ENP 104,2,j,b
+
+ENP 105,1,u,u
+
+ENP 231,4,f,u
+
+ENP 252,4,s,u
+
+ENP 270,1-4,u,u
+
+ENP 301,3,f,u
+
+ENP 302,3,u,u
+
+ENP 321,2,f,e
+
+ENP 332,4,f,e
+
+ENP 333,3,u,u
+
+ENP 341,4,s,o
+
+ENP 345,3,u,u
+
+ENP 351,3,s,e
+
+ENP 352,3,s,e
+
+ENP 355,3,s,e
+
+ENP 357,3,u,u
+
+ENP 360,1-4,u,u
+
+ENP 370,1-4,u,u
+
+ENP 392,2-4,s,u
+
+ENP 393,1-4,u,u
+
+ENP 394,2-4,u,u
+
+ENP 431,4,s,e
+
+ENP 491,1,f,b
+
+ENP 492,2,f,u
+
+ENP 493,3,j,u
+
+ENP 494,1,s,u
+
+ENS 200,3,u,u
+
+ENS 204,4,u,u
+
+ENS 231,4,u,u
+
+ENS 241,4,u,u
+
+ENS 242,4,u,u
+
+ENS 340,4,u,u
+
+ENS 341,4,u,u
+
+ENS 355,4,u,u
+
+ENS 360,1-4,u,u
+
+ENS 361,4,u,u
+
+ENS 362,4,u,u
+
+ENS 363,4,u,u
+
+ENS 364,4,u,u
+
+ENS 370,1-4,u,u
+
+ENS 383,4,u,u
+
+ENS 393,1-4,m,u
+
+ENS 402,4,u,u
+
+ENS 450,1-4,u,u
+
+ENS 475,4,u,u
+
+ENS 480,1-4,u,u
+
+ENS 490,1-2,u,u
+
+ENT 422,3,s,u
+
+GEO 210,4,u,u
+
+GEO 220,4,u,u
+
+GEO 230,3,u,u
+
+GEO 240,3,u,u
+
+GRK 201,4,f,u
+
+GRK 202,4,s,u
+
+GRK 301,3,f,u
+
+GRK 302,3,s,u
+
+HIS 103,3,u,u
+
+HIS 104,3,u,u
+
+HIS 124,3,u,u
+
+HIS 125,3,u,u
+
+HIS 170,1-4,u,u
+
+HIS 211,4,u,u
+
+HIS 212,4,s,u
+
+HIS 213,4,f,u
+
+HIS 215,3,f,e
+
+HIS 222,4,u,u
+
+HIS 230,3,f,u
+
+HIS 240,3,u,u
+
+HIS 270,1-4,u,u
+
+HIS 310,3,j,u
+
+HIS 311,4,u,u
+
+HIS 312,4,s,u
+
+HIS 313,4,f,u
+
+HIS 315,3,f,e
+
+HIS 321,3,s,u
+
+HIS 323,3,u,u
+
+HIS 331,4,u,u
+
+HIS 332,4,u,u
+
+HIS 342,4,u,u
+
+HIS 351,3,u,u
+
+HIS 352,3,s,u
+
+HIS 361,4,f,e
+
+HIS 370,1-4,u,u
+
+HIS 371,3,u,u
+
+HIS 385,3,f,u
+
+HIS 386,3,s,u
+
+HIS 391,3,u,u
+
+HIS 392,3,s,u
+
+HIS 440,4,u,u
+
+HIS 450,1-4,u,u
+
+HUM 230,4,u,u
+
+HUM 250,1,u,u
+
+HUM 330,4,u,u
+
+IAS 101,1,u,u
+
+IAS 110,3,f,u
+
+IAS 231,2,u,u
+
+IAS 330,3,u,u
+
+IAS 495,1,u,u
+
+LNG 101,4,u,u
+
+LNG 102,4,u,u
+
+LNG 201,3,u,u
+
+LNG 202,3,u,u
+
+MAT 100,1,u,u
+
+MAT 120,3,u,u
+
+MAT 140,3,u,u
+
+MAT 145,3,u,u
+
+MAT 151,4,u,u
+
+MAT 180,3,u,u
+
+MAT 210,4,u,u
+
+MAT 215,3,u,u
+
+MAT 220,4,u,u
+
+MAT 230,4,u,u
+
+MAT 240,4,u,u
+
+MAT 245,4,s,e
+
+MAT 251,4,s,u
+
+MAT 255,3,f,u
+
+MAT 261,1,u,u
+
+MAT 262,1,u,u
+
+MAT 270,1-4,u,u
+
+MAT 280,3,u,u
+
+MAT 301,3,u,u
+
+MAT 302,3,u,u
+
+MAT 309,3,u,u
+
+MAT 310,3,f,e
+
+MAT 312,4,s,o
+
+MAT 330,3,u,u
+
+MAT 340,4,s,e
+
+MAT 352,4,f,u
+
+MAT 360,1-4,u,u
+
+MAT 370,1-4,u,u
+
+MAT 382,3,u,u
+
+MAT 385,3,f,o
+
+MAT 392,1,f,u
+
+MAT 393,1-4,m,u
+
+MAT 450,1-4,u,u
+
+MAT 455,3,s,o
+
+MAT 456,3,u,u
+
+MAT 461,3,s,o
+
+MAT 480,1-4,u,u
+
+MAT 490,1-2,u,u
+
+MAT 493,3,j,u
+
+MCM 332,3,fs,u
+
+NAS 480,1,u,u
+
+PBH 100,3,u,u
+
+PHI 413,3,u,u
+
+PHP 100,2,u,u
+
+PHP 200,1,u,u
+
+PHP 250,2,fs,u
+
+PHP 280,1,u,u
+
+PHP 300,1,u,u
+
+PHP 302,2,s,u
+
+PHP 333,2,s,u
+
+PHP 334,1,u,u
+
+PHP 345,3,u,u
+
+PHP 346,3,s,u
+
+PHY 120,4,s,u
+
+PHY 201,3,j,u
+
+PHY 201,4,f,u
+
+PHY 203,4,u,b
+
+PHY 211,4,u,b
+
+PHY 212,5,u,u
+
+PHY 311,4,f,u
+
+PHY 313,2,u,u
+
+PHY 321,3,f,o
+
+PHY 322,3,s,e
+
+PHY 330,1-2,u,u
+
+PHY 341,3,s,u
+
+PHY 342,3,s,e
+
+PHY 350,4,f,e
+
+PHY 360,1-4,u,u
+
+PHY 370,1-4,u,u
+
+PHY 393,1-4,m,u
+
+PHY 412,3,s,o
+
+PHY 413,2,f,o
+
+PHY 441,3,f,e
+
+PHY 450,1-4,u,u
+
+PHY 480,1-4,u,u
+
+PHY 490,1-2,u,u
+
+PHY 491,1,u,u
+
+PHY 493,3,u,u
+
+POS 100,3,f,u
+
+POS 150,3,u,u
+
+POS 213,3,s,u
+
+POS 222,3,f,e
+
+POS 312,3,s,o
+
+POS 321,3,s,u
+
+POS 331,3,f,u
+
+PSY 110,3,u,u
+
+PSY 200,3,u,u
+
+PSY 240,3,u,u
+
+PSY 250,3,u,u
+
+PSY 340,3,s,u
+
+PSY 350,3,f,u
+
+REL 313,3,u,u
+
+SOC 100,3,s,u
+
+SOC 110,3,u,u
+
+SOC 200,3,u,u
+
+SOC 210,3,f,u
+
+SOC 220,3,f,u
+
+SOC 310,3,u,u
+
+SOC 330,3,u,u
+
+SOC 355,3,s,u
+
+SOC 361,3,f,u
+
+SOC 381,3,f,u
+
+SOC 410,3,s,u
+
+SPA 331,4,f,o
+
+SPA 332,4,s,e
+
+SPA 421,4,f,e
+
+SPA 422,4,s,o
+
+SWK 200,3,u,u
+
+SWK 320,3,u,u
+
+SYS 101,3,u,u
+
+SYS 214,3,u,u
+
+SYS 352,3,u,u
+
+SYS 390,3,u,u
+
+SYS 401,3,u,u
+
+SYS 402,3,u,u
+
+SYS 403,3,u,u
+
+SYS 411,3,u,u
