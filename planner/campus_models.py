@@ -650,23 +650,13 @@ class CourseTaken(StampedModel):
      final_grade = models.ForeignKey(Grade, blank=True)
 
 
-class CourseSubType(models.Model):
-    """Model for determining what type of substitution. Transfer, Sub, Etc."""
-    name = models.CharField(max_length=80, unique=True)
-
-    def __unicode__(self):
-         return self.name
-
-    @property
-    def is_transfer(self):
-         return self.name == 'Transfer'
-
-    @property
-    def is_sub(self):
-         return self.name == 'Subsitution'
-
 
 class CourseSubstitution(models.Model):
+    TRANSFER = 0
+    SUB      = 1
+    SUB_TYPE_CHOICES = ((TRANSFER, 'Transfer',),
+                        (SUB,      'Substitution',),)
+
     """Course transferred from another institution."""
     university = models.ForeignKey(University, related_name='course_substitutions',
                                    blank=True, null=True)
@@ -675,7 +665,8 @@ class CourseSubstitution(models.Model):
     semester = models.ForeignKey(Semester, blank=True, null=True)
     equivalent_course = models.ForeignKey(Course, related_name='course_substitutions')
     student = models.ForeignKey(Student, related_name='course_substitutions')
-    sub_type = models.ForeignKey(CourseSubType, related_name='course_substitutions', null=True, blank=True)
+    sub_type = models.PositiveIntegerField(choices=SUB_TYPE_CHOICES, default=TRANSFER)
+
 
     @property
     def is_sp(self): return self.equivalent_course.is_sp
@@ -688,11 +679,13 @@ class CourseSubstitution(models.Model):
 
     def other_offerings(self): return []
 
+    @property
     def is_transfer(self):
-        self.sub_type.is_transfer
-
+        return self.sub_type == self.TRANSFER
+    
+    @property
     def is_sub(self):
-        self.sub_type.is_sub
+        return self.sub_type == self.SUB
 
     def __unicode__(self):
         return self.title
