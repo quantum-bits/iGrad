@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from planner.models import AcademicYear, Course, CourseOffering, Student, User, SemesterName, Semester, Professor, Major
+from planner.models import AcademicYear, Course, CourseOffering, CourseSubstitution, Student, User, SemesterName, Semester, Professor, Major
 
 import json
 import re
@@ -31,9 +31,9 @@ class Command(BaseCommand):
         self.load_users(igrad_data)
         self.load_majors(igrad_data)
         self.load_students(igrad_data)
-        #self.load_courses(igrad_data)
-        #self.load_semesters(igrad_data)
-        #self.load_course_offerings(igrad_data)
+        self.load_courses(igrad_data)
+        self.load_semesters(igrad_data)
+        self.load_course_offerings(igrad_data)
         self.load_professors(obj for obj in igrad_data if obj['model'] == 'planner.professor')
 
     def load_users(self, igrad_data):
@@ -189,13 +189,12 @@ class Command(BaseCommand):
                             course, credit_hours = self.courses[course_id]
                             offering,_ = CourseOffering.objects.get_or_create(course=course, credit_hours=int(credit_hours), semester=semester)
                             student.planned_courses.add(offering)
+                    if fields['year'] == 0: #Pre-TU Courses
+                        for course_id in fields['courses']:
+                            course, credit_hours = self.courses[course_id]
+                            course_sub,_ = CourseSubstitution.objects.get_or_create(equivalent_course=course, credit_hours=credit_hours, student=student)
+                            student.course_substitutions.add(course_sub)
+
                 except KeyError:
                     print 'Student: {} Does not exist.'.format(fields['student'])
                 
-
-    def load_transfer_courses(self, igrad_data):
-        pass
-    
-
-
-

@@ -459,6 +459,8 @@ class Student(Person):
         return "{},{}".format(self.student_id, self.first_name, self.last_name)
 
     def yearName(self, semester):
+        if semester is None: 
+            return 'Pre-TU'
         year_index = 0
         years = ["Freshman", "Sophomore", "Junior", "Senior", "Super Senior"]
         for year in self.entering_year.next_five_years():
@@ -677,7 +679,10 @@ class CourseSubstitution(models.Model):
     def course(self):
         return self.equivalent_course
 
-    def other_offerings(self): return []
+    
+    def other_offerings(self, **kwargs):
+        #kwargs is to matcht the interface that CourseOffering uses.
+        return []
 
     @property
     def is_transfer(self):
@@ -772,6 +777,8 @@ class GradAuditTemplate(object):
         self.student = audit.student
 
     def semesterDescription(self, semester):
+        if semester is None:
+            return 'Pre-TU'
         yearName = self.audit.student.yearName(semester)
         semester_name = semester.name
         year = semester.begin_on.year
@@ -788,9 +795,6 @@ class GradAuditTemplate(object):
         if required_course in self.audit.met_courses:
             courseOffering = self.audit.met_courses[required_course]
             info['is_sub'] = is_substitution(courseOffering)
-            yearName = self.audit.student.yearName(courseOffering.semester)
-            semester_name = courseOffering.semester.name
-            year = courseOffering.semester.begin_on.year
             info['met'] = True
             info['offering_id'] = courseOffering.id
             info['taken_for'] = courseOffering.credit_hours
