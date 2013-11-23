@@ -1,11 +1,19 @@
 from django.core.management.base import BaseCommand, CommandError
-from planner.models import AcademicYear, Course, CourseOffering, Student, User, SemesterName, Semester, Professor
+from planner.models import AcademicYear, Course, CourseOffering, Student, User, SemesterName, Semester, Professor, Major
 
 import json
 import re
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
+        self.majors  = {}
+        with open('majors.txt', 'r') as major_f:
+            for line in major_f:
+                old_name, new_name = line.split(',')
+                try:
+                    self.majors[old_name] = Major.objects.get(name=new_name.rstrip())
+                except Major.DoesNotExist:
+                    self.majors[old_name] = None
         try:
             json_filename = args[0]
             with open(json_filename, 'r') as json_f:
@@ -16,14 +24,16 @@ class Command(BaseCommand):
         except IOError:
             raise CommandError('Filename: {} Does not exist.'.format(json_filename))
 
+
+                
     def load_data(self, igrad_data):
 
         self.load_users(igrad_data)
+        self.load_majors(igrad_data)
         self.load_students(igrad_data)
         #self.load_courses(igrad_data)
         #self.load_semesters(igrad_data)
         #self.load_course_offerings(igrad_data)
-
         self.load_professors(obj for obj in igrad_data if obj['model'] == 'planner.professor')
 
     def load_users(self, igrad_data):
@@ -49,6 +59,13 @@ class Command(BaseCommand):
                     user.save()
 
                 self.users[user_id] = user
+                
+    def load_majors(self, igrad_data):
+        self.major_names = {}
+        for obj in igrad_data:
+            if obj['model'] == 'planner.major':
+                major_id = obj['pk']
+                self.major_names[major_id] = obj['fields']['name']
 
     def load_students(self, igrad_data):
         self.students = {}
@@ -73,6 +90,10 @@ class Command(BaseCommand):
                 student.first_name = first_name
                 student.save()
 
+                major_id = fields['major']
+                major = self.majors[self.major_names[major_id]]
+                if major is not None:
+                    student.majors.add(major)
                 self.students[obj['pk']] = student
 
     def load_professors(self, professors):
@@ -113,7 +134,6 @@ class Command(BaseCommand):
                         self.courses[course_id] = (course, fields['credit_hours'])
                     except Course.DoesNotExist:
                         print 'Course: {}{} Not found'.format(subj, number)
-                       
 
     def load_semesters(self, igrad_data):
         self.semesters = {}

@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand, CommandError
 from planner.models import Course, Requirement, Constraint
-import re
 import importlib
-import os
-import sys
 import itertools
+import os
+import pdb
+import re
+import sys
+import traceback
 
 
 
@@ -42,22 +44,27 @@ def addConstraint(fn):
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        sys.path.insert(0, 'planner/requirements')
-        req_file = args[0]
-        req = importlib.import_module(req_file)
-        self.courses = []
+        try:
+            sys.path.insert(0, 'planner/requirements')
+            req_file = args[0]
+            req = importlib.import_module(req_file)
+            self.courses = []
 
-        self.NAME = req.NAME 
-        self.COURSES = req.COURSES
-        self.EXCEPT = req.EXCEPT 
-        self.CONSTRAINTS = req.CONSTRAINTS
-        self.REQS = req.REQS
-        self.handle_requirements(req.requirements)
+            self.NAME = req.NAME 
+            self.COURSES = req.COURSES
+            self.EXCEPT = req.EXCEPT 
+            self.CONSTRAINTS = req.CONSTRAINTS
+            self.REQS = req.REQS
+            self.handle_requirements(req.requirements)
 
-        self.courses = sorted(list(set(self.courses)))
-        with open('courses.txt', 'a') as courses_f:
-            for c in self.courses:
-                courses_f.write('{}\n'.format(c))
+            self.courses = sorted(list(set(self.courses)))
+            with open('courses.txt', 'a') as courses_f:
+                for c in self.courses:
+                    courses_f.write('{}\n'.format(c))
+        except:
+            type, value, tb = sys.exc_info()
+            traceback.print_exc()
+            pdb.post_mortem(tb)
 
     def handle_requirements(self, requirements, parent=None):
         for spec in requirements:
