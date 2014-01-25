@@ -712,9 +712,8 @@ def display_grad_audit(request):
                                                 row[2] + "; the requirement is currently not being met.")
 
                 student_course = student_courses[cnumber]
-                courseinfo= student_course_dict[cnumber]
+                courseinfo= student_course_dict.pop(cnumber)
                 numcrhrstaken = student_course.credit_hours
-
                 total_credit_hours_so_far+=numcrhrstaken
                 semester = student_course.semester
                 actual_year = student_course.actual_year
