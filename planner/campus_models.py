@@ -376,6 +376,21 @@ class Course(StampedModel):
         return ((year % 2 == 0 and self.offered_even_years()) or
                 (year % 2 != 0 and self.offered_odd_years()))
 
+    def semesters_offered(self, entering_year, semester_id=None):
+        """Returns a list of semesters this course if offered .
+        if semester_id is not none returns a list with out a 
+        semester that has that id.
+        """
+        semesters = []
+        semesterNames = self.schedule_semester.all()
+        for year in entering_year.next_five_years():
+            for name in semesterNames:
+                if self.offered_this_year(year.actual_year(name)):
+                    semester = Semester.objects.get(name=name, year=year)
+                    if semester.id != semester_id:
+                        semesters.append(semester)
+        return semesters
+
     def prereqs_satisfied(self, offerings):
         return all([prereq.satisfied(offerings) for prereq in self.prereqs])
 
