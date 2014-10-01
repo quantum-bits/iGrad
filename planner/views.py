@@ -582,7 +582,7 @@ def display_grad_audit(request):
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             numcrhrsthissem = student_local.num_credit_hours(ssc)
-            ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
+            ssclist.append((ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem))
 
 
     # the following assembles studentcourselist and coursenumberlist;

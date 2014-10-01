@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.db.models import Sum
 
 # here's how to extract all courses for a given semester:
 # from django.db.models import Q
@@ -212,11 +213,16 @@ class Student(models.Model):
         return self.name
 
     def num_credit_hours(self, student_semester_course):
-        student_semester_course_hours = sum(course.credit_hours for course in student_semester_course.courses.all())
-        cyo_courses = CreateYourOwnCourse.objects.filter(student=self, semester=student_semester_course.semester, 
-                                                         actual_year=student_semester_course.actual_year)
-        cyo_courses_hours = sum(cyo_course.credit_hours for cyo_course in cyo_courses)
-        return student_semester_course_hours + cyo_courses_hours
+        credit_hours = student_semester_course.courses.aggregate(Sum('credit_hours'))
+        credit_hours = credit_hours['credit_hours__sum']
+        credit_hours = 0 if credit_hours is None else credit_hours
+
+        cyo_courses = CreateYourOwnCourse.objects.filter(student=self, semester=student_semester_course.semester, actual_year=student_semester_course.actual_year)
+        cyo_courses = CreateYourOwnCourse.objects.filter(student=self, semester=student_semester_course.semester)
+        cyo_courses = cyo_courses.filter(actual_year=student_semester_course.actual_year)
+        cyo_courses_hours = cyo_courses.aggregate(Sum('credit_hours'))['credit_hours__sum']
+        cyo_courses_hours = 0 if cyo_courses_hours is None else cyo_courses_hours
+        return credit_hours + cyo_courses_hours
 
     class Meta:
         ordering = ['name']
