@@ -19,6 +19,29 @@
       credit hour limit.</p>
     </div>{% else %} {{ totalhrsfouryears }} {% endif %}
   </div>
+
+{% if courses_that_were_moved %}
+<p>
+<b style="color:red;"> WARNING!!!</b>
+</p>
+	 <div class="alert alert-error">
+	  <p>
+	    <b> One or more courses in your plan has been moved
+	    to a different semester.*</b>
+	    </p>
+	  <p> We apologize, but you must either delete the following courses, or
+	    move them to a 
+	    semester during which they are actually offered.
+	    </p>
+	  </div>
+{% for course in courses_that_were_moved %}
+<p> <strong>{{course.course}} will no longer be offered</strong> in {{course.semester}} of {{course.year}} </p>
+{% endfor %}
+
+<p> *While the courses were originally planned to be offered during certain semesters, those plans have changed, so you must adjust your plan accordingly.  Sorry!
+</p>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}

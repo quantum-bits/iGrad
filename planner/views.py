@@ -8,6 +8,19 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from collections import namedtuple
 
+# current bugs:
+# 1. Does not pick up course equivalencies for "cyoc" type courses; this is because
+#    student_course_dict uses cyoc.number as the key, and that key is what is getting
+#    checked.  oops!
+# 2. student_courses.total_credit_hours gives the incorrect value
+#    (compared to tot_cred_hrs(student_local), which I think gives the correct value)
+#    >>> the issue appears to occur when two courses have the same course number 
+#        (the student_course_dict gets overwritten...oops!) 
+#    >>> probably need to come up with a key system wherein a key is assigned to each
+#        course in the plan, including cyoc's; ugh....
+# 3. Should probably use the course id's instead of course.number for checking requirements!!!
+#    >>> part of the problem is that FourYearPlanCourses() ALSO uses a dictionary that
+#        has course.number or cyoc.number as the key.
 
 def home(request):
     return render(request, 'home.html')
@@ -67,22 +80,55 @@ def profile(request):
     user = request.user
     courselist= Course.objects.all()
 
+    termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
+
     if user.is_student():
         isProfessor = False
         professorname = ''
         advisee = None
+        student_local = user
     else:
         isProfessor = True
         professorname = user.professor.name
         advisee = user.professor.advisee
+        student_local = advisee
 
     # Note: to access the email address in the view, you could set it to
     # email = student.user.email
     context = { 'isProfessor': isProfessor,
                 'professorname': professorname,
                 'advisee': advisee,
-		'courselist':courselist }
+		'courselist':courselist,
+                'courses_that_were_moved':courses_that_have_been_moved(student_local)}
     return render(request, 'profile.html', context)
+
+def tot_cred_hrs(student):
+    total_hours = 0
+    for ssc in StudentSemesterCourses.objects.all().filter(student=student):
+        for course in ssc.courses.all():
+            total_hours = total_hours+course.credit_hours
+    for cyoc in CreateYourOwnCourse.objects.filter(student=student):
+        total_hours = total_hours+cyoc.credit_hours
+    return total_hours
+
+def courses_that_have_been_moved(student):
+    list_courses_that_were_moved = []
+    termdictionary={0:"Pre-TU", 1:"Fall", 2:"J-term", 3:"Spring", 4:"Summer"}
+    for ssc in StudentSemesterCourses.objects.all().filter(student=student):
+        if ssc.semester !=0:
+            # Don't include pre-TU ssc object here
+            for course in ssc.courses.all():
+                semesters_offered = course.semester.all()
+                course_exists_in_stated_semester = False
+                for semester in semesters_offered:
+                    if ssc.semester == semester.semester_of_acad_year and ssc.actual_year == semester.actual_year:
+                        course_exists_in_stated_semester = True
+                if course_exists_in_stated_semester == False:
+                    list_courses_that_were_moved.append({'course':course, 
+                                                         'semester':termdictionary[ssc.semester],
+                                                         'year':ssc.actual_year
+                                                         })
+    return list_courses_that_were_moved
 
 @login_required
 def update_major(request, id):
@@ -266,7 +312,7 @@ def delete_advising_note(request, id):
 
 @login_required
 def display_four_year_plan(request):
-    print request.user.is_student()
+#    print request.user.is_student()
     if request.user.is_student():
         isProfessor = False
         student_local = request.user.student
@@ -435,9 +481,10 @@ def display_four_year_plan(request):
 
     context = {'student': student_local,
                'datablock': datablock4,
-               'totalhrsfouryears': total_credit_hours_four_years,
+               'totalhrsfouryears': tot_cred_hrs(student_local),
                'credithrmaxreached': credithrmaxreached,
-               'isProfessor': isProfessor}
+               'isProfessor': isProfessor,
+               'courses_that_were_moved':courses_that_have_been_moved(student_local)}
     return render(request, 'fouryearplan.html', context)
 
 CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id")
@@ -582,8 +629,7 @@ def display_grad_audit(request):
     for ssc in temp_data:
         if ssc.semester !=0:  # don't include pre-TU ssc object here
             numcrhrsthissem = student_local.num_credit_hours(ssc)
-            ssclist.append((ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem))
-
+            ssclist.append([ssc.id, ssc.actual_year, ssc.semester, numcrhrsthissem])
 
     # the following assembles studentcourselist and coursenumberlist;
     # studentcourselist is a list of all courses in the student's plan;
@@ -668,7 +714,8 @@ def display_grad_audit(request):
         CCreq = True
 
     total_credit_hours_four_years= student_courses.total_credit_hours
-
+    print total_credit_hours_four_years
+    print tot_cred_hrs(student_local)
 
     # the following code assembles majordatablock (described in detail above);
     # the general approach is the following:
@@ -771,7 +818,7 @@ def display_grad_audit(request):
                         semarraynonordered.append([yearotheroffering,
                                                    semotheroffering,
                                                    elementid,
-                                                   credit_hours])
+                                                   numhrsthissem])
 
 
                 semarrayreordered=reorder_list(semarraynonordered)
@@ -854,10 +901,11 @@ def display_grad_audit(request):
                'numCCs': numCCs,
                'SPreq': SPreq,
                'CCreq': CCreq,
-               'totalhrsfouryears': total_credit_hours_four_years,
+               'totalhrsfouryears': tot_cred_hrs(student_local),
                'credithrmaxreached': credithrmaxreached,
                'isProfessor': isProfessor,
-               'hasMajor': hasMajor}
+               'hasMajor': hasMajor,
+               'courses_that_were_moved':courses_that_have_been_moved(student_local)}
 
     return render(request, 'graduationaudit.html', context)
 

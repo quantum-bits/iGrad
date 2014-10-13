@@ -1,0 +1,3314 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_site", 
+        "name": "Can add site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_site", 
+        "name": "Can change site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_site", 
+        "name": "Can delete site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semester", 
+        "name": "Can add semester", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semester", 
+        "name": "Can change semester", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semester", 
+        "name": "Can delete semester", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_department", 
+        "name": "Can add department", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_department", 
+        "name": "Can change department", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_department", 
+        "name": "Can delete department", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_course", 
+        "name": "Can add course", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_course", 
+        "name": "Can change course", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_course", 
+        "name": "Can delete course", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_major", 
+        "name": "Can add major", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_major", 
+        "name": "Can change major", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_major", 
+        "name": "Can delete major", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_userproxy", 
+        "name": "Can add user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_userproxy", 
+        "name": "Can change user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_userproxy", 
+        "name": "Can delete user proxy", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_student", 
+        "name": "Can add student", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_student", 
+        "name": "Can change student", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_student", 
+        "name": "Can delete student", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_professor", 
+        "name": "Can add professor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_professor", 
+        "name": "Can change professor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_professor", 
+        "name": "Can delete professor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_advisingnote", 
+        "name": "Can add advising note", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_advisingnote", 
+        "name": "Can change advising note", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_advisingnote", 
+        "name": "Can delete advising note", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 61, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_migrationhistory", 
+        "name": "Can add migration history", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 62, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_migrationhistory", 
+        "name": "Can change migration history", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 63, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_migrationhistory", 
+        "name": "Can delete migration history", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 64, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_person", 
+        "name": "Can add person", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 65, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_person", 
+        "name": "Can change person", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 66, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_person", 
+        "name": "Can delete person", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 67, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_university", 
+        "name": "Can add university", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 68, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_university", 
+        "name": "Can change university", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 69, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_university", 
+        "name": "Can delete university", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 70, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_school", 
+        "name": "Can add school", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 71, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_school", 
+        "name": "Can change school", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 72, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_school", 
+        "name": "Can delete school", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 73, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_facultymember", 
+        "name": "Can add faculty member", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 74, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_facultymember", 
+        "name": "Can change faculty member", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 75, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_facultymember", 
+        "name": "Can delete faculty member", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 76, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_staffmember", 
+        "name": "Can add staff member", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 77, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_staffmember", 
+        "name": "Can change staff member", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 78, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_staffmember", 
+        "name": "Can delete staff member", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 79, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_academicyear", 
+        "name": "Can add academic year", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 80, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_academicyear", 
+        "name": "Can change academic year", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 81, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_academicyear", 
+        "name": "Can delete academic year", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 82, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semestername", 
+        "name": "Can add semester name", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 83, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semestername", 
+        "name": "Can change semester name", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 84, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semestername", 
+        "name": "Can delete semester name", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 85, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_semesterdatedefault", 
+        "name": "Can add semester date default", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 86, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_semesterdatedefault", 
+        "name": "Can change semester date default", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 87, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_semesterdatedefault", 
+        "name": "Can delete semester date default", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 88, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_holiday", 
+        "name": "Can add holiday", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 89, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_holiday", 
+        "name": "Can change holiday", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 90, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_holiday", 
+        "name": "Can delete holiday", 
+        "content_type": 30
+    }
+},
+{
+    "pk": 91, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_building", 
+        "name": "Can add building", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 92, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_building", 
+        "name": "Can change building", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 93, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_building", 
+        "name": "Can delete building", 
+        "content_type": 31
+    }
+},
+{
+    "pk": 94, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_room", 
+        "name": "Can add room", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 95, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_room", 
+        "name": "Can change room", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 96, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_room", 
+        "name": "Can delete room", 
+        "content_type": 32
+    }
+},
+{
+    "pk": 97, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_subject", 
+        "name": "Can add subject", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 98, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_subject", 
+        "name": "Can change subject", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 99, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_subject", 
+        "name": "Can delete subject", 
+        "content_type": 33
+    }
+},
+{
+    "pk": 100, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_courseattribute", 
+        "name": "Can add course attribute", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 101, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_courseattribute", 
+        "name": "Can change course attribute", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 102, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_courseattribute", 
+        "name": "Can delete course attribute", 
+        "content_type": 34
+    }
+},
+{
+    "pk": 103, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_credithour", 
+        "name": "Can add credit hour", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 104, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_credithour", 
+        "name": "Can change credit hour", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 105, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_credithour", 
+        "name": "Can delete credit hour", 
+        "content_type": 35
+    }
+},
+{
+    "pk": 106, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_minor", 
+        "name": "Can add minor", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 107, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_minor", 
+        "name": "Can change minor", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 108, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_minor", 
+        "name": "Can delete minor", 
+        "content_type": 36
+    }
+},
+{
+    "pk": 109, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_courseoffering", 
+        "name": "Can add course offering", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 110, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_courseoffering", 
+        "name": "Can change course offering", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 111, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_courseoffering", 
+        "name": "Can delete course offering", 
+        "content_type": 37
+    }
+},
+{
+    "pk": 112, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_grade", 
+        "name": "Can add grade", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 113, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_grade", 
+        "name": "Can change grade", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 114, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_grade", 
+        "name": "Can delete grade", 
+        "content_type": 38
+    }
+},
+{
+    "pk": 115, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursetaken", 
+        "name": "Can add course taken", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 116, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursetaken", 
+        "name": "Can change course taken", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 117, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursetaken", 
+        "name": "Can delete course taken", 
+        "content_type": 39
+    }
+},
+{
+    "pk": 118, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursesubtype", 
+        "name": "Can add course sub type", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 119, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursesubtype", 
+        "name": "Can change course sub type", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 120, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursesubtype", 
+        "name": "Can delete course sub type", 
+        "content_type": 40
+    }
+},
+{
+    "pk": 121, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_coursesubstitution", 
+        "name": "Can add course substitution", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 122, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_coursesubstitution", 
+        "name": "Can change course substitution", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 123, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_coursesubstitution", 
+        "name": "Can delete course substitution", 
+        "content_type": 41
+    }
+},
+{
+    "pk": 124, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_offeringinstructor", 
+        "name": "Can add offering instructor", 
+        "content_type": 42
+    }
+},
+{
+    "pk": 125, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_offeringinstructor", 
+        "name": "Can change offering instructor", 
+        "content_type": 42
+    }
+},
+{
+    "pk": 126, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_offeringinstructor", 
+        "name": "Can delete offering instructor", 
+        "content_type": 42
+    }
+},
+{
+    "pk": 127, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_classmeeting", 
+        "name": "Can add class meeting", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 128, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_classmeeting", 
+        "name": "Can change class meeting", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 129, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_classmeeting", 
+        "name": "Can delete class meeting", 
+        "content_type": 43
+    }
+},
+{
+    "pk": 130, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_constraint", 
+        "name": "Can add constraint", 
+        "content_type": 44
+    }
+},
+{
+    "pk": 131, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_constraint", 
+        "name": "Can change constraint", 
+        "content_type": 44
+    }
+},
+{
+    "pk": 132, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_constraint", 
+        "name": "Can delete constraint", 
+        "content_type": 44
+    }
+},
+{
+    "pk": 133, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_requirement", 
+        "name": "Can add requirement", 
+        "content_type": 45
+    }
+},
+{
+    "pk": 134, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_requirement", 
+        "name": "Can change requirement", 
+        "content_type": 45
+    }
+},
+{
+    "pk": 135, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_requirement", 
+        "name": "Can delete requirement", 
+        "content_type": 45
+    }
+},
+{
+    "pk": 136, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_classstanding", 
+        "name": "Can add class standing", 
+        "content_type": 46
+    }
+},
+{
+    "pk": 137, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_classstanding", 
+        "name": "Can change class standing", 
+        "content_type": 46
+    }
+},
+{
+    "pk": 138, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_classstanding", 
+        "name": "Can delete class standing", 
+        "content_type": 46
+    }
+},
+{
+    "pk": 139, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_degreeprogram", 
+        "name": "Can add degree program", 
+        "content_type": 47
+    }
+},
+{
+    "pk": 140, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_degreeprogram", 
+        "name": "Can change degree program", 
+        "content_type": 47
+    }
+},
+{
+    "pk": 141, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_degreeprogram", 
+        "name": "Can delete degree program", 
+        "content_type": 47
+    }
+},
+{
+    "pk": 142, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_degreeprogramcourse", 
+        "name": "Can add degree program course", 
+        "content_type": 48
+    }
+},
+{
+    "pk": 143, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_degreeprogramcourse", 
+        "name": "Can change degree program course", 
+        "content_type": 48
+    }
+},
+{
+    "pk": 144, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_degreeprogramcourse", 
+        "name": "Can delete degree program course", 
+        "content_type": 48
+    }
+},
+{
+    "pk": 145, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_requirementblock", 
+        "name": "Can add requirement block", 
+        "content_type": 49
+    }
+},
+{
+    "pk": 146, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_requirementblock", 
+        "name": "Can change requirement block", 
+        "content_type": 49
+    }
+},
+{
+    "pk": 147, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_requirementblock", 
+        "name": "Can delete requirement block", 
+        "content_type": 49
+    }
+},
+{
+    "pk": 148, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_studentsemestercourses", 
+        "name": "Can add student semester courses", 
+        "content_type": 50
+    }
+},
+{
+    "pk": 149, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_studentsemestercourses", 
+        "name": "Can change student semester courses", 
+        "content_type": 50
+    }
+},
+{
+    "pk": 150, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_studentsemestercourses", 
+        "name": "Can delete student semester courses", 
+        "content_type": 50
+    }
+},
+{
+    "pk": 151, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_createyourowncourse", 
+        "name": "Can add create your own course", 
+        "content_type": 51
+    }
+},
+{
+    "pk": 152, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_createyourowncourse", 
+        "name": "Can change create your own course", 
+        "content_type": 51
+    }
+},
+{
+    "pk": 153, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_createyourowncourse", 
+        "name": "Can delete create your own course", 
+        "content_type": 51
+    }
+},
+{
+    "pk": 154, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_enteringyear", 
+        "name": "Can add entering year", 
+        "content_type": 52
+    }
+},
+{
+    "pk": 155, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_enteringyear", 
+        "name": "Can change entering year", 
+        "content_type": 52
+    }
+},
+{
+    "pk": 156, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_enteringyear", 
+        "name": "Can delete entering year", 
+        "content_type": 52
+    }
+},
+{
+    "pk": 157, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_prepopulatesemesters", 
+        "name": "Can add prepopulate semesters", 
+        "content_type": 53
+    }
+},
+{
+    "pk": 158, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_prepopulatesemesters", 
+        "name": "Can change prepopulate semesters", 
+        "content_type": 53
+    }
+},
+{
+    "pk": 159, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_prepopulatesemesters", 
+        "name": "Can delete prepopulate semesters", 
+        "content_type": 53
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "kenkiers", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-01-31T22:27:28.207Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$JTR2EVObVLWH$ItGms1z6uXWCFA6jbkKV2g3WCntiemZHKtFN2EaKOv8=", 
+        "email": "knkiers@taylor.edu", 
+        "date_joined": "2013-01-07T01:35:05.355Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "johnlennon", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-10T21:00:31.331Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$ZKYwrCNdQMtR$urgHi2LkKBWjEDf4jvrGV1/CJYshYkyNnqyEQpqlFlA=", 
+        "email": "john@taylor.edu", 
+        "date_joined": "2013-01-07T02:51:38.242Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "MajorStudent", 
+        "first_name": "Major", 
+        "last_name": "Student", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-23T19:17:37.479Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$3wGHSq7fW1eq$k9ObDSapGwj56Axg8CIP4Bfpu4ntcFMNRlfWDWqVYqM=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-04-23T19:04:33Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "stefan", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-10T02:34:00.980Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$971b6tokjABL$64iYlT+hqIhu5HUpsv8NIUunZGgZWSJ2f92f3ZJEp9M=", 
+        "email": "stefan@taylor.edu", 
+        "date_joined": "2013-01-07T13:41:30.531Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "paulmccartney", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-11T10:54:55.433Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$usd8P9ePpbbq$tgqWdXQlYXPhAu3eQ3tz9s9H1GT0YqwNAPeLbB5AiAg=", 
+        "email": "paul@taylor.edu", 
+        "date_joined": "2013-01-10T18:37:59.665Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "professor", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-10-01T19:49:23.641Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$w4ucdWTkcEQD$ryt+PAW9svdwff/fF/E+xLcf6h4PDAghMZyYeblKVQU=", 
+        "email": "prof@taylor.edu", 
+        "date_joined": "2013-01-11T11:55:23Z"
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "hola", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-13T20:14:18.267Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$mC8IaAqtQaa2$PeNc9lbI47k34YrHu/nMNnM1QhXdbNQvrf8EtlFAtk4=", 
+        "email": "kgkiers@sbcglobal.net", 
+        "date_joined": "2013-01-13T20:13:49.115Z"
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "stefan3", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-13T20:17:40.842Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$MtqKF27XZDIM$ctgWI8KzADl85Q4hqCWuFKrDPxyV1MUimzuj70x0fuU=", 
+        "email": "stefan@taylor.edu", 
+        "date_joined": "2013-01-13T20:17:30.813Z"
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "lmk", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-07T14:22:29.720Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$31EovnRVzFvP$hpllxR5Fe7gTevVTvAZ1Yohb3K3m1z20w+lWQpHB7D0=", 
+        "email": "leah@taylor.edu", 
+        "date_joined": "2013-01-13T20:33:18Z"
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ringo", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-30T22:03:10.851Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$TpvOGxNRRnHE$KUnAEb5EzxoFyc9mlBavbMUOdSgabZRC5axgwE9QPkE=", 
+        "email": "ringo@taylor.edu", 
+        "date_joined": "2013-01-16T03:36:39.282Z"
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "george", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-17T14:28:10.372Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$6M73Absn2GH2$TdWTMBd1ccKE55yMemVdshFYtLLCnwzhJQQdyoeAnII=", 
+        "email": "george@taylor.edu", 
+        "date_joined": "2013-01-17T14:28:02.446Z"
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "huey", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-25T01:16:53.981Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$tNhJbZyVNxEc$ayVlCDGs2HZQiI52/T1ndqpgA+GArFuXbRrOdi0UNMg=", 
+        "email": "huey@taylor.edu", 
+        "date_joined": "2013-01-19T13:15:14.583Z"
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "art", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-20T01:28:05.692Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$7zz3xWI76bLY$VqkD0yTDoeb0evTtq6KWH2ZkE7vrNqSZ8Ow3ZJVOp70=", 
+        "email": "art@taylor.edu", 
+        "date_joined": "2013-01-19T15:49:27.011Z"
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "edwin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-22T18:45:44.290Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$o3FKgR7HmVi9$9gecKsFOZyjfJ3lEtNpDZIlOXTaSS/aa8BDcXCXVrj4=", 
+        "email": "edwin@taylor.edu", 
+        "date_joined": "2013-01-22T18:45:35.117Z"
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "steven", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-01-30T22:17:48.608Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$IFeUN0fN5b3C$tHXjuf2pNSbemMtjsB11t6vQ4xur1mDRi6PsxHOU0ZI=", 
+        "email": "steven@taylor.edu", 
+        "date_joined": "2013-01-30T22:17:41.678Z"
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "tom", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-04T17:45:27.546Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$8s4OUUMHh2b2$viZtZYBEg2R7EfysaqpijjblELRdMQiMnLoB0Rg4GnA=", 
+        "email": "tom@taylor.edu", 
+        "date_joined": "2013-01-31T21:57:33.433Z"
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-04-26T15:48:33.011Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$xjf9lor5y5pg$G/WRxmGXiDVEZJ+g6TDLBN1E8ncn3JpKht5JrD7cOIM=", 
+        "email": "admin@example.com", 
+        "date_joined": "2013-03-29T15:35:31.196Z"
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00551112", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-09T01:50:07.998Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$2E1aIaPqzGUA$PZ1/LdVCx9yhry9TF3c5EBE+vnxjZUcXBzkPOsPffhY=", 
+        "email": "kk@taylor.edu", 
+        "date_joined": "2013-04-09T01:50:00.514Z"
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "hankvoss", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-09T15:21:04.973Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$xeKie6mcIP4Z$Zk6H8P6kHYJ7YebaiF4F58pPjepuenX01vlT85jpDZ0=", 
+        "email": "hv@taylor.edu", 
+        "date_joined": "2013-04-09T14:23:13.283Z"
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00578974", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-03-02T05:05:18.514Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$Y8LLhVEqagoq$AUZgwa4nEUIv7NN4mIB9Srg53yI3Oz/DqlDd2KFLKJQ=", 
+        "email": "jordan_melendez@taylor.edu", 
+        "date_joined": "2013-04-09T18:43:03.617Z"
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00572640", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T19:26:09.116Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$8BzqnpJg7ey6$9BJ+cS+s07U/TcFFsG0Svem0qK2C5PV0M2Lva0cr8WI=", 
+        "email": "caleb_smith@taylor.edu", 
+        "date_joined": "2013-04-09T19:12:48.755Z"
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00551249", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-24T22:42:45.118Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$P391uc4ZVFzM$JD9iQ02WbqLR1U1AONzp1pR6uMs78xrSTySnvZ+P2Fo=", 
+        "email": "joshua_kiers@taylor.edu", 
+        "date_joined": "2013-04-09T19:39:17.285Z"
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "kenconstantine", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T23:49:42.568Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$UiiUKkGsQTti$ZtjhdDp/peha1MSbNx5xEdK55F470O/Q/A6rb8r8dBc=", 
+        "email": "kc@taylor.edu", 
+        "date_joined": "2013-04-09T19:47:58.036Z"
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "brandnewstudent", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-10T00:12:25.922Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$M4Mq7GWBBHdF$VjR4zZ3zFRXSsf9dDu1owKZHu/BOVOZirQnGNLzaBUY=", 
+        "email": "bns@taylor.edu", 
+        "date_joined": "2013-04-10T00:09:30.206Z"
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00133813", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-10T20:08:04.593Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$kFVylNAZnwtg$wQO42WgCuK5tony3OzYURqVRcGXpltWg9NmfbisGzUs=", 
+        "email": "sbrandle@cse.taylor.edu", 
+        "date_joined": "2013-04-10T20:07:48.548Z"
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@12345678", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-23T05:14:14.314Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$74lewliFtLf5$IJWDjda17E50USn6pSjxsrBYvbg9BVaQLyWGbK2S6rg=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-04-11T19:00:26.646Z"
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "newuser", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T02:27:45.016Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$0b88fj2rkigt$fj+wxXCPkJnYvhZheVoepZfj9WHZND03odDjW9uihHE=", 
+        "email": "nu@taylor.edu", 
+        "date_joined": "2013-04-15T22:21:22.985Z"
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00581985", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-08-18T00:06:23.787Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$kljRFUcPKUIf$N1ioDiWTUqAXhBwH3PLX2t8f6SS/D5hpvWB0fstetnk=", 
+        "email": "kate_yoshino@taylor.edu", 
+        "date_joined": "2013-04-15T22:58:37.188Z"
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00585152", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-26T13:59:38.624Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$SFHeqqDHuKzD$l+iK9bSX0YOIQiknz0cpp05TAkcxLr/iBx2wnhsYRUI=", 
+        "email": "chandler_chapman@taylor.edu", 
+        "date_joined": "2013-04-16T16:15:29.680Z"
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "tommy", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T02:07:39.154Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$36rtDONOg9CZ$FsOWCZl0rYcuPr/J/UWd/fvmxG5WjG+yhyre0lpFczU=", 
+        "email": "tom@nurknet.com", 
+        "date_joined": "2013-04-17T02:07:32.124Z"
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00606550", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-01T01:07:20.082Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$gDnL7nR7P3rW$qVzWokJrmZSz6FyvrEKkwx58kFyYEl1AZO1OGAQmdSA=", 
+        "email": "david_cusick@taylor.edu", 
+        "date_joined": "2013-04-17T15:10:52.421Z"
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "newuser1", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-23T19:40:32.422Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$juox126dife7$+Ol/4YykXcNkj2a/yFUOubF8A1qOzKZpamEVZF1JsRA=", 
+        "email": "nu@taylor.edu", 
+        "date_joined": "2013-04-17T18:39:02.289Z"
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "newuser2", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T18:46:52.677Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$54hPXj3JzkCe$AKOFaPEQwUazFUguu2AT0gdXzxO8DZw9AioSYpi/4Jg=", 
+        "email": "nu@taylor.edu", 
+        "date_joined": "2013-04-17T18:46:46.851Z"
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "newuser3", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T18:52:53.717Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$oF1ybCX919F5$PSvkDYiJyarXpN9P3ollv5nT0QEx21uHY/NAZQQQNKY=", 
+        "email": "nu@taylor.edu", 
+        "date_joined": "2013-04-17T18:52:46.919Z"
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "newuser4", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T20:10:03.472Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$0ddQP7IBFlWM$2ypfYgg4kkkQcMKeTBGJDA1vQJmd1s83Dn568piSDyk=", 
+        "email": "nu@taylor.edu", 
+        "date_joined": "2013-04-17T20:09:56.076Z"
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055xxxx", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T20:23:41.338Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$P71a3ozsCbrM$vp+HdIgenGqPz0P9saWxkD1TE4AJH1GpUfs3U3deV3o=", 
+        "email": "newstudent@taylor.edu", 
+        "date_joined": "2013-04-17T20:23:33.332Z"
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055xxyy", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-18T00:04:56.869Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$HJfnH5w0I4oK$d0EFIxnYx3aOaNBnVcWoZ2LuS6jpoaDGzl8xkGskwLo=", 
+        "email": "tustudent@taylor.edu", 
+        "date_joined": "2013-04-17T20:33:05.491Z"
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00534649", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T23:12:34.660Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$xZdY2Ryb9AFA$Ywyfl8QGQkImhCrU6ojMzx87hD8uxtp5mMoRnLdnDuI=", 
+        "email": "matthew_fox1@taylor.edu", 
+        "date_joined": "2013-04-17T23:12:26.477Z"
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00604051", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-23T16:15:26.641Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$SMgPNGt5ASso$r7robo506FT+LEUpB+iN6EKARZeyBSgPYv7a/UvuVeU=", 
+        "email": "kristian_stephens@taylor.com", 
+        "date_joined": "2013-04-17T23:50:56.099Z"
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00544745", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-11-03T23:49:00.703Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$00aY3qPpSzUd$tB8CMbll8syZO9pwR2AxI6zGORW3j/leyJy8gauzAvM=", 
+        "email": "tom_Sargent@taylor.edu", 
+        "date_joined": "2013-04-18T03:43:28.390Z"
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00579661", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-08-31T22:40:43.401Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$0nHU1KZAc8Dm$x0rxyz3Xae74Isi7PVVlX1JwKzJu7x3wAtxZ++E2qZE=", 
+        "email": "ethan_gegner@taylor.edu", 
+        "date_joined": "2013-04-18T11:48:33.109Z"
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "00595819", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-12T17:21:34.241Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1Y1EscGQ1eCF$qZ9A/xea27ZPlV64beIjkZVjxSWMT0Xx08vfQFalXIc=", 
+        "email": "dan_ericson@sbcglobal.net", 
+        "date_joined": "2013-04-19T19:38:24.245Z"
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00607165", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-17T16:41:21.682Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$M9Bu9aqCsIhQ$Xf+35LC2G86LEVVp/ddL94nYpokivd7CaZVxXTK5Gzc=", 
+        "email": "cassidy_davis@taylor.edu", 
+        "date_joined": "2013-04-23T18:34:11Z"
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "test", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-16T00:37:34.965Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$nTPY4tC1vGKA$vD6XVyn3c4Yd2+pq5NvgdUvyygiS58KvFwnEayLGADk=", 
+        "email": "test@test.com", 
+        "date_joined": "2013-04-23T19:40:43.235Z"
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00551234", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-05-15T17:31:58.784Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$SQey26gxzQ1n$TCbdgIIB+FtPddPFGVxqMmMdeUWXidVvkTjICasgFxc=", 
+        "email": "tnurkkala@cse.taylor.edu", 
+        "date_joined": "2013-05-09T22:40:13.162Z"
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00442443", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-06-19T22:51:17.582Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$j09NNYBPCCCU$5rkoUk3itUdbD57ZS0sfP7zlpKrQsbx1a0/FK7BS8NU=", 
+        "email": "nathan_mitchener@gmx.com", 
+        "date_joined": "2013-05-13T00:14:02.409Z"
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "102267", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-06-12T19:35:19.311Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$ui390oOGUO55$irqqyxGILFOZmXgmsFbVcRPTtzsjBBD1qKrolKhAWcY=", 
+        "email": "jlgegner@taylor.edu", 
+        "date_joined": "2013-05-14T15:47:18.486Z"
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "1234567", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-05-14T15:55:36.444Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$z0kJBA9W5nyO$Ax9tC1M+Qs482d4d6cTU+2txx5UiSP1FCSgIKQcVi88=", 
+        "email": "ethan.gegner@gmail.com", 
+        "date_joined": "2013-05-14T15:55:22.327Z"
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00616061", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-17T19:03:23.836Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$r3Kd6cG1pTqN$9hCzuUH78An57BaH0iycXLdPx2LfpG3HLRevwajaAkU=", 
+        "email": "nate_aeilts@taylor.edu", 
+        "date_joined": "2013-05-16T15:56:18.747Z"
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055zzzz", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-06-06T04:05:10.970Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$FJACkJr2rtS1$gD88p6phU5PBUEuWyA1QFhPPI29bpK227MTxPNSpWwU=", 
+        "email": "matt@taylor.edu", 
+        "date_joined": "2013-06-06T04:04:55.322Z"
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055aaaa", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-06-14T21:19:09.966Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$LllVVO45aLaC$2182MUsCt7QapI1EOP8d79/+pZAg6SF0ew77voTFM9o=", 
+        "email": "student@taylor.edu", 
+        "date_joined": "2013-06-14T21:19:01.556Z"
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "0123456", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-07-01T20:49:32.380Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$638zPpeudi6Y$eJ9/MdrXaZn+KT71seHg00vo4/v6yD2RQI+fsUNKofE=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-07-01T20:49:32.380Z"
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00617238", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-08-26T18:03:52.855Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$n2MqT3YQsCgc$xlgA+vyBXo4FZmX/YKwpVNuEcIlup47smxFxKer80jo=", 
+        "email": "tom_gbean@taylor.edu", 
+        "date_joined": "2013-08-26T18:03:20.205Z"
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "12345678", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-16T18:50:50.382Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$F6xag4FT3xE9$jWszP06w4mE/wyjn/YsUHzEvnZ7EjJ4xgDmWqjllXi8=", 
+        "email": "junk@junk.com", 
+        "date_joined": "2013-10-16T18:50:41.899Z"
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@005xxx", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-18T15:31:59.446Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$0Z8GuCj8deld$ob811YG0qJ+aXC+FgCIf/wH8k4cyh0OBjlhAhBOUaDc=", 
+        "email": "knkiers@taylor.edu", 
+        "date_joined": "2013-10-18T15:31:46.130Z"
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055abc", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T20:27:16.147Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$OxPIFx50ZH0v$fcvZkt8e8XaY2AuZqL2oq6CYElgBvPLpjGN464x76fg=", 
+        "email": "knkiers@taylor.edu", 
+        "date_joined": "2013-10-24T20:11:30.348Z"
+    }
+},
+{
+    "pk": 58, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@12345", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-24T21:16:19.246Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$gAgi8iebTw1U$Jk9KQQ+S+9j5nZrLOeP5Ysiln/hoXYSLZ79nbysFWNc=", 
+        "email": "arwhite@tayloru.edu", 
+        "date_joined": "2013-10-24T21:16:07.327Z"
+    }
+},
+{
+    "pk": 59, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055abcd", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-02T00:35:56.263Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$8Jh3udTnds4y$IzYYiACTS2JVhvc2ly15pPwobmDjEWdUL7jV8X1RKnU=", 
+        "email": "leah@taylor.edu", 
+        "date_joined": "2013-10-26T19:56:13Z"
+    }
+},
+{
+    "pk": 60, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00617343", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-11-06T22:25:31.293Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$4NNEnTtMMMR8$gHMqw0443qtNxKmghO1sQoDfIDdE1cJ6HDFfNwNKRO8=", 
+        "email": "taylor_Temple@taylor.edu", 
+        "date_joined": "2013-10-28T19:09:37.239Z"
+    }
+},
+{
+    "pk": 61, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0055abcde", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T19:50:52.547Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$YiJ8CgrgOJWi$MroW7mnmEwjRueCiyrNh4BXDRviBqeQ4CYxLQtbY15k=", 
+        "email": "user@taylor.edu", 
+        "date_joined": "2013-10-28T19:47:50.497Z"
+    }
+},
+{
+    "pk": 63, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00590833", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-07T22:57:44.120Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$nAK8KpfchbYZ$9QY425OP8mWB69YtFVlxg/iWS7U+zMTKGUPAhvvi+6o=", 
+        "email": "cassie_long@taylor.edu", 
+        "date_joined": "2013-10-28T22:09:11.808Z"
+    }
+},
+{
+    "pk": 64, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00635027", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-09T23:24:08.246Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$z9vwniJmWUz4$dl4p4K6G2hkrHfolCSdBP8ak0ZMhQgXBvtHaj8azCG0=", 
+        "email": "joyce_yu@taylor.edu", 
+        "date_joined": "2013-10-28T22:09:15.797Z"
+    }
+},
+{
+    "pk": 65, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00526114", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-08T19:44:39.919Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$doRRgjQgHzdS$FyresN4bz/vFYMhwpIGtYN46X+5zRtKkgOmJl4nlJfw=", 
+        "email": "daniel_luke@taylor.edu", 
+        "date_joined": "2013-10-28T22:09:15.836Z"
+    }
+},
+{
+    "pk": 66, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00555abc", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T22:10:05.992Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$GVqbDqOl2edR$+QOGIEZkR7z+8OZHtp/coCVusql7ppyiqXEWjHxYgmE=", 
+        "email": "knkiers@taylor.edu", 
+        "date_joined": "2013-10-28T22:09:28.439Z"
+    }
+},
+{
+    "pk": 67, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00617527", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-22T00:49:15.382Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$JdALH8cxBwcw$FIyGCU/5kRnkstjl5RsK9N1MuqdWB+Bk8SeWDsFLk54=", 
+        "email": "pksbotr@aol.com", 
+        "date_joined": "2013-10-28T22:09:35.531Z"
+    }
+},
+{
+    "pk": 68, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@000626259", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T22:09:39.558Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$PjpV3CSyQeAT$eKDKZuejeNe2Ve7OsfkFzFlS0hgtZl26ujwEA0OzyDE=", 
+        "email": "lindsey_low@taylor.edu", 
+        "date_joined": "2013-10-28T22:09:39.558Z"
+    }
+},
+{
+    "pk": 69, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00623496", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-14T19:40:20.446Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$vlJ8MKkIroqt$i8yNIdFyy21rYbbjShhExcdalU2cl4um3bLX4HqDymU=", 
+        "email": "landon_stratford@taylor.edu", 
+        "date_joined": "2013-10-28T22:10:34.620Z"
+    }
+},
+{
+    "pk": 70, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00627350", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-25T20:02:04.207Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$UnHJBc511OBZ$GBL7oRy3Eq7RBPSxxER4FTAqTVrO7aBAOKOK/YV0jBU=", 
+        "email": "david_cartolano@taylor.edu", 
+        "date_joined": "2013-10-28T22:10:40.496Z"
+    }
+},
+{
+    "pk": 71, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00626259", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-02-06T01:42:48.993Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$kfOFETtagBuZ$04hFQVquWBisVuWdgPla2BT952Rrj/D8xkH0n2mn5f0=", 
+        "email": "lindsey_low@taylor.edu", 
+        "date_joined": "2013-10-28T22:11:54.049Z"
+    }
+},
+{
+    "pk": 72, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00635472", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-06T00:31:57.471Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$IuP2INdv8AXL$fmr6/xKOZ0GMLyQZQla3tFq25DRo1Y7J/qjIETi9juA=", 
+        "email": "austin_borg@taylor.edu", 
+        "date_joined": "2013-10-28T22:16:16.584Z"
+    }
+},
+{
+    "pk": 73, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00596165", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:01:07.607Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$qGfmptIYobZW$qtqa0XPV9fFfZXPNPeCvVE69bZovgf3wvznjUgFbtTk=", 
+        "email": "ethan_mcgarvey@taylor.edu", 
+        "date_joined": "2013-10-28T22:19:00.724Z"
+    }
+},
+{
+    "pk": 74, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00604976", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-02-01T03:37:05.409Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$2AgcRbIVeiN1$b2/MCu4R8HMWhO3T/1+v/2UuVUINxUFPx8OSERcIwzg=", 
+        "email": "daniel_grube@taylor.edu", 
+        "date_joined": "2013-10-28T22:28:14.044Z"
+    }
+},
+{
+    "pk": 75, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "00620395", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:08:47.484Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$a4ES5P7W5PJQ$In5oNZKKAsp6cOYO/BtgXi8/VxyJHSRBaaBDW7CFSJ8=", 
+        "email": "taylor_dunlop@taylor.edu", 
+        "date_joined": "2013-10-28T22:28:39.332Z"
+    }
+},
+{
+    "pk": 76, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00627096", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T22:30:02.794Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$Keksqv1GtS4H$BUHNjc1tBaZkpE6vboU2/rh30lpVDAOcM2wMIl1F6O0=", 
+        "email": "Reggie_Beasley@taylor.edu", 
+        "date_joined": "2013-10-28T22:29:37.463Z"
+    }
+},
+{
+    "pk": 77, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00596009", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-30T17:37:24.921Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$j56oU0BFdWWZ$q5Cur9mF95q8Z9vIQXsnHOJOX+duVDK5SFzsvfRrQQg=", 
+        "email": "Josiah_Steckenrider@taylor.edu", 
+        "date_joined": "2013-10-28T22:35:41.363Z"
+    }
+},
+{
+    "pk": 78, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00609537", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-07T23:04:51.192Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$ybbBW9xWFRcR$E4cODGMvb8b0LkKFEG+9QObMwMwJ+vNsz2MbVjBvtJ8=", 
+        "email": "jesse_carmody@taylor.edu", 
+        "date_joined": "2013-10-28T22:37:20.909Z"
+    }
+},
+{
+    "pk": 79, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00608689", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-22T22:15:40.383Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$SHpMUtxYbOdg$XiongPmrKximPP58T6VUCMgmSk1BjejgwU0by5WKmS8=", 
+        "email": "britton_finley@taylor.edu", 
+        "date_joined": "2013-10-28T22:37:36.160Z"
+    }
+},
+{
+    "pk": 80, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00604664", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T22:38:41.115Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$LiiJfkVQIWBN$VNPsmt4Pe3X2X5mUAItLCSMdNWTk88KEzPJq7bhCsOw=", 
+        "email": "thomas_holton@taylor.edu", 
+        "date_joined": "2013-10-28T22:38:16.257Z"
+    }
+},
+{
+    "pk": 81, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00102267", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-17T20:44:04.884Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$oUM3NQLc6eYI$B4sBL560HIWxgfx694tIXTrFJc90JR090AadUjvVvG0=", 
+        "email": "jlgegner@taylor.edu", 
+        "date_joined": "2013-10-28T22:49:04.920Z"
+    }
+},
+{
+    "pk": 82, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00622800", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-10-01T17:03:24.312Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$yrxi9o1ovqbv$F8qUNYfWv5gUwet3bGoPK2RSktAKHqFugHfKYwD3JWo=", 
+        "email": "joel_kiers@taylor.edu", 
+        "date_joined": "2013-10-28T22:55:47.388Z"
+    }
+},
+{
+    "pk": 83, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00515235", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-29T03:47:03.660Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$wXMPBQCM59aC$B+YQHYJO4NoU3KWbfdMr8+Hy4BAigeEBu1Ygj8z7EAk=", 
+        "email": "colin_enger@taylor.edu", 
+        "date_joined": "2013-10-28T22:56:53.623Z"
+    }
+},
+{
+    "pk": 84, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "00573973", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T23:01:11.995Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$gFba8x4o2x6p$vHDJbeP6DHQTM9x0nEuv1zgOTQ8uIfy2q1+amxpCwlg=", 
+        "email": "benjamin_newhall@taylor.edu", 
+        "date_joined": "2013-10-28T23:00:57.453Z"
+    }
+},
+{
+    "pk": 85, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00629733", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:07:40.036Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$5x3zGm7qbMCB$Rxnz1EnBHUahH3lPkY8x7WwULH7EuNnx9DJ4EMkaKuA=", 
+        "email": "emily_britton@taylor.edu", 
+        "date_joined": "2013-10-28T23:08:23.741Z"
+    }
+},
+{
+    "pk": 86, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00594071", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-28T23:10:57.355Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$EzAmW5VhnB1f$n7q8tMtdkMYgk+ji3t4wrC+CCkh95uo2SAr5ajMAwQk=", 
+        "email": "collin_williams@taylor.edu", 
+        "date_joined": "2013-10-28T23:10:44.772Z"
+    }
+},
+{
+    "pk": 87, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00596204", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-22T23:34:39.414Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1ih18m9yzBEe$Sgoj5IMEdHiXrsuwd3E7mfSb+XjJ58cziWeL1zoRC8o=", 
+        "email": "tanner_dye@taylor.edu", 
+        "date_joined": "2013-10-28T23:30:31.515Z"
+    }
+},
+{
+    "pk": 88, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00592936", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-28T19:45:26.041Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$sQ6BUBmnOTSh$bkiv8LKNLGQbaAPXZVH/PVVjKQ5pApd9sEgZrdPLQf4=", 
+        "email": "kayla_cross@taylor.edu", 
+        "date_joined": "2013-10-28T23:38:28.194Z"
+    }
+},
+{
+    "pk": 89, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00610795", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-29T00:03:25.102Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$TbUMTpBRFxik$r2m/chEdWvtacyi1REHpTY3MFXpY69MdQNRuew55CqQ=", 
+        "email": "blake_wheeler@taylor.edu", 
+        "date_joined": "2013-10-29T00:03:00.140Z"
+    }
+},
+{
+    "pk": 90, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "tempuser", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-29T02:58:28.641Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$kxA4KxHnEa0I$2aEZAxaxV6LMW/W3tT0mz5ISxJfL2e7DgY5TK7Hx+xw=", 
+        "email": "tu@taylor.edu", 
+        "date_joined": "2013-10-29T02:58:20.202Z"
+    }
+},
+{
+    "pk": 91, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00594443", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-10-30T23:18:45.668Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$jBnZE8mqtgsw$WzFHytikS7Z7r2YAStSna44JJnH/ozleqODsN01M6ec=", 
+        "email": "Samuel_Judge@taylor.edu", 
+        "date_joined": "2013-10-30T23:18:34.728Z"
+    }
+},
+{
+    "pk": 92, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00521144", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-08-25T15:42:11.235Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$HH0Vu4faUaFR$UoEHr7o5m4YetfcSiMzleOcTu9xpqj1pPSrMryVQPRk=", 
+        "email": "carson_hendricks@taylor.edu", 
+        "date_joined": "2013-10-31T13:53:38.078Z"
+    }
+},
+{
+    "pk": 93, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00576829", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-12-06T05:33:16.283Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$idXV8k4eYSXN$aL4hu57UBx5gWTfGTBYoXKyFHfNDch0QcrAd2WUHe/s=", 
+        "email": "adam_keenan@taylor.edu", 
+        "date_joined": "2013-10-31T15:15:27.843Z"
+    }
+},
+{
+    "pk": 94, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00594597", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-11-06T06:14:15.872Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$730h0MP77QE8$XOQ84PYAQxQwlFDu5s5NQmSLvUtchnctpKmrLOGwhoQ=", 
+        "email": "josh_wilhelm@taylor.edu", 
+        "date_joined": "2013-10-31T18:12:46.697Z"
+    }
+},
+{
+    "pk": 95, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00599159", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-23T17:17:22.937Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$YhBjVVm3u0fp$2qFi9ClXrmj49ALLp+3AWSwSgADuqgjGTBrGrpFsFpw=", 
+        "email": "clayton_orender@taylor.edu", 
+        "date_joined": "2013-11-02T03:05:39.424Z"
+    }
+},
+{
+    "pk": 96, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00606870", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-28T20:06:16.168Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$7CH3fNlpI6rv$p38f/L2DGqTzmCX78rIoG+rMHYweGgjULyF1lVHJdMc=", 
+        "email": "kgkiers@sbcglobal.net", 
+        "date_joined": "2013-11-06T02:32:47.829Z"
+    }
+},
+{
+    "pk": 97, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00191977", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-11-06T23:52:55.262Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1D3OtbyjeH3U$H9IcqqXhecwA+YsWzEIeLnQJcIx6jZTjfEYLWmVTUFg=", 
+        "email": "jgeisler@cse.taylor.edu", 
+        "date_joined": "2013-11-06T23:52:44.100Z"
+    }
+},
+{
+    "pk": 98, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00588683", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-26T03:48:14.872Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$vyBay7F6DHQW$OMzXS1bIM9wWQFkVSVdBJBKptsho3vWS9vkTMMUNfSg=", 
+        "email": "sam_sly@taylor.edu", 
+        "date_joined": "2013-11-08T02:33:03.884Z"
+    }
+},
+{
+    "pk": 99, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00628347", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-11-14T21:08:51.427Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$i0Kw7uZXfK9k$6ogR01TnS8yX/us+kgpOD6C3gduQpz1DOQ0enpvNKTE=", 
+        "email": "joshua_susman@taylor.edu", 
+        "date_joined": "2013-11-14T21:08:32.440Z"
+    }
+},
+{
+    "pk": 100, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@62834760", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-12-03T18:22:52.297Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$rv0SQGDfqUZh$NYyulF0nIFZGedAJB10s+AYgOQB1TAi728Gw+ggPHCU=", 
+        "email": "joshua_susman@taylor.edu", 
+        "date_joined": "2013-12-02T17:10:09.129Z"
+    }
+},
+{
+    "pk": 101, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@0062834760", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-12-04T20:55:06.119Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$lzEixwo3R5C2$xHhyBOg3k1S8C8M7z5D2Or0Qa7LWuVx9x/B8zgTS00Q=", 
+        "email": "joshua_susman@taylor.edu", 
+        "date_joined": "2013-12-03T18:24:45.088Z"
+    }
+},
+{
+    "pk": 102, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00577994", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-12-10T18:40:22.411Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1pbkiqhGTKqq$38UHjVDCR8wOaFlAmh7HFG4+GG4p5lXae/6+uyEOfXs=", 
+        "email": "micah_russell@taylor.edu", 
+        "date_joined": "2013-12-10T18:40:03.233Z"
+    }
+},
+{
+    "pk": 103, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00551526", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-20T22:01:01.207Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$OFpp9RxfMgxp$YfslEJDxQQMmywveoAtKmjAGvA3+m/5ty4c4IY2FBb8=", 
+        "email": "nakhoon_song@taylor.edu", 
+        "date_joined": "2014-01-05T02:01:50.763Z"
+    }
+},
+{
+    "pk": 104, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00617309", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-09-09T20:07:56.339Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$bcX6B89kmhEb$KjmWbOWlpsYQ47Cc1CNoLQ+O/z+QFeAR4IC9ig6eDtc=", 
+        "email": "conner_reagan@taylor.edu", 
+        "date_joined": "2014-01-27T00:57:46.286Z"
+    }
+},
+{
+    "pk": 106, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00606654", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:05:48.379Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$pUU14oTA3tSV$7qCASLz+QPK3QI/VytN/TD3UORIttC/Sk63CswpgroU=", 
+        "email": "christopher_shelor@taylor.edu", 
+        "date_joined": "2014-01-27T01:05:37.954Z"
+    }
+},
+{
+    "pk": 107, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00580032", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:09:24.560Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$S07KyTyA3ALv$2zMVpFyLVHS7JCHywDFQsZqV2rk0+AXgARY242UlSTM=", 
+        "email": "andrew_raines@taylor.edu", 
+        "date_joined": "2014-01-27T01:07:37.542Z"
+    }
+},
+{
+    "pk": 108, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "00630556", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:13:14.258Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$qGWbo8FyCYuZ$CL5N2oAkm9TK3bK7X08vcptHFyqcLxvcCxABcSfF/LI=", 
+        "email": "stephen_enzor@taylor.edu", 
+        "date_joined": "2014-01-27T01:13:02.022Z"
+    }
+},
+{
+    "pk": 109, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "johnlennon2", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-01-27T01:17:17.118Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$HbWdroMpR9en$7qyVDiVfdVW1pvZvdDvjgZD8d12xLqErM0B3bX6Svio=", 
+        "email": "jl@taylor.edu", 
+        "date_joined": "2014-01-27T01:17:17.118Z"
+    }
+},
+{
+    "pk": 110, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "00617693", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-17T01:10:33.318Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$P2bTRAxAaY8T$QjjaDEJsRoR/Dh0GmH8I0pbbObuEOwFU5c1y2W7OX8k=", 
+        "email": "matthew_white2@taylor.edu", 
+        "date_joined": "2014-01-27T01:18:26.270Z"
+    }
+},
+{
+    "pk": 111, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00632248", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-08T00:22:06.390Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$HNLRrQOHduzu$cdCeu/028QGBd5KNMHRN6DjDca+YeadmjXP6r14A8cY=", 
+        "email": "austin_garde@taylor.edu", 
+        "date_joined": "2014-01-27T01:19:27.168Z"
+    }
+},
+{
+    "pk": 112, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00534724", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-03-17T22:03:23.064Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$7td3hBlU3VJM$3wYGA0+gNJOSyK0EIHcw+mJCwPbtOrhKz1F3TSRF/UI=", 
+        "email": "benjamin_duggan@taylor.edu", 
+        "date_joined": "2014-02-17T18:48:43.793Z"
+    }
+},
+{
+    "pk": 113, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ProfessorChang", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-10T21:30:15.275Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$Vo6RfOpKdtho$neNjRsdPlkialBf1Ca7zt4ACZXt8rLmOJrVl55fq32w=", 
+        "email": "", 
+        "date_joined": "2014-04-10T21:28:59Z"
+    }
+},
+{
+    "pk": 114, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "1659558865", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-16T16:44:13.160Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$2bEoooSts4Eg$PqFykiSlP5NSA6UMyMJAYrHJRnK7Qp8vByH3YN2cAvg=", 
+        "email": "Dustin_waldron@taylor.edu", 
+        "date_joined": "2014-04-16T16:44:13.160Z"
+    }
+},
+{
+    "pk": 115, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "@00632048", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-30T17:49:10.295Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$it3WB1g8Vicv$WDVEh1cWxC28bbC6iILZOmJbr35jDsPFwSLyb8y8S2k=", 
+        "email": "neil_perry@taylor.edu", 
+        "date_joined": "2014-04-30T17:48:47.304Z"
+    }
+}
+]
