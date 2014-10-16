@@ -86,7 +86,7 @@ def profile(request):
         isProfessor = False
         professorname = ''
         advisee = None
-        student_local = user
+        student_local = user.student
     else:
         isProfessor = True
         professorname = user.professor.name
