@@ -52,14 +52,13 @@
     </ul>
   </p>
 
-  <p>List of "create your own" type courses for the present semester:
+  <p><strong>List of "create your own" type courses for the present semester:</strong>
     <ul>
       {% for course in sccdatablock %}
 	<li>
 	  {{course.cname}}
 	  ({{course.cnumber}},
-	  {{course.ccredithrs}} hrs
-	  {{course.equivalentcourse}}{{course.sp}}{{course.cc}})
+	  {{course.ccredithrs}} hrs{{course.equivalentcourse}}{{course.sp}}{{course.cc}})
 	  (<a class="other" href="{% url 'update_cyoc' instanceid course.courseid %}">Edit</a>,
 	   <a class="other" href="{% url 'delete_cyoc' 2 instanceid course.courseid %}">Delete</a>)
 	</li>

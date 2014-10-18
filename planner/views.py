@@ -8,19 +8,6 @@ from forms import *
 from django.contrib.auth.decorators import login_required
 from collections import namedtuple
 
-# current bugs:
-# 1. Does not pick up course equivalencies for "cyoc" type courses; this is because
-#    student_course_dict uses cyoc.number as the key, and that key is what is getting
-#    checked.  oops!
-# 2. student_courses.total_credit_hours gives the incorrect value
-#    (compared to tot_cred_hrs(student_local), which I think gives the correct value)
-#    >>> the issue appears to occur when two courses have the same course number 
-#        (the student_course_dict gets overwritten...oops!) 
-#    >>> probably need to come up with a key system wherein a key is assigned to each
-#        course in the plan, including cyoc's; ugh....
-# 3. Should probably use the course id's instead of course.number for checking requirements!!!
-#    >>> part of the problem is that FourYearPlanCourses() ALSO uses a dictionary that
-#        has course.number or cyoc.number as the key.
 
 def home(request):
     return render(request, 'home.html')
@@ -173,7 +160,7 @@ def update_student_semester(request, id):
 
     year = instance.actual_year
     semester = instance.semester
-    student_local = request.user
+    student_local = request.user.student
     student_created_courses = CreateYourOwnCourse.objects.all().filter(Q(student=student_local) &
                                                                        Q(semester=semester) &
                                                                        Q(actual_year=year))
@@ -487,24 +474,24 @@ def display_four_year_plan(request):
                'courses_that_were_moved':courses_that_have_been_moved(student_local)}
     return render(request, 'fouryearplan.html', context)
 
-CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id")
+CourseInfo = namedtuple("CourseInfo", "name, semester, actual_year, credit_hours, sp, cc, iscyoc, number, id, course_id")
 class FourYearPlanCourses(object):
     def __init__(self):
         self.collection = {}
         self.sp_list = []
         self.cc_list = []
     
-    def __contains__(self, course_number):
+    def __contains__(self, key_tuple):
         """
         Returns True if course_number in collection.
         """
-        return course_number in self.collection
+        return key_tuple in self.collection
 
-    def __getitem__(self, course_number):
+    def __getitem__(self, key_tuple):
         """
         Returns course corresponding to course_number in collection.
         """
-        return self.collection[course_number]
+        return self.collection[key_tuple]
 
     def add(self, *courses):
         def sp_cc_info(course):
@@ -522,7 +509,12 @@ class FourYearPlanCourses(object):
             return {'cname':course_name, 'comment':comment, 'cnumber':course_number}
 
         for course in courses:
-            self.collection[course.number] = course
+            if course.iscyoc:
+                key_tuple = (course.id, -1)
+            else:
+                key_tuple = (course.course_id, course.id)
+
+            self.collection[key_tuple] = course
             if course.sp:
                 self.sp_list.append(sp_cc_info(course))
             if course.cc:
@@ -530,7 +522,7 @@ class FourYearPlanCourses(object):
     
     @property
     def courses(self):
-        return [self.collection[course_number] for course_number in self.collection]
+        return [self.collection[key_tuple] for key_tuple in self.collection]
 
     @property
     def num_sps(self):
@@ -645,7 +637,7 @@ def display_grad_audit(request):
         numhrsthissemester = 0
         for course in ssc.courses.all():
             iscyoc = False
-            student_course_dict[course.number] = [course.name,
+            student_course_dict[(course.id,ssc.id)] = [course.name,
                                                   ssc.semester,
                                                   ssc.actual_year,
                                                   course.credit_hours,
@@ -653,8 +645,8 @@ def display_grad_audit(request):
                                                   course.cc,
                                                   iscyoc,
                                                   course.number,
-                                                  ssc.id]
-
+                                                  ssc.id,
+                                                  course.id]
             course_info = CourseInfo(name = course.name, 
                                      semester = ssc.semester,
                                      actual_year = ssc.actual_year,
@@ -663,7 +655,8 @@ def display_grad_audit(request):
                                      cc = course.cc,
                                      iscyoc = iscyoc,
                                      number = course.number,
-                                     id = ssc.id)
+                                     id = ssc.id,
+                                     course_id = course.id)
             student_courses.add(course_info)
 
     # Now add in the user-created ("create your own") type courses.
@@ -672,10 +665,12 @@ def display_grad_audit(request):
         if cyoc.equivalentcourse:
             equivcourse_namestring = ' (equivalent to: '+cyoc.equivalentcourse.number+')'
             eqcoursenum = cyoc.equivalentcourse.number
+            eqcourse_id = cyoc.equivalentcourse.id
         else:
             equivcourse_namestring =''
             eqcoursenum = ''
-        student_course_dict[cyoc.number] = [cyoc.name+equivcourse_namestring,
+            eqcourse_id = -1
+        student_course_dict[(cyoc.id,-1)] = [cyoc.name+equivcourse_namestring,
                                             cyoc.semester,
                                             cyoc.actual_year,
                                             cyoc.credit_hours,
@@ -683,16 +678,18 @@ def display_grad_audit(request):
                                             cyoc.cc,
                                             iscyoc,
                                             cyoc.number,
-                                            cyoc.id]
+                                            cyoc.id,
+                                            eqcourse_id]
 
         course_info = CourseInfo(name = cyoc.name + equivcourse_namestring,
-                                 semester = ssc.semester,
-                                 actual_year = ssc.actual_year,
+                                 semester = cyoc.semester,
+                                 actual_year = cyoc.actual_year,
                                  credit_hours = cyoc.credit_hours,
                                  sp = cyoc.sp,
                                  cc = cyoc.cc,                                 iscyoc = iscyoc,
                                  number = cyoc.number,
-                                 id = cyoc.id)
+                                 id = cyoc.id,
+                                 course_id = eqcourse_id)
 
         student_courses.add(course_info)
 
@@ -714,8 +711,8 @@ def display_grad_audit(request):
         CCreq = True
 
     total_credit_hours_four_years= student_courses.total_credit_hours
-    print total_credit_hours_four_years
-    print tot_cred_hrs(student_local)
+#    print total_credit_hours_four_years
+#    print tot_cred_hrs(student_local)
 
     # the following code assembles majordatablock (described in detail above);
     # the general approach is the following:
@@ -745,7 +742,14 @@ def display_grad_audit(request):
             course_id = course.id
             numcrhrstaken = ''
             sscid = -1
-            requirement_met = cnumber in student_course_dict
+#            requirement_met = cnumber in student_course_dict
+            requirement_met = False
+            course_sp = course.sp # could be overridden later if requirement is met by a cyoc with no SP
+            course_cc = course.cc # could be overridden later if requirement is met by a cyoc with no CC
+            for key_tuple in student_course_dict:
+                if student_course_dict[key_tuple][9] == course_id:
+                    requirement_met = True
+                    key_tuple_to_pop = key_tuple
             # if the requirement is met, pop the course out of the student's list of courses
             if requirement_met:
                 # Assemble any prereq or coreq comments into a list.
@@ -758,15 +762,17 @@ def display_grad_audit(request):
                         precocommentlist.append(row[4] + " is a prerequisite for " +
                                                 row[2] + "; the requirement is currently not being met.")
 
-                student_course = student_courses[cnumber]
-                courseinfo= student_course_dict.pop(cnumber)
+                student_course = student_courses[key_tuple_to_pop]
+                courseinfo= student_course_dict.pop(key_tuple_to_pop)
                 numcrhrstaken = student_course.credit_hours
                 total_credit_hours_so_far+=numcrhrstaken
                 semester = student_course.semester
                 actual_year = student_course.actual_year
                 sscid = student_course.id
                 iscyoc = student_course.iscyoc
-                
+                course_sp = student_course.sp
+                course_cc = student_course.cc
+
                 if semester == 0:
                     commentfirstpart = "Pre-TU"
                 else:
@@ -832,8 +838,8 @@ def display_grad_audit(request):
             courselisttemp.append({'cname': course.name,
                                    'cnumber': course.number,
                                    'ccredithrs': course.credit_hours,
-                                   'sp': course.sp,
-                                   'cc': course.cc,
+                                   'sp': course_sp,
+                                   'cc': course_cc,
                                    'comment': comment,
                                    'numcrhrstaken': numcrhrstaken,
                                    'courseid': course.id,
@@ -866,8 +872,8 @@ def display_grad_audit(request):
         # course requirement in one of the requirement blocks;  unusedcourses keeps track of these courses
         unusedcourses=[]
         unusedcredithours=0
-        for course_number in student_course_dict:
-            course = student_course_dict[course_number]
+        for key_tuple in student_course_dict:
+            course = student_course_dict[key_tuple]
             unusedcredithours=unusedcredithours+course[3]
             if course[1]==0:
                 comment = "Pre-TU"
