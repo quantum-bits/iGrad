@@ -42,6 +42,9 @@ class Semester(models.Model):
     Y2017 = 2017
     Y2018 = 2018
     Y2019 = 2019
+    Y2020 = 2020
+    Y2021 = 2021
+    Y2022 = 2022
 
     YEAR_CHOICES = (
         (Y2009, '2009'),
@@ -55,6 +58,9 @@ class Semester(models.Model):
         (Y2017, '2017'),
         (Y2018, '2018'),
         (Y2019, '2019'),
+        (Y2020, '2020'),
+        (Y2021, '2021'),
+        (Y2022, '2022'),
     )
 
     name = models.CharField(max_length=50,help_text="e.g., Fa12 or J13")
@@ -203,7 +209,7 @@ class Student(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=100)
     major = models.ForeignKey(Major, blank=True, null=True)
-    entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2012")
+    entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2015")
     # might need to add null=True above as well....
     #    birthday = models.DateField(blank=True, null=True)
     # Update 5/9/2013 - Items to add
@@ -334,6 +340,9 @@ class CreateYourOwnCourse(models.Model):
     Y2017 = 2017
     Y2018 = 2018
     Y2019 = 2019
+    Y2020 = 2020
+    Y2021 = 2021
+    Y2022 = 2022
 
     YEAR_CHOICES = (
         (Y2009, '2009'),
@@ -347,6 +356,9 @@ class CreateYourOwnCourse(models.Model):
         (Y2017, '2017'),
         (Y2018, '2018'),
         (Y2019, '2019'),
+        (Y2020, '2020'),
+        (Y2021, '2021'),
+        (Y2022, '2022'),
     )
 
     name = models.CharField(max_length=50,help_text="e.g., Underwater Basket Weaving")
@@ -383,6 +395,9 @@ class EnteringYear(models.Model):
     Y2017 = 2017
     Y2018 = 2018
     Y2019 = 2019
+    Y2020 = 2020
+    Y2021 = 2021
+    Y2022 = 2022
 
     YEAR_CHOICES = (
         (Y2009, '2009'),
@@ -396,6 +411,9 @@ class EnteringYear(models.Model):
         (Y2017, '2017'),
         (Y2018, '2018'),
         (Y2019, '2019'),
+        (Y2020, '2020'),
+        (Y2021, '2021'),
+        (Y2022, '2022'),
     )
 
     year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2012)
