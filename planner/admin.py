@@ -17,7 +17,7 @@ class MajorAdmin(admin.ModelAdmin):
     filter_horizontal = ('major_requirements',)
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('name','entering_year',)
+    list_display = ('name','major','entering_year',)
 
 class AdvisingNoteAdmin(admin.ModelAdmin):
     list_display = ('student','note',)
