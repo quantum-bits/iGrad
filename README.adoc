@@ -1,0 +1,26 @@
+= iGrad
+
+*Update me to describe iGrad*
+
+== Notes
+
+When moving from Mercurial to Git, there were two branches:
+
+. `master` held changes made a while back by John Gibson. 
+  Because performance was unacceptable, 
+  this version was not in use in production.
+. `old-igrad` was a branch from before the changes made by John.
+  Ken had been using this branch in prodution for some while.
+
+Ken had Tom rename these branches to better reflect reality.
+
+[options="header"]
+|===
+| Old Branch | New Branch
+
+m| master 
+m| develop
+
+m| old-igrad 
+m| master
+|===
