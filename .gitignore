@@ -1,0 +1,6 @@
+*.pyc
+*.db
+static_root/
+*.orig
+*~
+foo*
