@@ -1,15 +1,17 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, re_path, path
+
+from planner.views import profile
 
 from django.contrib import admin
+
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
+    re_path(r'^$', profile),
+    re_path(r'^planner/', include('planner.urls')),
 
-    url(r'^$', 'planner.views.profile'),
-    url(r'^planner/', include('planner.urls')),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
 
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-)
+    re_path(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    path(r'admin/', admin.site.urls),
+]

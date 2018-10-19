@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from models import *
+from .models import *
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.template import RequestContext
-from forms import *
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from collections import namedtuple
 

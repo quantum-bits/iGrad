@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.db.models import Q
-from models import *
+from .models import *
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label=(u'User Name'))

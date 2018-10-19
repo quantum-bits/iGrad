@@ -1,6 +1,6 @@
 # Django settings for iGrad project.
 
-from run_mode import RunMode
+from .run_mode import RunMode
 run_mode = RunMode('dev', debug_toolbar=False)
 
 DEBUG = run_mode.dev
@@ -124,7 +124,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    run_mode.path_to('shared/templates')
+    run_mode.path_to('shared/templates'),
 )
 
 AUTHENTICATION_BACKENDS = (

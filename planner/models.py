@@ -105,7 +105,7 @@ class Course(models.Model):
 
     name = models.CharField(max_length=50,help_text="e.g., University Physics I & Lab")
     number = models.CharField(max_length=10, help_text="e.g., PHY211")
-    department = models.ForeignKey(Department)
+    department = models.ForeignKey(Department, on_delete=models.PROTECT)
     credit_hours = models.PositiveIntegerField(choices = CREDIT_CHOICES, default=cr3)
     semester = models.ManyToManyField(Semester)
     prereqs = models.ManyToManyField("self", symmetrical = False,
@@ -206,9 +206,9 @@ class ProxiedModelBackend(ModelBackend):
             return None
 
 class Student(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
-    major = models.ForeignKey(Major, blank=True, null=True)
+    major = models.ForeignKey(Major, blank=True, null=True, on_delete=models.PROTECT)
     entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2015")
     # might need to add null=True above as well....
     #    birthday = models.DateField(blank=True, null=True)
@@ -235,9 +235,9 @@ class Student(models.Model):
 
 
 class Professor(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
-    advisee = models.ForeignKey(Student, blank=True, null=True)
+    advisee = models.ForeignKey(Student, blank=True, null=True, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return self.name
@@ -273,7 +273,7 @@ class StudentSemesterCourses(models.Model):
 
     semester = models.PositiveIntegerField(choices=SEMESTER_CHOICES, default = FALL_SEMESTER)
     year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = FRESHMAN_YEAR)
-    student = models.ForeignKey(Student, related_name='ssc_student')
+    student = models.ForeignKey(Student, related_name='ssc_student', on_delete=models.PROTECT)
     courses = models.ManyToManyField(Course, related_name='semestercourses', blank=True)
     #    actual_year=models.PositiveIntegerField(default='2012')
 
@@ -366,8 +366,8 @@ class CreateYourOwnCourse(models.Model):
     credit_hours = models.PositiveIntegerField(choices = CREDIT_CHOICES, default=cr3)
     semester = models.PositiveIntegerField()
     actual_year = models.PositiveIntegerField(choices = YEAR_CHOICES, default=Y2012)
-    student = models.ForeignKey(Student, related_name='cyoc_student')
-    equivalentcourse = models.ForeignKey(Course, blank=True, null=True)
+    student = models.ForeignKey(Student, related_name='cyoc_student', on_delete=models.PROTECT)
+    equivalentcourse = models.ForeignKey(Course, blank=True, null=True, on_delete=models.PROTECT)
     sp = models.BooleanField(default = False, verbose_name="SP")
     cc = models.BooleanField(default = False, verbose_name="CC")
 
@@ -375,9 +375,9 @@ class CreateYourOwnCourse(models.Model):
         return "{0} - {1}".format(self.number, self.name)
 
 class AdvisingNote(models.Model):
-    student = models.ForeignKey(Student, related_name='advisingnotes_student')
+    student = models.ForeignKey(Student, related_name='advisingnotes_student', on_delete=models.PROTECT)
     note = models.TextField(max_length=1000, blank=True)
-    datestamp = models.DateTimeField(auto_now=True, auto_now_add=True)
+    datestamp = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return "{0} on {1}".format(self.student, self.datestamp)
@@ -424,7 +424,7 @@ class EnteringYear(models.Model):
 class PrepopulateSemesters(models.Model):
     name = models.CharField(max_length=100,help_text="e.g., Physics BS, entering odd years")
     enteringyear = models.ManyToManyField(EnteringYear)
-    major = models.ForeignKey(Major)
+    major = models.ForeignKey(Major, on_delete=models.PROTECT)
 
     freshman_fall_courses = models.ManyToManyField(Course, related_name='frfall', blank=True)
     freshman_jterm_courses = models.ManyToManyField(Course, related_name='frjterm', blank=True)
