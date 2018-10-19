@@ -13,7 +13,7 @@ def home(request):
     return render(request, 'home.html')
 
 def student_registration(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return redirect('profile')
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
