@@ -8,13 +8,16 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from collections import namedtuple
 
+#from django.http import HttpResponseRedirect
+#from django.urls import reverse
 
 def home(request):
     return render(request, 'home.html')
 
 def student_registration(request):
     if request.user.is_authenticated:
-        return redirect('profile')
+        return redirect('planner.views.profile')
+        #return HttpResponseRedirect(reverse('planner.views.profile'))
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -50,7 +53,8 @@ def student_registration(request):
             else:
                 courses_added = False
 
-            return redirect('profile')
+            return redirect('planner.views.profile')
+            #return HttpResponseRedirect(reverse('planner.views.profile'))
         else:
             return render(request, 'register.html', {'form': form})
 
@@ -123,7 +127,7 @@ def update_major(request, id):
     incoming_id = int(id)
 
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     instance = Student.objects.get(pk=id)
 
@@ -131,7 +135,7 @@ def update_major(request, id):
         form = UpdateMajorForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('planner.views.profile')
         else:
             return render(request, 'updatemajor.html', {'form': form})
     else:
@@ -156,7 +160,7 @@ def update_student_semester(request, id):
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     year = instance.actual_year
     semester = instance.semester
@@ -198,7 +202,7 @@ def update_student_semester(request, id):
         form = AddStudentSemesterForm(request.POST, **my_kwargs)
         if form.is_valid():
             form.save()
-            return redirect('four_year_plan')
+            return redirect('planner.views.display_four_year_plan')
         else:
             return render(request, 'updatesemester.html',
                           {'form': form, 'sccdatablock':sccdatablock})
@@ -227,7 +231,7 @@ def display_advising_notes(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return redirect('update_advisee', 3)
+            return redirect('planner.views.update_advisee', 3)
 
     temp_data = AdvisingNote.objects.all().filter(student=student_local)
 
@@ -255,7 +259,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return redirect('advising_notes')
+            return redirect('planner.views.advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
@@ -271,13 +275,13 @@ def update_advising_note(request, id):
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     if request.method == 'POST':
         form = AddAdvisingNoteForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('advising_notes')
+            return redirect('planner.views.advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
@@ -292,10 +296,10 @@ def delete_advising_note(request, id):
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     instance.delete()
-    return redirect('advising_notes')
+    return redirect('planner.views.advising_notes')
 
 @login_required
 def display_four_year_plan(request):
@@ -556,7 +560,7 @@ def display_grad_audit(request):
         student_local = request.user.professor.advisee
         if student_local is None:
             # No advisee currently selected; go pick one first
-            return redirect('update_advisee', 2)
+            return redirect('planner.views.update_advisee', 2)
 
     temp_data = StudentSemesterCourses.objects.filter(student=student_local)
     temp_data3 = CreateYourOwnCourse.objects.filter(student=student_local)
@@ -928,7 +932,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return redirect('advising_notes')
+            return redirect('planner.views.advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
@@ -946,7 +950,7 @@ def add_create_your_own_course(request,id):
     request_id = request.user.get_student_id()
     incoming_id = ssc.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
     year=ssc.actual_year
     semester=ssc.semester
 
@@ -963,7 +967,7 @@ def add_create_your_own_course(request,id):
             new_cyoc.actual_year = year
             new_cyoc.equivalentcourse = form.cleaned_data['equivalentcourse']
             new_cyoc.save()
-            return redirect('update_student_semester', id)
+            return redirect('planner.views.update_student_semester', id)
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
@@ -982,15 +986,15 @@ def update_create_your_own_course(request,id,id2):
     incoming_id = ssc.student.id
     incoming_id2 = instance.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
     if request_id != incoming_id2:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     if request.method == 'POST':
         form = AddCreateYourOwnCourseForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('update_student_semester', id)
+            return redirect('planner.views.update_student_semester', id)
         else:
             return render(request, 'addcreateyourowncourse.html', {'form': form})
     else:
@@ -1015,15 +1019,15 @@ def delete_create_your_own_course(request, where_from, id, id2):
     request_id = request.user.get_student_id()
     incoming_id2 = instance.student.id
     if request_id != incoming_id2:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     instance.delete()
     if int(where_from) == 2:
-        return redirect('update_student_semester', id)
+        return redirect('planner.views.update_student_semester', id)
     elif int(where_from) == 0:
-        return redirect('four_year_plan')
+        return redirect('planner.views.display_four_year_plan')
     else:
-        return redirect('grad_audit')
+        return redirect('planner.views.display_grad_audit')
 
 # In the following, where_from is:
 #    0: fouryearplan
@@ -1037,13 +1041,13 @@ def delete_course_inside_SSCObject(request, where_from, ssc_id, course_id):
     request_id = request.user.get_student_id()
     incoming_id = instance.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     StudentSemesterCourses.objects.get(pk = ssc_id).courses.remove(course_id)
     if int(where_from) == 0:
-        return redirect('four_year_plan')
+        return redirect('planner.views.display_four_year_plan')
     else:
-        return redirect('grad_audit')
+        return redirect('planner.views.display_grad_audit')
 
 # In the following, where_from is:
 #    0: fouryearplan
@@ -1069,20 +1073,20 @@ def move_course_to_new_SSCObject(request, where_from, src_ssc_id, dest_ssc_id, c
     request_id = request.user.get_student_id()
     incoming_id = dest_ssc.student.id
     if request_id != incoming_id:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     if src_ssc_id_int != -1:
         # If src_ssc_id == -1, the course is not being taken, so there is nothing to remove
         instance_old = StudentSemesterCourses.objects.get(pk=src_ssc_id_int)
         incoming_id_old = instance_old.student.id
         if request_id != incoming_id_old:
-            return redirect('profile')
+            return redirect('planner.views.profile')
         StudentSemesterCourses.objects.get(pk=src_ssc_id).courses.remove(course_id)
     StudentSemesterCourses.objects.get(pk=dest_ssc_id).courses.add(course_id)
     if int(where_from) == 0:
-        return redirect('four_year_plan')
+        return redirect('planner.views.display_four_year_plan')
     else:
-        return redirect('grad_audit')
+        return redirect('planner.views.display_grad_audit')
 
 
 def pre_co_req_check(studentid):
@@ -1286,7 +1290,7 @@ def prepopulate_student_semesters(studentid):
 @login_required
 def update_advisee(request, where_from):
     if request.user.is_student():
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     professor = request.user.professor
 
@@ -1295,15 +1299,15 @@ def update_advisee(request, where_from):
         if form.is_valid():
             form.save()
             if int(where_from) == 0:
-                return redirect('profile')
+                return redirect('planner.views.profile')
             elif int(where_from) == 1:
-                return redirect('four_year_plan')
+                return redirect('planner.views.display_four_year_plan')
             elif int(where_from) == 2:
-                return redirect('grad_audit')
+                return redirect('planner.views.display_grad_audit')
             elif int(where_from) == 3:
-                return redirect('advising_notes')
+                return redirect('planner.views.display_advising_notes')
             else:
-                return redirect('profile')
+                return redirect('planner.views.profile')
         else:
             return render(request, 'addadvisee.html', {'form': form})
     else:
@@ -1320,7 +1324,7 @@ def search(request):
     """Determine the # of students enrolled in courses that match a search request."""
 
     if request.user.is_student():
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
@@ -1354,7 +1358,7 @@ def search(request):
         context={'courses':courses,'query':q, 'datablock':datablock}
         return render(request, 'course_enrollment_results.html',context)
     else:
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
 
 @login_required
@@ -1362,7 +1366,7 @@ def view_enrolled_students(request,course_id,semesterid):
     """Display students enrolled in a given course and semester"""
 
     if request.user.is_student():
-        return redirect('profile')
+        return redirect('planner.views.profile')
 
     actual_sem = Semester.objects.get(pk=semesterid).semester_of_acad_year
     actual_year = Semester.objects.get(pk=semesterid).actual_year

@@ -4,7 +4,7 @@
   <div class="alert alert-student-info">
   {% if isProfessor %}
     <p>
-      Advisee Name: {{ student.name }} (<a href="{% url 'update_advisee' 3 %}">Change</a>)
+      Advisee Name: {{ student.name }} (<a href="{% url 'planner.views.update_advisee' 3 %}">Change</a>)
     </p>
   {% else %}
     <p>Name: {{ student.name }}</p>
@@ -25,8 +25,8 @@
 	  <td>{{ item.0 }}</td>
 	  {% if not isProfessor %}
 	    <td>
-	      <a class="btn" href="{% url 'update_note' item.2 %}">Edit</a>
-	      <a class="btn btn-danger" href="{% url 'delete_note' item.2 %}">Delete</a>
+	      <a class="btn" href="{% url 'planner.views.update_note' item.2 %}">Edit</a>
+	      <a class="btn btn-danger" href="{% url 'planner.views.delete_note' item.2 %}">Delete</a>
 	    </td>
 	  {% endif %}
 	</tr>
@@ -41,7 +41,7 @@
 
   {% if not isProfessor %}
     <p>
-      <a class="btn btn-primary" href="{% url 'add_new_note' %}">Add a Note</a>
+      <a class="btn btn-primary" href="{% url 'planner.views.add_new_note' %}">Add a Note</a>
     </p>
   {% endif %}
   <script>

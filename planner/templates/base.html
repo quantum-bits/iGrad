@@ -58,8 +58,8 @@
 	</div>
       </div>
     
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.sticky.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
      <script>
     $(window).load(function(){
       $(".navbar").sticky({ topSpacing: 0 });

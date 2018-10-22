@@ -4,7 +4,7 @@
   <div class="alert alert-student-info">
     {% if isProfessor %}
 
-    <p>Advisee Name: {{ student.name }} (<a href="{% url 'update_advisee' 1 %}">Change</a>)</p>
+    <p>Advisee Name: {{ student.name }} (<a href="{% url 'planner.views.update_advisee' 1 %}">Change</a>)</p>
     {% else %}
 
     <p>Name: {{ student.name }}</p>{% endif %}
@@ -71,7 +71,7 @@
 	    <p>
 	      {{ row.semestername }}, {{ row.year }}
 	      {% if not isProfessor %}
-		(<a href="{% url 'update_student_semester' row.semesterid %}">Add Course</a>)
+		(<a href="{% url 'planner.views.update_student_semester' row.semesterid %}">Add Course</a>)
 	      {% endif %}
 	    </p>
 	    <table class="table table-striped table-bordered table-hover table-condensed">
@@ -116,15 +116,15 @@
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 			    <li>
 			      {% if course.iscyoc %}
-				<a href="{% url 'delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
+				<a href="{% url 'planner.views.delete_cyoc' 0 row.semesterid course.courseid %}">delete</a>
 			      {% else %}
-				<a href="{% url 'delete_course' 0 row.semesterid course.courseid %}">delete</a>
+				<a href="{% url 'planner.views.delete_course' 0 row.semesterid course.courseid %}">delete</a>
 			      {% endif %}
 			    </li>
 			    <li class="divider"></li>
 			    {% for alternatesemester in course.othersemesters %}
 			      <li>
-				<a href="{% url 'move_course' 0 row.semesterid alternatesemester.courseid course.courseid %}">{{alternatesemester.semester}}; {{alternatesemester.numhrsthissem}} hrs</a>
+				<a href="{% url 'planner.views.move_course' 0 row.semesterid alternatesemester.courseid course.courseid %}">{{alternatesemester.semester}}; {{alternatesemester.numhrsthissem}} hrs</a>
 			      </li>
 			    {% endfor %} {# other semesters #}
 			  </ul>

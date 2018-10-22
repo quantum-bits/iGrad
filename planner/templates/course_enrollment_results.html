@@ -5,7 +5,7 @@
   <p>
     You searched for: <strong>{{ query }}</strong>
   </p>
-  <form action="{% url 'search' %}" method="get">
+  <form action="{% url 'planner.views.search' %}" method="get">
       <input type="text" name="q" placeholder="Search Again"><br>
       <input type="submit" value="Search" >
   </form>
@@ -32,7 +32,7 @@
             {% for actsem in course.3 %}
 		
 	       <tr>
-		<td><a class="btn" href="{% url 'view_students' course.0 actsem.2 %}">{{ actsem.0 }}</a></td>
+		<td><a class="btn" href="{% url 'planner.views.view_students' course.0 actsem.2 %}">{{ actsem.0 }}</a></td>
 		<td>{{ actsem.1 }} student{{actsem.1|pluralize}}</td>
 	       </tr>
 		

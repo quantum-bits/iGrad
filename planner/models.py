@@ -67,7 +67,7 @@ class Semester(models.Model):
     semester_of_acad_year = models.IntegerField(choices=SEMESTER_CHOICES, default = FALL_SEMESTER)
     actual_year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2012)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -77,7 +77,7 @@ class Semester(models.Model):
 class Department(models.Model):
     name = models.CharField(max_length=50, help_text="e.g., Physics and Engineering")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -115,7 +115,7 @@ class Course(models.Model):
     sp = models.BooleanField(default = False, verbose_name="SP")
     cc = models.BooleanField(default = False, verbose_name="CC")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.number
 
     class Meta:
@@ -141,7 +141,7 @@ class RequirementBlock(models.Model):
     courselist = models.ManyToManyField(Course, help_text = "Select courses for this requirement.")
 
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -154,7 +154,7 @@ class Major(models.Model):
                             help_text="e.g., Physics BS or Mathematics BA.")
     major_requirements = models.ManyToManyField(RequirementBlock)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -164,7 +164,7 @@ class UserProxy(User):
     class Meta:
         proxy = True
 
-    def __unicode__(self):
+    def __str__(self):
         return self.get_full_name()
 
     def info(self):
@@ -215,7 +215,7 @@ class Student(models.Model):
     # Update 5/9/2013 - Items to add
     # current_status = models.CharField(max_length=100) Freshman - Senior For display purposes
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def num_credit_hours(self, student_semester_course):
@@ -239,7 +239,7 @@ class Professor(models.Model):
     name = models.CharField(max_length=100)
     advisee = models.ForeignKey(Student, blank=True, null=True, on_delete=models.PROTECT)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 class StudentSemesterCourses(models.Model):
@@ -280,7 +280,7 @@ class StudentSemesterCourses(models.Model):
     class Meta:
         verbose_name_plural = 'Student semester courses'
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0} {1} {2}".format(self.student,
                                     self.get_year_display(),
                                     self.get_semester_display())
@@ -371,7 +371,7 @@ class CreateYourOwnCourse(models.Model):
     sp = models.BooleanField(default = False, verbose_name="SP")
     cc = models.BooleanField(default = False, verbose_name="CC")
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0} - {1}".format(self.number, self.name)
 
 class AdvisingNote(models.Model):
@@ -379,7 +379,7 @@ class AdvisingNote(models.Model):
     note = models.TextField(max_length=1000, blank=True)
     datestamp = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{0} on {1}".format(self.student, self.datestamp)
 
 class EnteringYear(models.Model):
@@ -418,7 +418,7 @@ class EnteringYear(models.Model):
 
     year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2012)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.year)
 
 class PrepopulateSemesters(models.Model):
@@ -449,5 +449,5 @@ class PrepopulateSemesters(models.Model):
     class Meta:
         verbose_name_plural = 'Prepopulate semesters'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

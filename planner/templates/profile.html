@@ -23,9 +23,9 @@
 	  <td>{{ advisee.name }}</td>
 	  <td>
 	    {% if advisee %}
-	      <a class="btn" href="{% url 'update_advisee' 0 %}">Change</a>
+	      <a class="btn" href="{% url 'planner.views.update_advisee' 0 %}">Change</a>
 	    {% else %}
-	      <a class="btn" href="{% url 'update_advisee' 0 %}">Choose</a>
+	      <a class="btn" href="{% url 'planner.views.update_advisee' 0 %}">Choose</a>
 	    {% endif %}
 	  </td>
 	</tr>
@@ -36,7 +36,7 @@
       You can also <strong>view enrollments</strong> in classes.
       To do so, first type in a full or partial course number (e.g., phy211 or mat15):
     </p>
-    <form action="{% url 'search' %}" method="get">
+    <form action="{% url 'planner.views.search' %}" method="get">
       <input type="text" name="q">
       <input type="submit" value="Search">
     </form>
@@ -45,7 +45,7 @@
     <p>Name: {{ user.student.name }}</p>
     <p>Email: {{ user.email }}</p>
     <p>Major: {{ user.student.major }}
-      (<a class="other" href="{% url 'update_major' user.student.id %}">Change</a>)
+      (<a class="other" href="{% url 'planner.views.update_major' user.student.id %}">Change</a>)
     </p>
     <p>Entering Year: {{ user.student.entering_year }}</p>
 
