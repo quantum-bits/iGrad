@@ -259,7 +259,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return redirect('planner.views.advising_notes')
+            return redirect('planner.views.display_advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
@@ -281,7 +281,7 @@ def update_advising_note(request, id):
         form = AddAdvisingNoteForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('planner.views.advising_notes')
+            return redirect('planner.views.display_advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:
@@ -299,7 +299,7 @@ def delete_advising_note(request, id):
         return redirect('planner.views.profile')
 
     instance.delete()
-    return redirect('planner.views.advising_notes')
+    return redirect('planner.views.display_advising_notes')
 
 @login_required
 def display_four_year_plan(request):
@@ -932,7 +932,7 @@ def add_new_advising_note(request):
             p1 = AdvisingNote(student=listofstudents[0])
             p1.note = form.cleaned_data['note']
             p1.save()
-            return redirect('planner.views.advising_notes')
+            return redirect('planner.views.display_advising_notes')
         else:
             return render(request, 'addAdvisingNote.html', {'form': form})
     else:

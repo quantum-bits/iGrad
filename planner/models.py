@@ -226,7 +226,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     major = models.ForeignKey(Major, blank=True, null=True, on_delete=models.PROTECT)
-    entering_year = models.PositiveIntegerField(default=2012, help_text = "e.g., 2015")
+    entering_year = models.PositiveIntegerField(default=2018, help_text = "e.g., 2018")
     # might need to add null=True above as well....
     #    birthday = models.DateField(blank=True, null=True)
     # Update 5/9/2013 - Items to add
