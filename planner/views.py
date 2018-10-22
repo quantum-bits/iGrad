@@ -816,9 +816,9 @@ def display_grad_audit(request):
                         keepthisone = False
                     else:
                         elementid = -1
-                        for course_id, actual_year,semester, credit_hours in ssclist:
-                            if yearotheroffering == actual_year and semotheroffering == semester:
-                                elementid = course_id
+                        for ssc_id, ssc_actual_year,ssc_semester, credit_hours in ssclist:
+                            if yearotheroffering == ssc_actual_year and semotheroffering == ssc_semester:
+                                elementid = ssc_id
                                 numhrsthissem = credit_hours
                         if elementid == -1:
                             # Id wasn't found, meaning this course offering is not during

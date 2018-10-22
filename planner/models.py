@@ -45,6 +45,15 @@ class Semester(models.Model):
     Y2020 = 2020
     Y2021 = 2021
     Y2022 = 2022
+    Y2023 = 2023
+    Y2024 = 2024
+    Y2025 = 2025
+    Y2026 = 2026
+    Y2027 = 2027
+    Y2028 = 2028
+    Y2029 = 2029
+    Y2030 = 2030
+    
 
     YEAR_CHOICES = (
         (Y2009, '2009'),
@@ -61,11 +70,19 @@ class Semester(models.Model):
         (Y2020, '2020'),
         (Y2021, '2021'),
         (Y2022, '2022'),
+        (Y2023, '2023'),
+        (Y2024, '2024'),
+        (Y2025, '2025'),
+        (Y2026, '2026'),
+        (Y2027, '2027'),
+        (Y2028, '2028'),
+        (Y2029, '2029'),
+        (Y2030, '2030'),        
     )
 
-    name = models.CharField(max_length=50,help_text="e.g., Fa12 or J13")
+    name = models.CharField(max_length=50,help_text="e.g., Fa18 or J19")
     semester_of_acad_year = models.IntegerField(choices=SEMESTER_CHOICES, default = FALL_SEMESTER)
-    actual_year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2012)
+    actual_year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2018)
 
     def __str__(self):
         return self.name
@@ -343,6 +360,15 @@ class CreateYourOwnCourse(models.Model):
     Y2020 = 2020
     Y2021 = 2021
     Y2022 = 2022
+    Y2023 = 2023
+    Y2024 = 2024
+    Y2025 = 2025
+    Y2026 = 2026
+    Y2027 = 2027
+    Y2028 = 2028
+    Y2029 = 2029
+    Y2030 = 2030
+    
 
     YEAR_CHOICES = (
         (Y2009, '2009'),
@@ -359,6 +385,14 @@ class CreateYourOwnCourse(models.Model):
         (Y2020, '2020'),
         (Y2021, '2021'),
         (Y2022, '2022'),
+        (Y2023, '2023'),
+        (Y2024, '2024'),
+        (Y2025, '2025'),
+        (Y2026, '2026'),
+        (Y2027, '2027'),
+        (Y2028, '2028'),
+        (Y2029, '2029'),
+        (Y2030, '2030'),      
     )
 
     name = models.CharField(max_length=50,help_text="e.g., Underwater Basket Weaving")
@@ -398,7 +432,15 @@ class EnteringYear(models.Model):
     Y2020 = 2020
     Y2021 = 2021
     Y2022 = 2022
-
+    Y2023 = 2023
+    Y2024 = 2024
+    Y2025 = 2025
+    Y2026 = 2026
+    Y2027 = 2027
+    Y2028 = 2028
+    Y2029 = 2029
+    Y2030 = 2030
+    
     YEAR_CHOICES = (
         (Y2009, '2009'),
         (Y2010, '2010'),
@@ -414,9 +456,17 @@ class EnteringYear(models.Model):
         (Y2020, '2020'),
         (Y2021, '2021'),
         (Y2022, '2022'),
+        (Y2023, '2023'),
+        (Y2024, '2024'),
+        (Y2025, '2025'),
+        (Y2026, '2026'),
+        (Y2027, '2027'),
+        (Y2028, '2028'),
+        (Y2029, '2029'),
+        (Y2030, '2030'),      
     )
 
-    year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2012)
+    year = models.PositiveIntegerField(choices=YEAR_CHOICES, default = Y2018)
 
     def __str__(self):
         return str(self.year)
