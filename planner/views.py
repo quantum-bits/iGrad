@@ -1317,7 +1317,7 @@ def update_advisee(request, where_from):
         return render(request, 'addadvisee.html', context)
 
 # PUT in something to limit search results!!!!  maybe only display first 20 records or
-# something!!!  !!! do we need to do any security stuff here to make sure this is really a
+# something!!!  do we need to do any security stuff here to make sure this is really a
 # prof?!?
 @login_required
 def search(request):
@@ -1340,13 +1340,19 @@ def search(request):
                 actual_year = availablesemester.actual_year
 
                 # Now need to find all the ssc records for each of these courses....
-                sscdata = StudentSemesterCourses.objects.filter(semester=actual_sem)
+                sscdata = StudentSemesterCourses.objects.prefetch_related('courses').filter(
+                    semester=actual_sem,
+                    courses__id__icontains = course.id,
+                    student__user__is_active = True
+                )
+                
+                #print(course.name, ' number sscdata objects: ', sscdata.count())
                 numberstudents=0
                 studentlist=[]
                 for ssc in sscdata:
                     if ssc.actual_year == actual_year:
                         for courseinssc in ssc.courses.all():
-                            if courseinssc.id == course.id:
+                            if (courseinssc.id == course.id) and (ssc.student.user.is_active):
                                 numberstudents=numberstudents + 1
                                 studentlist.append(ssc.student.name)
                 semlist.append([actual_year, actual_sem, numberstudents,availablesemester.id])
@@ -1379,7 +1385,7 @@ def view_enrolled_students(request,course_id,semesterid):
     for ssc in sscdata:
         if ssc.actual_year == actual_year:
             for courseinssc in ssc.courses.all():
-                if courseinssc.id == int(course_id):
+                if (courseinssc.id == int(course_id)) and (ssc.student.user.is_active):
                     studentlist.append(ssc.student.name)
     temp = request.META.items()
     context={'coursename':course_name,'semestername':semester_name,'studentlist':studentlist}

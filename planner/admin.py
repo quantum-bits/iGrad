@@ -16,8 +16,19 @@ class RequirementBlockAdmin(admin.ModelAdmin):
 class MajorAdmin(admin.ModelAdmin):
     filter_horizontal = ('major_requirements',)
 
+# https://stackoverflow.com/questions/163823/can-list-display-in-a-django-modeladmin-display-attributes-of-foreignkey-field
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('name','major','entering_year',)
+    list_display = ('name','get_email','get_is_active','major','entering_year',)
+    search_fields = ('name',)
+
+    def get_is_active(self, obj):
+        return obj.user.is_active
+
+    def get_email(self, obj):
+        return obj.user.email
+
+    get_is_active.short_description = 'is active'
+    get_email.short_description = 'email'
 
 class AdvisingNoteAdmin(admin.ModelAdmin):
     list_display = ('student','note',)
