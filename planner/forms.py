@@ -71,6 +71,11 @@ class AddAdviseeForm(forms.ModelForm):
         model = Professor
         exclude = ('user', 'name')
 
+    def __init__(self, *args, **kwargs):
+        super (AddAdviseeForm, self).__init__(*args, **kwargs)
+        self.fields['advisee'].queryset = Student.objects.filter(user__is_active = True)
+
+        
 class UpdateMajorForm(forms.ModelForm):
 
     class Meta:
